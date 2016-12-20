@@ -115,3 +115,10 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+# For the lulz
+alias gama='/bin/su'
+alias su='echo "Please gama before su"'
+
+# Stop all screen sessions
+alias killscreen="screen -ls | grep Detached | cut -d. -f1 | awk '{print $1}' | xargs kill"
