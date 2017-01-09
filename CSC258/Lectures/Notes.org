@@ -24,7 +24,7 @@
     |---------------------------------------------+----------------------------|
     | A\dot B\dot C                               | Neither (missing input)    |
     | A+B+C                                       | Neither (missing input)    |
-    | A\dot B + C\dot D                           | Neither (mixes and and or) |
+    | A\dot B + C\dot D                           | Neither (mixes AND and OR) |
     | A+B(Complement)+C+D(Complement              | Maxterm, M_5               |
     | A\dot B(Complement)\dot C\dot D(Complement) | Minterm, m_10              |
     
@@ -36,4 +36,15 @@
 
 ** Going from Truth Table to Expression
    A single minterm indiates with inputs and will make the output go high
-   
+   We can use AND or OR on mintables to explain more complecated expressions
+   Sum on minterms - Find a single high
+     Known as a Sum-of-Products
+   Product of Maxterms - Find a single low
+     Known as Product of Sums
+   These are interchangebale, however look at if you require more high or low values
+
+   We can simplity statements if they differn by a single point
+
+*** KMap
+    Min terms in 1 retangle can ve reduced into 1 term
+    
