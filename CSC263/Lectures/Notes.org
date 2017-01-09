@@ -1,0 +1,45 @@
+* Week 1
+** ADT vs Data Structure
+   Example of an ADT: Stack, Queue, Dictionary
+   Example of a Data Structure: Linked List, Array
+   Data Structures will implement a/multiple ADT(s)
+** Showing best case runtime
+   How to show that the best case is 1 step
+   You find a smaily of lists, one of each size, where the algorithm takes only one step
+  
+   IE. Finding 42 in a list
+   Size [1] = 42
+   Size [2] = 42, 11
+   Size [3] = 42, 11, 11
+   Size [n] = 42, n-1 occurences of 11
+
+   Another solution:
+   Size [n] = n occurances of 42
+
+   Little no purpose in studying best-case analysis
+** Showing average case runtime
+   Worst or best case does not usually describe what is happening
+   
+   Let \t_n be a random variable between 1 and n-1
+   E[t_n] = \sigma t \dot Pr(t_n = t)
+   
+   We now need the probability where t_n = t. This also means we need ot know the distribution of the function
+   
+*** Going to the example in the above point:
+    Suppose every list had only 42. Then we know runtime will always be 1. (NOT REASONABLE)
+    So, let suppose we have 100 elements, and each element is chose uniformly at random from 1 to 100.
+    Pr(t_n = 1) = 0.01
+    Pr(t_n = 2) = 0.99 * 0.01
+    Pr(t_n = 3) = 0.99^2 * 0.01
+    Pr(t_n = n) = 0.99^(n-1) * 0.01
+    Pr(t_n = n+1) = 0.99^n * 0.01 (Occurs when no key is 42)
+    
+    Once we calculate this out, we find: 100 - 99 * 0.99^n
+    This creates an average runtime of \theta (1)
+** Arguing notitaion
+   To argue that an algorithm’s worst-case running time is O(n^2), we show that *For every* inputs of size at least n_0, we have T(n) is *No larger* than cn^2.
+   To argue that an algorithm’s worst-case running time is \omega(n^2), we show that *There exists* inputs of size at least n_0, we have T(n) is *No smaller* than cn^2.
+   To argue that an algorithm’s best-case running time is O(n^2), we show that *There exists* inputs of size at least n_0, we have T(n) is *No larger* than cn^2.
+   To argue that an algorithm’s best-case running time is \omega(n^2), we show that *For every* inputs of size at least n_0, we have T(n) is *No smaller* than cn^2.
+
+* Week 2
