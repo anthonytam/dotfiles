@@ -1,0 +1,30 @@
+* Week 1
+** Data Model
+   DBMS is based on some kind of data model
+***   EX
+**** Network & hierarchical data model
+**** Relational data model
+     Think of data as having rows an colums
+     Took 10 years to first implement
+**** Semistructured data model
+     JSON
+     XML
+**** Unstructured data model
+     Keys and values can be anything
+*** More about relational model
+    Think of data as being in tables (Rows and Cols)
+    Based on the concept of relations in math
+
+*** Pros
+    We can specifiy a logical structure
+    High performance under high loads
+    Durability of data
+** What happens in a DBMS
+*** Architecture
+    Parse Querries
+    Implementing fundamental operations
+    Optimize queries
+    Maintain indicies on data
+    Accessing files that store the data and indicies
+    Buffer management
+    Disk spae management

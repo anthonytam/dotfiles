@@ -1,0 +1,39 @@
+* Week 2
+** Labs
+   Look at summary of TODO's
+** Circuits
+   Generally, and before or unless otherwise specified (breackets)
+*** Creating complex logic
+   Create truth table of the desire behaviour
+   Come up with a good boolean expression with the truth table
+   Covert the boolean extression to gates
+   
+   Key point is creating a good boolean expression
+** Minterms and Maxterms
+   Sort the rolls accorinng to the values to ABC
+   The for each row, name the inputs as m_{\{Row_Number\}}
+
+   The minterm: an AND expression with every input represented in true or complemented form
+      Looking for 1 output
+   The maxterm: an OR expression with every input respresented in true or complemented form
+      Looking for 0 output
+*** Examples
+    Lets have a circuit with 4 inputs: A B C D
+
+    | Circuit                                     | Max or Min term            |
+    |---------------------------------------------+----------------------------|
+    | A\dot B\dot C                               | Neither (missing input)    |
+    | A+B+C                                       | Neither (missing input)    |
+    | A\dot B + C\dot D                           | Neither (mixes and and or) |
+    | A+B(Complement)+C+D(Complement              | Maxterm, M_5               |
+    | A\dot B(Complement)\dot C\dot D(Complement) | Minterm, m_10              |
+    
+** Notation
+   AND can be rep with \dot or * or ^
+   OR can be rep with + or v
+   NOT can be rep with (102 sym) or A' or A(Complement)
+   XOR is plus with circle
+
+** Going from Truth Table to Expression
+   A single minterm indiates with inputs and will make the output go high
+   
