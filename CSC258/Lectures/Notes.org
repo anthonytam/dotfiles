@@ -20,13 +20,13 @@
 *** Examples
     Lets have a circuit with 4 inputs: A B C D
 
-    | Circuit                                     | Max or Min term            |
-    |---------------------------------------------+----------------------------|
-    | A\dot B\dot C                               | Neither (missing input)    |
-    | A+B+C                                       | Neither (missing input)    |
-    | A\dot B + C\dot D                           | Neither (mixes AND and OR) |
-    | A+B(Complement)+C+D(Complement              | Maxterm, M_5               |
-    | A\dot B(Complement)\dot C\dot D(Complement) | Minterm, m_10              |
+    | Circuit                            | Max or Min term            |
+    |------------------------------------+----------------------------|
+    | A\cdot B\cdot C                            | Neither (missing input)    |
+    | A+B+C                              | Neither (missing input)    |
+    | A\cdot B + C\cdot D                        | Neither (mixes AND and OR) |
+    | A+B(Complement)+C+D(Complement     | Maxterm, M_5                |
+    | A\cdot B(Complement)\cdot C\cdot D(Complement) | Minterm, m_10               |
     
 ** Notation
    AND can be rep with \dot or * or ^

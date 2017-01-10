@@ -20,8 +20,8 @@
 ** Showing average case runtime
    Worst or best case does not usually describe what is happening
    
-   Let \t_n be a random variable between 1 and n-1
-   E[t_n] = \sigma t \dot Pr(t_n = t)
+   Let t_n be a random variable between 1 and n-1
+   E[t_n] = \sigma t \cdot Pr(t_n = t)
    
    We now need the probability where t_n = t. This also means we need ot know the distribution of the function
    

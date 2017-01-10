@@ -1,0 +1,17 @@
+* Week 2
+** Indicator Random Variables
+   Let X_e be a random variable where 1 if e happens, 0 if e does not happen
+   E[X_e] = Pr(e happens)
+*** EX
+    PYTHON:
+    Find-Max(L)
+     max = -infinity
+     for k=0 to len(L)-1
+      if L[k] > max
+       max = L[k]
+     return max
+
+     Lets look at:
+     1. Avg case # of times assignment happens
+     2. Best case
+     3. Worst case
