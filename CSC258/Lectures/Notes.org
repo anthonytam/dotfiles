@@ -11,7 +11,7 @@
    Key point is creating a good boolean expression
 ** Minterms and Maxterms
    Sort the rolls accorinng to the values to ABC
-   The for each row, name the inputs as m_{\{Row_Number\}}
+   The for each row, name the inputs as m_{Row_Number}
 
    The minterm: an AND expression with every input represented in true or complemented form
       Looking for 1 output
@@ -20,18 +20,18 @@
 *** Examples
     Lets have a circuit with 4 inputs: A B C D
 
-    | Circuit                            | Max or Min term            |
-    |------------------------------------+----------------------------|
-    | A\cdot B\cdot C                            | Neither (missing input)    |
-    | A+B+C                              | Neither (missing input)    |
-    | A\cdot B + C\cdot D                        | Neither (mixes AND and OR) |
-    | A+B(Complement)+C+D(Complement     | Maxterm, M_5                |
-    | A\cdot B(Complement)\cdot C\cdot D(Complement) | Minterm, m_10               |
+    | Circuit   | Max or Min term            |
+    |-----------+----------------------------|
+    | A\cdot{}B\cdot{}C     | Neither (missing input)    |
+    | A+B+C     | Neither (missing input)    |
+    | A\cdot{}B+C\cdot{}D   | Neither (mixes AND and OR) |
+    | A+\not{}B+C+\not{}D | Maxterm, M_5                |
+    | A\cdot\not{}B\cdot{}C\cdot{}\not{}D | Minterm, m_10               |
     
 ** Notation
-   AND can be rep with \dot or * or ^
+   AND can be rep with \cdot or * or ^
    OR can be rep with + or v
-   NOT can be rep with (102 sym) or A' or A(Complement)
+   NOT can be rep with \not or A' or \[ \overline{A} \]
    XOR is plus with circle
 
 ** Going from Truth Table to Expression
