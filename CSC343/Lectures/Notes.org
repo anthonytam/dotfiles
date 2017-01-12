@@ -28,3 +28,56 @@
     Accessing files that store the data and indicies
     Buffer management
     Disk spae management
+** The relational model
+*** Relations in math
+    Suppose D_1, D_2, ..., D_n are domains
+
+    The cartesian product is the set of all tuples <d_1, d_2, ..., d_n>
+    IE. Every possible combination of values from each domain
+
+    A mathematical relation is a subset of the cartesian product
+*** Terms
+**** Schema
+     Definition of the structure of a relation
+     Notation: Teams(_Name_, HomeField, Coach)
+**** Instance
+     Particular data in the relation
+     Instances can always change
+**** Conventional Database
+     Store current version of the data
+**** Temporal Database
+     Can recorde database history
+**** Relation
+     Table
+**** Attribute
+     Column
+**** Tuple
+     Row
+**** Aritary
+     Number of attribues
+**** Cardinality
+     Number of tuples
+**** Super Key
+     A set of attribues whos combined values are unique
+     Defined with a underlined attribute
+     Defines a kind of integrity constraint
+***** Ex
+      Course(dept, number, name, breadth)
+      <"csc", "343", "Intro to DB", True>
+     We know we can only have one tuple with the same dept and number
+     This means {dept, number} is a super key
+     This is a constraint on what can go in the relation
+     Every relation must have a super key. If there is nothing is notes, all attributes are the super key
+**** Primary Key
+     This is a concept specific to SQL
+**** Foreign Keys
+     A reffereing attribute
+     This gives us a way to refer to a single tuple in that relation
+     We declare foreign ket constraints this way: R_{1}[X]\sub R_{2}[Y]
+     X and Y are lists of attribues, of same arity
+     Y must be a key in R_2 
+
+*** Relations are sets
+    There are no duplicate tuples
+    Order does not matter
+    
