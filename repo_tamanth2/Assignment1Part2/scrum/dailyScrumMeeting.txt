@@ -1,0 +1,73 @@
+# Fill in, commit and push each day.
+
+Oct 6, 2016
+	Yesterday : 
+		I completed the initial JugPuzzle Model classes
+	
+	Today     : Add Scrum framework documents to project. Proofread 
+		        and post the assignment. Send message to all students
+		        about the availability of the assignment.
+	
+	Obstacles : 
+
+Oct 7, 2016
+	Yesterday : Received starter code for the assignment
+	Today     : Looked over assignment requirements, expected completion, required elements
+	Obstacles : Will be busy with other tasks until Oct. 11th. Will begin the sprint then.
+	
+Oct 8, 2016
+	Yesterday : Reviewed assignment requirements to ensure they will be met.
+	Today     : Unable to start sprint due to other matters. Will begin Oct 11th.
+	Obstacles :
+	
+Oct 9, 2016
+	Yesterday : N/A
+	Today     : Unable to start sprint due to other matters. Will begin Oct 11th.
+	Obstacles :
+	
+Oct 10, 2016
+	Yesterday : N/A
+	Today     : Unable to start sprint due to other matters. Will begin Oct 11th.
+	Obstacles :
+	
+Oct 11, 2016
+	Yesterday : N/A
+	Today     : Reviewed the product backlog. Beginning to create the sprint backlog.
+	            Will start a single day sprint today.
+	Obstacles :
+	
+Oct 12, 2016
+	Yesterday : Created a basis for the GUI. Basic panel classes ready to be populated
+	Today     : Will continue to build the panels
+	Obstacles :
+	
+Oct 13, 2016
+	Yesterday : Continued to work on panels, almost completed
+	Today     : N/A Working on campus events.
+	Obstacles : Realized that each section of the GUI needs to be created as its own panel.
+	
+Oct 14, 2016
+	Yesterday : N/A
+	Today     : N/A Personal Day
+	Obstacles :
+	
+Oct 15, 2016
+	Yesterday : N/A
+	Today     : Finishing panels. Will start MVC model design
+	Obstacles : 
+
+Oct 16, 2016
+	Yesterday : Adding final parts and added features to the game. Option to "give up" and start a new game.
+	Today     : Commit and push by tonight at midnight for ontime submission.
+	Obstacles :
+	
+Oct 17, 2016
+	Yesterday :
+	Today     :
+	Obstacles :
+	
+Oct 18, 2016
+	Yesterday :
+	Today     : Commit and push by tonight at midnight for 20% deduction.
+	Obstacles :
+	

@@ -1,0 +1,260 @@
+A1 Part1, Primes
+
+Part 1 Question 1:
+
+	5/5 Code
+        	5/5 Simple, clear, concise and correct
+        	4/5 Correct, but long for what it does, or not simple
+			not clear, not concise
+        	3/5 Has a conceptual error, pieces there but does
+                	not come together to solve the problem
+        	2/5 Worse than others with 3/5 but better than 1/5
+        	1/3 Java attempt to solve the problem
+
+	4/4 JUnit Test Cases
+		- test simple cases
+		- test odd cases
+		- meaningful string arg in assert
+		- sufficient tests
+
+	3/4 Documentation
+		- class doc present
+		- class doc good
+		- method doc present
+		- method doc good
+
+	1/3 Explanation
+		- provided
+		- discussion of algorithms
+		- discussion of datastructure
+
+### START File repo_tamanth2/Primes.java
+/**
+ * Part f) using my algorithm and code design, Sieve Remove runs the fastest. It does not
+ * shift the elements in an ArrayList, and does not use modulous as division is far slower
+ * to compute compared to multiplication. On my personal computer, I was able to calulate 
+ * 1 million primes in 74ms.
+**/
+
+
+
+import java.util.*;
+
+public class Primes {
+    public static void main(String [] args){
+            System.out.println(primes(10000)[9999]);
+            System.out.println(primesLessThan(10000));
+            
+            int n = 1000000;
+            ArrayList<Integer> a;
+            long start, end;
+            
+            start = System.currentTimeMillis();
+            a = primesLessThan(n);
+            end = System.currentTimeMillis();
+            System.out.println(a.size()+ " " + (end-start));
+            
+            start = System.currentTimeMillis();
+            a = primesLessThanSieveRemove(n);
+            end = System.currentTimeMillis();
+            System.out.println(a.size()+ " " + (end-start));
+            
+            start = System.currentTimeMillis();
+            a = primesLessThanSieveAdd(n);
+            end = System.currentTimeMillis();
+            System.out.println(a.size()+ " " + (end-start));
+    }
+    
+    /**
+     * Returns whether or not a given integer is a prime number.
+     * @param testNum The number that will be tested to be prime.
+     * @return A boolean value. True if testNum is prime. False otherwise
+     */
+    public static boolean isPrime(int testNum) {
+    	if(testNum>1){
+    		// We only need to check until sqrt of the number.
+    		// All multiples would have been found before this point.
+    		// http://www.programmingsimplified.com/c/source-code/c-program-for-prime-number
+    		if (testNum == 2)
+    			return true;
+			for (int i = 2; i <= (int)Math.ceil(Math.sqrt(testNum)); i++)
+				if(testNum % i == 0)
+					return false;	
+			return true;
+		}
+		return false;
+	}
+    
+    /**
+     * Returns an integer array which contains the requested
+     * number of primes. Starting at index 0, the array length
+     * will match the number of requested primes.
+     * @param primesToCreate An integer containing the number of 
+     * primes to calculate
+     * @return Integer array containing the requested number of primes
+     */
+    public static int[] primes(int primesToCreate){
+    	int numberOfPrimes = 0;
+    	int testingNum = 0;
+    	int[] foundPrimes = new int[primesToCreate];
+    	while(numberOfPrimes < primesToCreate){
+    		if(isPrime(testingNum)){
+    			foundPrimes[numberOfPrimes] = testingNum;
+    			numberOfPrimes ++;
+    		}
+    		testingNum ++;
+    	}
+    	return foundPrimes;
+    }
+    
+    /**
+     * Generate all of the prime numbers below a given end point.
+     * <p>
+     * Implemented by finding divisibility between numbers from 2
+     * to the square root of the end point.
+     * @param endPoint An integer containing the upper bound of
+     * primes to calculate
+     * @return An ArrayList containing all prime integers from 3
+     * to the upper bound
+     */
+    public static ArrayList<Integer> primesLessThan(int endPoint){
+    	ArrayList<Integer> foundPrimes = new ArrayList<Integer>();
+    	for (int i = 2; i < endPoint; i++)
+    		if (isPrime(i))
+    			foundPrimes.add(i);
+    	return foundPrimes;
+    }
+    
+    /**
+     * Generate all the prime numbers below a given end point.
+     * <p>
+     * Implemented using a Sieve of Eratosthenes approach. Finds
+     * Multiples of a number, removing them from a list and keeping
+     * the original number.
+     * @param endPoint An integer containing the upper bound of primes
+     * to calculate
+     * @return An ArrayList containing all the prime integers from 3
+     * to the upper bound
+     * 
+     */
+    public static ArrayList<Integer> primesLessThanSieveRemove(int endPoint){
+    	boolean[] primes = new boolean[endPoint];
+    	//Let the index rep the number, the value if it is prime or not
+    	for (int i = 2; i < endPoint; i++)
+    		primes[i] = true;
+    	
+    	//Find prime values
+		for (int i = 2; i <= (int)Math.ceil(Math.sqrt(endPoint)); i++)
+			if(primes[i])
+				for (int j = i; i*j < endPoint; j++)
+					primes[i*j] = false;
+		
+		//Changeover boolean array to an ArrayList
+		ArrayList<Integer> primeList = new ArrayList<Integer>();
+		for (int i = 2; i < endPoint; i++)
+			if (primes[i])
+				primeList.add(i);
+		return primeList;
+    }
+    
+    /**
+     * Generate all the prime numbers below a given end point.
+     * <p>
+     * Implemented using reverse Sieve of Eratosthenes approach. Finds
+     * Checks a list forMultiples of a number, if none are found the
+     * number is added to the list.
+     * @param endPoint An integer containing the upper bound of primes
+     * to calculate
+     * @return An ArrayList containing all the prime integers from 3
+     * to the upper bound
+     * 
+     */
+    public static ArrayList<Integer> primesLessThanSieveAdd(int endPoint){
+    	ArrayList<Integer> primeList = new ArrayList<Integer>();
+		for (int i = 2; i < endPoint; i++) {
+			boolean addNumber = true;
+			for(int j = 0; j <= primeList.size() - 1; j++)
+				if(i % primeList.get(j) == 0){
+					addNumber = false;
+					break;
+				}
+			if (addNumber)
+				primeList.add(i);
+		}
+		return primeList;
+    }
+}
+### END File repo_tamanth2/Primes.java
+### START File repo_tamanth2/PrimesTest.java
+import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import org.junit.Test;
+
+public class PrimesTest {
+
+	@Test
+	public void testIsPrime() {
+		assertEquals(true, Primes.isPrime(3));
+		assertEquals(true, Primes.isPrime(5));
+		assertEquals(true, Primes.isPrime(7));
+		assertEquals(true, Primes.isPrime(2));
+		assertEquals(false, Primes.isPrime(6));
+		assertEquals(false, Primes.isPrime(100));
+		assertEquals(false, Primes.isPrime(1000));
+		assertEquals(false, Primes.isPrime(8));
+		assertEquals(false, Primes.isPrime(9));
+		assertEquals(false, Primes.isPrime(16));
+	}
+
+	@Test
+	public void testPrimes() {
+		assertEquals(true, Arrays.equals(Primes.primes(1), new int[] {2}));
+		assertEquals(true, Arrays.equals(Primes.primes(2), new int[] {2,3}));
+		assertEquals(true, Arrays.equals(Primes.primes(3), new int[] {2,3,5}));
+		assertEquals(true, Arrays.equals(Primes.primes(4), new int[] {2,3,5,7}));
+		assertEquals(false, Arrays.equals(Primes.primes(5), new int[] {2,4,3}));
+		assertEquals(false, Arrays.equals(Primes.primes(3), new int[] {1}));
+		assertEquals(false, Arrays.equals(Primes.primes(1), new int[] {1}));
+		assertEquals(false, Arrays.equals(Primes.primes(3), new int[] {5,7}));
+		assertEquals(false, Arrays.equals(Primes.primes(5), new int[] {1,2,3,4,5}));
+		assertEquals(false, Arrays.equals(Primes.primes(9), new int[] {1,3,5,7,9,11,13,15,17}));
+	}
+
+	@Test
+	public void testPrimesLessThan() {
+		ArrayList<Integer> primes = new ArrayList<Integer>();
+		assertEquals(primes, Primes.primesLessThan(1));
+		primes.add(2);
+		primes.add(3);
+		assertEquals(primes, Primes.primesLessThan(4));
+		assertEquals(primes, Primes.primesLessThan(5));
+		primes.add(5);
+		primes.add(7);
+		assertEquals(primes, Primes.primesLessThan(8));
+		primes.add(11);
+		assertEquals(primes, Primes.primesLessThan(13));
+		assertEquals(primes, Primes.primesLessThan(12));
+		primes.add(13);
+		assertEquals(primes, Primes.primesLessThan(14));
+		assertEquals(primes, Primes.primesLessThan(15));
+		assertEquals(primes, Primes.primesLessThan(16));
+		assertEquals(primes, Primes.primesLessThan(17));
+	}
+
+	@Test
+	public void testPrimesLessThanSieveRemove() {
+		for (int i = 3; i <= 50; i++)
+			assertEquals(Primes.primesLessThan(i), Primes.primesLessThanSieveRemove(i));
+	}
+
+	@Test
+	public void testPrimesLessThanSieveAdd() {
+		for (int i = 3; i <= 50; i++)
+			assertEquals(Primes.primesLessThan(i), Primes.primesLessThanSieveAdd(i));
+	}
+
+}
+### END File repo_tamanth2/PrimesTest.java
