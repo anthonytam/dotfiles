@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/tut/12/q6s.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:27 GMT -->
+<head>
+
+<title>CSC 209 sample exam question solution</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #cc7777;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .unhidden { display: block; }
+</style>
+
+</head>
+
+<body>
+
+<b>1.</b> [15 marks]
+What is the output (on stdout) from the following commands?
+If you can't tell from the information given, state what additional
+information you would need.
+
+<p><b>General solutions note:</b>
+If you don't understand the supplied answer,
+now that you're no longer in the exam situation,
+please actually try the command,
+and experiment from there.
+
+<p>
+a)   <tt>test x = x</tt>
+
+<p><b>Answer:</b>
+no output to stdout
+
+<p>
+b)   <tt>expr 2 + 3 | wc -l</tt>
+
+<p><b>Answer:</b>
+<tt>1</tt>
+
+<p>
+c)   <tt>echo hi | wc -c</tt>
+
+<p><b>Answer:</b>
+<tt>3</tt>
+
+<p>
+d)   <tt>(echo hi; echo bye) | sort</tt>
+
+<p><b>Answer:</b>
+<br>
+<tt>bye</tt>
+<br>
+<tt>hi</tt>
+
+<p>
+e)   <tt>echo hi; echo bye | wc -l</tt>
+
+<p><b>Answer:</b>
+<br>
+<tt>hi</tt>
+<br>
+<tt>1</tt>
+
+<p>
+f)   <tt>expr 2 * 3</tt>
+
+<p><b>Answer:</b>
+It depends upon what files are in the current directory, because '*' is
+substituted accordingly.
+<br>
+(E.g. if there is only one file and it is named '+', then this command line
+will expand to "<tt>expr 2 + 3</tt>" and yield the output "5".)
+
+<p><b>Grading:</b>
+<br> Out of: 3, 2, 2, 2, 3, 3.
+<br>
+For part (f), just saying that you think the author meant
+<tt> expr 2 \* 3 </tt> was worth one out of 3.  The question was what
+<i>does</i> happen, and this is a much harder question.
+
+<p>
+<hr>
+[press 'back' in your web browser to return to where you were in the exam]
+
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/tut/12/q6s.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:27 GMT -->
+</html>

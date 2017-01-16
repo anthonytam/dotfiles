@@ -1,0 +1,252 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/a2/a2.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:09 GMT -->
+<head>
+
+<title>CSC 209 assignment two</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #cc7777;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .unhidden { display: block; }
+</style>
+
+<script type="text/javascript">
+    function show(s) {
+        document.getElementById(s).className = 'unhidden';
+    }
+    function reveal(n) {
+        document.getElementById(n + '_teaser').className = 'hidden';
+        document.getElementById(n + '_hr').className = 'unhidden';
+        document.getElementById(n + '_full').className = 'unhidden';
+	n1 = n + 1;
+        document.getElementById(n1 + '_hr').className = 'unhidden';
+    }
+</script>
+
+</head>
+
+<body>
+<div class=toc>
+
+<a href="../.html">Introduction</a>
+<br>
+<a href="../announce.html">Announcements</a>
+
+<p>
+
+<a href="../lect/index.html">Lectures</a>
+<br>
+<a href="../tut/index.html">Tutorials</a>
+<br>
+<a href="../asmt.html">Assignments</a>
+
+<p>
+<a href="javascript:show('tests')">Tests, exam</a>
+<div id=tests class=hidden>
+    <ul>
+    <li>
+    <a href="../mid/index.html">Mid-term test</a>
+    <li>
+    <a href="../exam/info.html">Final exam</a>
+    </ul>
+</div>
+
+<p>
+
+<a href="../notes/index.html">Course notes</a>
+<br>
+<a href="../probs/index.html">Extra problems</a>
+<br>
+
+<a href="https://mcs.utm.utoronto.ca/~mybb/utmcs/forumdisplay.php?fid=193">Discussion board</a>
+
+<p>
+<a href="../netgrade-results.html">Grades so far</a>
+<br>
+<a href="../oldannounce.html">Old announcements</a>
+
+</div>
+
+<h1> CSC 209 Assignment 2, Winter 2016 </h1>
+
+Due by the end of Wednesday February 24, 2016;
+no late assignments without written explanation.
+
+<h2>Part 1: 'which'</h2>
+Write the <i>which</i> command in C.
+For each of its arguments,
+the <i>which</i> program looks through your PATH and figures
+out which program the shell would run if you typed that command.
+For example, "which echo" will output "/bin/echo".
+<p>
+Your program will be called "mywhich".
+To simplify the string handling, your program will not actually use the PATH
+environment variable but rather will have a built in search list which is:
+/bin; then /usr/bin; then the current directory.
+Your program's output will tell the user the
+match which occurs <i>first</i>; the search list is in
+order (like the PATH search list is).
+<p>
+The real 'which' command checks whether the files are executable by you.
+For
+the purposes of this assignment you will more simply instead check if the files are
+executable by owner.
+Note that, for example, if there is a non-executable file /bin/blof and an
+executable file /usr/bin/blof, "which blof" will output
+"/usr/bin/blof".  Whereas if /bin/blof were executable, "which blof"
+would output "/bin/blof".
+<p>
+If an executable file by that name is not found in the search list, output an
+error message of the form "whatever: Command not found.".  (The period at
+the end of this output is odd for unix, but is traditional for 'which'.)
+<p>
+"mywhich" with no command-line arguments should generate a usage message
+in the standard format (resembling the SYNOPSIS line in a man page).
+
+<h2>Part 2: 'uniq'</h2>
+Write a standard unix tool which is a simplified <i>uniq</i>: its only
+command-line option is -c (use getopt() to parse the command-line options).
+Unlike the real 'uniq', but
+like most standard unix tools, it takes zero or more file names on the
+command-line in the usual way.
+<p>
+Call your program "myuniq".
+<p>
+Entire lines are compared for uniqueness, so you can just "fgets" into two
+alternating buffers.
+You can fgets() into a buffer of size 500 bytes, such that lines longer than
+499 bytes (including the newline) will be broken; as always there must not
+exist any possible input which would cause your program to exceed any array
+bounds.
+
+<h2>Part 3: 'du'</h2>
+The "du" command recursively lists disk usage under a specified directory.
+The "st_blocks" value in the struct filled up by lstat() will tell you the
+number of blocks used by a particular file times two (that is, it assumes that
+blocks are half-K).
+<p>
+Your "mydu" program will have
+command-line options '-h', which means to use suffixes K, M, and G as
+applicable (e.g. 1132 blocks would instead be output as "1M"); and
+'-s', which means to output only the summary line for each argument (by
+default it outputs a line for each subdirectory as it traverses).
+Use getopt() to parse the command-line
+options.  Having no filename arguments is a usage error.
+<p>
+Note that directories' own disk usage does not contribute to the count; add
+st_blocks/2 only for non-directories.
+Also note that it is important to use lstat() rather than stat() to avoid
+the possibility of infinite recursion.
+<p>
+The size is separated from the file name simply by a single space (unlike the
+cuter formatting performed by the "real" <i>du</i>).
+Also, your mydu program will expect the command-line arguments to be
+directories (whereas du itself allows plain files as well).
+<p>
+mydu should <i>not</i> do a chdir() (which you might be
+tempted to do to avoid string
+processing).
+If it does a chdir(), your program will no longer always work with multiple
+command-line
+arguments, since a chdir() in processing the first directory may invalidate the
+name of the specified second directory.
+<p>
+You may assume a maximum likely complete path name of, say, 2000 characters,
+so long as your program aborts with an error, rather than exceeding array
+bounds, should the situation turn out to be more complex than this.
+<p>
+You may not use ftw() or fts().
+<p>
+
+<h2>Other notes</h2>
+You can find compiled solutions for all of these programs in /student/csc209/a2
+for comparison.
+<p>
+Your C programs must be in standard C.
+They must compile on the UTM linux machines with "gcc -Wall" with no
+errors or warning messages, and may not use linux-specific or GNU-specific
+features.
+<p>
+Pay attention to process exit statuses.  Your programs must return exit
+status 0 or 1 as appropriate.
+<p>
+Call your assignment files
+mywhich.c, myuniq.c, and mydu.c.
+Your files must have the correct names to be processed correctly by
+the grading software, and auxiliary files are not permitted.
+<p>
+Once you are satisfied with your files, you can submit them for grading
+with the command
+<pre>
+	/student/csc209/submit a2 mywhich.c myuniq.c mydu.c
+</pre>
+You may still change your files and resubmit them any
+time up to the due time.  You can check that your assignment has been
+submitted with the command
+<pre>
+	/student/csc209/submit -l a2
+</pre>
+This is the only submission method; you do not turn in any paper.
+<p>
+Please see the assignment Q&amp;A web page at
+<a href="qna.html">https://cs.utm.utoronto.ca/~ajr/209/a2/qna.html</a>
+for other reminders, and answers to common questions.
+
+<h2>Remember:</h2>
+<p>
+This assignment is due at the end of Wednesday, February 24, by midnight.
+Late assignments are not ordinarily accepted, and <i>always</i> require a
+written explanation.
+If you are not finished your assignment by the submission deadline, you should
+just submit what you have, for partial marks.
+<p>
+Despite the above, I'd like to be clear that if there <i>is</i> a legitimate
+reason for lateness, please do submit your assignment late and send me that
+written explanation.
+(For medical notes, I need to see the original, in person.  E.g. in office
+hours or after the next class.)
+<p>
+And above all:  Do not commit an academic offence.
+Your work must be your own.
+Do not look at other students' assignments,
+and do not show your assignment (complete or partial) to other students.
+Collaborate with other students only on material which is not being submitted
+for course credit.
+
+<p>
+<hr>
+
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/a2/a2.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:09 GMT -->
+</html>

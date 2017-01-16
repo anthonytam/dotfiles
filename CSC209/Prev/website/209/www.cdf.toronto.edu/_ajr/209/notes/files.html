@@ -1,0 +1,358 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/notes/files.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:14 GMT -->
+<head>
+
+<title>CSC 209: C files</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #cc7777;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .unhidden { display: block; }
+</style>
+
+<script type="text/javascript">
+    function show(s) {
+        document.getElementById(s).className = 'unhidden';
+    }
+    function reveal(n) {
+        document.getElementById(n + '_teaser').className = 'hidden';
+        document.getElementById(n + '_hr').className = 'unhidden';
+        document.getElementById(n + '_full').className = 'unhidden';
+	n1 = n + 1;
+        document.getElementById(n1 + '_hr').className = 'unhidden';
+    }
+</script>
+
+</head>
+
+<body>
+<div class=toc>
+
+<a href="../.html">Introduction</a>
+<br>
+<a href="../announce.html">Announcements</a>
+
+<p>
+
+<a href="../lect/index.html">Lectures</a>
+<br>
+<a href="../tut/index.html">Tutorials</a>
+<br>
+<a href="../asmt.html">Assignments</a>
+
+<p>
+<a href="javascript:show('tests')">Tests, exam</a>
+<div id=tests class=hidden>
+    <ul>
+    <li>
+    <a href="../mid/index.html">Mid-term test</a>
+    <li>
+    <a href="../exam/info.html">Final exam</a>
+    </ul>
+</div>
+
+<p>
+
+<a href="index.html">Course notes</a>
+<br>
+<a href="../probs/index.html">Extra problems</a>
+<br>
+
+<a href="https://mcs.utm.utoronto.ca/~mybb/utmcs/forumdisplay.php?fid=193">Discussion board</a>
+
+<p>
+<a href="../netgrade-results.html">Grades so far</a>
+<br>
+<a href="../oldannounce.html">Old announcements</a>
+
+</div>
+
+<h1>Files in C</h1>
+
+In unix, the basic system calls for dealing with files are:
+
+<ul>
+<li> open -- begin doing something with a file (read or write)
+<li> read -- transfer some data from the file to memory (variables)
+<li> write -- transfer some data from memory to the file
+<li> close -- end doing something with a file
+</ul>
+
+In unix we often don't have to call open() or close().
+<br>
+Three files are already open when our process is started (stdin, stdout,
+and stderr); and all files are closed automatically when our process exits.
+
+<p>
+But we don't usually use the above system calls for routine file access from C
+in unix.  We want
+<br>
+1) something portable to non-unix; i.e. to run in any C environment, not just unix
+<br>
+2) buffering.  It turns out that we often want to process data in our program
+in small pieces, and it is noticeably slower, even on a modern fast computer,
+to do a system call for each little piece of data.  The portable package built
+on top of these unix system calls will read a large chunk of the file even if
+we've only called for one byte; it will save those not-yet-called-for bytes in
+a "buffer" until we call for them later.
+
+<p>
+This is the stdio package, whose name we've seen in writing #include
+&lt;stdio.h>.
+
+
+<h2>Stdio</h2>
+
+<p>
+getchar(): get one character from the standard input.  Returns an int, from 0
+to the maximum unsigned byte value (almost always 255); returns -1 for end of
+file.
+<br>
+stdio.h contains a definition for the constant "EOF" as -1.
+
+<p>
+putchar(c): put one character to the standard output.
+
+<p>
+Here is a program which functions like "cat" with no arguments, just copying
+its standard input to its standard output:
+<pre>
+#include &lt;stdio.h>
+
+int main()
+{
+    int c;
+    while ((c = getchar()) != EOF)
+        putchar(c);
+    return(0);
+}
+</pre>
+
+Since stdio does buffering, it is <i>not</i> inefficient to be processing
+this character-by-character.
+
+<p>
+Note that c must be of type int, not char; if it were of type char, then
+return values of -1 or 255 from getchar() would end up the same.
+(It is machine-dependent whether these two values both, or neither, compare as
+equal to EOF (-1); but in neither case would that program which declared c as
+type char perform perfectly.)
+
+<p>
+There is an
+abstract data type "FILE", defined in stdio.h.
+
+<p>
+The stdio library function
+"fopen" takes two arguments:
+<ul>
+<li> file name
+<br>
+The file name is an absolute or relative path name.  Like what you type to any unix command.
+It is simply passed to open(), and the unix kernel interprets the path name.
+<p>
+<li> permissions ("r" or "w", mostly)
+</ul>
+
+<p>
+fopen
+returns an item of type FILE *; NULL for can't open.
+In the NULL case,
+it stashes the reason why...
+<br>
+If there's an error, call perror(filename).
+<p>
+N.B.: That is just about the only correct way to report the error.
+perror(filename).  Not perror(anything else); not a generic error message
+"can't open file", but an appropriate message printed by perror() such as
+"filename: Permission denied" or "filename: No such file or directory" or
+"filename: I/O error".
+Perror() gives you the correct error message automatically.
+
+<p>
+fprintf: like printf, with an extra FILE* first argument.
+
+<p>
+One year in CSC 270 we gave an extension for an assignment but gave a bonus to
+those who handed it in at the original due time.
+Some code from the grading software went much like this:
+<pre>
+if (getsbonus) {
+    char buf[100];
+    FILE *fp;
+    sprintf(buf, "%s/a3/BONUS", logname);
+    if ((fp = fopen(buf, "w")) == NULL) {
+        perror(buf);
+        exit(1);
+    }
+    fprintf(fp, "10%% bonus for early submission.  Adjusted grade: ________\n");
+    fclose(fp);
+}
+</pre>
+
+<p>
+The fclose() is necessary because this is in a loop for all students.
+Exiting closes all files, but we needed to close this file before exiting or
+we would run out of available open files in the middle (e.g. after we opened
+about 29 files without closing them, if the limit is 32).
+
+<p>
+Strangely, stdio.h contains "#define NULL 0".
+Stdio.h is
+an odd place for this definition, but we tend to use it from there.
+
+<p>
+A null pointer return from fopen() mean that the open failed.
+This generally means either that the file doesn't exist or that you don't
+have permission to access it, although it can also mean out-of-memory (there
+is a malloc() in fopen for the struct which a FILE* is a pointer to), and
+a few other weirder things.
+
+<p>
+Otherwise it is a valid FILE* value which you can pass to other stdio
+functions.
+
+<p>
+stdio.h defines stdin, stdout, and stderr as items of type FILE*.
+(If you want to use the integers 0, 1, or 2 as parameters to unix calls such
+as read(), you just use the integers, <i>not</i> "stdin" and such, which are
+items of type FILE*.)
+
+<p>
+Functions which take a FILE* argument (here using the variable "fp" for the
+examples):
+<pre>
+putc(c, fp);
+getc(fp)
+fprintf(fp, "....
+fscanf(fp, "....
+</pre>
+
+<p>
+getchar() reads stdin; putchar() puts to stdout.
+So getchar() is the same as getc(stdin), and putchar(c) is the same as
+putc(c,stdout).
+(Note the odd parameter order to putc().)
+
+<p>
+The function fgets() reads a line of input, defined as a sequence of non-\n
+characters followed by a \n.
+<br>
+Example usage:
+<pre>
+char a[20];
+char *p;
+printf("What is your name?\n");
+fgets(a, 20, stdin);
+if ((p = strchr(a, '\n')))
+    *p = '\0';
+printf("Hello, %s, how are you?\n", a);
+</pre>
+
+<p>
+fgets() returns an EOF indication too.
+Its return value is rather strange:  It returns either its first argument or
+a null pointer.  Thus its return type is char*.  We usually end up testing
+this directly as a boolean, with the implicit comparison to zero; the implicit
+zero gets converted to a null pointer of type char*.
+That is to say, if e is a char* expression, "if (e)" executes the 'then'
+clause if e is not a null pointer, and the 'else' clause if e is a null
+pointer.
+
+<p>
+Suppose we want to input a number.
+
+<pre>
+char buf[80];
+int glop;
+
+while (1) {
+    printf("Enter the glop number: ");
+    if (fgets(buf, 80, stdin) == NULL)
+        exit(1);
+    if (sscanf(buf, "%d", &glop) == 1)
+        break;
+    printf("That is not a number.\n");
+}
+</pre>
+and at this point, the variable "glop" contains a number which the user typed in.
+
+<p>
+sscanf() is like fscanf(), except instead of reading from an I/O channel it
+reads from a string.
+
+<p>
+(If we see end-of-file, there's not much we can do.
+Simply exiting is a common response to eof if there's no data to save or
+similar.  Like you did in assignment one.)
+
+<p>
+Another cat example, which takes command-line arguments which are file names
+(however, the real "cat" takes zero file names as an indication that it should
+read stdin, and this version doesn't do that):
+
+<pre>
+#include &lt;stdio.h>
+
+int main(int argc, char **argv)
+{
+    int status = 0;
+    for (argc--, argv++; argc > 0; argc--, argv++) {
+        FILE *fp;
+        if ((fp = fopen(*argv, "r")) == NULL) {
+            perror(*argv);
+            status = 1;
+        } else {
+            int c;
+            while ((c = getc(fp)) != EOF)
+                putchar(c);
+            fclose(fp);
+        }
+    }
+    return(status);
+}
+</pre>
+
+<p>
+Finally, a version which reads stdin if zero arguments, and also implements
+the "-" argument meaning to read stdin,
+can be found in
+<a href="toolsfiles/cat1.c">https://cs.utm.utoronto.ca/~ajr/209/notes/toolsfiles/cat1.c</a>
+
+<p>
+<hr>
+
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/notes/files.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:14 GMT -->
+</html>

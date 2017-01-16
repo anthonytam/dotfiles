@@ -1,0 +1,17 @@
+PATH=/bin:/usr/bin
+
+if test $# -ne 2
+then
+    echo usage: gcd x y >&2
+    exit 1
+fi
+
+x=$1
+y=$2
+while test $y -gt 0
+do
+    t=$x
+    x=$y
+    y=`expr $t % $y`
+done
+echo $x

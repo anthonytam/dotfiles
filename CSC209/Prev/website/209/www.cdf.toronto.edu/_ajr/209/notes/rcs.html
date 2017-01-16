@@ -1,0 +1,266 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/notes/rcs.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:15 GMT -->
+<head>
+
+<title>CSC 209: RCS</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #cc7777;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .unhidden { display: block; }
+</style>
+
+<script type="text/javascript">
+    function show(s) {
+        document.getElementById(s).className = 'unhidden';
+    }
+    function reveal(n) {
+        document.getElementById(n + '_teaser').className = 'hidden';
+        document.getElementById(n + '_hr').className = 'unhidden';
+        document.getElementById(n + '_full').className = 'unhidden';
+	n1 = n + 1;
+        document.getElementById(n1 + '_hr').className = 'unhidden';
+    }
+</script>
+
+</head>
+
+<body>
+<div class=toc>
+
+<a href="../.html">Introduction</a>
+<br>
+<a href="../announce.html">Announcements</a>
+
+<p>
+
+<a href="../lect/index.html">Lectures</a>
+<br>
+<a href="../tut/index.html">Tutorials</a>
+<br>
+<a href="../asmt.html">Assignments</a>
+
+<p>
+<a href="javascript:show('tests')">Tests, exam</a>
+<div id=tests class=hidden>
+    <ul>
+    <li>
+    <a href="../mid/index.html">Mid-term test</a>
+    <li>
+    <a href="../exam/info.html">Final exam</a>
+    </ul>
+</div>
+
+<p>
+
+<a href="index.html">Course notes</a>
+<br>
+<a href="../probs/index.html">Extra problems</a>
+<br>
+
+<a href="https://mcs.utm.utoronto.ca/~mybb/utmcs/forumdisplay.php?fid=193">Discussion board</a>
+
+<p>
+<a href="../netgrade-results.html">Grades so far</a>
+<br>
+<a href="../oldannounce.html">Old announcements</a>
+
+</div>
+
+<h1>RCS</h1>
+
+<p>
+In "real life", and even sometimes in school,
+one typically has a problem of managing a variety of files in a software
+project involving a number of people.
+We need software to keep track of versions of files.
+
+<p>
+For the simplest example:  What happens if two people edit a file at the same
+time?
+Answer:  Whoever saves last "wins".  Their changes are reflected in the file
+and the other person's changes are wiped out.
+
+<p>
+Making separate copies of this file doesn't really improve things.
+No one's changes are wiped out, but then you have two incompatible versions of
+the resulting file, and merging them is usually a non-trivial task.
+
+
+<p>
+RCS is a system for dealing with a number of matters around source code
+control.
+<ul>
+<li> RCS saves all old revisions
+<li> Maintenance of a complete history of changes. RCS logs all changes
+automatically.  The logging makes it easy to find out what happened to a
+module, without having to compare source listings or having to track down
+colleagues.
+<li> Resolution of access conflicts.
+<li> Maintenance of a tree of revisions.
+<li> Release and configuration control. Revisions can be assigned symbolic
+names, e.g. "Release 1.2".
+<li> Automatic identification of each revision with name, revision number,
+creation time, author, etc.
+<li> Stores all these multiple versions efficiently in terms of disk space
+usage.  That is, if you check out a file and change one line and check it back
+in, basically only that one line is stored, rather than a duplicate of the
+entire file.
+</ul>
+
+<p>
+set up:
+<ul>
+<li> one person:
+    <ul>
+    <li> (in working directory)
+    <li> mkdir RCS
+    <li> chmod (and maybe chgrp) the RCS directory so that everyone in the project can write to it
+    </ul>
+<li> others:
+    <ul>
+    <li> (in working directory)
+    <li> ln -s ~thatperson/.../RCS .
+    </ul>
+</ul>
+
+
+<p>
+looking at a file:
+<pre>
+	% co file
+</pre>
+it will be read-only ("unlocked")
+
+<p>
+adding a file:
+<pre>
+	% ci -u file
+	>> brief description of the file
+	^D
+</pre>
+The "-u" option makes it check it out again immediately, so that the file is
+still in your current directory as "read-only".
+This isn't a necessary part of checking in the file, but it's something you
+usually want to do if you want to keep working with the project.
+
+<p>
+working on a file:
+<pre>
+	% co -l file   # "lock"
+	# now others won't be able to check it out locked
+	% vi ...
+	% ci -u file
+	>> brief description of changes
+	^D
+</pre>
+There is also "ci -l", which checks it out locked, immediately.
+That is, it checkpoints the file in the RCS database but you still have it
+signed out.
+
+<p>
+(Note that when you "ci" a new file, it asks you for a brief description
+of the file, whereas when you "ci" a checked-out file, it asks you for a
+brief description of the changes.)
+
+<p>
+getting file info:
+<pre>
+	% rlog file
+</pre>
+
+<p>
+looking up old revisions:
+<pre>
+	% co -r1.1 file
+</pre>
+or rcsdiff:
+<blockquote>
+<dl>
+<dt> rcsdiff file
+    <dd> diffs co'd with current revision.
+<dt> rcsdiff -rrev file
+    <dd> diffs co'd with that revision.
+<dt> rcsdiff -rrev1 -rrev2 file
+    <dd> diffs those revs.
+</dl>
+You can also pass diff options such as -b and -c to rcsdiff.
+</blockquote>
+
+<p>
+naming revisions:
+<pre>
+	% rcs -Nname:1.1 file
+</pre>
+This gives version 1.1 of the file the name "name".
+These "symbolic" names must start with a letter.
+Typically you would give some version or other of every file in the project
+this same name.
+<p>
+Later:
+<pre>
+	% co -rname file
+</pre>
+"symbolic" names can be used anywhere a revision number can be
+
+<p>
+RCS creates its database files in the RCS subdirectory, and you can actually
+use these instead e.g. rlog RCS/*, co RCS/*
+
+<p>
+Use "man" to find out more about all of these commands.  There is also a
+"man rcsintro" which gives a chatty introduction to rcs.
+
+<p>
+rcs -u is unsignout; often want to follow with a plain co or at least an rm.
+Note that you can just "co -l" again too.
+
+
+<!--
+<h3> Packaging and release </h3>
+
+re-generate the pile of source code which is version 3.1 of the software
+which is what they're running at a particular site.
+expand on the whole idea of freezing a source tree, branches and bug fixes,
+release tracking, bug database (perhaps give a bugzilla demo?), etc.  Also
+mention alpha test, beta test, politics around version numbering.
+
+-->
+
+<p>
+<hr>
+
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/notes/rcs.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:15 GMT -->
+</html>

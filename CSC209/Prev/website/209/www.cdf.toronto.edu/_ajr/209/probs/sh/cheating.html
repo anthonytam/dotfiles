@@ -1,0 +1,10 @@
+PATH=/bin:/usr/bin
+
+cd /u/submit/csc209h/a1
+for i in *
+do
+    for j in *
+    do
+        echo `cheating "$i" "$j"` "$i" "$j"
+    done
+done | sort -nr | head

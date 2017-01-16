@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/tut/07/q6s.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:27 GMT -->
+<head>
+
+<title>CSC 209 tutorial exercises, week of 29 February 2016</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #cc7777;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .unhidden { display: block; }
+</style>
+
+<script type="text/javascript">
+    function show(s) {
+        document.getElementById(s).className = 'unhidden';
+    }
+    function reveal(s) {
+        document.getElementById(s+'_a').className = 'hidden';
+        document.getElementById(s+'_b').className = 'revealed';
+    }
+</script>
+
+</head>
+
+<body>
+
+<div class=toc>
+<a href="../01.html">Tutorial 01</a>
+<br>
+<a href="../02.html">Tutorial 02</a>
+<br>
+<a href="../03.html">Tutorial 03</a>
+<br>
+<a href="../04.html">Tutorial 04</a>
+<br>
+<a href="../05.html">Tutorial 05</a>
+<br>
+<a href="../06.html">Tutorial 06</a>
+<br>
+<a href="../07.html">Tutorial 07</a>
+<br>
+<a href="../08.html">Tutorial 08</a>
+<br>
+<a href="../09.html">Tutorial 09</a>
+<br>
+<a href="../10.html">Tutorial 10</a>
+<br>
+<a href="../11.html">Tutorial 11</a>
+<br>
+<a href="../12.html">Tutorial 12</a>
+<br>
+<p>
+[<a href="../../index.html">Course home page</a>]
+</div>
+
+<h1>CSC 209 tutorial 07 solutions, week of 29 February 2016</h1>
+
+<h3> Question 6: </h3>
+
+Problem:
+<br>
+Read a number from the file "foo", or return -1 if the file doesn't exist or
+doesn't begin with a number.
+
+<p>
+Code:
+<pre>
+int foonumber()
+{
+    int x;
+    FILE *fp = fopen("foo", "r");
+    if (fp == NULL)
+        perror("foo");
+    if (fscanf(fp, "%d", &x) == 0)
+        return(-1);
+    return(x);
+}
+</pre>
+
+<p>
+Solution:
+<pre>
+int foonumber()
+{
+    int x;
+    FILE *fp = fopen("foo", "r");
+    if (fp == NULL)
+	return(-1);
+    if (fscanf(fp, "%d", &x) != 1)
+        x = -1;
+    fclose(fp);
+    return(x);
+}
+</pre>
+
+<p>
+Problems fixed above:
+<ul>
+<li> If fopen() returns NULL, do not proceed!  The specification of this
+function says that it should return -1 in this case.
+<li> But also, the specification seems to make it clear that it's ok if the
+file doesn't exist; thus we shouldn't be calling perror().  In general,
+sufficiently low-level library routines should not be calling perror(), but
+rather, leaving it to the caller to call perror(), where applicable, which it
+probably isn't in this case.
+Whether the library routine calls perror() or not is part of the
+specification.
+<li> The author of the original code was apparently not thinking of the
+possibility of fscanf() returning EOF (-1).  If fscanf() returns anything other
+than 1 to indicate a successful match and the filling up of the 'x' variable,
+"foonumber"'s return value should be -1.
+<li> It is necessary to fclose() the FILE* because we don't know that we're
+about to exit.  Presumably we often aren't about to exit.
+<li> Thus the return(-1) for a bad fscanf() also needs changing because we
+need to fclose() first.  We could add a duplicate fclose() in the 'if' body,
+but I think what I did above is cleverer.
+(On the other hand, sometimes excessive cleverness is bad.  I'm not sure
+whether the above constitutes excessive cleverness.)
+</ul>
+<p align=right>
+<cite>
+"It's impossible to foresee the consequences of being clever."
+<br>
+-- Christopher Strachey
+</cite>
+</p>
+
+<p><hr>
+[press 'back' in your web browser to return to the problems]
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/tut/07/q6s.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:27 GMT -->
+</html>

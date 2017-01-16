@@ -1,0 +1,11 @@
+month=`date +%m`
+year=`date +%Y`
+month=`expr $month + 1`
+if test $month -eq 13
+then
+    month=1
+    year=`expr $year + 1`
+fi
+
+cal
+cal $month $year

@@ -1,0 +1,564 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/tut/12/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:06 GMT -->
+<head>
+
+<title>CSC 209 tutorial exercises, week of 4 April 2016</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #cc7777;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .unhidden { display: block; }
+</style>
+
+<script type="text/javascript">
+    function show(s) {
+        document.getElementById(s).className = 'unhidden';
+    }
+    function reveal(s) {
+        document.getElementById(s+'_a').className = 'hidden';
+        document.getElementById(s+'_b').className = 'revealed';
+    }
+</script>
+
+</head>
+
+<body>
+
+<div class=toc>
+<a href="../01.html">Tutorial 01</a>
+<br>
+<a href="../02.html">Tutorial 02</a>
+<br>
+<a href="../03.html">Tutorial 03</a>
+<br>
+<a href="../04.html">Tutorial 04</a>
+<br>
+<a href="../05.html">Tutorial 05</a>
+<br>
+<a href="../06.html">Tutorial 06</a>
+<br>
+<a href="../07.html">Tutorial 07</a>
+<br>
+<a href="../08.html">Tutorial 08</a>
+<br>
+<a href="../09.html">Tutorial 09</a>
+<br>
+<a href="../10.html">Tutorial 10</a>
+<br>
+<a href="../11.html">Tutorial 11</a>
+<br>
+<a href="../12.html">Tutorial 12</a>
+<br>
+<p>
+[<a href="../../index.html">Course home page</a>]
+</div>
+
+<h1>CSC 209 exam review exercises, week of 4 April 2016</h1>
+
+We don't have a tutorial this week, but if you're looking for something to do,
+here are some exercises which might make a good review leading up to the final
+exam.
+
+<!--
+<p>
+This tutorial is not graded, so attendance is not being taken, so you don't
+need to run the 'present' command.
+-->
+
+<p>
+<!--
+This tutorial will consist of doing problems from former exams.
+-->
+Here are some problems from former exams.
+You can work on them by yourself or in groups of any size, as this tutorial
+is not graded.
+
+<p>
+If you write your programs in text files on the computer, your goal should
+be that they compile without errors (with gcc -Wall) and work perfectly, on
+the first attempt, except perhaps for typos; as you would not have the
+opportunity to run and "debug" them in exam conditions.  (Of course, the
+extent to which you fail in this task just shows that you will probably not
+get 100% on the final exam, which you might have suspected anyway.  But the
+ideal is first-time perfection.)
+
+<p>
+These questions are mostly from different exams.  They are roughly in the
+order in which I suggest you try them; I don't expect everyone to attempt
+them all.
+The first question was labelled "trick question" on the exam, because it is a
+bit quirky.  But I put it first here because it encompasses a very important
+point.
+
+
+<p>
+<hr>
+<p>
+<b>1</b>. [4 marks]
+(trick question)
+
+<p>
+a) How does the following function in C find the size of the array parameter?
+
+<pre>
+void f(int *p)
+{
+    ...
+}
+</pre>
+
+<p>
+b) Under what circumstances would the answer to part (a) be different if the
+parameter were of type "char *"?
+
+<p>
+[<a href="q1s.html">solutions</a>]
+
+
+<p>
+<hr>
+<p>
+<b>2</b>. [10 marks]
+<p>
+Which of the quotation marks in this shell script are unnecessary?
+
+<p>
+<pre>
+foo &amp;
+foopid="$!"
+while kill -0 "$foopid"
+do
+    message="`foostatus`"
+    if test "$message" = "Terminated"
+    then
+        exit 0
+    else
+        echo foo status: $message
+    fi
+done
+exit 0
+</pre>
+
+<p>
+A few notes:
+<ul>
+<li>
+"$!" is the process ID number of the last "background" task in sh
+(i.e. the most recent command invoked with a '&amp;' after it).
+<li>
+"kill -0" is being used to test whether the process still exists; signal 0
+does nothing, but kill -0 will fail if the process no longer exists.
+So the 'while' loop is iterating for as long as the process exists.
+<li>
+The hypothetical "foostatus" command yields human-readable status output
+such as "foo is waiting for printer #3".
+</ul>
+
+For each set of quotation marks, either explain why it is necessary (for
+example by giving a situation in which they would prevent an error), or
+explain (also very tersely) why they are not necessary.
+
+<p>
+a) <code>"$!"</code>
+
+<p>
+b) <code>"$foopid"</code>
+
+<p>
+c) <code>"`foostatus`"</code>
+
+<p>
+d) <code>"$message"</code>
+
+<p>
+e) <code>"Terminated"</code>
+
+<p>
+<strong><i>Note in 2016: I think that the shell programming in this question
+is all stuff we did this term, but nevertheless the question is based on
+having more shell programming experience than we acquired this term.
+It wouldn't be a suitable exam question this year.</i></strong>
+
+<p>
+[<a href="q2s.html">solutions</a>]
+
+
+<p>
+<hr>
+<p>
+
+<b>3.</b> [6 marks]
+<br>
+Here are some "software tools" principles.
+For each, give an example of a unix program which obeys the rule, and state
+what it does or avoids doing so as to comply; and also
+give an example of a unix program which violates the rule, state how it
+violates the rule, and explain why you
+think it is or is not justified in doing so.
+
+<p>
+a) "Write small programs that do one thing well."
+
+<p>
+b) "Expect the output of every program to become the input to another,
+as yet unknown, program."
+(For example,
+don't clutter output with extraneous information such as headers.)
+
+<p>
+c) "Make programs' input formats easy to generate or type."
+(Example: Avoid stringently columnar or binary input formats.
+Another example: Supply good defaults: It should be common to say simply
+"command" with no command-line arguments.)
+
+<p>
+[<a href="q3s.html">some discussion of solutions</a>]
+
+
+<p>
+<hr>
+<p>
+
+<b>4.</b> [7 marks]
+<br>
+Sketch the inode and directory information involved in the following
+output from an "ls -liR" of the directory which is inode number 10.
+That is, list the inode numbers and what data you know is in those inodes;
+and state the contents of the directories involved.
+
+<p>
+<pre>
+total 8
+12 drwxr-xr-x  3 ajr  users 4096 Feb 27 10:05 bar
+13 drwxr-xr-x  3 ajr  users 4096 Feb 27 10:05 baz
+
+./bar:
+total 8
+14 -rw-r--r--  1 ajr  users   20 Feb 27 10:06 gar
+
+./baz:
+total 8
+15 -rw-r--r--  1 ajr  users   50 Feb 27 10:06 gaz
+</pre>
+
+<p>
+[<a href="q4s.html">solution</a>]
+
+<p>
+<hr>
+<p>
+
+<b>5.</b> [5 marks]
+<br>
+Here are some commands which use the "expr" tool to output the sum,
+difference, product, and quotient of the same two numbers:
+
+<pre>
+expr 2 + 3
+expr 2 - 3
+expr 2 \* 3
+expr 2 / 3
+</pre>
+
+<p>
+Why is the multiplication invocation different?
+
+<p>
+[<a href="q5s.html">solution</a>]
+
+
+<p>
+<hr>
+
+<p>
+
+<b>6.</b> [15 marks]
+What is the output (on stdout) from the following commands?
+If you can't tell from the information given, state what additional
+information you would need.
+
+<p>
+a)   <tt>test x = x</tt>
+
+<p>
+b)   <tt>expr 2 + 3 | wc -l</tt>
+
+<p>
+c)   <tt>echo hi | wc -c</tt>
+
+<p>
+d)   <tt>(echo hi; echo bye) | sort</tt>
+
+<p>
+e)   <tt>echo hi; echo bye | wc -l</tt>
+
+<p>
+f)   <tt>expr 2 * 3</tt>
+
+
+<p>
+[<a href="q6s.html">solutions</a>]
+
+<p><hr><p>
+
+<b>7.</b> [10 marks]
+
+<p>
+<strong><i>Note in 2016: This question involves more shell programming than we
+did this term.</i></strong>
+
+<p>
+The "cal" command has output like this:
+<pre>
+              May 2006
+         S  M Tu  W Th  F  S
+            1  2  3  4  5  6
+         7  8  9 10 11 12 13
+        14 15 16 17 18 19 20
+        21 22 23 24 25 26 27
+        28 29 30 31
+</pre>
+
+<p>
+By default it shows the current month.  The above output could also have been
+produced with the command "cal 5 2006" (since May is the fifth month).
+
+<p>
+The 'date' command can provide these numbers when given various formats with
+the '+' option:
+<pre>
+        $ date +%m
+        05
+        $ date +%Y
+        2006
+        $ 
+</pre>
+(and "cal 05 2006" works just as well as "cal 5 2006")
+
+<p>
+Write a shell script called "cal2" which outputs the calendar for the
+current month and the following month
+(you can ignore any command-line arguments).
+Note that if the current month is number 12, you have to output month #1 for
+next year (rather than month 13, which does not exist).
+
+<p>
+<strong><i>Note in 2016: This question involves more shell programming than we
+did this term.</i></strong>
+
+<p>
+[<a href="q7s.html">solution</a>]
+
+
+<p>
+<hr>
+<p>
+
+<b>8.</b> [5 marks]
+<br>
+Write a simplified "expr" command in C.
+Write the entire C program, except that you can omit the #includes.
+
+<p>
+Your expr should require there to be three command-line arguments, the middle
+of which is the string "+", "-", "*", or "/" (integer division).
+The other two are integers but you do not need to check this; just call atoi()
+or similar.
+Diagnose a division by zero appropriately (do not perform the division, as
+this may cause an "abnormal termination" similar to a segmentation fault).
+
+<p>
+[<a href="q8s.c">solution</a>]
+
+
+<p><hr><p>
+
+<b>9.</b> [5 marks]
+A programmer is writing a function to compute the number of files and
+directories below a certain point of the filesystem tree, similar to
+mydu's traversing of a filesystem subtree in assignment three.
+This programmer knows that "." and ".." should be avoided,
+but is not very
+familiar with strcmp() and decides to skip the check, figuring that the
+results will still be close.
+
+<p>
+What happens?
+
+<p>
+[<a href="q9s.html">solution</a>]
+
+
+<p><hr><p>
+
+<b>10.</b> [15 marks]
+Write a simplified version of 'tr' in C.
+Your program can be invoked in one of only two ways:
+<ul>
+<li>
+"tr x y", for any
+single characters 'x' and 'y', changes all of the first character to the
+second
+<li>
+"tr -d z", for any single character 'z', removes all of
+that character
+</ul>
+
+<p>
+Like "tr", your program will operate by copying the standard input to the
+standard output, making appropriate changes.  It will never take filename
+arguments.
+
+<p>
+Do not use getopt(); just check for "-d" with strcmp().
+In particular, "<code>tr - x</code>" changes all minus signs to the
+letter x, rather than being a usage error.
+
+<p>
+Diagnose all usage errors appropriately.
+If something which is supposed to be a single character is not a single
+character, you can output "tr: argument must be a single character";
+for other usage errors, you must output an appropriate usage string in the
+man page SYNOPSIS format.
+
+<p>
+[<a href="q10s.c">solution</a>]
+
+
+<p><hr><p>
+
+<b>11.</b> [15 marks]
+Write a version of the "head" command in C.
+This program takes zero or more file name arguments; if there are zero file
+name arguments, it processes stdin.
+By default it copies ten lines of the input to the output, then stops reading
+that input file.  If there are more than one file names on the command-line,
+just output the first ten lines of each.
+If a file is shorter than ten lines, that's fine, you just output all the data
+there is.
+
+<p>
+There is also a '-n' option (not quite the same as the standard 'head'
+command)
+which changes the number of lines from ten to some other number.
+For example, "head  -n15  file" shows the first 15 lines.
+Parse this option using getopt() in the standard way.
+
+<p>
+[<a href="q11s.html">solution</a>]
+
+
+<p><hr><p>
+
+<b>12.</b> [10 marks]
+The C library function "system" executes a command by passing it to the
+shell.
+For example, if a C program wants to put you in the 'vi' editor on a file
+named "file", it could say
+<pre>
+        status = system("vi file");
+</pre>
+The system() function does not return until the subprocess has exited.
+It returns the exit status of the command as the return value of system().
+
+<p>
+To get the shell to parse and execute this command,
+system() uses the '-c' option to sh.
+That is, the above system() call will execute the equivalent of
+<pre>
+        /bin/sh -c 'vi file'
+</pre>
+except, of course, that it does it via fork()/execl()/wait().
+(If the fork() fails, system() returns -1.)
+
+<p>
+Write the system() C library function.  You don't have to worry about
+#includes.  (You also don't have to worry about signals for this
+question -- the real system() function does something about signals which you
+can forget about for this exam question.)
+
+<p>
+[<a href="q12s.html">solution</a>]
+
+
+<p><hr><p>
+
+<b>13.</b> [15 marks]
+The current directory contains files named "1", "2", and "3".
+Write a program to listen on TCP/IP port 1234, and each time there is a
+connection, it outputs the contents of one of these files to the connection
+and then closes the connection.
+It should output the contents of the file "1" to the first caller, "2"
+to the second caller, then "3", then back to "1" and continue
+indefinitely.
+<p>
+The files on disk are in unix text file format, and you have to convert to the
+network newline convention by outputting an extra '\r' before every '\n'.
+
+<p>
+[<a href="q13s.html">solution</a>]
+
+
+<p>
+<hr>
+
+<!--
+<p>
+That's the end of today's tutorial.  Since it's not being graded, there is
+nothing to submit, and you don't have to run the 'present' command.
+-->
+
+<p>
+In case you're worried, I should reassure you that
+those questions are not all from the same exam!
+The exam won't be as long as the above.
+
+<p>
+Note that
+<!--
+this week is the last week for
+<a href="../../officehour.html">my usual office hours</a>,
+which end with the end of classes.
+-->
+my usual office hours are over, because they ended with the end of classes.
+But I will also have
+<a href="../../exam/info.html">additional office hours just before the final
+exam</a>.
+
+<p>
+<hr>
+
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/tut/12/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:08 GMT -->
+</html>

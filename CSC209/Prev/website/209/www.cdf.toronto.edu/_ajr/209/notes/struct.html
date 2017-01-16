@@ -1,0 +1,501 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/notes/struct.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:15 GMT -->
+<head>
+
+<title>CSC 209: struct, malloc</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #cc7777;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .unhidden { display: block; }
+</style>
+
+<script type="text/javascript">
+    function show(s) {
+        document.getElementById(s).className = 'unhidden';
+    }
+    function reveal(n) {
+        document.getElementById(n + '_teaser').className = 'hidden';
+        document.getElementById(n + '_hr').className = 'unhidden';
+        document.getElementById(n + '_full').className = 'unhidden';
+	n1 = n + 1;
+        document.getElementById(n1 + '_hr').className = 'unhidden';
+    }
+</script>
+
+</head>
+
+<body>
+<div class=toc>
+
+<a href="../.html">Introduction</a>
+<br>
+<a href="../announce.html">Announcements</a>
+
+<p>
+
+<a href="../lect/index.html">Lectures</a>
+<br>
+<a href="../tut/index.html">Tutorials</a>
+<br>
+<a href="../asmt.html">Assignments</a>
+
+<p>
+<a href="javascript:show('tests')">Tests, exam</a>
+<div id=tests class=hidden>
+    <ul>
+    <li>
+    <a href="../mid/index.html">Mid-term test</a>
+    <li>
+    <a href="../exam/info.html">Final exam</a>
+    </ul>
+</div>
+
+<p>
+
+<a href="index.html">Course notes</a>
+<br>
+<a href="../probs/index.html">Extra problems</a>
+<br>
+
+<a href="https://mcs.utm.utoronto.ca/~mybb/utmcs/forumdisplay.php?fid=193">Discussion board</a>
+
+<p>
+<a href="../netgrade-results.html">Grades so far</a>
+<br>
+<a href="../oldannounce.html">Old announcements</a>
+
+</div>
+
+<h1>structs</h1>
+
+Here are some notes on structs in C.
+
+<p>
+Contents:
+<ul>
+<li> <a href="#intro">intro and example</a>
+<li> <a href="#syntax">full syntax</a>
+<li> <a href="#pointer">pointers to structs</a>
+<li> <a href="#dynamic">dynamic allocation of structs</a>
+<li> <a href="#dynamicarray">dynamic allocation of arrays</a>
+</ul>
+
+<hr noshade>
+
+<a name=intro>
+<h2>Introduction to structs</h2>
+
+<p>
+A struct is an aggregate data type, like an array.
+
+<p>
+However, an array has a certain regularity which a struct does not have.
+An array is an array of some number of something, all the same.
+E.g. an array of 100 ints.  Each array member is an int.
+You can index <i>which</i> of the 100 ints you want to refer to with an
+arbitrary expression.
+This is only possible because all of the elements are the same size and are in
+order.
+This observation is similar to the statement that
+array indexing is pointer arithmetic.
+
+<p>
+A struct, on the other hand, is an aggregate in which the elements can be all
+different.
+They are referred to by name, and there is no analogue of a non-constant
+expression for an index.
+
+<p>
+Example: ordered pairs representing points in a plane.
+<pre>
+struct point {
+    int x, y;
+};
+</pre>
+
+<p>
+"point" is called the "struct tag".
+Altogether the above declares a type which we can call "struct point".
+It does not declare any objects (variables).
+
+<p>
+We can later say
+<pre>
+struct point topleft, bottomright;
+</pre>
+to define a rectangle perpendicular to the axes.
+
+<p>
+Here we use some structs as parameters, after the above type declaration:
+
+<pre>
+double dist(struct point a, struct point b)
+{
+    double xdist = a.x - b.x;
+    double ydist = a.y - b.y;
+    return(sqrt(xdist * xdist + ydist * ydist));
+}
+</pre>
+
+<p>
+Struct "members" are accessed by saying the struct variable name, a dot, and
+then the member of the struct.
+
+<p>
+You may notice that this looks a lot like a class declaration.  In fact
+structs are basically data-only classes (no "methods").
+The "class" syntax in C++ (and subsequently in java) was derived from the C
+"struct" syntax.
+
+<p>
+However, a C struct, unlike a java class reference, <i>is</i> the data, not a
+reference to it.
+For example, in java, if you have an object of type "point" similar to the
+above, in which a.x is 3,
+<ul>
+<li> after doing "b = a;", b.x will be 3
+<li> after then doing "a.x = 4;", b.x will be 4
+</ul>
+because the "b=a" assignment copies the reference.
+
+<p>
+Whereas in C, if you have an object of type "struct point" as above, in which
+a.x is 3,
+<ul>
+<li> after doing "b = a;", b.x will be 3
+<li> after then doing "a.x = 4;", b.x will still be 3
+</ul>
+because the "b=a" assignment copies the data, not a reference (pointer) to the
+data.
+
+<p>
+That is, "struct point a;" actually allocates space for the data.
+The analogue in C of java's "point a;" would be "struct point *a;", to
+allocate a pointer to a struct point, rather than to allocate a struct point
+itself.
+
+<p>
+Similarly, if you pass a struct to a function and the function modifies some
+struct members, it is modifying a copy, not the original.
+As with all parameter passing, a copy is made.
+
+<p>
+One advantage of structs in connection with functions is that a function can
+only return a single value; but you can return (for example) two ints by
+declaring
+a struct of two ints and returning an item of that struct type.
+
+
+<p>
+<hr noshade>
+
+<a name=syntax>
+<h2>Full syntax</h2>
+
+It looks like we have two totally different struct declaration syntaxes above,
+but actually they're both special cases of the general form.
+
+<p>
+A struct declaration in C can declare a struct tag (type), or items of that
+struct type, or both.
+
+<p>
+The syntax begins with the keyword "struct".  Then there is an optional tag
+name, an optional struct member list (in braces), an optional list of variable
+names being declared, and then a semicolon.
+
+<p>
+If there is a struct member list in braces, then this declaration is creating
+that struct type.
+In this case, if there is a tag then it creates that struct tag name and
+associates it with this member list.
+
+<p>
+If there is a struct tag but no struct member list in braces, then this
+declaration is declaring variables in the list to be of that struct type, but
+not saying what the struct type is.
+In most cases the struct tag must have previously been declared with the
+actual struct member list in braces.
+(One exception to this is if you are only declaring objects of type
+pointer-to-that-struct, rather than objects of type that-struct.)
+
+<p>
+Then, the variable list, if present, causes variables to be declared in the
+normal C way.
+Other modifiers such as storage classes and declaration type modifiers
+can be applied.
+For example, you can say "extern struct something x;" to declare that "x" is a
+global variable of type "struct something"; or you can say "struct something
+a[100];" to declare 'a' to be an array of 100 struct somethings.
+
+<p>
+Examples:
+
+<p>
+1. Create type "struct point", as above.
+<pre>
+struct point {
+    int x, y;
+};
+</pre>
+
+<p>
+2. Simultaneously create type "struct point" and declare variable "a" to be of
+this type.
+<pre>
+struct point {
+    int x, y;
+} a;
+</pre>
+
+<p>
+3. Declare variable "a" to be of type "struct point", when that type was
+previously created (e.g. by #1 above).
+<pre>
+struct point a;
+</pre>
+
+<p>
+4. Declare variable "b" to be an array of 100 structs each containing an int
+and a double.
+<pre>
+struct {
+    int x;
+    double y;
+} b[100];
+</pre>
+
+<p>
+5. Assign the second member of item 38 of the array defined in #4
+to have the value 123.456.
+<pre>
+b[38].y = 123.456;
+</pre>
+
+
+<p>
+<hr noshade>
+
+<a name=pointer>
+<h2>Pointers to structs</h2>
+
+First, you need to know about the idea of the
+"null pointer" (or "nil"): It's a special signal value, not equal to a pointer
+to any object.  Like "null" in Java.  Except:
+
+<p>
+In C, you get a null pointer of a given type by converting a constant zero to
+pointer type.
+
+<p>
+stdio.h says:  &nbsp; <code>#define NULL 0</code>
+<br>
+(a rather odd place for it, but #include &lt;stdio.h> is more common than
+#include any other one file)
+
+<p>
+So we can declare a pointer to struct list like this:
+<pre>
+struct list *top;
+</pre>
+or we can declare and initialize it to the null pointer value like this:
+<pre>
+struct list *top = NULL;
+</pre>
+
+That's a constant zero; it is being assigned to a variable of type
+pointer-to-struct-list; thus this is a conversion; and converting a constant
+zero to a pointer type causes the resulting value to be the null pointer of
+type pointer-to-struct-list.
+
+<p>
+You've seen a pointer to a struct in your use of the stat() system call.
+Your call went something like this:
+<pre>
+struct stat statbuf;
+... stat("...", &statbuf)
+</pre>
+A stat() library function would be defined starting something like this:
+<pre>
+int stat(char *filename, struct stat *p)
+</pre>
+Inside the function stat, to set the st_size value to 38, we could write:
+<pre>
+(*p).st_size = 38;
+</pre>
+This is a bit clumsy, and the parentheses <i>are</i> needed because of
+operator precedence.  However, there is another operator which dereferences
+and selects at the same time:
+<pre>
+p->st_size = 38;
+</pre>
+This is the same as the previous statement, just a nicer syntax.
+That is, <code>a->b</code> is defined as <code>(*a).b</code>.
+
+<p>
+This "->" syntax is actually quite useful.  If struct list contains an item
+"data" and an item "next", and if our linked list is of length at least three,
+we can refer to the data item in the third item of the linked list with
+<code>top->next->next->data</code>, as opposed to
+<code>(*(*(*top).next).next).data</code>.
+
+
+<p>
+<hr noshade>
+
+<a name=dynamic>
+<h2>Dynamic allocation of structs</h2>
+
+Another thing we need to be able to do to make a linked list
+is to allocate and deallocate
+memory similarly to the use of "new" in java or C++.
+
+<p>
+For this purpose we use a library function "malloc", short for "memory-allocate".
+
+<p>
+malloc's single parameter specifies a number of bytes of memory to allocate,
+and it returns a pointer to the beginning of the allocated data area, or NULL
+if there is not enough memory available.
+
+<p>
+To figure out how much to allocate, we often use the C operator "sizeof".
+You can do "sizeof" of a data object or of a type.
+The type name is parenthesized.
+
+<pre>
+top = malloc(sizeof(struct list));
+if (top == NULL) {
+    fprintf(stderr, "out of memory\n");
+    exit(1);
+}
+</pre>
+(This kind of error handling of null pointer malloc returns
+will, actually, be adequate for most CSC 209
+assignments and for many unix tools
+-- an out-of-memory condition is
+not expected and is quite surprising.  However, if you don't even test for it,
+you'll be sorry one day.)
+
+<p>
+<b>Struct members do not start off as zero!</b>
+<br>
+<b>And there's no "constructor" to initialize them!</b>
+
+<p>
+<pre>
+top->data = 5;
+top->next = NULL;
+</pre>
+
+
+<p>
+The opposite of malloc is free:
+
+<pre>
+free(top);
+</pre>
+after which the pointer 'top' is now invalid, just like an uninitialized
+variable.
+
+<p>
+All memory is freed upon program termination.
+As with fopen()/fclose(), we tend to use free() if the memory is being
+re-malloc'd in a loop, and otherwise to allow it to vanish with everything
+else at program termination.
+Larger programs generally need to free() all malloc'd memory
+eventually, and small unix tools often don't.
+
+<a name=dynamicarray>
+<p>
+<hr noshade width="25%" align=left>
+
+<p>
+Another malloc use: dynamically-sized arrays.
+
+<p>
+<code>int x[10];</code>  &lt;- ok
+<br>
+<code>int y[z]; </code> &lt;- not ok in C89 if 'z' is a variable
+
+<p>
+instead:
+<pre>
+int *y;
+y = malloc(z * sizeof(int));
+</pre>
+then we can use y[i], etc
+
+<p>
+malloc'd memory persists after the function returns.  You can assign malloc
+results to global variables and use them later.
+
+<p>
+You can't say:
+
+<pre>
+int *f()
+{
+    int a[10];
+    ...
+    return(a);
+}
+</pre>
+
+because that 'a' array is deallocated as the function returns.
+
+<p>
+But returning a pointer to malloc'd memory is fine:
+
+<pre>
+int *f()
+{
+    int *a;
+    if ((a = malloc(10 * sizeof(int))) == NULL)
+	...
+    ...
+    return(a);
+}
+</pre>
+
+because the malloc'd memory persists until free() is called on the pointer --
+its existence is not tied to the duration of the execution of the function.
+
+<p>
+<hr>
+
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/notes/struct.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:15 GMT -->
+</html>

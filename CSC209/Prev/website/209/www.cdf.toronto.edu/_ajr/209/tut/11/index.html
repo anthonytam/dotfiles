@@ -1,0 +1,217 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/tut/11/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:06 GMT -->
+<head>
+
+<title>CSC 209 tutorial exercises, week of 28 March 2016</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #cc7777;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .unhidden { display: block; }
+</style>
+
+<script type="text/javascript">
+    function show(s) {
+        document.getElementById(s).className = 'unhidden';
+    }
+    function reveal(s) {
+        document.getElementById(s+'_a').className = 'hidden';
+        document.getElementById(s+'_b').className = 'revealed';
+    }
+</script>
+
+</head>
+
+<body>
+
+<div class=toc>
+<a href="../01.html">Tutorial 01</a>
+<br>
+<a href="../02.html">Tutorial 02</a>
+<br>
+<a href="../03.html">Tutorial 03</a>
+<br>
+<a href="../04.html">Tutorial 04</a>
+<br>
+<a href="../05.html">Tutorial 05</a>
+<br>
+<a href="../06.html">Tutorial 06</a>
+<br>
+<a href="../07.html">Tutorial 07</a>
+<br>
+<a href="../08.html">Tutorial 08</a>
+<br>
+<a href="../09.html">Tutorial 09</a>
+<br>
+<a href="../10.html">Tutorial 10</a>
+<br>
+<a href="../11.html">Tutorial 11</a>
+<br>
+<a href="../12.html">Tutorial 12</a>
+<br>
+<p>
+[<a href="../../index.html">Course home page</a>]
+</div>
+
+<h1>CSC 209 tutorial 11 exercises, week of 28 March 2016</h1>
+
+Please begin by running "/student/csc209/present".
+This records your attendance and is required for you to get the marks for the
+lab.
+
+<h2> Exercise one </h2>
+
+Here is a demonstration C program, which you can find in
+/student/csc209/tut/11/bug.c:
+
+<pre>
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main()
+{
+    char s[100];
+
+    gets(s);
+    if (atoi(s) == 12)
+        printf("do something\n");
+    printf("in any case, do something else\n");
+    return(0);
+}
+</pre>
+
+<p>
+Copy it to your own directory, and compile and run it.
+(We'll discuss the warning about "gets" in a moment; ignore that at first.)
+
+<p>
+Try typing the secret value 12, and try typing other numbers.
+
+<p>
+This seems fine, but it it uses the gets() function.  If you did not see the
+compiler warning about gets(), you omitted the "-Wall" option to gcc.
+Don't do this.  Run it again with "-Wall" to see the warning.  You should
+always compile with "gcc&nbsp;-Wall".
+
+<p>
+What is wrong with the gets() function?  The problem is that it does not take
+a parameter specifying the size of the array, so it is impossible for it to be
+written properly and it is impossible for any program which calls it to be
+correct!
+If you type more than 99 characters, your program will exceed the 's'
+array bounds.
+If you're lucky, your program will simply crash.
+
+<p>
+1. Cause this program to crash with "segmentation exception".
+
+<p>
+2. Fix the bug without changing the size of s.
+
+
+<h2> Exercise two </h2>
+
+Here is a demonstration C program, which you can find in
+/student/csc209/tut/11/auth.c:
+
+<pre>
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main()
+{
+    extern int authenticate();
+    if (authenticate() == 2) {
+        printf("Login incorrect.\n");
+        return(1);
+    }
+    printf("Access to secret stuff achieved\n");
+    return(0);
+}
+
+
+int authenticate()
+{
+    char buf[80];
+    printf("Password: ");
+    if (fgets(buf, sizeof buf, stdin) == NULL)
+        return(0);
+    else if (strcmp(buf, "sesame\n") == 0)
+        return(1);
+    else
+        return(2);
+}
+</pre>
+
+<p>
+1. Compile and run this.  The password is "sesame".  Try running it with and
+without the correct password.
+
+<p>
+2. Suppose you did not know that the password was sesame but you could see
+the rest of the source code.  Run the program and get it to print "Access to
+secret stuff achieved" <i>without</i> typing "sesame".
+
+<p>
+3. Fix the bug.
+
+
+<h2> To submit </h2>
+
+First of all, you must run "/student/csc209/present",
+during the tutorial time, on the console of a tutorial lab workstation.
+
+<p>
+Submit your fixed bug.c and auth.c programs with commands such as
+<pre>
+        /student/csc209/submit tut11 bug.c auth.c
+</pre>
+and the other submit commands are as before.
+
+<p>
+This tutorial will be graded out of 2, one point for each file.
+To get the point for a file, three things must be true:
+<ol>
+<li> you have fixed the bug
+<li> your file compiles with "gcc -Wall" with no errors or warning messages
+<li> you have not changed anything else which is not related to fixing the
+bug.
+</ol>
+
+<p>
+<hr>
+
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/tut/11/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:06 GMT -->
+</html>

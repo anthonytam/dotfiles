@@ -1,0 +1,400 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/notes/cdata.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:14 GMT -->
+<head>
+
+<title>CSC 209: C data types; pointers and arrays</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #cc7777;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .unhidden { display: block; }
+</style>
+
+<script type="text/javascript">
+    function show(s) {
+        document.getElementById(s).className = 'unhidden';
+    }
+    function reveal(n) {
+        document.getElementById(n + '_teaser').className = 'hidden';
+        document.getElementById(n + '_hr').className = 'unhidden';
+        document.getElementById(n + '_full').className = 'unhidden';
+	n1 = n + 1;
+        document.getElementById(n1 + '_hr').className = 'unhidden';
+    }
+</script>
+
+</head>
+
+<body>
+<div class=toc>
+
+<a href="../.html">Introduction</a>
+<br>
+<a href="../announce.html">Announcements</a>
+
+<p>
+
+<a href="../lect/index.html">Lectures</a>
+<br>
+<a href="../tut/index.html">Tutorials</a>
+<br>
+<a href="../asmt.html">Assignments</a>
+
+<p>
+<a href="javascript:show('tests')">Tests, exam</a>
+<div id=tests class=hidden>
+    <ul>
+    <li>
+    <a href="../mid/index.html">Mid-term test</a>
+    <li>
+    <a href="../exam/info.html">Final exam</a>
+    </ul>
+</div>
+
+<p>
+
+<a href="index.html">Course notes</a>
+<br>
+<a href="../probs/index.html">Extra problems</a>
+<br>
+
+<a href="https://mcs.utm.utoronto.ca/~mybb/utmcs/forumdisplay.php?fid=193">Discussion board</a>
+
+<p>
+<a href="../netgrade-results.html">Grades so far</a>
+<br>
+<a href="../oldannounce.html">Old announcements</a>
+
+</div>
+
+<h1>C data types</h1>
+
+Fundamental C data types include int, long, double, rarely float;
+<br>
+char is just a small int.
+
+<p>
+"literals":
+<dl>
+<dt> 38
+<dd> value 38, type int
+<dt> 38L
+<dd> value 38, type long
+<dt> 0x2a
+<dd> value 42, type int
+<dt> 033
+<dd> value 27, type int
+    <br> (Is the value really decimal 27 or really octal 33?  Wrong, it is
+    both.  Those are the same number!)
+<dt> 0.3
+<dd> type double
+<dt> 3.0
+<dd> type double
+<dt> 6.02e23
+<dd> type double
+</dl>
+
+<p>
+<cite>In C, most things are ints.</cite>
+<br>
+Exaggeration, but true originally
+<ul>
+<li> ints used as booleans; relational operators return int
+<li> char literals are ints!  (as opposed to strings, which aren't ints)
+    <dl>
+    <dt> 'a'
+    <dd> value 97, type int
+    <dt>
+    <dt> '\033'
+    <dd> same as 033, i.e. 27 (this backslash and three octal digits is more
+    useful in string literals than in char literals)
+    <dt> '\n'
+    <dd> in unix, this is value 10.  Type int in any case.
+    </dl>
+</ul>
+
+<h3>Mixed mode arithmetic</h3>
+
+5.3 / 60
+<br> yields type double
+<br> and it does real division.  Even though 60 is an int.
+
+<p>
+All normal programming languages have what we call "mixed mode arithmetic".
+Not new.
+You can combine reals and ints in an expression.
+
+<p>
+double + double  -> double  (obviously)
+<br> int + int  -> int  (obviously)
+<br> double + int -> double
+<br> int + double -> double
+<br> (any operator)
+
+<p>
+Try example:
+3 + 4.2 * 6 / 3 + 2 * 4 * 8.1
+
+<p>
+indicate which operators are double and which are int.  n.b. it matters most
+about the division.
+
+
+<h3> Arrays </h3>
+
+<p>
+To discuss the way the C programming language views memory and data types, we
+have to replace the very-high-level "memory model" you have from first year
+with a much lower-level memory model.
+
+<p>
+Memory is a vast array of bytes.  Each byte has an address.
+
+<p>
+Bytes are collected into words.
+These days a byte is often 8 bits and a word often 4 bytes or 32 bits.
+
+<p>
+Thus in the two's-complement representation which you will know from CSC B58,
+a word can represent an integer from -2<sup>31</sup> to 2<sup>31</sup>-1,
+inclusive.
+
+<p>
+In Java, an array is an object.  In C, an array is just a list of the item
+it's an array of.  So in C, if an int is four bytes, then an array of ten ints
+is forty bytes.  Nothing extra.
+
+<p>
+This is why, as mentioned last day, we won't get a diagnostic for exceeding
+array bounds.  It's up to us, not the execution environment, to keep track of
+how big that array is.
+If we declare "int a[10];", then after a[9] (the last element in the array,
+counting from a[0] as the first), there <i>is</i> more memory there,
+because memory is a vast array of bytes; but we don't know what it is.
+It might be another variable in our program.  It might be something else.
+It's an error to access it.
+But we won't get a nice java traceback.
+We'll get what the ANSI C standard calls "undefined behaviour", which means
+that it might:
+<ul>
+<li> appear to work
+<li> crash
+<li> cause your program to do something apparently random and unrelated
+<li> wipe out all sentient life on earth (this is less likely)
+</ul>
+
+<p>
+Array elements are guaranteed to be adjacent.
+If the address of a[0] is 100, then if each element is four bytes, the address
+of a[3] is 112.  (a[0] is at 100; a[1] is at 104; a[2] is at 108; a[3] is at
+112.)
+
+<p>
+In general, for an array we have a base address and an element size.
+Then the address of element #<i>i</i> is base + elementsize * i.
+The existence of this address-calculation formula allows the compiler to
+compile expressions such as a[i] where i may vary;
+not only expressions such as a[3].
+
+<p>
+"pointer": high-level version of an "address"
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp;
+-> has type information 
+
+<pre>
+int i;
+int *p;    -> declare p to be of type pointer-to-int
+
+i = 3;
+p = &amp;i;   -> assign p to point to i
+printf("%d\n", *p);   -> "dereference" -- follow a pointer
+i = 4;
+printf("%d\n", *p);
+</pre>
+
+so "&amp;" and "*" are opposites.
+
+<p>
+"pointer arithmetic":
+
+<p>
+p + 3  -- yields the address which is three ints later, i.e. address(p) + 12
+
+<p>
+So if p contains the address of a[0], p+i is the address of a[i].
+
+<p>
+For two expressions x and y, x[y] is defined as *((x) + (y))
+
+<p>
+So, how is this going to work with arrays, if we haven't declared any pointer
+variables?
+
+<p>
+An array name in an expression context decays into a pointer to the zeroth
+element.
+
+<p>
+a[3]
+<ul>
+<li> the "a" becomes a pointer to the zeroth element, e.g. pointer-to-int
+<li> add three to get pointer to element number 3
+<li> dereference
+</ul>
+
+
+<h3> Array parameters </h3>
+
+Consider the following:
+
+<pre>
+#include &lt;stdio.h>
+
+int main()
+{
+    int a[10];
+    extern void setsquares( <i>... what goes here? ...</i> );
+
+    setsquares(a);
+    printf("three squared is %d\n", a[3]);
+    return(0);
+}
+
+void setsquares( <i>... what goes here? ...</i> );
+{
+    int i;
+    for (i = 0; i < 10; i++)
+        a[i] = i * i;
+}
+</pre>
+
+What goes there?
+
+<p>
+Remember that
+an array name in an expression context decays into a pointer to the zeroth
+element.
+
+<p>
+So when we call "setsquares(a)", what's being passed is a pointer to the zeroth
+element of "a".  That is, it's of type pointer-to-int.
+
+<p>
+<pre>
+    extern void setsquares(int *a);
+
+...
+
+void setsquares(int *a)
+</pre>
+
+<p>
+You may have seen people using "int a[]" or "int a[12345]" instead of "int *a"
+there.
+This works because
+there is a
+special weird rule for formal parameters only:
+You can write void setsquares(int a[]) and it is <i>converted</i>
+to a pointer declaration.
+
+<p>
+I strongly recommend against this.
+<br>
+It is still a pointer!
+<br>
+This weird conversion rule is specific to formal parameter lists!
+
+<p>
+So we will write "int *a" in this situation.  Because it really is a pointer.
+I recommend this practice both in this course and in real life.
+Outside of a formal parameter declaration, "int *a" and "int a[10]" are
+completely different... and "int a[]" is illegal.
+
+<p>
+Given java background it might be quite attractive to write "int a[]".
+However, in C it is a pointer, not an array.  In java, it's an array, it's an
+object reference, it's quite a different situation.
+
+<p>
+Similarly, in C's early days a lot of people liked to write "int a[]" in
+formal parameter lists
+because it resembled the syntax in C's precursor "NB" (New B, a later
+version of the programming language B).
+But I, and many other modern C programmers, think that this is confusing and
+unnecessarily far away from saying what you mean.  It's really a pointer.
+
+<p>
+<hr noshade width="10%" align=left>
+<p>
+Now, arrays in C are not objects; they are just a concatenation of <i>n</i> of
+the array element items.
+So you cannot tell, when you have a pointer to the zeroth element of an array,
+how large that array is.
+(This remains true even if you use the array-like parameter declaration syntax
+that I recommend against above.)
+
+<p>
+So most of the time when you pass an array to a function, you also pass an int
+which is the size of the array.
+
+<p>
+Thus altogether this program would probably look more like this:
+<pre>
+#include &lt;stdio.h>
+
+int main()
+{
+    int a[10];
+    extern void setsquares(int *a, int size);
+
+    setsquares(a, 10);
+    printf("three squared is %d\n", a[3]);
+    return(0);
+}
+
+void setsquares(int *a, int size)
+{
+    int i;
+    for (i = 0; i < size; i++)
+        a[i] = i * i;
+}
+</pre>
+
+<p>
+<hr>
+
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/notes/cdata.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:14 GMT -->
+</html>

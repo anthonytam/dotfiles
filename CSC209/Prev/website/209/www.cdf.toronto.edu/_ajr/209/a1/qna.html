@@ -1,0 +1,695 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/a1/qna.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:41 GMT -->
+<head>
+
+<title>CSC 209 assignment one questions and answers</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #cc7777;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .unhidden { display: block; }
+</style>
+
+<script type="text/javascript">
+    function show(s) {
+        document.getElementById(s).className = 'unhidden';
+    }
+    function reveal(n) {
+        document.getElementById(n + '_teaser').className = 'hidden';
+        document.getElementById(n + '_hr').className = 'unhidden';
+        document.getElementById(n + '_full').className = 'unhidden';
+	n1 = n + 1;
+        document.getElementById(n1 + '_hr').className = 'unhidden';
+    }
+</script>
+
+</head>
+
+<body>
+<div class=toc>
+
+<a href="../.html">Introduction</a>
+<br>
+<a href="../announce.html">Announcements</a>
+
+<p>
+
+<a href="../lect/index.html">Lectures</a>
+<br>
+<a href="../tut/index.html">Tutorials</a>
+<br>
+<a href="../asmt.html">Assignments</a>
+
+<p>
+<a href="javascript:show('tests')">Tests, exam</a>
+<div id=tests class=hidden>
+    <ul>
+    <li>
+    <a href="../mid/index.html">Mid-term test</a>
+    <li>
+    <a href="../exam/info.html">Final exam</a>
+    </ul>
+</div>
+
+<p>
+
+<a href="../notes/index.html">Course notes</a>
+<br>
+<a href="../probs/index.html">Extra problems</a>
+<br>
+
+<a href="https://mcs.utm.utoronto.ca/~mybb/utmcs/forumdisplay.php?fid=193">Discussion board</a>
+
+<p>
+<a href="../netgrade-results.html">Grades so far</a>
+<br>
+<a href="../oldannounce.html">Old announcements</a>
+
+</div>
+
+<h1>Assignment one questions and answers</h1>
+
+Here are some questions and answers about assignment one.
+Suggestions for additions to this list are welcome (via e-mail).
+
+
+<p>
+<hr>
+
+<p>
+Q: I uploaded my file at 11:45 last night [February 5th] and it didn't work
+on the school computers, but it worked fine at home.
+May I have an extension on account of this?
+
+<p>
+A: <strong><font size="+1">No.</font></strong>
+It's simply not possible for us to accommodate problems with your
+own computer equipment.
+I suggest that you use the UTM linux computers, which are
+professionally managed,
+and which have a good C compiler which
+correctly implements the C programming language.
+You can use the UTM linux computers
+from home over the net just fine;
+see <a href="../remotelogin.html">remotelogin.html</a>
+(and then when your home computer breaks, you can come in to DH 2020 or 2026 to finish
+your work, because it was stored at school all along).
+<!--
+(For working on assignment one at home,
+also see some notes below about using "lynx".)
+also keep in mind the possibility of using "lynx".)
+-->
+
+<p>
+Use of your own equipment is
+at your own risk; I can sometimes assist you with it, and I'm not opposed to
+it, but if problems with your own computer were allowed to cause you to have
+extensions,
+everyone would have free extensions.  It's just not feasible.
+
+<p>
+At this date [February 6th] it's a bit late for this information to be of use
+to you for assignment one.  Fortunately I have a time-warp here so I'll post
+this on the course web page retroactively in January.  Please be advised.
+
+<p>
+When the due time approaches, just hand in what you've got; you have to move
+on with your other work, in this course and in your other courses.
+But also, please try to avoid last-minute problems by avoiding setting
+yourself
+up to have
+a major change in working environment right at the last minute, such as
+switching from your home computer to the school computers.
+You have to make your program work on the UTM linux computers, so just start there.
+
+<p>
+If you know in advance that you're going to be late for a good reason,
+please talk with me about it in advance; although be warned that my suggestion
+might be that you should simply submit in advance.
+
+<p>
+I'd also like to point out that even a zero out of 8% is
+far better than cheating and suffering an academic penalty.
+Don't cheat even if you're under pressure;
+and please re-read
+<a href="../courseinfo.html#cheating">the section about academic offences
+at the end of the course information sheet</a>.
+Whatever the penalty eventually applied for cheating, it will be worse than
+merely a zero on the assignment.
+
+
+<p>
+<hr>
+
+<p>
+We use simple data formats throughout.  Simple data formats are easier to
+parse.  Don't store or expect any extraneous data in any files.
+
+<p>
+In general, Keep It Simple.
+You don't get extra marks for fancy stuff.
+This is also usually true in "real life".  The more complicated program is
+less likely to be correct, and all the extra clanging and motion is a negative
+thing to the users, not a bonus, even aside from the bugs you introduce by
+doing that sort of thing.
+Keep It Simple.
+
+
+<p>
+<hr>
+
+<p>
+Q: How do we edit files in linux?
+
+<p>
+A: You can do whatever you were doing for the tutorials!  Eventually you will
+probably want to learn either <cite>vi</cite> or <cite>emacs</cite>.
+There is a more hand-holdy editor named <cite>nano</cite> which you can use
+for now if you want (do note its habit of displaying important messages at
+the bottom of the screen).
+
+<p>
+Don't attempt to use a word processor for writing computer
+programs.  You'll regret it if you do, I promise.
+
+<p>
+I've written more about this at
+<a href="../editing.html">https://cs.utm.utoronto.ca/~ajr/209/editing.html</a>
+
+
+<!--
+<p>
+<hr>
+
+<p>
+Q: I'm working on Mac OS X, and I'm getting strange behaviour
+from "echo".  It's putting "-n" in my output.
+
+<p>
+A: First of all, your programs have to work on the UTM linux computers; it's
+impossible for us to deal with all the possible working environments in all
+the linux and unix systems of the world.  The UTM systems are the official
+standard for this course.
+
+<p>
+But anyway, the answer is that /bin/sh does some strange things with respect
+to "echo -n"
+on Mac OS X.  Use ksh instead.  E.g. "ksh animal dir"
+
+<p>
+Q: So then, how do I submit?  With sh or ksh?
+
+<p>
+A: Neither.  You just submit the three shell scripts, not how you tested them.
+
+-->
+
+
+<p>
+<hr>
+
+<p>
+Note that the suggested
+<blockquote> <code> cat $* </code> </blockquote>
+is good for quite a lot of things.
+
+<p>
+It processes the files on the command-line one by one, so you don't need to
+write a loop for that.
+
+<p>
+Also, in the event of zero arguments on the command-line, it processes the
+standard input.  So you don't need to test for that.
+
+<p>
+Then you can pipe this
+to a loop of the form "while read x".
+(Although for 'add' we also want a tr inbetween them in the pipeline, as
+described on the assignment handout.)
+
+<p>
+Q: But this gets confused when file names have special characters in them,
+such as spaces!  Many file names have spaces in them, especially if they were
+created with a GUI program rather than the command-line.
+
+<p>
+A: Indeed.  But this is beyond the scope of this assignment; you can use
+'cat $*' and leave it as that for the purpose of this assignment, and skip the
+rest of this Q&amp;A answer.
+But if you want to do better here, read on.
+
+<p>
+First, to explain the problem:
+Consider writing:
+<blockquote> <pre> cat $* </pre> </blockquote>
+to pick up all arguments.
+(Let's suppose you put this in a file called "myscript".)
+
+<p>
+Try it with a command like this:
+<blockquote> <pre> sh myscript file1 'file two' file3 </pre> </blockquote>
+(where "file two" has a space in the file name, so we quoted it).
+
+<p>
+This will expand to
+<blockquote> <pre> cat file1 file two file3 </pre> </blockquote>
+So it will process file1 and file3 correctly, but instead of processing
+"file two" it will attempt to process two files, named "file" and "two".
+
+<p>
+So we need quotes.
+Remember that while single quotes suppress the interpretation of <i>all</i>
+special characters, except for the closing single quote, double quotes
+suppress the interpretation of only <i>some</i> special characters, one
+exception being the dollar sign.
+So suppose we try this next:
+<blockquote> <pre> cat "$*" </pre> </blockquote>
+Try it with a command like this:
+<blockquote> <pre> sh myscript 'file two' </pre> </blockquote>
+This works!
+<br>
+Now try it with
+<blockquote> <pre> sh myscript file1 'file two' file3 </pre> </blockquote>
+No good.  It tries to process a single file named "file1 file two file3".
+
+<p>
+What we need is a way to quote the individual arguments.  If we knew there
+were three of them we could write:  <code> cat "$1" "$2" "$3" </code>
+<br>
+but of course we don't know how many there are.
+
+<p>
+Enter $@.  It's the same as $*, except for a special wacky rule that if
+it is within double quotes, it closes and opens the quotes between each
+parameter.
+E.g. in the case of
+<blockquote> <pre> sh myscript file1 'file two' file3 </pre> </blockquote>
+, the command
+<blockquote> <pre> cat "$@" </pre> </blockquote>
+will expand to
+<blockquote> <pre> cat "file1" "file two" "file3" </pre> </blockquote>
+
+<p>
+And the wackiness doesn't end there.  There's another special rule that if
+there are no command-line arguments at all, "$@" expands to no arguments at
+all (i.e. <i>not</i> the empty string as a single argument, as you'd
+probably expect).
+So
+<blockquote> <pre> cat "$@" </pre> </blockquote>
+, if there are no command-line arguments at all, will be a simple "cat", which
+will process the standard input.
+
+
+<p>
+<hr>
+
+<p>
+Q: What is "dash"?
+
+<p>
+A: An implementation of the <cite>sh</cite> programming language.
+
+<p>
+Q: So what is "bash"?
+
+<p>
+A: An implementation of the <cite>sh</cite> programming language.
+
+<p>
+Q: Um, so what is "sh"?
+
+<p>
+A: An implementation of the <cite>sh</cite> programming language.
+
+<p>
+Q: Uhhh...
+
+<p>
+A: These are all implementations of the same core programming language, but
+perhaps adding other features that their authors thought were a good idea.
+
+<p>
+Some of these other features are useful interactively.
+
+<p>
+Some of these other features are useful in writing programs (shell scripts),
+but only if you want to commit to using only that implementation of
+<cite>sh</cite>.
+Normally such a commitment is a mistake -- an intended user of your shell
+script might not have the same operating system version and might not have the
+same <cite>sh</cite> implementation available.
+If you stick to the core <cite>sh</cite> input language, your shell scripts
+will run anywhere (in unix or linux, that is).
+
+<p>
+Q: Why is one of them called "sh" itself?  Is that the same as bash or what?
+
+<p>
+A: The standards require /bin/sh to be a valid <cite>sh</cite> programming
+language implementation.
+On a modern unix or linux system this will usually be a symlink to a
+particular <cite>sh</cite> implementation such as dash or bash.
+Check it out on your system with "ls&nbsp;-l&nbsp;/bin/sh".
+
+<p>
+<hr>
+
+<p>
+Q: For <cite>add</cite>, what if the input data contains non-digits?  Is it ok
+if I get errors from <cite>expr</cite>?
+
+<p>
+A: Yes, this is ok.  The input data should not contain non-digits.
+
+<p>
+Q: Is it ok if my <cite>tr</cite> command loses the non-digit characters, so
+that the error is not diagnosed?
+
+<p>
+A: Yes, this is ok.  So long as your program behaves properly on all streams
+of actual integers which don't contain extraneous characters (but might
+contain any whitespace in any format).
+
+
+<p>
+<hr>
+
+<p>
+Q: How can I make it that you can just type (for example)
+"decrypt blah blah" instead of "sh decrypt blah blah"?
+
+<p>
+A: Two things, which we'll discuss a bit later in the course when we
+discuss how the kernel executes programs:
+<ol>
+<li> Make the first line of the file "#!/bin/sh", or at least, don't start it
+with a '#' unless the first line is "#!/bin/sh".  (Note that this is a comment
+as far as sh is concerned; it's interpreted by the OS kernel to decide what
+interpreter to run, and it's designed to be ignored by the interpreter itself
+by beginning with a comment symbol.)
+<li> Make it executable by typing "chmod +x decrypt".
+</ol>
+You don't have to do this for this assignment.  As I say, we'll be discussing
+this later.  Right now we'll be content to run our shell scripts with
+"sh file";
+you can do better, but that's not an sh topic, it's an exec() topic.
+
+
+<p>
+<hr>
+
+<p>
+Q: Does the usage message for rot.c have to say exactly "usage: rot n"?
+
+<p>
+A: Yes.  And, it has to be to stderr. <!-- (file descriptor number 2). -->
+The only variation is you can either use argv[0] or "rot" for the program name.
+And I suppose you could say something a bit more verbose than "n" if you
+really wanted (but keep it to a single word).
+But the term "usage:", and the rest of the line looking like an actual
+command, is standard and must be followed.
+It resembles the SYNOPSIS line of the man page.
+
+
+<p>
+<hr>
+
+<p>
+Q: Does rot.c have to work for negative rotation numbers?
+
+<p>
+A: No.  The supplied parsing code will consider this to be a usage error.
+
+
+<p>
+<hr>
+
+<p>
+Don't consider the suggested tests to be an exhaustive test of your
+program!
+Your programs have to work in general.
+
+
+<p>
+<hr>
+
+<p>
+Avoid unproductive temporary variables, just as in C or Python
+programming.  E.g. don't say
+<pre>
+        z=`expr $x + $y`
+        echo $z
+</pre>
+if you're not later going to use the value of $z.
+Instead say
+<pre>
+        expr $x + $y
+</pre>
+which, after all, does its output to stdout, just like echo.
+
+<p>
+Although sh scripts tend to be a bit less pretty than programs in normal
+high-level languages, you should still make a little bit of effort in
+this regard.
+Indent lines to the appropriate nested indentation level,
+and do use blank lines in the usual fashion (although of course some
+<cite>sh</cite> scripts are too short for that), and keep your lines within 80
+characters.
+
+
+<p>
+<hr>
+
+<p>
+Q: Can we use the built-in arithmetic functions of <cite>bash</cite>?
+
+<p>
+A: No.  The assignment is to write a program in <cite>sh</cite>, and not
+using <cite>bash</cite>-specific extensions.
+
+<p>
+Q: But I think it would be much easier to use the
+built-in arithmetic functions.
+
+<p>
+A: Perhaps.  And it might be easier to write this program in Python, too.
+But that's not the assignment.  Your program should run on any
+<cite>sh</cite>-compatible shell.
+(After all, the point of this assignment is not actually to produce software
+which
+someone is going to use to add numbers,
+it's an exercise to gain experience with shell programming!)
+
+
+<p>
+<hr>
+
+<p>
+Q: Ok, now I'm worried.  How do I know that I'm not using
+<cite>bash</cite>-specific extensions?
+
+<p>
+A: Don't only use bash for your testing.  Try your program with (for example)
+"dash add" too.
+
+
+<p>
+<hr>
+
+<a name=zero>
+<p>
+Q: When I write a 'while' loop which is part of a pipeline, variable
+assignments in the loop don't seem to stick.
+My add program always outputs zero.
+</a>
+
+<p>
+A: Since the two sides of the pipe are separate processes which run in
+parallel, the shell starts a new separate shell process to execute the loop as
+the right side of the pipeline.
+Since the shell variables are represented in a data structure inside the
+shell, this separate process has its own set of variables.
+
+<p>
+The solution is to put <i>more</i> stuff on the right side of the pipeline,
+using parentheses.
+That's why the starter code for add has parentheses around the loop and the
+'echo' command.  All this goes on the right side of the pipeline,
+parenthesized; not just the loop.
+
+
+<p>
+<hr>
+
+<p>
+Q: In rot.c and nth.c, wouldn't it be more efficient to read a line at a time
+rather than a single character at a time?
+
+<p>
+A: No.  The stdio package does buffering; it actually reads a whole
+<i>block</i> of the file at a time.  Then it gives it to you character by
+character via getchar().  Don't attempt to reimplement this buffering yourself.
+Your program is much simpler, and thus more likely to be correct, if you
+process one character at a time.
+
+
+<p>
+<hr>
+
+<p>
+Q: Since the "decrypt" shell script will only supply values from 1 to 25
+as command-line parameter, why does rot.c have to subtract 26 in a loop?
+Couldn't it just check once whether we've exceeded 'z' (or 'Z', as applicable)
+and then subtract 26 just once?
+
+<p>
+A: You are writing two programs here: rot.c does a "rotation", and decrypt
+helps you decrypt a message.  Decrypt needs rot.c, but rot.c doesn't need
+decrypt, so rot.c should work on its own, fully.  Someone might use rot.c for
+other purposes some day.  Remember the last word of the admonition "Do one
+thing well."
+
+
+<p>
+<hr>
+
+<p>
+Q: In decrypt, rather than using /student/csc209/a1/rot, could I use my own
+version of rot?  I have an additional feature in my rot which would be useful.
+
+<p>
+A: No.  You must write decrypt to use the "standard" rot.  Your decrypt should
+work with someone else's, or with mine.
+
+<p>
+The test machine will have a /student/csc209/a1/rot, but won't have your own
+files on it (except for the one being tested).
+
+
+<p>
+<hr>
+
+<p>
+Q: Do we have to use the stated algorithm for nth.c?  I think I have a better
+algorithm.
+
+<p>
+A: Yes, you have to use the stated algorithm.  I'm happy to discuss your
+proposed algorithm in office hours or by e-mail.  But again, the point of this
+exercise is to learn certain things about the C programming language, so if
+you have a different algorithm that doesn't involve learning as much C, you
+may not use it for this assignment, even if it's a better algorithm (which
+I'm sceptical of).
+
+
+<p>
+<hr>
+
+<p>
+Q: In nth.c, how do we "go to a state"?
+
+<p>
+A: Just set the "state" variable to that number and loop around.
+
+<p>
+Q: What if n is zero?  Gibberish?
+
+<p>
+A: If n is zero, your program will output the first field if you
+just follow the state machine algorithm.
+<br>
+If n is non-numeric gibberish, atoi() will return zero, so you will still
+output the first field of each line.  Improving this is not within the scope
+of the assignment.  We'll do better in subsequent assignments.
+
+
+<p>
+<hr>
+
+<p>
+Q: For <cite>findpal</cite>, I keep getting the error "usage:
+/student/csc209/a1/ispalindrome string".  But I <i>am</i> putting a string
+as the arguments to ispalindrome.
+
+<p>
+A: This usage message indicates (tersely, in the standard unix style) that
+ispalindrome expects only one argument.  So "ispalindrome foo" is good, but
+"ispalindrome foo bar" is bad.  You need to write "ispalindrome 'foo bar'".
+This might be your problem.
+
+<p>
+But if 'x' is a variable containing the string "foo bar", you can't write
+"<code>ispalindrome '$x'</code>", because that will pass the literal string "$x".
+
+<p>
+This is what double quotes are for.
+Remember that while single quotes suppress the interpretation of <i>all</i>
+special characters, except for the closing single quote, double quotes
+suppress the interpretation of only <i>some</i> special characters, one
+exception being the dollar sign.  Then, after the variable interpolation, the
+string is still within quotes and the special meaning of the space character
+(to separate arguments) <i>is</i> suppressed by the double quotes.
+
+<p>
+So executing
+<blockquote> <code> ispalindrome "$x" </code> </blockquote>
+will pass the entire contents of the variable x as a single parameter to
+ispalindrome.
+
+
+<p>
+<hr>
+
+<p>
+Q: /student/csc209/a1/ispalindrome doesn't seem to do anything.
+<br>
+Example:
+<pre>
+	% /student/csc209/a1/ispalindrome 'Won 12 tons?  Not 21 now!'
+	% 
+</pre>
+
+<p>
+A: It is doing its job.  It's just not producing any output.  It yields exit
+status 0 for a palindrome or 1 for a non-palindrome.  So it's not as easy to
+use interactively but it is ideal for testing in an <cite>sh</cite> 'if'
+statement, which executes the 'then' clause if the command succeeds or the
+'else' clause (if any) if the command fails.
+
+<p>
+<hr>
+
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/a1/qna.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:41 GMT -->
+</html>

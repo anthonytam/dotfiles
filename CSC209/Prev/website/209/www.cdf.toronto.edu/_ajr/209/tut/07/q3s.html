@@ -1,0 +1,145 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/tut/07/q3s.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:27 GMT -->
+<head>
+
+<title>CSC 209 tutorial exercises, week of 29 February 2016</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #cc7777;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .unhidden { display: block; }
+</style>
+
+<script type="text/javascript">
+    function show(s) {
+        document.getElementById(s).className = 'unhidden';
+    }
+    function reveal(s) {
+        document.getElementById(s+'_a').className = 'hidden';
+        document.getElementById(s+'_b').className = 'revealed';
+    }
+</script>
+
+</head>
+
+<body>
+
+<div class=toc>
+<a href="../01.html">Tutorial 01</a>
+<br>
+<a href="../02.html">Tutorial 02</a>
+<br>
+<a href="../03.html">Tutorial 03</a>
+<br>
+<a href="../04.html">Tutorial 04</a>
+<br>
+<a href="../05.html">Tutorial 05</a>
+<br>
+<a href="../06.html">Tutorial 06</a>
+<br>
+<a href="../07.html">Tutorial 07</a>
+<br>
+<a href="../08.html">Tutorial 08</a>
+<br>
+<a href="../09.html">Tutorial 09</a>
+<br>
+<a href="../10.html">Tutorial 10</a>
+<br>
+<a href="../11.html">Tutorial 11</a>
+<br>
+<a href="../12.html">Tutorial 12</a>
+<br>
+<p>
+[<a href="../../index.html">Course home page</a>]
+</div>
+
+<h1>CSC 209 tutorial 07 solutions, week of 29 February 2016</h1>
+
+<h3> Question 3: </h3>
+
+Problem:
+<br>
+Open a file and terminate with an error if it doesn't exist:
+
+<p>
+Code:
+<pre>
+    if (stat(file, &statbuf)) {
+        printf("%s: No such file or directory\n", file);
+        exit(1);
+    }
+    fp = fopen(file, "r");
+</pre>
+
+<p>
+Solution:
+<pre>
+    if ((fp = fopen(file, "r")) == NULL) {
+	perror(file);
+	exit(1);
+    }
+</pre>
+
+<p>
+Comments:
+
+<p>
+Besides being shorter and clearer than the original, this solves some serious
+problems with the original:
+
+<p>
+First, you can't assume that the fopen() will succeed just because the stat
+succeeds.  There are many possible reasons for fopen() to fail.
+The file might exist but not have read permission for the current user, for
+example.  And even if you rule out all problems with the filesystem, there can
+be an i/o error, or you can run out of memory (fopen() does a malloc()).
+
+<p>
+Secondly, "no such file or directory" is not necessarily the correct error
+message.  Use perror() to generate the correct error message based on what
+actually happened.
+
+<p>
+Which is another reason to error-check the fopen rather than the stat().
+
+<p>
+In general, don't test whether an operation will succeed before attempting the
+operation; just attempt the operation and diagnose errors correctly.
+It's simpler and it's more often correct.
+
+<p><hr>
+[press 'back' in your web browser to return to the problems]
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/tut/07/q3s.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:27 GMT -->
+</html>

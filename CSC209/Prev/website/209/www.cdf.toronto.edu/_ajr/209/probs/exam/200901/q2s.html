@@ -1,0 +1,11 @@
+PATH=/bin:/usr/bin
+
+this=0
+nextaddition=1
+while test $this -lt 1000
+do
+    echo $this
+    new=`expr $this + $nextaddition`
+    nextaddition=$this
+    this=$new
+done

@@ -1,0 +1,248 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/probs/mid/201109/. by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:40 GMT -->
+<head>
+
+<title>CSC 209: midterm, October 2011</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #cc7777;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .unhidden { display: block; }
+</style>
+
+<script type="text/javascript">
+    function show(s) {
+        document.getElementById(s).className = 'unhidden';
+    }
+    function reveal(n) {
+        document.getElementById(n + '_teaser').className = 'hidden';
+        document.getElementById(n + '_hr').className = 'unhidden';
+        document.getElementById(n + '_full').className = 'unhidden';
+	n1 = n + 1;
+        document.getElementById(n1 + '_hr').className = 'unhidden';
+    }
+</script>
+
+</head>
+
+<body>
+<div class=toc>
+
+<a href="../../../.html">Introduction</a>
+<br>
+<a href="../../../announce.html">Announcements</a>
+
+<p>
+
+<a href="../../../lect/index.html">Lectures</a>
+<br>
+<a href="../../../tut/index.html">Tutorials</a>
+<br>
+<a href="../../../asmt.html">Assignments</a>
+
+<p>
+<a href="javascript:show('tests')">Tests, exam</a>
+<div id=tests class=hidden>
+    <ul>
+    <li>
+    <a href="../../../mid/index.html">Mid-term test</a>
+    <li>
+    <a href="../../../exam/info.html">Final exam</a>
+    </ul>
+</div>
+
+<p>
+
+<a href="../../../notes/index.html">Course notes</a>
+<br>
+<a href="../../index.html">Extra problems</a>
+<br>
+
+<a href="https://mcs.utm.utoronto.ca/~mybb/utmcs/forumdisplay.php?fid=193">Discussion board</a>
+
+<p>
+<a href="../../../netgrade-results.html">Grades so far</a>
+<br>
+<a href="../../../oldannounce.html">Old announcements</a>
+
+</div>
+
+<h1>CSC 209 midterm</h1>
+
+<h3>24 October 2011, 13:10</h3>
+
+Aids permitted:
+Any paper.
+<br>
+<b>Calculators are not permitted.</b>
+
+<p>
+Total: 20 marks.
+<br>
+Time allotted: 45 minutes.
+
+<p>
+Since time is short, be careful not to get stuck on one question to the
+exclusion of others.
+Not everyone will necessarily be able to finish this test within the 45
+minutes.
+The amount of marks or answer-space allotted does not indicate how
+long it will take you to complete the question,
+nor does the size of the answer-space indicate the size of the correct answer.
+
+<p>
+Answer <i>all</i> questions.  Answer questions in the space provided.
+
+<p>
+<b>Do not open this booklet until you are instructed to.</b>
+
+
+<p>
+<hr noshade>
+
+<p>
+<b>1.</b> [8 marks]
+<br>
+Each subpart of this question builds upon the previous.  If you can't get part
+of the question, you can write things like "part 'a' answer goes here".
+
+<p>
+a) Write a regular expression which matches "any positive integer".
+
+<p>
+b) "grep -v" outputs lines which do <i>not</i> match the given pattern.
+Remembering "<tt>^</tt>" for beginning of line and
+"<tt>$</tt>" for end of line, write shell commands
+to check whether the file "abc" contains just one integer per line (and
+nothing else).
+Output "yes" (only integer lines) or "no" (at least one inappropriate
+line).
+
+<p>
+c) Write a complete shell script which takes exactly one file name as
+command-line argument and outputs the sum of all of the numbers in that file,
+if the file contains only integers and one per line; or outputs a suitable
+error message if the file contains anything else.
+You also have to check the argument count and output an appropriate usage
+message, and otherwise behave like a proper complete shell script.
+(You can, however, assume that the addition never overflows what <i>expr</i>
+can do.)
+
+<p>
+[<a href="q1.html">Sample solutions</a>]
+
+
+<p>
+<hr noshade>
+
+<p>
+<b>2.</b> [6 marks]
+<br>
+Here is a portion of a unix filesystem.
+Like the "ls -l" output, 
+we list whether the file (inode) is a plain file, directory, etc,
+with '-' for plain file or 'd' for directory.
+In the case of directories, the table also states the data content of the
+directory itself (a list of pairs of: inode number, name).
+
+<table border=1>
+<tr><td>2</td><td>d</td><td>. 2, .. 2, usr 7, etc 4, bin 6</td></tr>
+<tr><td>3</td><td>-</td><td>&nbsp;</td></tr>
+<tr><td>4</td><td>d</td><td>. 4, .. 2, passwd 3</td></tr>
+<tr><td>5</td><td>d</td><td>. 5, .. 7, fsys.fig 10, src 11</td></tr>
+<tr><td>6</td><td>d</td><td>. 6, .. 2, date 9</td></tr>
+<tr><td>7</td><td>d</td><td>. 7, .. 2, bin 8, ajr 5, you 12</td></tr>
+<tr><td>8</td><td>d</td><td>. 8, .. 7</td></tr>
+<tr><td>9</td><td>-</td><td>&nbsp;</td></tr>
+<tr><td>10</td><td>-</td><td>&nbsp;</td></tr>
+<tr><td>11</td><td>d</td><td>. 11, .. 5, hello.c 13</td></tr>
+<tr><td>12</td><td>d</td><td>. 12, .. 7, a1 14</td></tr>
+<tr><td>13</td><td>-</td><td>&nbsp;</td></tr>
+<tr><td>14</td><td>-</td><td>&nbsp;</td></tr>
+<tr><td>15</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>16</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>17</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</table>
+
+<p>
+a) Suppose I do "<tt>mkdir /usr/ajr/newdir</tt>".  Write in all
+changes/additions
+to the above list.  (There are some free inodes at the end for you to use
+for new files.)
+
+<p>
+b) If instead I were cd'd to /usr/ajr and typed simply "<tt>mkdir
+newdir</tt>".
+would the result differ, and if so, how?
+
+<p>
+c) Suppose I do "<tt>ln -s /usr/you/a1 /usr/ajr/othera1</tt>",
+creating a "symbolic link".
+Write in all changes/additions to the above list.
+
+<p>
+d) If instead I were cd'd to /usr/you and typed "<tt>ln -s a1
+/usr/ajr/othera1</tt>",
+would the result differ, and if so, how?
+
+<p>
+[<a href="q2.html">Sample solutions</a>]
+
+
+<p>
+<hr noshade>
+
+<p>
+<b>3.</b> [6 marks]
+<br>
+a) Write a C function (not an entire program) which takes an array of
+integers and the size of that array, and reverses them.  E.g. if the array
+is initially [0,1,2,3], the array will end up being [3,2,1,0].
+
+<p>
+b) Write a C main() function which reads up to 20 integers into an array
+from the standard input with scanf(), calls the above function to reverse the
+array, and then outputs them all (one per line).  You can assume that the
+input consists entirely of well-formed integers.  If there are more than 20
+integers in the input, your program just reads and processes the first 20.
+
+<p>
+[<a href="q3.html">Sample solutions</a>]
+
+<p>
+<hr>
+
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/probs/mid/201109/. by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:40 GMT -->
+</html>

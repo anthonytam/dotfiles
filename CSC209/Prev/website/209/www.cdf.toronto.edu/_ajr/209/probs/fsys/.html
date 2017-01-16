@@ -1,0 +1,366 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/probs/fsys/. by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:40 GMT -->
+<head>
+
+<title>CSC 209: additional problems regarding the unix filesystem</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #cc7777;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .unhidden { display: block; }
+</style>
+
+<script type="text/javascript">
+    function show(s) {
+        document.getElementById(s).className = 'unhidden';
+    }
+    function reveal(n) {
+        document.getElementById(n + '_teaser').className = 'hidden';
+        document.getElementById(n + '_hr').className = 'unhidden';
+        document.getElementById(n + '_full').className = 'unhidden';
+	n1 = n + 1;
+        document.getElementById(n1 + '_hr').className = 'unhidden';
+    }
+</script>
+
+</head>
+
+<body>
+<div class=toc>
+
+<a href="../../.html">Introduction</a>
+<br>
+<a href="../../announce.html">Announcements</a>
+
+<p>
+
+<a href="../../lect/index.html">Lectures</a>
+<br>
+<a href="../../tut/index.html">Tutorials</a>
+<br>
+<a href="../../asmt.html">Assignments</a>
+
+<p>
+<a href="javascript:show('tests')">Tests, exam</a>
+<div id=tests class=hidden>
+    <ul>
+    <li>
+    <a href="../../mid/index.html">Mid-term test</a>
+    <li>
+    <a href="../../exam/info.html">Final exam</a>
+    </ul>
+</div>
+
+<p>
+
+<a href="../../notes/index.html">Course notes</a>
+<br>
+<a href="../index.html">Extra problems</a>
+<br>
+
+<a href="https://mcs.utm.utoronto.ca/~mybb/utmcs/forumdisplay.php?fid=193">Discussion board</a>
+
+<p>
+<a href="../../netgrade-results.html">Grades so far</a>
+<br>
+<a href="../../oldannounce.html">Old announcements</a>
+
+</div>
+
+<h2> Part A: Problems not requiring C </h2>
+
+1.
+What is the purpose of the "link count" in the inode in the unix
+filesystem?  It is incremented when the file is linked into the filesystem
+somewhere, and decremented when the file is unlinked; but why does the unix
+operating system have to track this information?
+
+<p>
+[<a href="qa1s.html">solution</a>]
+
+
+<p>
+<hr noshade>
+
+<p>
+2.
+Sketch the inode and directory information involved in the following output
+from an "ls -liR" of the directory which is inode number 10.
+('R' is "recursive", and
+'i' is "list inode numbers" (which appear in the left column,
+i.e. the numbers which are 12 through 15 below)).
+
+<p>
+That is, list the inode numbers and what data you know is in those inodes; and
+state the contents of the directories involved.
+
+<pre>
+	total 8
+	12 drwxr-xr-x  3 ajr  users 4096 Feb 27 10:05 bar
+	13 drwxr-xr-x  3 ajr  users 4096 Feb 27 10:05 baz
+
+	./bar:
+	total 8
+	14 -rw-r--r--  1 ajr  users   20 Feb 27 10:06 gar
+
+	./baz:
+	total 8
+	15 -rw-r--r--  1 ajr  users   50 Feb 27 10:06 gaz
+</pre>
+
+<p>
+[<a href="qa2s.html">solution</a>]
+
+
+<p>
+<hr noshade>
+
+<p>
+3.
+Consider the following portion of a unix filesystem hierarchy:
+<br>
+<img src="qa3.gif">
+
+<p>
+The '.' and '..' entries are not indicated, of course; otherwise, all of the
+files below "a2" are shown.
+
+<p>
+a2.pdf, splitexpr.c, wfold.c, and wfold.1 are plain files;
+a2, handout, starter, soln, and splitexpr are directories.
+
+<p>
+a)  Indicate the link count for each of these files:
+
+<p>
+handout:
+
+<p>
+starter:
+
+<p>
+soln:
+
+<p>
+wfold.c:
+
+<p>
+b) Suppose the user is cd'd to the handout directory
+and types:
+<pre>
+	ln a2.pdf example.pdf
+</pre>
+Which file(s) will change their link count, and what will the link count(s)
+be now?
+
+<p>
+c) Suppose the user is cd'd to the soln directory
+and types:
+<pre>
+	mkdir new
+</pre>
+Which file(s) will change their link count, and what will the link count(s)
+be now?
+
+<p>
+[<a href="qa3s.html">solution</a>]
+
+
+
+<p>
+<hr noshade>
+
+
+<h2> Part B: Problems requiring C </h2>
+
+1.
+Write a simple <i>ls</i>.
+For a given directory
+your program outputs all of the file names in that directory, one per line.
+<p>
+An example which only works on "." appears on the unix (not linux) man page
+and is also at
+<a href="readdir.c">https://cs.utm.utoronto.ca/~ajr/209/probs/fsys/readdir.c</a>.
+One defect in that example program, which you must correct, is that it does not check whether the
+opendir() function call succeeds.  If opendir() fails for some reason, it will
+return a null pointer.
+In this case, the reason for the failure has been stashed (in "errno"), and
+you should pass the directory name to perror() which will print a nice error
+message using this stashed error value.
+
+<p>
+Also unlike the version on the man page,
+your version should not work only on the current directory
+but should instead
+apply itself in turn to every directory specified on the
+command line.
+Recall that you can loop through the argv array like this:
+<pre>
+        for (i = 1; i < argc; i++) {
+            ... argv[i] ...
+        }
+</pre>
+
+<p>
+[<a href="ls.c">solution</a>]
+
+<p>
+<hr noshade>
+
+<p>
+2.
+Using opendir() and friends and running stat() on each file in the directory, write
+a program which displays the size in bytes of the largest file in a
+directory specified on the command-line (i.e. in argv).
+
+<p>
+[<a href="q2.c">solution</a>]
+
+<p>
+<hr noshade>
+
+<p>
+3.
+Write a program which, for each directory specified on the command line,
+<i>recursively</i> finds the <i>total</i> byte size of the files in that directory
+<i>and</i> all subdirectories.
+Your program will contain a function which takes as argument a directory name and returns
+the total number of bytes in all files and subdirectories recursively.
+Suppose this function is called totalbytes().
+It will contain a
+readdir() loop which calls stat() on each file.
+From S_ISDIR(statbuf.st_mode) you will know whether the file is a
+(sub)directory.
+If it is a directory,
+<i>and is not "." or ".."</i>,
+call totalbytes() recursively.
+Your totalbytes() should opendir() the new directory
+and go through the directory, possibly calling itself recursively for subdirectories.
+Each invocation of totalbytes() should call closedir() before returning or
+you will run out of file streams.
+<p>
+Optional cheat: To avoid having to construct the
+subdirectory's full path name
+to pass to opendir() as
+you descend the hierarchy, totalbytes() could begin with a chdir()
+(change working directory, like "cd") to the subdirectory, and end with a chdir("..") to restore the
+previous state.
+If you avail yourself of this cheat, please notice that your program no longer
+always works with multiple command-line arguments; that's why I call it a
+"cheat".
+(To experience the problem, use multiple arguments which are relative
+pathnames but do contain multiple directory levels (i.e. contain slashes).)
+
+<p>
+[<a href="totalbytes.c">solution</a>]
+
+<p>
+<hr noshade>
+
+<p>
+4.
+Write a program whose argv[1] is a directory name and which finds a pair of
+hard-linked files within the subdirectory tree.
+
+<p>
+Example:
+<pre>
+% mkdir glop
+% ln blop/foo glop/foo
+% findlink .
+./blop/foo and ./glop/foo are links to the same file
+% 
+</pre>
+
+<p>
+<hr noshade>
+
+<p>
+5. Write pwd.
+The algorithm is:
+<ol>
+<li> Find the inode number and major and minor device numbers of the current
+directory ("."), using lstat() (or stat()).
+<li> Do an opendir() of ".." (actually you probably might as well chdir()
+there first),
+and find an entry which matches the inode number and major and minor device
+numbers of the original directory.  This name is then the last component of
+pwd's output.
+(Optimization:
+Note that you can use the d_ino entry in the record returned by readdir() to
+avoid lstat()ing the entry almost all the time, although you still do have to
+lstat() when the inode number matches, to see if the major and minor device
+numbers match.)
+<li> Repeat this until you find that ".." is the same as ".". [footnote]
+</ol>
+Make sure you understand why the above algorithm is valid, and why all of its
+components are necessary.
+
+<p>
+Improvements:
+<ol>
+<li> The above generates the pathnames in reverse order.  Using recursion
+rather than iteration it's reasonably easy to get them into the desired order.
+Make sure you don't have multiple DIR*s from opendir() open, though, or you'll
+have an unnecessary limit to the depth of the directory you can pwd properly.
+But note that you <i>will</i> have to duplicate the string if you're going
+to recurse before printing it.
+Another possibility is to keep the iterative version but end up with a linked
+list of dynamically-allocated strings, which you then read out in the reverse
+order to how they were added (which is easy if you just prepend to the top
+each time).
+<li> Get all the formatting of the output right, with no extraneous slash at
+the end... and <i>with</i> an extraneous slash at the beginning in the case
+that the cwd is actually the root directory.
+<li> Make sure you're calling lstat() (and/or stat()) as little as possible.
+(It's possible, and probably usual, to use only lstat() for all such calls
+in pwd.)
+<li> Make sure you diagnose the problem of being unable to read directories
+correctly.  E.g. in the shell, cd somewhere you have only 'x' permission
+but not 'r' permission, and watch /bin/pwd fail, and then make sure yours does
+it as cleanly.
+</ol>
+
+<p>
+<hr noshade align=left width="25%">
+[footnote]
+Or that it's the same as "/", but that involves an additional
+lstat()/stat(), so it's not as good, and it's no easier really.
+
+<p>
+<hr>
+
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/probs/fsys/. by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:40 GMT -->
+</html>

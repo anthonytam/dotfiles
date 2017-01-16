@@ -1,0 +1,304 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/tut/10/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:06 GMT -->
+<head>
+
+<title>CSC 209 tutorial exercises, week of 21 March 2016</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #cc7777;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .unhidden { display: block; }
+</style>
+
+<script type="text/javascript">
+    function show(s) {
+        document.getElementById(s).className = 'unhidden';
+    }
+    function reveal(s) {
+        document.getElementById(s+'_a').className = 'hidden';
+        document.getElementById(s+'_b').className = 'revealed';
+    }
+</script>
+
+</head>
+
+<body>
+
+<div class=toc>
+<a href="../01.html">Tutorial 01</a>
+<br>
+<a href="../02.html">Tutorial 02</a>
+<br>
+<a href="../03.html">Tutorial 03</a>
+<br>
+<a href="../04.html">Tutorial 04</a>
+<br>
+<a href="../05.html">Tutorial 05</a>
+<br>
+<a href="../06.html">Tutorial 06</a>
+<br>
+<a href="../07.html">Tutorial 07</a>
+<br>
+<a href="../08.html">Tutorial 08</a>
+<br>
+<a href="../09.html">Tutorial 09</a>
+<br>
+<a href="../10.html">Tutorial 10</a>
+<br>
+<a href="../11.html">Tutorial 11</a>
+<br>
+<a href="../12.html">Tutorial 12</a>
+<br>
+<p>
+[<a href="../../index.html">Course home page</a>]
+</div>
+
+<h1>CSC 209 tutorial 10 exercises, week of 21 March 2016</h1>
+
+
+<p>
+This tutorial is partially classroom-like stuff although it's mostly lab-like stuff.
+So, we'll do it in the lab, but please wait to do the lab stuff until your TA
+has finished presenting the classroom-like stuff.
+
+<h2> Classroom-like stuff: </h2>
+
+<p>
+First, material about select().
+<br>
+At one point your TA may refer to definitions from
+<a href="../../a4/qna-fdmacros.html">https://cs.utm.utoronto.ca/~ajr/209/a4/qna-fdmacros.html</a>
+
+<p>
+Then, a discussion about
+<a href="../../notes/sockets/newline.html">the network newline convention</a>
+
+<p>
+However, my server and client are both very permissive about newlines and you
+can use unix newlines while typing to them in the lab.
+Nevertheless, they always use the network newline convention correctly when
+they transmit.
+This follows the standard internet engineering principle oft quoted something
+like "Be conservative in what you do, liberal in what you accept."
+
+
+<h2> Lab stuff: </h2>
+
+Please begin by running "/student/csc209/present".
+This records your attendance and is required for you to get the marks for the
+lab.
+
+<p>
+Quickly read through <a href="../../a4/a4.html">the assignment four
+handout</a> if you haven't already.
+
+
+<h3> The first experiment: </h3>
+
+<p>
+Please experiment with my chat server and client, and "marvin".
+Run a chat server, then connect to it with chatclient in a different window;
+then run marvin in a third window.
+You'll find compiled versions of all of these programs in /student/csc209/a4 ;
+you don't need to copy them in to your own directory to do this tutorial.
+
+<p>
+By default the server listens on port 1234 and the client connects to port
+1234; if this port is in use you can have the server listen on a different
+port number with the "-p" option.
+Remember that you can refer to the machine you're on with the IP address
+"127.0.0.1"; you can also use the name "localhost" for this.  So if you run
+the server in one window and want to run the client in another window on the
+same machine, you can type "/student/209/a4/chatclient 127.0.0.1 port" or
+"/student/209/a4/chatclient localhost port" (for whatever port number you
+ran the server on).
+If you use port numbers in the range 20000 to 21000 (inclusive), you can
+connect to servers on different machines around the room too.
+
+<p>
+Type some things to chatclient and to marvin.
+On chatclient, type something which is going to cause marvin to do a
+calculation and to reply.
+
+<p>
+Try pressing control-D at the beginning of the line in either chatclient or
+marvin and see how they exit gracefully.
+
+<p>
+Then, to understand the protocol you will "play client" and "play server"
+(not simultaneously).
+
+<p>
+So the next thing for you to do is to connect to your server by running "nc" in yet another window.
+
+<p>
+For example, if your server is running on the default port of 1234, you could
+type "<tt>nc&nbsp;localhost&nbsp;1234</tt>".
+
+<p>
+You will see the "banner" message from the server, which says "chatsvr
+305975789".
+This is a meaningless number, but since there are so many chat servers out there
+I thought it wise to choose a number to distinguish this one.
+Most internet application protocols have banner lines like this.
+Clients check for the banner line and consider it to be a fatal error if it
+doesn't match.
+(Some banner lines also contain further useful data for the client, but this
+one doesn't.)
+
+<p>
+As discussed in the assignment handout, the server is now waiting for you to
+send your "handle".  The chatclient program nicely prompted for this, but then
+it just took the line you typed and sent it to the server.  So since you are
+now "playing client" via nc, you need to send the handle that your user
+allegedly typed.  After you send it, note that the server (in your first
+window) has reacted.
+
+<p>
+Subsequent lines from the client are messages.  Type a message or two and
+notice its broadcast to the other clients (chatclient and marvin).
+
+<p>
+Type a message into marvin and see how it shows up in your nc session.
+
+<p>
+Now type something into chatclient which causes marvin to perform a
+calculation, and see how both of these show up in your nc session too.
+
+
+<h4> Creating the first file to submit: </h4>
+
+Copy and paste the transcript of the nc session, including the shell
+prompt and nc command, into a plain text file named "tut10a".
+Your tut10a file needs to show the shell prompt and nc command;
+the server banner message;
+at least one message typed into marvin;
+at least one message typed into chatclient which asks marvin to do a
+calculation;
+and marvin's response to that.
+
+
+<h3> The second experiment: </h3>
+
+Now you will "play server".  Control-C the chatsvr above, which will cause all
+of the clients to exit as well, and start over.
+
+<p>
+You will probably find that the port number you just used (probably 1234) is
+not available for immediate reuse, so you'll need to choose a new one.
+
+<p>
+Run "<tt>nc&nbsp;-l&nbsp;2345</tt>" (or any port number) in one window,
+and run "<tt>/student/csc209/a4/chatclient&nbsp;localhost&nbsp;2345</tt>" in
+another (matching the port number).
+Now you are "playing server" in nc, so begin by typing "chatsvr 305975789",
+return.  See how the chatclient program now wakes up
+(unless you get the banner line wrong! it might be interesting
+to start again with a bad banner just to see).
+
+<p>
+Type a suitable handle in the client and see that it is transmitted to the
+server.
+
+<p>
+Now quit them both and we'll start again with marvin.  Since nc can accept a
+connection from only one client at a time, this setup is less flexible than
+with the real server.
+
+<p>
+So, start up a "marvin", by running "<tt>nc&nbsp;-l&nbsp;something</tt>" in
+one window and
+"<tt>/student/csc209/a4/marvin&nbsp;localhost&nbsp;samething</tt>" in another.
+
+<p>
+Type "chatsvr 305975789" to nc so that marvin wakes up and sends its handle.
+
+<p>
+Type something into marvin, and see it in nc.
+
+<p>
+Type appropriate messages in nc so that the marvin displays messages.
+Make one of them be a message which causes marvin to do a calculation.
+(You may have to look back at your tut10a transcript to see how to get this
+right!)
+
+
+<h4> Creating the second file to submit: </h4>
+
+<p>
+Copy and paste the transcript of the second nc session, including
+the shell prompt and nc command, into a plain text file named "tut10b".
+Your tut10b file needs to show the shell prompt and nc command;
+your typing the banner;
+marvin's sending its handle to you;
+at least one message which you're typing from the server to the client;
+at least one message which causes marvin to do a calculation;
+and marvin's response with the result of the calculation.
+
+<p>
+Now control-D the 'nc' command and watch the client shut down (so, note that
+your own marvin implementation needs to handle the server going away this
+well).
+
+
+<h2> To submit: </h2>
+
+<p>
+Please remember to run "/student/csc209/present",
+during the tutorial time, on the console of a tutorial lab workstation.
+
+<p>
+The desired contents of tut10a and tut10b are specified above.
+They <i>must</i> be copy-and-pasted from terminal windows as described above
+(you can still do this from home over ssh, so long as you can copy and paste).
+Make sure that tut10a and tut10b are plain text files by typing "cat tut10a" and
+"cat tut10b" at a shell prompt (e.g. word-processor files will receive a
+grade of zero).
+
+<p>
+Then, by midnight at the end of your tutorial day, you must
+submit these tut10a and tut10b files
+with a command similar to:
+<pre>
+	/student/csc209/submit tut10 tut10a tut10b
+</pre>
+You can submit them simultaneously as above, or at different times.
+And all other 'submit' commands and options are, of course, still available.
+
+<p>
+<hr>
+
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/tut/10/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:06 GMT -->
+</html>

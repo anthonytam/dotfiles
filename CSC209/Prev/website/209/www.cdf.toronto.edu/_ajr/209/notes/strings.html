@@ -1,0 +1,478 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/notes/strings.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:14 GMT -->
+<head>
+
+<title>CSC 209: C strings</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #cc7777;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .unhidden { display: block; }
+</style>
+
+<script type="text/javascript">
+    function show(s) {
+        document.getElementById(s).className = 'unhidden';
+    }
+    function reveal(n) {
+        document.getElementById(n + '_teaser').className = 'hidden';
+        document.getElementById(n + '_hr').className = 'unhidden';
+        document.getElementById(n + '_full').className = 'unhidden';
+	n1 = n + 1;
+        document.getElementById(n1 + '_hr').className = 'unhidden';
+    }
+</script>
+
+</head>
+
+<body>
+<div class=toc>
+
+<a href="../.html">Introduction</a>
+<br>
+<a href="../announce.html">Announcements</a>
+
+<p>
+
+<a href="../lect/index.html">Lectures</a>
+<br>
+<a href="../tut/index.html">Tutorials</a>
+<br>
+<a href="../asmt.html">Assignments</a>
+
+<p>
+<a href="javascript:show('tests')">Tests, exam</a>
+<div id=tests class=hidden>
+    <ul>
+    <li>
+    <a href="../mid/index.html">Mid-term test</a>
+    <li>
+    <a href="../exam/info.html">Final exam</a>
+    </ul>
+</div>
+
+<p>
+
+<a href="index.html">Course notes</a>
+<br>
+<a href="../probs/index.html">Extra problems</a>
+<br>
+
+<a href="https://mcs.utm.utoronto.ca/~mybb/utmcs/forumdisplay.php?fid=193">Discussion board</a>
+
+<p>
+<a href="../netgrade-results.html">Grades so far</a>
+<br>
+<a href="../oldannounce.html">Old announcements</a>
+
+</div>
+
+<h1>Strings in C</h1>
+
+We make a string out of chars by using an array.  The size of the array then
+indicates the longest string we can store.
+
+
+<pre>
+#include &lt;stdio.h>
+#include &lt;string.h>
+
+int main()
+{
+    char a[20];
+    strcpy(a, "Hello");
+    printf("%s, world\n", a);
+    return(0);
+}
+</pre>
+
+<p>
+How does it know to print just the first five chars of a[]?
+
+<p>
+Convention:  use the byte zero to terminate a string.
+All the string library functions use this.  (almost all)
+
+<p>
+printf's "%s" format uses this.  It expects an array of char which ends with a
+zero byte.
+
+<p>
+String literals use this.  When you say "hello", that defines an unnamed
+array which is used right there.  It is of size 6, not 5.
+
+
+<pre>
+#include &lt;stdio.h>
+
+int main()
+{
+    int i;
+    char a[10];
+    for (i = 0; i &lt; 5; i++)
+	a[i] = 'a' + i;
+    a[5] = 0;
+    printf("%s\n", a);
+    return(0);
+}
+</pre>
+
+When we're writing the string terminator as a literal, we usually write '\0'.
+Thus,
+usually we would write
+<pre>
+    a[5] = '\0';
+</pre>
+
+'\0' and 0 are EXACTLY the same (both type int, even).
+But they mean something different to the human reading your code.
+
+<p>
+<hr noshade>
+<p>
+
+<p>
+<pre>
+void mystrcpy(char *a, char *b)
+{
+    for (i = 0; b[i] != '\0'; i++)
+	a[i] = b[i];
+    a[i] = '\0';
+}
+</pre>
+
+<p>
+We can save the extra assignment by making this a post-tested loop:
+
+<pre>
+void mystrcpy(char *a, char *b)
+{
+    int i = 0;
+    do {
+	a[i] = b[i];
+    } while (b[i++] != '\0');
+}
+</pre>
+
+<p>
+In practice, we might write:
+
+<pre>
+void mystrcpy(char *a, char *b)
+{
+    while ((*a = *b) != '\0') {
+	a++;
+	b++;
+    }
+}
+</pre>
+
+<p>
+In fact, any 1970s unix programmer would surely write:
+
+<pre>
+void mystrcpy(char *s, char *t)
+{
+    while (*s++ = *t++)
+	;
+}
+</pre>
+
+That's all you need!
+(These days we would prefer at least to include additional parentheses to make
+it clear that we are really intending the embedded assignment...)
+
+
+<p>
+<hr align=left noshade width="25%">
+<p>
+Another string function:  strcat
+
+<pre>
+int main()
+{
+    char a[20];
+    strcpy(a, "Hello");
+    strcat(a, ", world");
+    printf("%s\n", a);
+    return(0);
+}
+</pre>
+
+
+What happens if that 20-byte array isn't big enough?
+
+<p>
+Another string.h function:  strlen("Hello") -> 5
+
+<p>
+Used in dynamic memory allocation, and in checking whether something will
+fit in a target array.
+
+<p>
+strcmp:
+<p>
+strcmp("hello", "hello")  -> 0
+<br>
+strcmp("goodbye", "hello")  -> -1
+<br>
+strcmp("hello", "goodbye")  -> 1
+
+<p>
+Can be used for sorting... not dictionary order, but used, for example, by ls.
+
+<p>
+Traditionally, returns a[i]-b[i] at first difference.
+This is no longer the case (it becomes too tricky in the event of bytes whose
+high bits are not zero), but it's
+still a good way to remember when it returns negative and when
+positive.  However, in the commonest use by far, we only care about the zero
+case:
+
+<pre>
+if (strcmp(s, "foo") == 0)
+</pre>
+
+<p>
+<hr noshade>
+
+<p>
+<pre>
+int mystrlen(char *s)
+{
+    int count = 0;
+    while (*s++)
+	count++;
+    return(count);
+}
+</pre>
+
+<p>
+strchr: a linear search.
+<pre>
+char *mystrchr(char *s, int c)
+{
+    while (*s && *s != c)
+	s++;
+    if (*s == '\0')
+	return(NULL);
+    else
+	return(s);
+}
+</pre>
+
+Actually you can call strchr(s, '\0') to find the terminating zero, so my
+"mystrchr" above isn't complete.
+<br>
+Adding this facility requires only a tiny change: the above loop does in fact
+find the zero;
+it's just that
+the subsequent 'if' misdiagnoses it.  Just add "&& c":
+
+<pre>
+char *mystrchr(char *s, int c)
+{
+    while (*s && *s != c)
+	s++;
+    if (*s == '\0' && c)
+	return(NULL);
+    else
+	return(s);
+}
+</pre>
+
+<p>
+strrchr -- 'r' for 'right' -- easiest algorithm does NOT go right-to-left.
+<pre>
+char *mystrrchr(char *s, int c)
+{
+    char *retval = NULL;
+    for (; *s; s++)
+	if (*s == c)
+	    retval = s;
+    return(retval);
+}
+</pre>
+
+<p>
+You <i>could</i> go right to left; try it, you'll see it's longer.
+Because you first have to find the end.
+(And you have more to keep track of, because you have to make sure you don't
+go off the <i>beginning</i> of the array now.)
+
+<pre>
+void mystrcpy(char *s, char *t)
+{
+    while ((*s++ = *t++))
+	;
+}
+</pre>
+
+n.b. single-equals-sign
+
+<p>
+<pre>
+int mystrcmp(char *s, char *t)
+{
+    while (*s == *t && *s) {
+	s++;
+	t++;
+    }
+    return(*s - *t);
+}
+</pre>
+
+
+<p>
+How to write something which adds to a string?
+<br>
+E.g. we want:
+<pre>
+printf("%s\n", helloize("world"));
+</pre>
+
+<p>
+Answer:
+<pre>
+char *helloize(char *s)
+{
+    static char buf[100];
+    sprintf(buf, "Hello, %s", s);
+    return(buf);
+}
+</pre>
+
+buf <i>must</i> be static so that it doesn't get deallocated when the function
+returns.
+
+<p>
+What is the bug in this function?
+<br>
+Array overflow possibility.
+<br>
+Add limit on string:  "Hello, %.90s"
+
+<p>
+A program like cat -s:
+
+<pre>
+#include &lt;stdio.h>
+
+int main()
+{
+    int nlcount = 1;
+    int c;
+    while ((c = getchar()) != EOF) {
+	if (c == '\n') {
+	    if (++nlcount &lt;= 2)
+		putchar(c);
+	} else {
+	    nlcount = 0;
+	    putchar(c);
+	}
+    }
+    return(0);
+}
+</pre>
+
+<p>
+The fgets library function, without the EOF signal:
+
+<pre>
+void myfgets(char *s, int size, FILE *fp)
+{
+    int pos = 0, limit = size - 1;
+    int c;
+    while ((c = getc(fp)) != EOF && pos &lt; limit) {
+	s[pos++] = c;
+	if (c == '\n')
+	    break;
+    }
+    s[pos] = '\0';
+}
+</pre>
+
+<p>
+Or, better in my opinion (avoiding the array address calculations):
+
+<pre>
+void myfgets(char *s, int size, FILE *fp)
+{
+    char *limit = s + size - 1;
+    int c;
+    while ((c = getc(fp)) != EOF && s &lt; limit) {
+	*s++ = c;
+	if (c == '\n')
+	    break;
+    }
+    *s = '\0';
+}
+</pre>
+
+
+<h2> String function summary </h2>
+
+Here are some string functions you want to be sure to be aware of from the
+string library, mostly discussed above:
+
+<ul>
+
+<li> strcpy(a, b) -- copy string b to a
+<li> strcat(c, d) -- concatenate string d onto the end of string c (modifying c)
+<li> strlen(e) -- length of string e (not counting the terminating \0)
+<li> strcmp(f, g) -- difference between strings f and g (zero for equal)
+<li> strcasecmp(f, g) -- like strcmp but it's a case-insensitive comparison
+<li> strchr(h, x) -- find first occurrence of character x in string h (NULL
+for not found)
+<li> strrchr(h, x) -- find last occurrence of character x in string h
+<li> strstr(i, j) -- find first occurrence of STRING j in string i
+<li> strcasestr(i, j) -- case-insensitive version of strstr
+<li> strtok -- break up a string into tokens (words).  Limited applicability
+and strange interface, but very useful when it happens to be suitable.
+
+</ul>
+
+The char pointers b, c, d, e, f, g, h, i, and j (i.e. all of the string
+arguments except for 'a') must point to properly zero-terminated strings.
+
+<br>
+The char pointers a and c must point into an array with enough space to store
+the result.
+
+<p>
+<hr>
+
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/notes/strings.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:14 GMT -->
+</html>

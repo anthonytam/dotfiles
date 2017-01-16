@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/tut/12/q12s.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:27 GMT -->
+<head>
+
+<title>CSC 209 sample exam question solution</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #cc7777;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .unhidden { display: block; }
+</style>
+
+</head>
+
+<body>
+
+<h4>An answer:</h4>
+
+<pre>
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+#include &lt;unistd.h>
+#include &lt;sys/types.h>
+#include &lt;sys/wait.h>
+
+int system(char *cmd)
+{
+    int pid = fork();
+    if (pid &lt; 0)
+        return(-1);
+    if (pid == 0) {
+        execl("/bin/sh", "sh", "-c", cmd, (char *)NULL);
+        perror("/bin/sh");
+        exit(127);
+    } else {
+        int status;
+        wait(&amp;status);
+        return(status >> 8);
+    }
+}
+</pre>
+
+<h4> A few grading notes: </h4>
+"return(status)" was accepted for full marks;
+the ">> 8" is not important as far as your
+understanding of the material, although of course it is crucial for your
+program to function in real life.
+<p>
+It's not extremely clear what should be done if the wait() fails.
+<p>
+It's quite important that the child process does not return from system().
+If the execl() fails, we have to call exit() (or better yet, _exit() -- see
+the man page if interested).
+
+<p>
+<hr>
+[press 'back' in your web browser to return to where you were in the exam]
+
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/tut/12/q12s.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:27 GMT -->
+</html>

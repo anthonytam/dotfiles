@@ -1,0 +1,285 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/notes/memoryos.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:57:48 GMT -->
+<head>
+
+<title>CSC 209: Process memory layout and OS considerations</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #cc7777;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .unhidden { display: block; }
+</style>
+
+<script type="text/javascript">
+    function show(s) {
+        document.getElementById(s).className = 'unhidden';
+    }
+    function reveal(n) {
+        document.getElementById(n + '_teaser').className = 'hidden';
+        document.getElementById(n + '_hr').className = 'unhidden';
+        document.getElementById(n + '_full').className = 'unhidden';
+	n1 = n + 1;
+        document.getElementById(n1 + '_hr').className = 'unhidden';
+    }
+</script>
+
+</head>
+
+<body>
+<div class=toc>
+
+<a href="../.html">Introduction</a>
+<br>
+<a href="../announce.html">Announcements</a>
+
+<p>
+
+<a href="../lect/index.html">Lectures</a>
+<br>
+<a href="../tut/index.html">Tutorials</a>
+<br>
+<a href="../asmt.html">Assignments</a>
+
+<p>
+<a href="javascript:show('tests')">Tests, exam</a>
+<div id=tests class=hidden>
+    <ul>
+    <li>
+    <a href="../mid/index.html">Mid-term test</a>
+    <li>
+    <a href="../exam/info.html">Final exam</a>
+    </ul>
+</div>
+
+<p>
+
+<a href="index.html">Course notes</a>
+<br>
+<a href="../probs/index.html">Extra problems</a>
+<br>
+
+<a href="https://mcs.utm.utoronto.ca/~mybb/utmcs/forumdisplay.php?fid=193">Discussion board</a>
+
+<p>
+<a href="../netgrade-results.html">Grades so far</a>
+<br>
+<a href="../oldannounce.html">Old announcements</a>
+
+</div>
+
+<h2>Basic process memory layout</h2>
+
+The basic process memory layout is the result of "linking" (combining the
+various .o and .a (or .so) files into an executable program format) plus
+arranging the disk file's data into main memory (allocating data storage and
+such).
+The gcc command performs the linking process (by running ld).
+Then we have a file on the disk which we can execute with an exec() function.
+The following notes are primarily about what happens to memory layout at the
+time of exec() and after.
+
+<p>
+Process memory is divided into a "text segment" and a "data segment".
+
+<p>
+The "text segment" is the code, the machine language instructions that are
+your program.
+It is made read-only via the MMU.
+
+<p>
+The "data segment" is more complicated.
+It is not read-only, far from it; it
+changes as your program executes.
+Some of its components are:
+<ul>
+<li> argv (this is treated somewhat specially)
+<li> the environment (ditto)
+<li> these days it usually does <i>not</i> include string literals, which are put
+into the text segment to make them unwritable
+<li> all variables
+    <ul>
+    <li> some variables' initial values are determined by values in the a.out
+    file; this is loaded first
+    <li> the remaining variables are initialized to all bytes zero and thus need
+    not be stored in the a.out file format.  All we need to store is the total
+    number of bytes needed (a single number).
+    This is known as the "BSS" area.
+	<small> (If the programming language guarantees initial values for these
+	variables, it may or may not need to initialize them in a loop before
+	calling main().  On most architectures, for example, all bytes zero
+	will be a null pointer; if not, global-lifetime pointer variables in
+	C without explicit initializers need to be initialized in an explicit
+	loop emitted by the compiler.)</small>
+    </ul>
+
+<li> the "stack", or this may be a separate segment; anyway, it's described
+below
+<li> the "heap", which consists of whatever data space is acquired during
+process execution by raising the top limit of data space with sbrk().
+Malloc calls sbrk().
+</ul>
+
+<p>
+Variables with global lifetime are allocated in the data segment.
+Scope is an error-checking issue for the C compiler; global versus
+stack is a lifetime issue.  Function-static is in the global area.
+But
+"auto" variables can't have a fixed address.  They are allocated on the stack.
+
+<p>
+(Insert (virtually speaking) brief reminder of CSC B58 material regarding
+stack use for modern-style procedures (functions))
+
+<p>
+The text segment is <i>shared</i> between multiple processes executing the same program!
+This was a useful memory savings in the early unix days.  Still nice.
+Not a problem because the text segment is unmodifiable.
+
+<p>
+The stack may be a separate segment.  Whether it's part of the data segment or
+separate, it is private.
+Each process gets its own.
+
+
+<h2> Virtual memory</h2>
+
+What happens when memory fills up?  lots of processes... not all running...
+
+<ul>
+<li>
+paging: writing some of it out to disk
+<li>
+implements "virtual memory" -- seem to have more memory than you really do.
+<li>
+multiplexing virtual memory onto real memory
+(analogy: timesharing and CPU.)
+<li>
+Set aside an area of the disk -- traditionally not part of a filesystem.
+</ul>
+
+<p>
+The
+"MMU" maps addresses, a "page" at a time.  It sits between the CPU and the
+main memory unit, conceptually;
+these days typically built in to the CPU.
+<ul>
+<li> presents a uniform address space; no need to write relocatable code anymore
+<li> "virtual address" vs "physical address"
+<li> "locality of reference"
+</ul>
+
+<p> paging stuff out: write to disk
+<ul>
+<li> when out, unmap page
+<li> if unmapped and accessed, page fault occurs
+<li> this is an interrupt
+<li> "page fault handler" (an ISR in the OS)
+may read from disk, remap, and RTI, thus restarting the
+instruction that faulted, but this time with it pointing to the actual data
+<li> works for code too.  Unix: code segment not writable!  So we only
+have to page <i>in</i>, not <i>out</i>.  Try to write to an a.out file which is in use,
+get error "text segment busy".  Nasty interaction with NFS though; try it on a
+local filesystem (e.g. /tmp). 
+</ul>
+
+<p>
+The MMU enforces
+some of its
+access restrictions implicitly.  You <i>can't</i> refer to a memory
+address which is part of a different unix process.  Except by using numbers
+below zero or above the size of your process.
+In that case, the page-fault handler signals segfault.
+i.e. the page-fault handler can signal an OS-level page fault if it's a
+virtual page fault and not just a physical page fault.
+
+<p>
+"Copy-on-write": after a fork(), typically one process does an exec(), or an
+exit(), pretty soon, most of the time.  So in
+the interim, don't duplicate all the data pages.  (not an issue for code
+pages!)
+Mark the data pages as read-only in the MMU configuration.
+If a process tries to write, this generates a hardware page fault;
+the OS duplicates that particular page and then marks them both as read-write.
+
+<p>
+Much more about all this in CSC 369.
+
+<p>
+sbrk(): allocates more pages at the end of your data segment.  sbrk() system
+call returns the new top of memory.  So
+malloc() begins by calling sbrk(0) to
+find out where the end of memory is.  It uses this as the "heap":
+<p>
+heap is managed by complex algorithms... fragmentation issue
+<p>
+Can write your own memory allocator!  minimal kernel!  sbrk() means increase
+the data size allocated to this process; that's all.  sbrk() requires MMU
+adjustments, thus restricted to kernel.  All else is userland.  Malloc is in
+the C library, just calls sbrk().
+<p>
+<small>(Actually, sbrk() is in the C library and the kernel entry point in
+question is brk(), but that's a minor point.)</small>
+
+
+<h2> System calls</h2>
+
+So, how does that syscall work anyway?
+
+<ul>
+
+<li>
+"kernel entry point"
+
+<li>
+machine-language-level mechanism  (either explicit support for OS calls or
+"software interrupts")
+
+<li>
+"glue routine" in C library
+
+<li>
+errno
+<ul>
+<li> #include &lt;errno.h>
+<li> <a href="http://man.openbsd.org/OpenBSD-current/man2/intro.2">man 2 intro</a> (unfortunately only in unix, not linux)
+</ul>
+
+</ul>
+
+<p>
+<hr>
+
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/notes/memoryos.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:57:48 GMT -->
+</html>

@@ -1,0 +1,301 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/probs/proc/. by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:40 GMT -->
+<head>
+
+<title>CSC 209: extra problems regarding processes</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #cc7777;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .unhidden { display: block; }
+</style>
+
+<script type="text/javascript">
+    function show(s) {
+        document.getElementById(s).className = 'unhidden';
+    }
+    function reveal(n) {
+        document.getElementById(n + '_teaser').className = 'hidden';
+        document.getElementById(n + '_hr').className = 'unhidden';
+        document.getElementById(n + '_full').className = 'unhidden';
+	n1 = n + 1;
+        document.getElementById(n1 + '_hr').className = 'unhidden';
+    }
+</script>
+
+</head>
+
+<body>
+<div class=toc>
+
+<a href="../../.html">Introduction</a>
+<br>
+<a href="../../announce.html">Announcements</a>
+
+<p>
+
+<a href="../../lect/index.html">Lectures</a>
+<br>
+<a href="../../tut/index.html">Tutorials</a>
+<br>
+<a href="../../asmt.html">Assignments</a>
+
+<p>
+<a href="javascript:show('tests')">Tests, exam</a>
+<div id=tests class=hidden>
+    <ul>
+    <li>
+    <a href="../../mid/index.html">Mid-term test</a>
+    <li>
+    <a href="../../exam/info.html">Final exam</a>
+    </ul>
+</div>
+
+<p>
+
+<a href="../../notes/index.html">Course notes</a>
+<br>
+<a href="../index.html">Extra problems</a>
+<br>
+
+<a href="https://mcs.utm.utoronto.ca/~mybb/utmcs/forumdisplay.php?fid=193">Discussion board</a>
+
+<p>
+<a href="../../netgrade-results.html">Grades so far</a>
+<br>
+<a href="../../oldannounce.html">Old announcements</a>
+
+</div>
+
+<h1>CSC 209 extra problems regarding processes</h1>
+
+<p>
+<hr noshade>
+<p>
+
+1.
+Write a program which creates five child processes, numbered 0
+through 4.  Each child process computes the sum of the integers 5i through
+5i+4, where i is its index number.  It then returns this value as the process
+exit status.  The parent waits for them all and outputs the total of the
+exit statuses, which will be the sum of the integers from 0 to 24 inclusive.
+
+<p>
+[<a href="sillyparallel.c">solution</a>]
+
+
+<p>
+<hr noshade>
+<p>
+
+2. There is a network server program in /usr/local/sbin/myserver.
+It is buggy and frequently crashes.
+Fortunately, when it gets into trouble it tends to give a segmentation
+exception and terminate,
+so it is easy to tell when it has crashed.
+
+<p>
+Write a complete C program
+which invokes /usr/local/sbin/myserver, and restarts
+it when it exits.
+After /usr/local/sbin/myserver exits, you should sleep for three seconds and
+then execute it again, and loop.
+
+<p>
+[<a href="myserver-restarter.c">solution</a>]
+
+
+<p>
+<hr noshade>
+<p>
+
+3. Write a very trivial shell: print a prompt; call fgets() to read a
+line and remove any terminating newline; execute that whole line as a
+program; and loop around until eof.
+The input line must be a complete path name for the program you're trying to
+run (e.g. /bin/cat rather than cat) and it must be only the program name
+(e.g. if you type "/bin/cat file" it will try to run a program named
+"cat file" in the /bin directory).
+
+
+<p>
+<hr noshade>
+<p>
+
+4.
+Someone has removed the 'ps' command for alleged security reasons.
+Write a program to list all of the processes you own, assuming that the
+current process's pid is larger than all previously-existing pids.
+The algorithm is to loop from 1 to getpid(), doing a kill with "signal" 0 on
+each process id number.
+This just checks for your ability to signal the process without actually doing
+it, thus checking existence and ownership.
+
+<p>
+[<a href="myps.c">solution</a>]
+
+
+<p>
+<hr noshade>
+<p>
+
+5.
+Write an "autologout" program which kills its parent after one hour of
+tty inactivity (to be invoked by the user as "autologout&amp;",
+and then the user goes and does
+other commands... or does not do other commands, and gets kicked off).
+Determine inactivity by calling ttyname(0) to get the file
+name for the terminal which is on stdin (e.g. "/dev/ttyp4"), and then stat it
+inbetween sleeps.
+The idle time is the current time minus the tty's mtime.
+"getppid()" tells you your parent's process id number, which you'll assume is
+the user's login shell.  Kill it with signal 1 (SIGHUP).
+
+<p>
+(For easier testing, use an idle time of something like ten seconds,
+and start a new shell to run it in.)
+
+<p>
+(Be clever in the value you pass to sleep().  Considerable cleverness is
+possible here, rather than waking up just to do a time calculation and then
+sleeping again.  And you don't have to risk sleeping too long and giving them
+more than an hour, either.
+[<a href="autologout-hint.html">solution re sleep amount algorithm</a>]
+)
+
+
+<a name=cpulimiter>
+<p>
+<hr noshade>
+<p>
+</a>
+
+6.
+Write a program which runs an arbitrary program with a time limit of 10 seconds.
+The program to run is specified on the command-line; pass argv+1 to execve or
+similar.  (Its first element will be a path name; you do not need to use a
+search path.)
+You will fork, but
+the parent will not do a wait(), but rather, a sleep and then possibly a
+kill(pid, 9).
+If you do terminate the program in this way, print a suitable message to
+stderr.
+
+<p>
+[<a href="cpulimiter.c">solution</a>]
+
+
+<p>
+<hr noshade>
+<p>
+
+7. Write a program which runs an arbitrary program with an output limit
+(rather than the time limit in question #5).
+Use a pipe and a fork to read the stdout <i>and</i> stderr from the subprocess.
+(It's a better exercise if you refrain from using popen(), although in real
+life we would prefer to use popen() if it did what we needed.)
+
+<p>
+[<a href="outputlimiter.c">popen-using solution</a>]
+
+
+<p>
+<hr noshade>
+<p>
+
+8. Write a program something like <cite>xargs</cite>.
+
+
+<p>
+<hr noshade>
+<p>
+
+9. Write the system() library function, except don't worry about signals.
+
+
+<p>
+<hr noshade>
+<p>
+
+10. Write the popen() and pclose() library functions.
+
+
+<p>
+<hr noshade>
+<p>
+
+11. Add a "kill" builtin command to assignment three's "fsh".
+
+<p>
+The kill command syntax is not getopt-compatible.
+'-' introduces a signal number (non-negative).
+The default signal is 15 if there is no '-' option.
+Then there are one or more process ID numbers.
+It is an error
+to specify zero process ID
+numbers
+(you should print a usage message to stderr).
+<p>
+Display an error message for a completely non-numeric argument.
+If an argument looks like "123abc", it is acceptable to
+treat it as 123, although better would be to output an error message there
+too.
+<p>
+Be sure to call perror() properly if the kill() system call fails.
+To test this, try to
+kill processes not your own, and processes which don't exist.  Compare its
+behaviour to that of /bin/kill; it should match.
+You will be able to get your own kill builtin by typing "kill" and will be
+able to get
+the external kill command by typing "/bin/kill".
+
+<p>
+[<a href="builtin-kill.c">solution</a>]
+
+
+<p>
+<hr noshade>
+<p>
+
+12.
+Implement some portion of the dining philosophers problem in C.
+Try different locking methods.
+In addition or instead, implement it in Java using Java threads.
+
+<p>
+<hr>
+
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/probs/proc/. by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:40 GMT -->
+</html>

@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/probs/exam/201209/q9s.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:53 GMT -->
+<head>
+
+<title>CSC 209: exam solutions, December 2012</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #cc7777;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .unhidden { display: block; }
+</style>
+
+<script type="text/javascript">
+    function show(s) {
+        document.getElementById(s).className = 'unhidden';
+    }
+    function reveal(n) {
+        document.getElementById(n + '_teaser').className = 'hidden';
+        document.getElementById(n + '_hr').className = 'unhidden';
+        document.getElementById(n + '_full').className = 'unhidden';
+	n1 = n + 1;
+        document.getElementById(n1 + '_hr').className = 'unhidden';
+    }
+</script>
+
+</head>
+
+<body>
+<div class=toc>
+
+<a href="../../../.html">Introduction</a>
+<br>
+<a href="../../../announce.html">Announcements</a>
+
+<p>
+
+<a href="../../../lect/index.html">Lectures</a>
+<br>
+<a href="../../../tut/index.html">Tutorials</a>
+<br>
+<a href="../../../asmt.html">Assignments</a>
+
+<p>
+<a href="javascript:show('tests')">Tests, exam</a>
+<div id=tests class=hidden>
+    <ul>
+    <li>
+    <a href="../../../mid/index.html">Mid-term test</a>
+    <li>
+    <a href="../../../exam/info.html">Final exam</a>
+    </ul>
+</div>
+
+<p>
+
+<a href="../../../notes/index.html">Course notes</a>
+<br>
+<a href="../../index.html">Extra problems</a>
+<br>
+
+<a href="https://mcs.utm.utoronto.ca/~mybb/utmcs/forumdisplay.php?fid=193">Discussion board</a>
+
+<p>
+<a href="../../../netgrade-results.html">Grades so far</a>
+<br>
+<a href="../../../oldannounce.html">Old announcements</a>
+
+</div>
+
+What happens if we have file descriptors 0 through 7 already open and the
+above open() call returns 8?
+
+<p>
+Answer: dup2(8,8) doesn't duplicate the file descriptor, and then close(8)
+closes the file descriptor we just opened.
+So we don't actually have the desired file open on fd 8 after all.
+(The call dup2(8,8) in fact does nothing.  But if you assumed it closed fd
+8, well, that's a reasonable guess and the answer is the same, that in the
+end the file "foo" is not actually open as desired.)
+
+<p>
+And how do you fix this bug?
+
+<p>
+Answer: Put the dup2 and close inside an "if fd != 8":
+<pre>
+    if (fd != 8) {
+	dup2(fd, 8);
+	close(fd);
+    }
+</pre>
+Because if the fd does happen to be 8, there's no need to renumber, the file
+is already open on file descriptor 8 as desired.
+
+<p>
+<hr>
+
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/probs/exam/201209/q9s.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:53 GMT -->
+</html>

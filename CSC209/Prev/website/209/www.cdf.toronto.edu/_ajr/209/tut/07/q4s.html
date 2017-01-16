@@ -1,0 +1,144 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/tut/07/q4s.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:27 GMT -->
+<head>
+
+<title>CSC 209 tutorial exercises, week of 29 February 2016</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #cc7777;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .unhidden { display: block; }
+</style>
+
+<script type="text/javascript">
+    function show(s) {
+        document.getElementById(s).className = 'unhidden';
+    }
+    function reveal(s) {
+        document.getElementById(s+'_a').className = 'hidden';
+        document.getElementById(s+'_b').className = 'revealed';
+    }
+</script>
+
+</head>
+
+<body>
+
+<div class=toc>
+<a href="../01.html">Tutorial 01</a>
+<br>
+<a href="../02.html">Tutorial 02</a>
+<br>
+<a href="../03.html">Tutorial 03</a>
+<br>
+<a href="../04.html">Tutorial 04</a>
+<br>
+<a href="../05.html">Tutorial 05</a>
+<br>
+<a href="../06.html">Tutorial 06</a>
+<br>
+<a href="../07.html">Tutorial 07</a>
+<br>
+<a href="../08.html">Tutorial 08</a>
+<br>
+<a href="../09.html">Tutorial 09</a>
+<br>
+<a href="../10.html">Tutorial 10</a>
+<br>
+<a href="../11.html">Tutorial 11</a>
+<br>
+<a href="../12.html">Tutorial 12</a>
+<br>
+<p>
+[<a href="../../index.html">Course home page</a>]
+</div>
+
+<h1>CSC 209 tutorial 07 solutions, week of 29 February 2016</h1>
+
+<h3> Question 4: </h3>
+
+Problem:
+<br>
+Open a file and terminate with an error if it doesn't exist (same problem):
+
+<p>
+Code:
+<pre>
+    if ((fp = fopen(file, "r")) == NULL) {
+        perror("opening the file");
+        exit(1);
+    }
+</pre>
+
+<p>
+Solution:
+
+<p>
+Of course the solution here is the same as in the previous problem, namely:
+<pre>
+    if ((fp = fopen(file, "r")) == NULL) {
+	perror(file);
+	exit(1);
+    }
+</pre>
+
+<p>
+The only error this time is the way in which perror() is used.  The argument to
+perror() should be a file name if one is available.  The original will
+generate a message like this (assuming the "file" variable contains the value
+"hello.c"):
+<pre>
+	opening the file: Permission denied
+</pre>
+whereas the revised version will look like:
+<pre>
+	hello.c: Permission denied
+</pre>
+The latter is a standard error message, and is more informative.
+
+<p>
+Don't underestimate the value of standardization.
+If every unix utility output error messages in a different format, unix would
+be a lot harder to become expert in.
+
+<p>
+And don't attempt creativity in this realm.  There are many ways to be
+creative in computer programming which are more exciting than producing
+substandard error messages.
+
+<p><hr>
+[press 'back' in your web browser to return to the problems]
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/tut/07/q4s.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:27 GMT -->
+</html>

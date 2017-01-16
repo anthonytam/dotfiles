@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/editing.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:56:32 GMT -->
+<head>
+
+<title>Editing files in unix</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #cc7777;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .unhidden { display: block; }
+</style>
+
+<script type="text/javascript">
+    function show(s) {
+        document.getElementById(s).className = 'unhidden';
+    }
+    function reveal(n) {
+        document.getElementById(n + '_teaser').className = 'hidden';
+        document.getElementById(n + '_hr').className = 'unhidden';
+        document.getElementById(n + '_full').className = 'unhidden';
+	n1 = n + 1;
+        document.getElementById(n1 + '_hr').className = 'unhidden';
+    }
+</script>
+
+</head>
+
+<body>
+<div class=toc>
+
+<a href=".html">Introduction</a>
+<br>
+<a href="announce.html">Announcements</a>
+
+<p>
+
+<a href="lect/index.html">Lectures</a>
+<br>
+<a href="tut/index.html">Tutorials</a>
+<br>
+<a href="asmt.html">Assignments</a>
+
+<p>
+<a href="javascript:show('tests')">Tests, exam</a>
+<div id=tests class=hidden>
+    <ul>
+    <li>
+    <a href="mid/index.html">Mid-term test</a>
+    <li>
+    <a href="exam/info.html">Final exam</a>
+    </ul>
+</div>
+
+<p>
+
+<a href="notes/index.html">Course notes</a>
+<br>
+<a href="probs/index.html">Extra problems</a>
+<br>
+
+<a href="https://mcs.utm.utoronto.ca/~mybb/utmcs/forumdisplay.php?fid=193">Discussion board</a>
+
+<p>
+<a href="netgrade-results.html">Grades so far</a>
+<br>
+<a href="oldannounce.html">Old announcements</a>
+
+</div>
+
+<h1>Editing files in unix/linux</h1>
+
+For this course (and for the rest of your advanced computer-using life),
+you need to create files.  Plain text files containing computer programs,
+shell commands, and so forth.
+
+<p>
+As mentioned in the "software tools principles" part of the course, in unix we
+use plain text files as much as possible.
+A plain text file consists simply of the characters of the text of your data,
+with a "newline" character at the end of each line.
+No formatting information; no word processor codes; etc.
+This file format is the easiest to work with, in all ways.
+
+<p>
+You want to use an editor to edit these files, and you want it to be a
+plain-text-oriented editor rather than a word processor.
+
+<p>
+A simple beginner text editor is "nano".
+You can type "nano" or "nano file".
+It tells you the commonest commands in a strip along the bottom of the window.
+You'll also see other status messages at the bottom of the window.
+
+<p>
+Sooner or later you will want to use a more sophisticated text editor.
+The usual choices in unix are <cite>vi</cite> and <cite>emacs</cite>.
+Their styles are quite different, and most people have a strong preference for
+one or the other.
+
+<p>
+In all cases, you can say "programname file" to start the editor.
+
+<p>
+A simple <cite>vi</cite> tutorial can be found at
+<a href="http://heather.cs.ucdavis.edu/~matloff/UnixAndC/Editors/ViIntro.html">http://heather.cs.ucdavis.edu/~matloff/UnixAndC/Editors/ViIntro.html</a>
+
+<p>
+Later on,
+to become a better <cite>vi</cite> user, a possible tutorial is
+<a href="http://jerrywang.net/vi/">http://jerrywang.net/vi/</a>
+<br>
+But <a href="notes/tiny/format.html">don't use ":set ts"</a>.
+
+<p>
+An <cite>emacs</cite> tutorial which has been recommended is
+<a href="http://www2.lib.uchicago.edu/keith/tcl-course/emacs-tutorial.html">http://www2.lib.uchicago.edu/keith/tcl-course/emacs-tutorial.html</a>
+
+<p>
+<hr>
+
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/editing.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:56:32 GMT -->
+</html>

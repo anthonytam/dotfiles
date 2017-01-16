@@ -43,3 +43,54 @@
    To argue that an algorithm’s best-case running time is \omega(n^2), we show that *For every* inputs of size at least n_0, we have T(n) is *No smaller* than cn^2.
 
 * Week 2
+** Heaps!
+   | Mode           | Unsorted  LL | Sorted LL | Heap     |
+   |----------------+--------------+-----------+----------|
+   | Insert         | \theta(1)         | \theta(n)      | \theta(log n) |
+   | Max            | \theta(n)         | \theta(1)      | \theta(1)     |
+   | ExtractMax     | \theta(n)         | \theta(1)      | \theta(log n) |
+   | ChangePriority | \theta(1)         | \theta(n)      | \theta(log n) |
+
+*** Binary Max-Heap
+**** There are other kinds of heaps
+**** Nearly complete binary tree that has the max-heap propery
+     Every node has a priority greater then or equal to its childen
+**** Filled in left to right
+**** Storing a heap as a list is a form of serialization
+**** Left child \rightarrow index\cdot{}2, Right child \rightarrow index\cdot{}2+1, Parent \rightarrow Floor(index/2)
+*** Get Max Element
+**** Return the root element
+*** Adding to a Heap
+**** Add the item to the end of the heap
+**** Heap property may be broken between the new element and the parent.
+***** We can swap the new element and the parent
+***** Check this process again, a "bubble" up the value until it is either the root or less then its parent
+*** Remove Mex Element
+**** The only element it can be replaced with is the rightmost element
+**** Start a "bubble down"
+     Check both children, swap with the larger of the 2, repeat
+*** Change Priority
+**** Similar to insert
+**** Find the changed element
+**** Change the priority
+**** Start "bubble up" to find its proper location
+*** Decrease Priority 
+**** Similar to remove max
+**** Find the changed element
+**** Change the priority
+**** Start "bubble down" to find its proper location
+
+** BST vs Heap
+*** Searching a BST is possible, not easily in a Heap
+**** Easy to find the Max in a heap, no other value has a sort
+
+** Heap Sort
+*** Just faceroll
+
+** Heapify a List
+*** Could keep calling insert on all elements ( O(n log n) )
+*** But Dan is crazy apparently
+*** You can build the heap in O(n)
+**** Go bottom up, the bottom row is already a valid heap
+**** Move up a row, check all elements and bubble down the root element if needed, repeat
+**** Once at the root, need to bubble down until in a proper position

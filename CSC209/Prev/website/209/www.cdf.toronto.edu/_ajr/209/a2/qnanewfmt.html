@@ -1,0 +1,1092 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/a2/qnanewfmt.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:41 GMT -->
+<head>
+
+<title>CSC 209 assignment two questions and answers</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #cc7777;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .unhidden { display: block; }
+</style>
+
+<script type="text/javascript">
+    function show(s) {
+        document.getElementById(s).className = 'unhidden';
+    }
+    function reveal(n) {
+        document.getElementById(n + '_teaser').className = 'hidden';
+        document.getElementById(n + '_hr').className = 'unhidden';
+        document.getElementById(n + '_full').className = 'unhidden';
+	n1 = n + 1;
+        document.getElementById(n1 + '_hr').className = 'unhidden';
+    }
+</script>
+
+</head>
+
+<body>
+<div class=toc>
+
+<a href="../.html">Introduction</a>
+<br>
+<a href="../announce.html">Announcements</a>
+
+<p>
+
+<a href="../lect/index.html">Lectures</a>
+<br>
+<a href="../tut/index.html">Tutorials</a>
+<br>
+<a href="../asmt.html">Assignments</a>
+
+<p>
+<a href="javascript:show('tests')">Tests, exam</a>
+<div id=tests class=hidden>
+    <ul>
+    <li>
+    <a href="../mid/index.html">Mid-term test</a>
+    <li>
+    <a href="../exam/info.html">Final exam</a>
+    </ul>
+</div>
+
+<p>
+
+<a href="../notes/index.html">Course notes</a>
+<br>
+<a href="../probs/index.html">Extra problems</a>
+<br>
+
+<a href="https://mcs.utm.utoronto.ca/~mybb/utmcs/forumdisplay.php?fid=193">Discussion board</a>
+
+<p>
+<a href="../netgrade-results.html">Grades so far</a>
+<br>
+<a href="../oldannounce.html">Old announcements</a>
+
+</div>
+
+<h1>Assignment two questions and answers</h1>
+
+Here are some questions and answers about assignment two, and other notes.
+Suggestions for additions to this list are welcome (e.g. via e-mail).
+
+<p>
+Click on the highlighted text to expand an item.
+<a href="qna.html">[EXPAND ALL]</a>
+
+<p>
+Do you like this Q&amp;A format or the old format better?  Please let me know.
+If you don't like this new format, the old format can be found in
+<a href="qna.html">qna.html</a>
+
+
+<div id=1_hr class=unhidden><p><hr><p></div>
+<div id=1_teaser class=unhidden>
+&bull; <a href="javascript:reveal(1)">Most of all, remember to "<b>Keep It Simple</b>". |+| </a>
+</div>
+<div id=1_full class=hidden>
+Most of all, remember to "<b>Keep It Simple</b>".
+A more complex program is more likely to have bugs; it takes you longer to
+write; it is harder to maintain; it is unlikely to be more usable.
+Most cutesy features are not helpful, and <i>are</i> measurably hurtful.
+
+<p>
+In pragmatic assignment-writing terms, cutesy features don't get you extra
+marks, but the probabilistic expectation is that they will lose you
+marks on average, because they will introduce bugs which affect the working of
+the non-cutesy parts of the program.
+
+<p>
+That is to say:  Wield your cleverness cleverly.  Don't waste your cleverness
+in doing silly things.
+
+<p>
+Two pithy quotations:
+
+<blockquote>
+"The superior pilot uses his superior judgement to avoid situations in which
+he has to demonstrate his superior skill."
+<br>
+(traditional pilot saying)
+
+<p>
+"Debugging is twice as hard as writing the code in the first place.
+Therefore, if you write the code as cleverly as possible, you are, by
+definition, not smart enough to debug it."  -- Brian Kernighan
+</blockquote>
+</div>
+
+
+<div id=2_hr class=hidden><p><hr><p></div>
+<div id=2_teaser class=unhidden>
+&bull; <a href="javascript:reveal(2)">Some resources: |+| </a>
+</div>
+<div id=2_full class=hidden>
+Some resources:
+<ul>
+<li> lstat.c and other such files in <a href="../tut/05/index.html">tutorial five</a>
+<!--
+<li> <a href="starter/">The starter files</a> are best accessed by
+checkout of your initial CVS repository -- they are the initial contents of
+wfold.c and splitexpr.c.
+-->
+<li>
+What you need to know about "structs" in C for this assignment
+was discussed <a href="../lect/06zslides/index.html">in lecture on February 3</a>,
+and structs are described fully in
+<a href="../notes/struct.html">../notes/struct.html</a>
+<li> man pages
+<li> <a href="../notes/argv.html">lecture notes about argc and argv</a>
+<li> <a href="../notes/files.html">lecture notes about files in C</a>
+<li> <a href="../notes/toolsfiles/cat1.c">the example cat.c</a>
+<li> <a href="../notes/strings.html">lecture notes about strings in C</a>
+<li> <a href="../notes/getopt.c">how to call getopt()</a>
+<li> Please try out sample solutions (compiled programs only, so that you
+can't see my sample solution source code before the due date!), in
+/student/csc209/a2.
+</ul>
+</div>
+
+
+<div id=3_hr class=hidden><p><hr><p></div>
+<div id=3_teaser class=unhidden>
+&bull; <a href="javascript:reveal(3)">More general advice: |+| </a>
+</div>
+<div id=3_full class=hidden>
+More general advice:
+
+<p>
+Don't store text for any longer than or in any more of a complex data
+structure than you need to.
+Process it as you go.
+
+<p>
+
+<!--
+"dectrl" will work character-by-character; it does not need to store the whole
+file, or even a whole line.
+It doesn't need to assemble the output line into a char array either; just
+output it as you go!
+-->
+
+<!--
+<p>
+"Table" will work line-by-line; it doesn't need to store any lines other than
+the one it's currently working on. And it doesn't need to assemble the output
+line into a char array; just output it as you go through the fields!
+
+<p>
+Where possible, we even process data character by character, as in
+<a href="../notes/toolsfiles/cat1.c">the example cat.c</a>.
+(However, table will need to process data line by line.
+And this will already illustrate why any storing of data is inconvenient.
+You will want to choose a maximum line size.  I suggest 500.  If you write
+it correctly, longer lines will simply be split, they won't cause you to
+exceed array bounds.)
+
+<p>
+Similarly,
+-->
+
+mydu should process one file at a time, rather than storing the
+results of readdir() calls.
+<br>
+myuniq needs to store two lines at a time, but only two.
+
+<!--
+<p>
+Checkwritable does not need to do any dynamic memory allocation, except for
+what you get for free with recursion.
+-->
+
+<p>
+Keep It Simple.
+My solutions have the following line counts: 
+<pre>
+	43  mywhich.c
+	92  myuniq.c
+	99  mydu.c
+</pre>
+including all comments, #includes, use of getopt(), etc.
+</div>
+
+
+<div id=4_hr class=hidden><p><hr><p></div>
+<div id=4_teaser class=unhidden>
+&bull; <a href="javascript:reveal(4)">In general, don't check whether operations will succeed; |+| </a>
+</div>
+<div id=4_full class=hidden>
+In general, don't check whether operations will succeed;
+just try to do them and get an appropriate error if applicable.
+For example, if you're about to fopen() a file, don't do a stat() and try to
+determine whether the file exists and/or is readable.  Just do the fopen() and
+check for error.  This results in a simpler program, and also one which
+functions more correctly in the invariable case that you have omitted checking
+something so you think it's going to succeed but it doesn't.
+And there can always be unexpected i/o errors, etc.
+</div>
+
+
+<div id=5_hr class=hidden><p><hr><p></div>
+<div id=5_teaser class=unhidden>
+&bull; <a href="javascript:reveal(5)">The assignment handout does not necessarily specify all of the details of the required behaviour of your programs in all cases. |+| </a>
+</div>
+<div id=5_full class=hidden>
+The assignment handout does not necessarily specify all of the details of the required behaviour of your programs in all cases.
+I've tried to specify most things, but generally speaking, your programs are
+required to behave like standard unix tools.
+To answer some questions
+I've provided compiled sample implementations in /student/csc209/a2.
+
+<p>
+For example,
+the "usage" messages have a very specific
+format, which you must adhere to.  It is similar to the SYNOPSIS section of
+the man pages, with their meaning for square brackets (indicating that
+something is optional) and ellipses (indicating "one or more of"); the only
+real difference is the lack of font changes.
+You can take the usage messages from the behaviour of the example compiled
+programs in /student/csc209/a2 if you like; and very little variation is
+acceptable, except that
+the token immediately following the "usage:" string can be either argv[0] or
+the base program name.
+<!--
+<br>
+[detag has no usage message because there's no way to write an incorrect
+command-line for detag -- whatever you specify, they are file names.]
+-->
+
+<p>
+Check for possible error return from all system calls, and from fopen().
+For any library call or kernel call which can return an error
+indication, you have to check it and do something appropriate, even if it's
+just printing an error message and exiting.
+
+<p>
+Error messages must be to stderr, not stdout.
+And pay attention to your process exit status.
+
+<p>
+And be sure you understand perror().  
+Where perror() is applicable, it is obligatory, rather than formulating
+your own error message.
+Please look at what perror() does in
+<a href="../notes/toolsfiles/cat1.c">the example cat.c</a>
+-- perror() produces a better
+error message than you can.
+(And it does its output to stderr, as we would want.)
+
+<p>
+However, perror() is only suitable for reporting the error status from certain
+library and kernel calls.  It can't be used for general error messages because
+it prints error messages in a specific format.
+</div>
+
+
+<div id=6_hr class=hidden><p><hr><p></div>
+<div id=6_teaser class=unhidden>
+&bull; <a href="javascript:reveal(6)">I am happy to interpret compiler error messages (for CSC 209 students). |+| </a>
+</div>
+<div id=6_full class=hidden>
+I am happy to interpret compiler error messages (for CSC 209 students).
+Sometimes the compiler will emit error messages which you might find cryptic.
+I won't fix your assignment code for you, but I will tell you more clearly
+what a particular error message means.  I <i>will</i>, sometimes, fix
+non-assignment-related code (although more frequently I'll give you hints
+instead).
+
+<p>
+Q: When I compile my program (any one of the three) I get the following warning
+message:  [...]
+<br>
+Is this ok?
+
+<p>
+A: No.  Your program should compile with "gcc -Wall" with no warning or error
+messages.
+Almost all of the warning or error messages which gcc -Wall can output
+represent potentially-serious problems, and you need to fix them.
+I am willing to decode error messages by e-mail (although not generally to fix
+your bugs, obviously).
+</div>
+
+
+<div id=7_hr class=hidden><p><hr><p></div>
+<div id=7_teaser class=unhidden>
+&bull; <a href="javascript:reveal(7)">Standard indentation is required in your C programs. |+| </a>
+</div>
+<div id=7_full class=hidden>
+Standard indentation is required in your C programs.
+<br>
+(And you should assume that your reader's window might not be any more than
+80 characters wide.)
+</div>
+
+
+<div id=8_hr class=hidden><p><hr><p></div>
+<div id=8_teaser class=unhidden>
+&bull; <a href="javascript:reveal(8)">Your program must not exceed array bounds no matter what the user input (or command-line arguments). |+| </a>
+</div>
+<div id=8_full class=hidden>
+Your program must not exceed array bounds no matter what the user input (or command-line arguments).
+
+<p>
+Many cases of programs I see at this point
+in this course which contain lurking bugs of this
+nature are actually copying data entirely unnecessarily.
+Don't copy data when the original is just as good as the copy.
+For example, strings in the argv array can be used from that array directly,
+without copying the string data.
+<!--
+In the option-parsing in bsplit.c, the argument can be saved as an integer
+right in your getopt() loop, rather than copying string data around.
+(Even if you needed to save string data, you could
+assign "optarg" to a
+char* variable, without copying the data pointed to.)
+-->
+</div>
+
+
+<div id=9_hr class=hidden><p><hr><p></div>
+<div id=9_teaser class=unhidden>
+&bull; <a href="javascript:reveal(9)">Q: Can I put some functions in a separate .c file and submit that too? |+| </a>
+</div>
+<div id=9_full class=hidden>
+Q: Can I put some functions in a separate .c file and submit that too?
+
+<p>
+A: No.  Your programs for this assignment are small enough that it isn't
+worth it to separate them into multiple files.
+
+<p>
+Q: Can I submit a .h file so that I can declare some functions and/or
+variables?
+
+<p>
+A: No, just declare them at the top of your .c file (or wherever is
+appropriate).  The purpose of .h files is to coordinate declarations across
+multiple files.  Each of your files can be self-contained for this assignment.
+</div>
+
+
+<div id=10_hr class=hidden><p><hr><p></div>
+<div id=10_teaser class=unhidden>
+&bull; <a href="javascript:reveal(10)">Q: How do you print to the standard error? |+| </a>
+</div>
+<div id=10_full class=hidden>
+Q: How do you print to the standard error?
+
+<p>
+A: Use fprintf(stderr, "format" ... ),
+or any other stdio function which accepts a value of type FILE*
+
+<p>
+Also, perror() prints its message to stderr.
+
+<p>
+Q: But when I do fprintf(stderr, "this is an error message\n"),
+I still see it on the screen.
+
+<p>
+A: Both stdout and stderr
+are initially connected to your terminal window, but they can be redirected
+independently.
+
+<p>
+If your program says fprintf(stderr, "this is an error message\n"), then if you run
+"./a.out &gt;file", you'll still see "this is an error message" on the screen and it
+won't go into the file.
+This is the purpose of using stderr, as previously discussed in lectures.
+</div>
+
+
+<div id=11_hr class=hidden><p><hr><p></div>
+<div id=11_teaser class=unhidden>
+&bull; <a href="javascript:reveal(11)">Q: If one of the files specified on the command line cannot be opened, |+| </a>
+</div>
+<div id=11_full class=hidden>
+Q: If one of the files specified on the command line cannot be opened,
+should we exit immediately or do we have to continue on through the rest
+of the arguments like cat does?
+
+<p>
+A: You have to call perror(), and you have to exit with a non-zero exit
+status eventually.  So the easiest thing is just to exit right away.
+In most cases it's ok (desirable, even) to process the remaining files which
+<i>do</i> exist, correctly; but it's not required for this assignment.
+You'll find that some standard unix tools proceed after error in this way
+and some don't.
+</div>
+
+
+<div id=12_hr class=hidden><p><hr><p></div>
+<div id=12_teaser class=unhidden>
+&bull; <a href="javascript:reveal(12)">The return type of getchar() and getc() is int, not char, and you can't store it in a char variable. |+| </a>
+</div>
+<div id=12_full class=hidden>
+The return type of getchar() and getc() is int, not char, and you can't store it in a char variable.
+With 8-bit chars, there are 257 possible return values: 0 to 255 indicating a
+byte of input (that's 256 possible values there),
+or -1 to indicate eof or error.
+
+<p>
+A value with 257 possible values cannot be stored in an 8-bit char.
+If you attempt to do so, e.g. if you have
+
+<pre>
+	char c;
+	while ((c = getc(fp)) != EOF) {
+</pre>
+
+, then you won't be able to tell the input of byte number 255 apart from the EOF
+condition.  (Either the comparison will fail in both cases or it will succeed
+in both cases, depending upon whether or not char values are deemed to be
+"signed" or "unsigned", both of which are legal for a C compiler.)
+</div>
+
+
+<div id=13_hr class=hidden><p><hr><p></div>
+<div id=13_teaser class=unhidden>
+&bull; <a href="javascript:reveal(13)">Q: What is the difference between using fopen(), getc() or fgets() or fscanf(), then fclose(); as opposed to using open(), read(), and close()? |+| </a>
+</div>
+<div id=13_full class=hidden>
+Q: What is the difference between using fopen(), getc() or fgets() or fscanf(), then fclose(); as opposed to using open(), read(), and close()?
+Which should we use?
+
+<p>
+A: Normally you should use the 'f' functions.
+(By which term I mean to include getc() -- i.e. you should feel free to use
+getc().)
+
+<p>
+The 'f' functions (fopen(), getc()/etc, fclose()) are part of the
+standard i/o library, which was built on top of the unix kernel calls
+(open(), read(), close()) for two reasons:
+<ol>
+<li> portability: The low-level file primitives work(ed) differently on
+different operating systems, but the stdio functions were designed to be
+implementable on top of any of them.
+<li> buffering.  When you do getc(), it uses read() to read a bunch
+of bytes, not just one, and then getc() gives you one at a time, until you
+exhaust the buffer and then it does another read().
+Even on modern computers this makes a significant speed difference
+(for sufficiently-large files).
+</ol>
+
+So even if you have a unix-specific program, you should use fopen() and
+friends for basic file-processing tasks where suitable.
+(Future-looking note:
+On the other hand, you should use open() for doing i/o redirection,
+as we'll talk about when we talk about unix processes in a few weeks,
+because you aren't going to read any data from the file, you're just about
+to dup and exec and stuff, there's no point in having the extra stdio
+stuff allocated.
+We'll see this later.)
+
+<p>
+You can get the unix file descriptor underlying a FILE* with the fileno()
+function (that is, fileno(fp) is the file descriptor number).
+You can go the other way by using fdopen(), which creates all the FILE* stuff
+around an already-opened file identified by file descriptor number ("fd").
+These two functions are rarely necessary and won't be of use to us in this course.
+</div>
+
+
+<div id=14_hr class=hidden><p><hr><p></div>
+<div id=14_teaser class=unhidden>
+&bull; <a href="javascript:reveal(14)">C's "sizeof" operator does <i><b>not</b></i> give you the size of an array, in general. |+| </a>
+</div>
+<div id=14_full class=hidden>
+C's "sizeof" operator does <i><b>not</b></i> give you the size of an array, in general.
+If you think there's no way to write a particular bit of code
+without using sizeof, then sizeof probably won't help you there, either.
+In particular,
+
+<p>
+<pre>
+void f(int *a)
+{
+    int i;
+    for (i = 0; i &lt; sizeof a; i++)   /* WRONG */
+        ...
+}
+</pre>
+
+<p>
+is completely wrong.  It will not iterate the right number of times.
+The variable
+'a' will have size 8 on the UTM linux machines, because that's how many
+bytes are used by a pointer.  If you want to know the number of elements in
+the array which 'a' points to, you need to pass that value in as a second
+parameter, of type int.
+</div>
+
+
+<div id=15_hr class=hidden><p><hr><p></div>
+<div id=15_teaser class=unhidden>
+&bull; <a href="javascript:reveal(15)">Q: Various segfault problems ("Segmentation exception"). |+| </a>
+</div>
+<div id=15_full class=hidden>
+Q: Various segfault problems ("Segmentation exception").
+
+<p>
+A:
+<ul>
+<li> When dereferencing a pointer value,
+or giving it to another component to dereference,
+make sure it points somewhere.  If
+you say "char *s;", then you can't say "strcpy(s, something)" immediately
+after.
+"s" is uninitialized and you can't assume it points to the zeroth byte of an
+array where you can store your data.  You have to assign it a value pointing
+to such a thing if you want to use it.  Better yet, often you can just
+declare an array in the first place, rather than a pointer variable.
+<li> Be sure you are not exceeding array bounds, including in string
+manipulation.  If "s" is a string, then "char t[5000]; strcpy(t, s);" is an
+error, because you don't know that s is shorter than 5000 characters.
+Check lengths with strlen() to be sure strings will fit in the target array,
+and don't forget to leave room for the terminating zero byte.
+<li> Check error returns from system calls.  Even in initial development!
+<li> When you do observe (e.g. with an error return from a system call)
+that something shouldn't be done, make sure you
+don't do it!  I've seen a surprising amount of beginner C code in my life
+which checks for error returns from system calls correctly and prints a
+nice error message but then comes out of the 'if' and uses the invalid
+pointer value anyway, etc.
+Apparently this is an easy mistake to make (although it's not clear to me
+why).
+<li> You can localize the segfault using gdb.
+"gdb" is similar to other debuggers you may have used with other programming
+languages (e.g. in CSC 207).
+I've written <a href="../notes/gdb/index.html">a document about using gdb</a>.
+<!--
+(Note that the Makefile for fsh already specifies the "-g"
+flag, so you don't have to do the recompiling step.)
+-->
+<li> Think methodically; form and reject hypotheses.
+Understand everything you write in your program.  The fact that your program
+does not work is not sufficient motivation to make a particular change.
+You have to understand the change you are making and have a good reason to do
+it.  Debugging involves understanding what was wrong with your program, not
+just making the bad behaviour go away.
+<!--
+    <ul>
+    <li> This can be trickier when working on an existing program.
+         Sometimes you have to spend extra time simply understanding existing
+         code which you might not even have to modify.
+         Questions about the <i>existing</i> fsh code (as distributed) are
+         legitimate topics for the course bulletin board, so long as they don't
+         discuss your code or your solution to assignment problems, just the
+         understanding of the code which is distributed.
+    <li> If you think you've found a bug or anomaly in the distributed fsh,
+         you may well have done so.  Replicate the bad behaviour by testing
+         with the distributed fsh.  If it <i>doesn't</i> misbehave in the
+         original, then you've <i>introduced</i> the bug and you're
+         responsible for it.  If it <i>does</i> misbehave in the original, you
+         should probably still check with me if you want to omit something in
+         your assignment on this account, unless it's simply a case of missing
+         features (e.g. fsh does not do variables, backquotes, etc).
+    </ul>
+-->
+</ul>
+</div>
+
+
+<div id=16_hr class=hidden><p><hr><p></div>
+<div id=16_teaser class=unhidden>
+&bull; <a href="javascript:reveal(16)">Various getopt() questions: |+| </a>
+</div>
+<div id=16_full class=hidden>
+Various getopt() questions:
+
+<p>
+See "man getopt".  But typing "man getopt"
+gives you a tool for use in shell programming.
+So say "man 3 getopt".
+(And to be clear, you should be using getopt(), not getopt_long(), for
+assignment two.)
+
+<p>
+<!--
+You want a colon in your third argument to getopt() for bsplit.
+Specifically, your third parameter to getopt() should be the string "sn:".
+(or an equivalent rearrangement).
+This means that the -n option has a required argument,
+and the -s option does not.
+-->
+See the supplied
+<a href="../notes/getopt.c">example call of getopt() in getopt.c</a>.
+<b>Please understand that program fully before copying any of it!</b>
+
+<p>
+Here are
+<a href="../notes/getopt.html">some notes about getopt</a>, of which you might
+want to read the "interface" section, after reading getopt.c above.
+
+<p>
+You are <i>required</i> to use getopt() for myuniq.c and mydu.c
+rather than parsing the command-line
+options yourself.  All sorts of bizarre syntaxes are possible and will be
+dealt with automatically by getopt().  In the old days, everyone writing a
+unix tool parsed the options themselves, and the result was a lot of
+inconsistency as to whether or not you could do certain things (even including
+fundamentals such as combining options into one argument, e.g. writing "ls
+-qa" instead of "ls -q -a").
+These days, everyone calls getopt(), and the users of your program may use a
+feature of standard option parsing which you didn't even know exists.
+This is good.
+
+<p>
+Be careful to use getopt() properly.  Do not make assumptions as to the format
+of the command line.  The standard unix command-line option format is actually
+extremely flexible in some ways.
+For example, these are all valid ways to execute
+<a href="../notes/getopt.c">the example getopt.c</a>
+with '-c' value 17 and the -x flag
+and a further command-line argument "file":
+
+<pre>
+        ./getopt -c17 -x file
+        ./getopt -x -c17 file
+        ./getopt -xc17 file
+        ./getopt -xc 17 file
+        ./getopt -x -c 17 file
+        ./getopt -x -c 17 -- file
+        ./getopt -xc17 -- file
+        ./getopt -c1 -x -c2 -x -c3 -x -c4 -x -c5 -x -c17 -x file
+</pre>
+
+And furthermore, <strong>none of these is a special case</strong>.
+If you call getopt() correctly,
+as discussed in the man page and as shown in
+<a href="../notes/getopt.c">the supplied example getopt.c</a>,
+all of these cases and
+more are handled automatically,
+<i>without trying</i>, with no special cases.
+The getopt() library routine contains all of the relevant complexity.
+</div>
+
+
+<div id=17_hr class=hidden><p><hr><p></div>
+<div id=17_teaser class=unhidden>
+&bull; <a href="javascript:reveal(17)">Q: "mywhich" takes no command-line options.  So if the user does "./mywhich -q file", is that an error? |+| </a>
+</div>
+<div id=17_full class=hidden>
+Q: "mywhich" takes no command-line options.  So if the user does "./mywhich -q file", is that an error?
+
+<p>
+A: No, it is a request to do a "which" of a command named "-q" as well
+as a command named "file".
+That is, this is not a special case.  Keep It Simple.
+</div>
+
+
+<div id=18_hr class=hidden><p><hr><p></div>
+<div id=18_teaser class=unhidden>
+&bull; <a href="javascript:reveal(18)">Q: In myuniq.c, do we need to deal with the special case of a command-line argument of "-"? |+| </a>
+</div>
+<div id=18_full class=hidden>
+Q: In myuniq.c, do we need to deal with the special case of a command-line argument of "-"?
+
+<p>
+A: Yes.  But it's easy; just follow
+<a href="../notes/toolsfiles/cat1.c">the example cat.c</a>.
+</div>
+
+
+<div id=19_hr class=hidden><p><hr><p></div>
+<div id=19_teaser class=unhidden>
+&bull; <a href="javascript:reveal(19)">Q: Do we need to include comments in our code? |+| </a>
+</div>
+<div id=19_full class=hidden>
+Q: Do we need to include comments in our code?
+
+<p>
+A:
+We do expect C programs to
+be well-organized and readable, much more than
+with shell scripts as in assignment one.
+
+<blockquote><cite> "All programs are poems; it's just that not all
+programmers are poets."</cite></blockquote>
+
+Make your program nice.  Keep it simple.  Someone who knows C well should be
+able to read your program without much confusion.  Comments can help this
+process.
+
+<p>
+On the other hand, you are not writing for a target audience who does not know
+C.  Do not teach your reader C.
+
+<p>
+I think that the ideal program would be so clearly readable that it would
+contain no comments at all except for an introductory comment at the top (the
+"prologue comment").  (I also think that this ideal is often or usually not
+achievable, and even more often not in fact achieved.)
+
+<p>
+I've written a lot more about comments in <a href="../comments.html">../comments.html</a>.
+</div>
+
+
+<div id=20_hr class=hidden><p><hr><p></div>
+<div id=20_teaser class=unhidden>
+&bull; <a href="javascript:reveal(20)">myuniq outputs to stdout, whether its input is from stdin or from one or more files whose names are specified on the command line. |+| </a>
+</div>
+<div id=20_full class=hidden>
+myuniq outputs to stdout, whether its input is from stdin or from one or more files whose names are specified on the command line.
+
+<p>
+Don't focus on input from the terminal (in general).
+Redirect your input from a file or a pipeline to avoid a host of red herrings,
+especially with eof-terminated input streams.
+
+<p>
+Don't output anything other than the transformed file contents.
+If there are multiple files, just process them in order with no additional
+output.
+</div>
+
+
+<div id=21_hr class=hidden><p><hr><p></div>
+<div id=21_teaser class=unhidden>
+&bull; <a href="javascript:reveal(21)">Assuming maximum path lengths: |+| </a>
+</div>
+<div id=21_full class=hidden>
+Assuming maximum path lengths:
+
+<p>
+Q: Can we assume a maximum path name length in mywhich.c?
+
+<p>
+A: Well, sort of.  You can set a maximum (make it at least, say, 1000 chars)
+so that you can declare your array, but if the path name is too long,
+you must print an appropriate message to stderr and exit; nothing can be
+permitted to make you exceed the array bounds.
+
+<p>
+Q: What about the array holding the input line in myuniq?
+
+<p>
+A: As stated on the handout, you can have an array of size 500 so long as you
+don't exceed array bounds if lines are longer than 499 bytes.  fgets() will
+deal with this if you call it properly.
+
+<p>
+Q: And what about mydu?
+
+<p>
+A: Again stated on the handout: you can declare an array of size 2000 for the
+complete path name, but again you must check that you do not exceed this array
+bounds no matter what you find in the filesystem.
+</div>
+
+
+<div id=22_hr class=hidden><p><hr><p></div>
+<div id=22_teaser class=unhidden>
+&bull; <a href="javascript:reveal(22)">Q: Does myuniq have to store all of the input so as to be able to |+| </a>
+</div>
+<div id=22_full class=hidden>
+Q: Does myuniq have to store all of the input so as to be able to
+perform all of the output
+only after the user presses ^D?
+
+<p>
+A: No.  The timing of the input and output is not part of the specification.
+So you should do whatever is easiest in that regard, under the rubric of "Keep
+It Simple".
+</div>
+
+
+<div id=23_hr class=hidden><p><hr><p></div>
+<div id=23_teaser class=unhidden>
+&bull; <a href="javascript:reveal(23)">Q: How does myuniq detect whether its standard input is a file or a terminal? |+| </a>
+</div>
+<div id=23_full class=hidden>
+Q: How does myuniq detect whether its standard input is a file or a terminal?
+
+<p>
+A: It doesn't, and it mustn't.  The behaviour must not differ.  Don't be
+"smart".  "Keep it simple."
+Process every character until eof, in any case.
+</div>
+
+
+<div id=24_hr class=hidden><p><hr><p></div>
+<div id=24_teaser class=unhidden>
+&bull; <a href="javascript:reveal(24)">Q: When grep is given two or more files, it labels all output lines with the file name.  Should myuniq do the same? |+| </a>
+</div>
+<div id=24_full class=hidden>
+Q: When grep is given two or more files, it labels all output lines with the file name.  Should myuniq do the same?
+
+<p>
+A: No.  Just display the transformed file data.
+Emulate cat, not grep, in this matter.
+</div>
+
+
+<div id=25_hr class=hidden><p><hr><p></div>
+<div id=25_teaser class=unhidden>
+&bull; <a href="javascript:reveal(25)">Testing various interesting cases in 'mywhich': |+| </a>
+</div>
+<div id=25_full class=hidden>
+Testing various interesting cases in 'mywhich':
+
+<p>
+The file "/usr/bin/update-gio-modules" exists but is not
+executable by owner.  This allows two tests:
+<ol>
+<li> If update-gio-modules exists in the current directory and is
+    executable, "mywhich update-gio-modules" should report the
+    current-directory one, not /usr/bin/update-gio-modules
+<li> If update-gio-modules does not exist in the current directory,
+    "mywhich update-gio-modules" should report command-not-found.
+</ol>
+
+<p>
+Similarly, if an executable "cat" exists in the current directory, "mywhich
+cat" should report /bin/cat; but if an executable "catt" exists in the current
+directory, "mywhich catt" should report the current directory's version.
+
+<p>
+For a more comprehensive test, if you want to modify your program temporarily
+to use the directories /student/csc209/a2/bin and /student/csc209/a2/usr/bin instead of
+/bin and /usr/bin, then you can test with the files there which represent all
+possibilities:
+
+<ul>
+<li> "a" exists in bin but not in usr/bin -- executable
+<li> "b" exists in usr/bin but not in bin -- executable
+<li> "c" exists in bin but not in usr/bin -- nonexecutable
+<li> "d" exists in usr/bin but not in bin -- nonexecutable
+<li> "e" exists in both, and is executable in bin but not in usr/bin
+<li> "f" exists in both, and is executable in usr/bin but not in bin
+</ul>
+</div>
+
+
+<div id=26_hr class=hidden><p><hr><p></div>
+<div id=26_teaser class=unhidden>
+&bull; <a href="javascript:reveal(26)">An example of reading a directory with opendir() / readdir() / closedir() |+| </a>
+</div>
+<div id=26_full class=hidden>
+An example of reading a directory with opendir() / readdir() / closedir()
+can
+be found in the file <a href="readdir.c">readdir.c</a>.
+The C "-&gt;" syntax was mentioned <a href="../lect/06zslides/index.html">in lecture on
+February 3</a> -- basically it
+means the same as Java's "." when used to select members of an object; and
+for this assignment, you only need to use it exactly as shown in supplied
+code examples.
+
+<p>
+(Actually, x-&gt;y is simply defined as (*x).y, and
+we'll talk about it in detail later, or see
+<a href="../notes/struct.html">https://cs.utm.utoronto.ca/~ajr/209/notes/struct.html</a>.)
+</div>
+
+
+<div id=27_hr class=hidden><p><hr><p></div>
+<div id=27_teaser class=unhidden>
+&bull; <a href="javascript:reveal(27)">Q: What is a DIR* ?  (the return value from opendir()) |+| </a>
+</div>
+<div id=27_full class=hidden>
+Q: What is a DIR* ?  (the return value from opendir())
+
+<p>
+A: It is a very similar concept to a FILE* -- it is the information about an
+open directory which you need to pass to readdir() for it to know which input
+stream to read from.
+In fact, an implementation of
+opendir() and friends which I've read the source code to just defines
+DIR as FILE in dirent.h.  But some of them don't, so you should declare it
+correctly.
+</div>
+
+
+<div id=28_hr class=hidden><p><hr><p></div>
+<div id=28_teaser class=unhidden>
+&bull; <a href="javascript:reveal(28)">Q: What's the difference between stat() and lstat()? |+| </a>
+</div>
+<div id=28_full class=hidden>
+Q: What's the difference between stat() and lstat()?
+
+<p>
+A: For most directory-tree-traversing programs, including mydu, it's
+important to use lstat(), as follows.
+
+<p>
+For the most part, if you attempt to access a symbolic link, the kernel
+<i>follows</i> this symbolic link automatically, giving you instead the file
+that the symlink points to.
+If this weren't the case, then symlinks wouldn't mean what they do mean.
+A symlink is a stand-in for the pointed-to file.
+
+<p>
+But you can't have the kernel <i>always</i> following symlinks, only
+almost-always.
+For example, an ls -R, or du,
+would get very confused by symlinks if it called stat() rather than lstat().
+In particular, if a symlink points to a parent directory, then to opendir that
+symlink and continue traversing from there will result in infinite recursion.
+
+<p>
+So when symlinks were introduced, a dozen or so programs needed to be modified
+to be able to continue to work in their presence.  These days, many more
+programs need to be aware of symlinks.  Anything which traverses a directory
+tree needs to treat
+symlinks-which-point-to-a-directory differently from directories.
+Programs such as "ls" need to collect information on the symlink, rather than
+the pointed-to file.
+
+<p>
+The way to do this is to call the special call "lstat()", which is like stat()
+so long as its parameter is not a symlink.
+If its parameter <i>is</i> a symlink, it <i>does not follow</i> the symlink,
+but rather, reports information about the symlink itself.
+
+<p>
+Thus for example, "ls -l" calls lstat(), not stat().
+There is an option '-L' to make it follow the symlinks, but otherwise it
+doesn't.
+
+<p>
+For more examples:  "test -f" calls stat(), but "test -L" (check whether the
+file is a symlink) needs to call lstat().
+
+<p>
+myuniq has no reason to call stat() or lstat(), but if it did,
+it would call stat, not lstat, because we <i>do</i> want it to follow
+symlinks, in the normal way.  mywhich should call stat() for this reason.
+</div>
+
+
+<div id=29_hr class=hidden><p><hr><p></div>
+<div id=29_teaser class=unhidden>
+&bull; <a href="javascript:reveal(29)">Q: Why do you have to skip "." and ".." in the mydu recursion? |+| </a>
+</div>
+<div id=29_full class=hidden>
+Q: Why do you have to skip "." and ".." in the mydu recursion?
+
+<p>
+A: "." is a reference to the directory which "." is in.
+For example, /u/ajr/. is the same as /u/ajr, and /u/ajr/web/. is the same as
+/u/ajr/web.  Similarly, /u/ajr/web/.. is the same as /u/ajr.
+
+<p>
+To traverse the directory /u/ajr (for example), you will recursively
+traverse all subdirectories, such as /u/ajr/web.  However, if you recursively
+traverse /u/ajr/., that is itself a traversal of /u/ajr and thus you have an
+infinite loop (infinite recursion).
+
+<p>
+So you have to skip "." and ".." when looking at the contents of a
+subdirectory.
+(However, these are still valid directory names for the command-line; make
+sure you put your 'if' statement in the right place.)
+</div>
+
+
+<div id=30_hr class=hidden><p><hr><p></div>
+<div id=30_teaser class=unhidden>
+&bull; <a href="javascript:reveal(30)">Q: How do we convert from blocks to M (for the -h option to mydu)? |+| </a>
+</div>
+<div id=30_full class=hidden>
+Q: How do we convert from blocks to M (for the -h option to mydu)?
+
+<p>
+A: Divide by 2048 (since blocks are half-K), with rounding.
+
+<p>
+You may be inclined to do this
+with floating-point arithmetic like this:
+
+<pre>
+        (long)floor(size / 2048.0 + 0.5)
+</pre>
+
+but the floating-point arithmetic, use of the math library, and conversions to
+and from integers
+can be avoided quite easily by using the formula
+
+<pre>
+        (size + 1024) / 2048
+</pre>
+
+since integer division automatically does a "floor" for positive numbers.
+
+<p>
+Q: How do we convert from blocks to G?  Divide by 2048*1000 or by 2048*1024?
+
+<p>
+A: Probably 2048*1000.  Let's use that for this assignment.  (And while
+writing "2048*1024" is a lot clearer than writing 2097152, I think it's fine
+to write 2048000 here.)
+</div>
+
+
+<div id=31_hr class=hidden><p><hr><p></div>
+<div id=31_teaser class=unhidden>
+&bull; <a href="javascript:reveal(31)">Q: Why am I not allowed to use ftw() or fts() to write mydu? |+| </a>
+</div>
+<div id=31_full class=hidden>
+Q: Why am I not allowed to use ftw() or fts() to write mydu?
+
+<p>
+A: Because it contains the basic directory traversal code which is the point
+of this assignment.  Some people can call ftw(), but someone else has to write
+ftw().  This assignment is about writing the directory traversal code.
+
+<p>
+Also, ftw() is not actually an extremely good match for mydu and I think
+you're better off without it.  But the primary reason is the above.
+</div>
+
+
+<div id=32_hr class=hidden><p><hr><p></div>
+<div id=32_teaser class=unhidden>
+&bull; <a href="javascript:reveal(32)"><nota nonhref="hammer.html"><strong>Don't use opendir()/readdir() in mywhich.c!</strong></a> |+| </a>
+</div>
+<div id=32_full class=hidden>
+<a href="hammer.html"><strong>Don't use opendir()/readdir() in mywhich.c!</strong></a>
+</div>
+
+<p>
+<hr>
+
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/a2/qnanewfmt.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:41 GMT -->
+</html>

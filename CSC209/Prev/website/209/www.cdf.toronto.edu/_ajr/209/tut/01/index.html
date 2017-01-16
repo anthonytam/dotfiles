@@ -1,0 +1,368 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/tut/01/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:58:59 GMT -->
+<head>
+
+<title>CSC 209 tutorial exercises, week of 11 January 2016</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #cc7777;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .unhidden { display: block; }
+</style>
+
+<script type="text/javascript">
+    function show(s) {
+        document.getElementById(s).className = 'unhidden';
+    }
+    function reveal(s) {
+        document.getElementById(s+'_a').className = 'hidden';
+        document.getElementById(s+'_b').className = 'revealed';
+    }
+</script>
+
+</head>
+
+<body>
+
+<div class=toc>
+<a href="../01.html">Tutorial 01</a>
+<br>
+<a href="../02.html">Tutorial 02</a>
+<br>
+<a href="../03.html">Tutorial 03</a>
+<br>
+<a href="../04.html">Tutorial 04</a>
+<br>
+<a href="../05.html">Tutorial 05</a>
+<br>
+<a href="../06.html">Tutorial 06</a>
+<br>
+<a href="../07.html">Tutorial 07</a>
+<br>
+<a href="../08.html">Tutorial 08</a>
+<br>
+<a href="../09.html">Tutorial 09</a>
+<br>
+<a href="../10.html">Tutorial 10</a>
+<br>
+<a href="../11.html">Tutorial 11</a>
+<br>
+<a href="../12.html">Tutorial 12</a>
+<br>
+<p>
+[<a href="../../index.html">Course home page</a>]
+</div>
+
+<h1>CSC 209 tutorial 01 exercises, week of 11 January 2016</h1>
+
+<blockquote>
+<small>
+After you've done these exercises, you can look at
+<a href="soln.html">my solutions</a>.
+</small>
+</blockquote>
+
+<p>
+To play along with these instructions in the lab, you probably want to cd to
+the directory <tt>/student/csc209/tut/01</tt>
+
+<p>
+You can find the terminal program under the menu "Applications", submenu
+"System Tools".
+
+<p>
+<hr>
+<p>
+
+Please begin by running "/student/csc209/present".
+This records your attendance and is required for you to get the marks for the
+lab.
+
+<p>
+<hr>
+
+<h3> Part 1 </h3>
+
+<p>
+Write a "glob" expression which matches all filenames in the current
+directory with the following properties.  Do not worry about the issue of
+filenames beginning with a dot.
+
+<p>
+(To test your expression, you could use "echo".  For example, "echo *" will
+show you all of the file names in the current directory.)
+
+<ol>
+<li> filenames beginning with an 'a'
+<li> filenames ending with a 'c'
+<li> filenames containing at least one 'x', anywhere in the filename
+<li> filenames containing one or more digits, anywhere in the file name
+<li> filenames which end with a dot and then exactly three further characters
+<li> filenames beginning with an uppercase letter (this has a
+complication, discussed in the solutions file)
+
+<li> In a directory containing the following five file names:
+<pre>
+	a.c   abcdef  b.c  b.x   bac
+</pre>
+, for a given triple below, write a glob expression which matches those three
+file names and not the other two.
+<br>
+<strong>Note:</strong> One of these is impossible.  Identify which one is
+impossible, and solve the others.
+
+<ul>
+<li> a.c, b.c, and b.x
+<li> a.c, b.c, and bac
+<li> b.c, b.x, and bac
+<li> a.c, abcdef, and b.c
+<li> a.c, abcdef, and b.x
+</ul>
+
+</ol>
+
+<p>
+Write a unix command to produce the requested output:
+
+<ol>
+
+<li> The number of lines in /etc/passwd.  (The file "/etc/passwd" lists
+all user accounts on the system, one per line.)
+
+<li> The count of how many users have an 'e' in their user information somewhere
+(anywhere in their line in /etc/passwd).
+
+<li> The contents of the file named:  <tt>&amp;@$%*</tt>
+
+<li> The alphabetically-first three lines in the file "abcdef", in order
+(i.e. the earliest alphabetically, then the second-earliest, then the
+third-earliest).
+
+<li> All lines in the output of the "dumbproverb" command, but with every 'e'
+character translated to a '?'.
+<br>
+(You can find "dumbproverb" in /student/csc209/tut/01/dumbproverb)
+
+<li> All file names in the current directory which contain a 'b'.
+
+<li> The number of people who logged in at exactly 10:45.
+
+<li> All lines of the file "abcdef" in the current directory which contain a
+capital 'E'.
+
+<li> The number of blocks used by the directory /usr/include, using "du".
+But the output of "du /usr/include" has lines for each subdirectory and we only
+want the last line, the one with the total.
+
+<li> /student/csc209/tut/01/t2 is a text file listing integers, one per line.
+Output the largest number in this file.
+
+</ol>
+
+What is the difference between the shell "glob notation" (file pattern
+matching) expressions "*" and "*.*" (without the quotes)?
+State a file name which one of them would match and the other would not match.
+
+
+<p>
+<hr>
+
+
+<h3> Part 2: sed </h3>
+
+Recall the "sed" filter, which implements a number of editor-like commands.
+These questions will be about its 's' command -- search and replace.
+
+<p>
+We can change the first 'o' to 'x' in each line with:  sed s/o/x/
+<br>
+This can be followed by file names, or it can read from the standard input.
+If the standard input is the terminal, we have to press ^D as the special
+end-of-file-from-terminal signal; instead of doing that, in this question
+we will use 'echo' and a pipe, like this:
+<pre>
+	echo Madonna Ciccone | sed s/o/x/
+</pre>
+
+<p>
+1. That only translates the first 'o' on each line.  How do you translate them
+all?
+
+<p>
+2. Why aren't quotes needed around "s/o/x/" above?
+
+<p>
+3. Write the 'sed' command which translates names of the form "Madonna
+Ciccone" to "Ciccone, Madonna" as demonstrated in the first lecture.
+<br>
+Tools: regular expressions (the normal kind, not the "glob" notation);
+and backslashed-parentheses in the search string matched with backslashed
+digits in the replace string.
+<br>
+If you can't reproduce this, it's <a href=sed3s.html>here</a> (you'll need that to
+go on).
+<br>
+Why are the quotes needed here but not in the earlier example?
+
+<p>
+4. Write a sed command which doubles the first 'x' on each line.
+For example, "h@x0r" would become "h@xx0r".
+Don't use quotes unless necessary.
+
+<p>
+5. Write a sed command which doubles the first digit on each line.
+For example, "h@x0r" would become "h@x00r".
+Don't use quotes unless necessary.
+
+
+<p>
+<hr>
+
+
+<h3> Part 3: software tools principles (bonus) </h3>
+
+You are writing a simple command "dechex" which converts decimal (base 10) to
+hexadecimal (base 16, using letters 'a' through 'f' for the additional six
+digits).
+
+<p>
+For example, "dechex 46" will output "2e".
+
+<p>
+Or should that be "0x2e"?  That's how you would write this as a hexadecimal
+constant in C, Python, Java, or the majority of modern programming
+languages.
+
+<p>
+In deciding between output like "2e" and output like "0x2e", you turn to the
+software tools principles at
+<a href="../../notes/tools.html#principles">https://cs.utm.utoronto.ca/~ajr/209/notes/tools.html#principles</a>
+
+<p>
+For bonus marks of about 10% of the tutorial value,
+answer this question in a short text file, stating whether you include the
+"0x" or not; which software tools principle your decision is in accordance
+with; and how this helps your program be put together with other programs.
+Your answer must be short and clear to receive the marks.
+
+
+<p>
+<hr>
+<p>
+<a href="soln.html">solutions to parts 1 and 2</a> (except for the last two items)
+
+
+<p>
+<hr>
+<p>
+
+<h2> To submit </h2>
+
+<p>
+First of all, you must run "/student/csc209/present",
+during the tutorial time, on the console of a tutorial lab workstation.
+
+<p>
+Then, by midnight at the end of your tutorial day, you must
+submit solutions to part 2 (sed) exercises #4 and #5 (the
+last two items), and optionally the part 3 question, as follows.
+
+<p>
+First, put the solutions in separate files named tut1a (question 4), tut1b
+(question 5), and optionally tut1c (part 3).
+You can test your part 2 solutions with commands such as
+"<tt>echo h@x0r | sh tut1a</tt>"
+and "<tt>echo xylophone | sh tut1a</tt>".
+
+<p>
+Make sure that your tut1c solution is a plain text file by typing "<tt>cat
+tut1c</tt>".
+
+<p>
+Secondly, submit with the command
+<pre>
+	/student/csc209/submit tut1 tut1a tut1b tut1c
+</pre>
+
+<p>
+Note in this command that the "tut1" is the "assignment" name you are
+submitting under, and the "tut1a" and "tut1b" and "tut1c" are the files to submit.
+You can submit them simultaneously as above, or at different times.
+<br>
+You may still change your files and resubmit them any
+time up to the due time.
+<br>
+Example of submitting a single file (whether an initial submission or a
+resubmission):
+<pre>
+	/student/csc209/submit tut1 tut1b
+</pre>
+As well, you can check that your files have been
+submitted with the command
+<pre>
+	/student/csc209/submit -l tut1
+</pre>
+(that's minus 'l' for "list", not a 'one')
+
+<p>
+If there are any problems with this, during the tutorial contact your TA, or
+after the tutorial e-mail ajr.  Problems running the 'submit' command will
+not generally be accepted as a reason for lateness.
+
+<h2> Important academic offence note! </h2>
+
+Your work in this course which is submitted for course credit must be your
+own.
+Representing someone else's creative work as your own is an academic offence.
+
+<p>
+The tutorial (lab) work in this course is individual.  You can discuss the
+items which are not for course credit with anyone, but the items which are
+submitted for course credit must represent your own work.  It is also an
+offence to assist others in committing an academic offence (e.g. by providing
+your solution to them).
+
+<p>
+If you have questions about work to be submitted for course credit, ask a TA
+or the instructor (perhaps by e-mail).
+More information at
+<a href="../../courseinfo.html#cheating">the end of the course information
+sheet</a>.
+
+<p>
+<hr>
+
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/tut/01/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:02 GMT -->
+</html>

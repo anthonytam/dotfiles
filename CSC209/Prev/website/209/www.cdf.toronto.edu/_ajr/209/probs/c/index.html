@@ -1,0 +1,333 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/probs/c/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:18 GMT -->
+<head>
+
+<title>CSC 209: additional problems for C programming</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #cc7777;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .unhidden { display: block; }
+</style>
+
+<script type="text/javascript">
+    function show(s) {
+        document.getElementById(s).className = 'unhidden';
+    }
+    function reveal(n) {
+        document.getElementById(n + '_teaser').className = 'hidden';
+        document.getElementById(n + '_hr').className = 'unhidden';
+        document.getElementById(n + '_full').className = 'unhidden';
+	n1 = n + 1;
+        document.getElementById(n1 + '_hr').className = 'unhidden';
+    }
+</script>
+
+</head>
+
+<body>
+<div class=toc>
+
+<a href="../../.html">Introduction</a>
+<br>
+<a href="../../announce.html">Announcements</a>
+
+<p>
+
+<a href="../../lect/index.html">Lectures</a>
+<br>
+<a href="../../tut/index.html">Tutorials</a>
+<br>
+<a href="../../asmt.html">Assignments</a>
+
+<p>
+<a href="javascript:show('tests')">Tests, exam</a>
+<div id=tests class=hidden>
+    <ul>
+    <li>
+    <a href="../../mid/index.html">Mid-term test</a>
+    <li>
+    <a href="../../exam/info.html">Final exam</a>
+    </ul>
+</div>
+
+<p>
+
+<a href="../../notes/index.html">Course notes</a>
+<br>
+<a href="../index.html">Extra problems</a>
+<br>
+
+<a href="https://mcs.utm.utoronto.ca/~mybb/utmcs/forumdisplay.php?fid=193">Discussion board</a>
+
+<p>
+<a href="../../netgrade-results.html">Grades so far</a>
+<br>
+<a href="../../oldannounce.html">Old announcements</a>
+
+</div>
+
+<h1>CSC 209 additional problems for C programming</h1>
+
+<p>
+<hr noshade>
+<p>
+
+Also see
+<a href="../tools/index.html">software tools problems</a>,
+and actually most of the <a href="../index.html">suggested problems</a> I've got in
+these web pages.
+The following problems are mostly non-unix-like C programs (although now that
+I write this intro, I see that the first one should probably be in the "tools"
+section instead).
+
+<p>
+<hr noshade>
+<p>
+
+1.
+Write the "nth" command, which outputs the nth field of each line (one-origin),
+based on a strtok-like delimitation of fields.
+It prints a blank output line when the input line has fewer than the specified
+number of fields.
+
+<p>
+Similar to <i>grep</i>,
+the first non-option argument is the <i>n</i>, and subsequent
+non-option arguments, if any, are the names of files to be processed.
+If there are no file names listed, the standard input is processed.
+
+<p>
+Example:
+<br>
+If the input consists of the two lines
+<pre>
+    Hello, world, how are you
+today?  Myself, I am a C program with no feelings.
+</pre>
+then "nth 4" would produce the output
+<pre>
+are
+am
+</pre>
+and "nth 7" would produce a blank line and then the line
+"<code>program</code>".
+
+<p>
+[<a href="nth.c">solution</a>]
+
+
+<p>
+<hr noshade>
+<p>
+2. Write
+the "add" program, which takes no command-line arguments and simply adds
+together all of
+the numbers in its standard input.
+The input consists of free-format integers and should be read with
+scanf("%d",&amp;x)
+or similar.
+scanf("%d",&amp;x) returns 1 for a successful input,
+EOF (i.e. -1) for end-of-file,
+and 0 if you are trying to read non-numeric input.
+In the non-numeric-input case,
+you should write "add: non-numeric input\n" to stderr and
+not write anything to stdout.
+Otherwise, you should write the total
+(and nothing else except a terminating \n)
+to stdout.
+
+<p>
+Note that "<code>add &lt;/dev/null</code>" should produce the output "0".
+
+<p>
+Example use: <code>ls -l | nth 5 | add</code>
+
+<p>
+[<a href="add.c">solution</a>]
+
+
+<p>
+<hr noshade>
+<p>
+
+3. Write a C program whose output is its input, reversed line by line.
+
+<p>
+[<a href="reverse.c">solution</a>]
+
+<p>
+<hr noshade>
+<p>
+
+4. Write a void function which takes two FILE* arguments.
+It reads a sequence of integers from the first file,
+bubblesorts them,
+then outputs the sorted list to the second, one per line, no additional data.
+The input file is free-format; i.e. you will want to use
+fscanf().  It is okay if your program mistakes non-numeric input for
+end-of-file; i.e. you will probably want to use while
+(fscanf(...) == 1).
+
+<p>
+You could test your sortfile.c with the following:
+<pre>
+    #include &lt;stdio.h>
+    int main()
+    {
+	sortfile(stdin, stdout);
+	return 0;
+    }
+</pre>
+if you add in an appropriate declaration for sortfile
+[<a href="testsort.c">mini-solution: the above with sortfile declaration added
+in</a>].
+
+<p>
+Your sortfile.c should accept up to a hundred numbers (exactly).
+If there are more, print an error message to stderr and exit;
+in this case, do not output anything to the output file.
+
+<p>
+[<a href="sortfile.c">solution</a>]
+
+
+<p>
+<hr noshade>
+<p>
+
+5. Write a main() to prompt for and read the input file and output file names.
+Then open them both (with fopen(), calling perror() and exiting if the fopen()
+fails),
+and call the above sortfile(infp, outfp).
+Put this function in a new file called main.c.
+This main.c should be able to be compiled with your sortfile.c
+(i.e. "gcc -Wall main.c sortfile.c").
+
+<p>
+[<a href="main.c">solution</a>]
+
+
+<p>
+<hr noshade>
+<p>
+
+6. Write a new version of the above sortfile() which calls the qsort() library
+function instead of using the bubblesort algorithm.
+You can link it with either the previous tiny test main() or your main() from
+question 3 above.
+<p>
+qsort() is discussed in section 17.7 of the King book, and summarized on page
+622.
+The on-line manual page "man qsort" is more comprehensive although equally
+terse.
+
+<p>
+Here is a suitable comparison function to pass to qsort() for an array of
+ints:
+<pre>
+    int comparator(const void *p, const void *q)
+    {
+	return *(int *)p - *(int *)q;
+    }
+</pre>
+
+<p>
+[<a href="callqsort.c">solution</a>]
+
+
+<p>
+<hr noshade>
+<p>
+
+7. Write a new main() which expects the two file names to be
+specified on the unix command-line, instead of prompting for
+and inputting them.
+
+<p>
+[<a href="cmdline.c">solution</a>]
+
+
+<p>
+<hr noshade>
+<p>
+8 (big). Write a program which takes one argument which is a .c file with compile
+errors.  The argument file name must end in ".c" (checking that is another
+problem, also recommended).
+Run "gcc -Wall -c file" and collect the errors.  Note the output format with
+line numbers.
+<p>
+If the programmer goes about fixing these errors in order, then earlier error
+fixing will often change the line numbers such that later errors are harder
+and harder to locate.
+Your script will take this error data, and the lines of the original .c file,
+and produce output with the error messages inserted.
+Also insert "ZZZ" so that the user can search for this to find the next error.
+<p>
+Example:
+<pre>
+...
+    double x;
+...
+        printf("%d\n", x);
+...
+</pre>
+<p>
+gcc -Wall outputs:
+<pre>
+file.c: In function `main':
+file.c:21: warning: int format, double arg (arg 2)
+</pre>
+<p>
+Your script discards "file.c: In function `main':"
+(or any other line not containing a line number)
+and produces on stdout a
+file which looks like this:
+<pre>
+...
+        printf("%d\n", x);
+ZZZ file.c:21: warning: int format, double arg (arg 2)
+...
+</pre>
+<p>
+Perhaps the eventual version of this program should replace file.c, but
+especially during testing I strongly recommend developing the version which
+outputs to stdout instead.
+
+<p>
+<hr>
+
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/probs/c/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:20 GMT -->
+</html>

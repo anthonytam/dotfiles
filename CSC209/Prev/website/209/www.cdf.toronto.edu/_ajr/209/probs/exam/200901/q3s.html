@@ -1,0 +1,23 @@
+PATH=/bin:/usr/bin
+
+if test $# -ne 2
+then
+    echo usage: $0 pattern file >&2
+    exit 1
+fi
+
+case "`grep "$@" | wc -l`" in
+    0)
+        # either a grep error (already output to stderr) or no match
+        exit 1
+        ;;
+    1)
+        # success
+        grep "$@"
+        exit 0
+        ;;
+    *)
+        echo $0: too many matches >&2
+        exit 1
+        ;;
+esac

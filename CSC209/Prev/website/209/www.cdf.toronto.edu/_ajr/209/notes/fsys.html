@@ -1,0 +1,462 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/notes/fsys.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:13 GMT -->
+<head>
+
+<title>CSC 209: The unix filesystem</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #cc7777;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .unhidden { display: block; }
+</style>
+
+<script type="text/javascript">
+    function show(s) {
+        document.getElementById(s).className = 'unhidden';
+    }
+    function reveal(n) {
+        document.getElementById(n + '_teaser').className = 'hidden';
+        document.getElementById(n + '_hr').className = 'unhidden';
+        document.getElementById(n + '_full').className = 'unhidden';
+	n1 = n + 1;
+        document.getElementById(n1 + '_hr').className = 'unhidden';
+    }
+</script>
+
+</head>
+
+<body>
+<div class=toc>
+
+<a href="../.html">Introduction</a>
+<br>
+<a href="../announce.html">Announcements</a>
+
+<p>
+
+<a href="../lect/index.html">Lectures</a>
+<br>
+<a href="../tut/index.html">Tutorials</a>
+<br>
+<a href="../asmt.html">Assignments</a>
+
+<p>
+<a href="javascript:show('tests')">Tests, exam</a>
+<div id=tests class=hidden>
+    <ul>
+    <li>
+    <a href="../mid/index.html">Mid-term test</a>
+    <li>
+    <a href="../exam/info.html">Final exam</a>
+    </ul>
+</div>
+
+<p>
+
+<a href="index.html">Course notes</a>
+<br>
+<a href="../probs/index.html">Extra problems</a>
+<br>
+
+<a href="https://mcs.utm.utoronto.ca/~mybb/utmcs/forumdisplay.php?fid=193">Discussion board</a>
+
+<p>
+<a href="../netgrade-results.html">Grades so far</a>
+<br>
+<a href="../oldannounce.html">Old announcements</a>
+
+</div>
+
+<h1>The unix filesystem</h1>
+
+In 1969, Ken Thompson of Bell Labs had an idea for a new kind of filesystem,
+which would be more uniform than any comparable filesystem before then,
+and would be simple to implement, simple to use, and powerful.
+It presented a uniform hierarchical view of the entire filesystem and
+supported the same sorts of operations on all types of files.
+
+<p>
+After experimentation with this filesystem, he and several others went on to
+implement the rest of an operating system, which became unix.
+
+<h3>Major features of the unix filesystem</h3>
+
+<ul>
+<li>
+completely uniform -- the master (root) directory, user directories,
+subdirectories, and all organization of system files is all done using one
+simple hierarchy of directories
+	<ul>
+	<li> so users can make their own subdirectories just the same
+	as system ones
+	<li> Yields a directory "tree"; specify a file name in the tree
+	with a "path name", which is how to get there from the root
+	<li> Directories are just a special kind of file.  If you want
+	a directory listing, you just read the file which is that
+	directory.
+	</ul>
+
+<li>
+No restrictions on or system interpretation of file names.
+File names can be any sequence of up to fourteen characters (this has
+been increased to 255 in all modern unix systems); periods are not special;
+upper and lower case are considered different.
+The only characters
+you're not allowed are the zero byte (i.e '\0'),
+because that will be used to indicate the end of a path name (end of a C
+string as passed to the operating system);
+and a slash, because that will be used
+to separate directory names in a path name.
+
+<li>
+All of the available disks are integrated into one uniform file system.
+I might
+have a file called /usr/ajr/file, and that might be on a different disk
+than your file called /usr/you/file; but a new disk can be associated
+with one portion of the directory tree and it is seamless to users
+specifying file path names.  A disk, or a disk partition, is "mounted"
+at a certain point in the filesystem.  In the simplest case, if you have
+your own whole disk partition, it could be "mounted" as "/usr/you".
+Then the root directory on that disk becomes /usr/you in the whole tree.
+
+<li>
+Thus it's easy to specify other people's files.
+Once you can refer to other people's files, you need an access protection
+capability -- you have to be able to specify who is allowed to do what
+to which of your files (read them, write them, delete them, ...).
+Unix has
+simple "file modes" to accomplish this (see chmod).
+
+<li>
+No difference between "random access files" versus "sequential files", etc.
+A file is just a list of bytes; the operating
+system has no involvement in the format of the files, and it provides
+for efficient random OR sequential access to any file.
+
+</ul>
+
+Readings:
+<ul>
+<li> Haviland et al chapters 1 and 4, and bits of chapter 3.
+    <ul>
+    <li> By the way, you may notice a discussion of ftw() in the textbook;
+    I suggest not attempting to use ftw() for assignment two.
+    (You don't have to know about it at all for this course actually.)
+    </ul>
+<li> Ritchie and Thompson,
+<a href="cacm.pdf">The UNIX Time-Sharing System</a> (PDF),
+CACM 17 (1974) / BSTJ 57 (1978).
+Especially sections 3 and 4.
+</ul>
+
+<p>
+<hr noshade>
+
+<p>
+Any filesystem is basically a complex data structure on disk.
+The starting point for the unix filesystem is the "inode".  'i' for "index".
+This is an index entry for a single file on the disk.
+
+<p>
+A disk holding a unix filesystem contains a bunch of inodes and a bunch of data blocks.
+Each inode represents one file.
+Not necessarily a plain file; each directory gets its own inode too.
+
+<p>
+A directory is a list of records (structs), or pairs if you prefer,
+which are simply a file name and an inode number for that file.  Here's
+an example "i-list":
+
+<p>
+<table border=1>
+<tr><th>i</th><th>mode</th><th>contents</th></tr>
+<tr><td>2</td><td>D</td><td>usr 7, etc 4, bin 6</td></tr>
+<tr><td>3</td><td>&nbsp;</td><td><i>contents of password file</i></td></tr>
+<tr><td>4</td><td>D</td><td>passwd 3</td></tr>
+<tr><td>5</td><td>D</td><td>fsys.fig 10, src 11</td></tr>
+<tr><td>6</td><td>D</td><td>date 9</td></tr>
+<tr><td>7</td><td>D</td><td>bin 8, ajr 5, you 12</td></tr>
+<tr><td>8</td><td>D</td><td>...</td></tr>
+<tr><td>9</td><td>&nbsp;</td><td><i>date program</i></td></tr>
+<tr><td>10</td><td>&nbsp;</td><td>...</td></tr>
+<tr><td>11</td><td>D</td><td>hello.c 13</td></tr>
+<tr><td>12</td><td>D</td><td>hello.c 14</td></tr>
+<tr><td>13</td><td>&nbsp;</td><td>...</td></tr>
+<tr><td>14</td><td>&nbsp;</td><td>...</td></tr>
+<tr><td>...</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</table>
+
+<p>
+The numbers on the left do not actually appear on the disk; we just have
+a big list of inodes in order.
+An array.
+
+<p>
+As well, the contents of the file is in the data blocks, not the inode; what
+is in the inode is the location of the data blocks which are the content of
+that file.
+The inode contains a variety of data, which is discussed below.
+
+<p>
+Directories' contents are much less substantial than the inode information.
+The contents of a directory is simply a list of pairs (structs of two elements),
+which are the file name and the inode number for that file.
+For example, the root directory above, the file contents pointed to by inode
+number 2, contain the three records which say that the directory contains
+three entries:  usr, which is inode 7; etc, which is inode 4; and bin, which
+is inode 6.
+
+<p>
+The above chart thus represents the following directory tree:
+<p>
+<img src="fsys.gif">
+
+<p>
+We can identify a particular file in this hierarchical filesystem by giving a
+"path name", which is a sequence of directories to traverse until you get to
+the desired file (which, like any file, might be a directory; but the
+intermediate nodes in the path <i>must</i> be directories).
+<br>
+For example, the "hello.c" near the lower left can be identified as
+"/usr/ajr/src/hello.c".  Since the path name begins with a "/", it starts from
+the root of the tree.  Alternatively, if we do not begin with a slash, we
+start from the "current directory" (which you can change with the "cd"
+command as you know).
+
+<p>
+Suppose I want to have another name for the "date" command
+("/bin/date", inode 9).
+I can call it "d" (in the current directory) by executing the command
+<pre>
+		ln /bin/date d
+</pre>
+This creates an additional link for the date command.
+Look at the "ls -li" output, where "-i" means "also tell me the inode number":
+<pre>
+% ls -li /bin/date /u/ajr/d
+9 -r-xr-xr-x  2 root  wheel  14716 Jan  5 00:35 /bin/date
+9 -r-xr-xr-x  2 root  wheel  14716 Jan  5 00:35 /u/ajr/d
+% 
+</pre>
+The extra column on the left is the inode number.  They have the same inode
+number because they are the same file.  The filesystem tree is no longer a
+tree.
+<p>
+We can also note that the "link count" (third field above) is now two; there
+are two links to this file.
+There is only one actual file involved, although it is "in" two different
+directories.  The only thing in the directory is the file name; thus all of
+the other ls -l information is the same: the protection, owner, size, times,
+and data block references are all in the inode.
+
+<p>
+With the "current directory" concept,
+you want to be able to specify "the current directory".
+e.g. If you run "ls"
+with no arguments, that means to list the current directory;
+it calls opendir(), and it needs something to pass to it.
+<br>
+Convention:
+in every directory, you have a "." entry which refers to the directory itself.
+
+<p>
+It also turns out to be convenient to specify "the parent directory".
+Convention: in every directory, you have a ".." entry which refers to the
+parent directory.
+
+<p>
+This gives us the following revised contents, after also doing the "ln
+/bin/date d" command in my home directory:
+
+<p>
+<table border=1>
+<tr><th>i</th><th>mode</th><th>contents</th></tr>
+<tr><td>2</td><td>D</td><td>usr 7, etc 4, bin 6, . 2, .. 2</td></tr>
+<tr><td>3</td><td>&nbsp;</td><td><i>contents of password file</i></td></tr>
+<tr><td>4</td><td>D</td><td>passwd 3, . 4, .. 2</td></tr>
+<tr><td>5</td><td>D</td><td>fsys.fig 10, src 11, d 9, . 5, .. 7</td></tr>
+<tr><td>6</td><td>D</td><td>date 9, . 6, .. 2</td></tr>
+<tr><td>7</td><td>D</td><td>bin 8, ajr 5, you 12, . 7, .. 2</td></tr>
+<tr><td>8</td><td>D</td><td>...</td></tr>
+<tr><td>9</td><td>&nbsp;</td><td><i>date program</i></td></tr>
+<tr><td>10</td><td>&nbsp;</td><td>...</td></tr>
+<tr><td>11</td><td>D</td><td>hello.c 13, . 11, .. 5</td></tr>
+<tr><td>12</td><td>D</td><td>hello.c 14, . 12, .. 7</td></tr>
+<tr><td>13</td><td>&nbsp;</td><td>...</td></tr>
+<tr><td>14</td><td>&nbsp;</td><td>...</td></tr>
+<tr><td>...</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</table>
+
+<p>
+For "/", in designing the unix filesystem
+they could have omitted the ".." directory entirely, but they chose to make /..
+be / itself, as present above.
+
+<p>
+So, what data is in the inode?  Not most of what's above.
+Most of the above is a statement of
+the contents of the files <i>pointed to by</i> the various inodes.
+The only data above which represents the actual inode <i>contents</i> is
+that 'D' meaning directory.
+
+<p>
+In addition to that one bit of information saying whether or not the file in
+question is a directory, the inode contains:
+<ul>
+<li> "mode" -- the rwxrwxrwx stuff, also includes the 'd' bit for directories
+<li> owner (uid -- "user id") (the owner can change the mode of the file, and
+whether or not you are the owner also affects the interpretation of the mode)
+<li> group (gid) (similarly affects the interpretation of the mode; but no affect
+on who can change the mode, or even who can change the group)
+<li> times: last modification time (mtime), last access time (atime), and last
+inode change time (ctime)
+<li> <strong>NOT</strong> the file name.  E.g. a file linked-in twice can have
+two different names.
+<li> location on disk: list of block numbers, etc
+    <ul> <li> ... bounded file sizes, cf chaining systems,
+    etc</ul>
+
+<!--
+location [on disk]... go into detail:
+	* number all blocks on the disk -- not t/s numbers, just numbers from 0, ...
+	* ten block numbers in the inode point to the first ten blocks of the file (let's number them 0 through 9)
+	* another block number is the location of a block containing 128 block numbers for the
+	  blocks 10 through 137 of the file
+	* then we have a "double indirect block" -- it is the location of a block containing 128 block numbers, and each of THOSE block numbers indicates a block containing 128 more block numbers for 128 more blocks of the file
+	* finally, we have a "triple indirect block".
+
+<p>
+contrast with chained system [explain] -- in the ufs, no matter how big the
+file is, there is a bounded seek time to a given byte number.
+e.g. byte number 2563: which is byte number 3 in block number 20.  Block number
+20 will be the eleventh entry in the "single-indirect" block.  So we can read
+it with three disk accesses: the inode, the single-indirect block, the block of
+the file.  If we go into the triple-indirect block, we have five disk accesses.
+But we never have more than five.
+In the extreme of a chaining system, we would need 22 accesses to read block
+number 20.  Read address of block 0, then read block zero to find the address
+of block one, ... .  If we're reading a file sequentially, this is not a
+problem, we will have read block 19 before we go to read block 20 so we'll have
+the chaining address.  But if we are jumping around arbitrarily in a file, we
+start to pay huge performance penalties.
+-->
+
+</ul>
+
+...
+And that's exactly why other filesystems around that time had all those
+different file types.  They were good at different things.  By making the unix
+filesystem good at both random-access tasks and sequential tasks, they made the
+whole thing much simpler.
+
+<p>
+The unix filesystem is a reasonably simple way to achieve a number of
+objectives.
+Simplicity is good.  This is a recurring theme amongst skilled computer
+programmers, and it's embodied very heavily in unix.
+
+<p>
+device files
+<ul>
+<li> in addition to plain files, directories, ...
+<li> don't need physical location info; put major/minor device numbers
+<li> but otherwise, it's in the filesystem, has an inode number: hierarchical names,
+protection, you can link to it for convenience...
+    <ul>
+    <li> e.g. protection: tty modes
+    <li> e.g. hierarchical: /dev/tape/3
+    </ul>
+<li> program can be expecting a "file", you give it a tty, or serial port, or
+printer, etc.
+</ul>
+
+<p>
+symlinks [circa 1980 [all previous was original design]]
+<ul>
+<li> call existing things "hard links"
+<li> hard links have equal status.  Two links to a file: they have equal status;
+remove either one, the other one stays.
+	<ul>
+	<li> overwriting versus deleting and re-creating are very different
+	     if there are other links!
+	</ul>
+<li> that's unavoidable sometimes...
+<li> we actually do want a facility to give one access point to a file an
+inferior status.
+<li> "symlinks" -- special bit in inode: not plain file or directory, but symlink. 
+<li> File data content is path name to pointed-to file.
+<li> The macintosh has basically this facility, introduced in system 7,
+they call "aliases".  "Aliases" are more like symlinks than ms-windows
+"shortcuts", because they are interpreted by the OS, not user programs; you
+can just open an "alias" (macintosh) or a symlink (unix) and get the
+pointed-to file.
+<li> dmr at ucb meeting said user-controlled hard links should be removed.
+He now appears to have been right.
+</ul>
+
+<p>
+n.b. that symlinks can cross filesystems... hard links can't!
+
+<p>
+The above scheme gives us a maximum file size which is just under a gigabyte. 
+Since gigabyte disks were unheard of at the time, this was not a problem.
+
+<p>
+More modern allocation schemes, since the early 1980s, have wasted space a bit
+more on small files and the result is that the limitation is usually 2 GB. 
+Still, this isn't good enough for some tasks.
+
+<p>
+So these days, many unix manufacturers have changed the system around a little
+to get a larger maximum file size, although some haven't -- this scheme doesn't
+prevent disks being more than a gigabyte, just individual files.  Anyway, the
+changes are pretty straightforward: you can make that single-indirect block a
+double-indirect block; you can make the double-indirect block a triple-indirect
+block.  Just don't lose the bound on the number of reads, or you no longer
+really have random access.
+
+<p>
+Another more modern innovation, some filesystems only, circa 1990:
+small files placed completely in the inode, thus taking zero blocks of disk
+space.
+
+<p>
+Good exercise: write "pwd".  (e.g. in C)
+
+<p>
+<hr>
+
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/notes/fsys.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:13 GMT -->
+</html>

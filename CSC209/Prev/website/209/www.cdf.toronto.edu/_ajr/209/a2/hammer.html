@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/a2/hammer.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:10 GMT -->
+<head>
+
+<title>CSC 209 assignment two</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #cc7777;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .unhidden { display: block; }
+</style>
+
+<script type="text/javascript">
+    function show(s) {
+        document.getElementById(s).className = 'unhidden';
+    }
+    function reveal(n) {
+        document.getElementById(n + '_teaser').className = 'hidden';
+        document.getElementById(n + '_hr').className = 'unhidden';
+        document.getElementById(n + '_full').className = 'unhidden';
+	n1 = n + 1;
+        document.getElementById(n1 + '_hr').className = 'unhidden';
+    }
+</script>
+
+</head>
+
+<body>
+<div class=toc>
+
+<a href="../.html">Introduction</a>
+<br>
+<a href="../announce.html">Announcements</a>
+
+<p>
+
+<a href="../lect/index.html">Lectures</a>
+<br>
+<a href="../tut/index.html">Tutorials</a>
+<br>
+<a href="../asmt.html">Assignments</a>
+
+<p>
+<a href="javascript:show('tests')">Tests, exam</a>
+<div id=tests class=hidden>
+    <ul>
+    <li>
+    <a href="../mid/index.html">Mid-term test</a>
+    <li>
+    <a href="../exam/info.html">Final exam</a>
+    </ul>
+</div>
+
+<p>
+
+<a href="../notes/index.html">Course notes</a>
+<br>
+<a href="../probs/index.html">Extra problems</a>
+<br>
+
+<a href="https://mcs.utm.utoronto.ca/~mybb/utmcs/forumdisplay.php?fid=193">Discussion board</a>
+
+<p>
+<a href="../netgrade-results.html">Grades so far</a>
+<br>
+<a href="../oldannounce.html">Old announcements</a>
+
+</div>
+
+<h1> Don't use opendir()/readdir() in mywhich.c! </h1>
+
+<blockquote>
+<cite>
+"If all you have is a hammer, everything looks like a nail"
+</cite>
+</blockquote>
+
+<p>
+The "which" command checks whether a few specific file path names exist.
+This does not involve reading directories.
+
+<p>
+If you want to know if the file /bin/foo exists, just start trying to use it
+and see.
+In the case of "which", what you will do is a stat().
+If stat() succeeds, then you can check the mode.
+If stat() fails, that file does not exist (or you don't have permission on an
+enclosing directory; but first of all, you do have read permission on the
+root directory and /bin, and secondly, if you didn't then skipping it would
+be the correct answer anyway).
+
+<p>
+Since we reviewed opendir() and readdir() in tutorial, you might be assuming
+that you should use it for assignment two.
+This sort of thinking is not wise in general (and is what the above quotation
+is about), although it is indeed needed for assignment two... but not for
+mywhich.
+(Rather, for mydu.)
+
+<p>
+Alternately put, it is NOT the case that all you have is a hammer.
+You have a number of tools at your disposal. Choose wisely.
+
+<p>
+<hr>
+
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/a2/hammer.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:10 GMT -->
+</html>

@@ -1,0 +1,263 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/courseinfo.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:56:30 GMT -->
+<head>
+
+<title>CSC 209, Winter 2016</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #cc7777;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .unhidden { display: block; }
+</style>
+
+<script type="text/javascript">
+    function show(s) {
+        document.getElementById(s).className = 'unhidden';
+    }
+    function reveal(n) {
+        document.getElementById(n + '_teaser').className = 'hidden';
+        document.getElementById(n + '_hr').className = 'unhidden';
+        document.getElementById(n + '_full').className = 'unhidden';
+	n1 = n + 1;
+        document.getElementById(n1 + '_hr').className = 'unhidden';
+    }
+</script>
+
+</head>
+
+<body>
+<div class=toc>
+
+<a href=".html">Introduction</a>
+<br>
+<a href="announce.html">Announcements</a>
+
+<p>
+
+<a href="lect/index.html">Lectures</a>
+<br>
+<a href="tut/index.html">Tutorials</a>
+<br>
+<a href="asmt.html">Assignments</a>
+
+<p>
+<a href="javascript:show('tests')">Tests, exam</a>
+<div id=tests class=hidden>
+    <ul>
+    <li>
+    <a href="mid/index.html">Mid-term test</a>
+    <li>
+    <a href="exam/info.html">Final exam</a>
+    </ul>
+</div>
+
+<p>
+
+<a href="notes/index.html">Course notes</a>
+<br>
+<a href="probs/index.html">Extra problems</a>
+<br>
+
+<a href="https://mcs.utm.utoronto.ca/~mybb/utmcs/forumdisplay.php?fid=193">Discussion board</a>
+
+<p>
+<a href="netgrade-results.html">Grades so far</a>
+<br>
+<a href="oldannounce.html">Old announcements</a>
+
+</div>
+
+<h1>CSC 209:
+Software Tools and Systems Programming</h1>
+<h3>University of Toronto Mississauga, Winter 2016</h3>
+
+<h3>Lecturer:</h3>
+Alan J Rosenthal
+<br>
+<img src="email.gif" alt="[e-mail address removed from web page to avoid harvesting by spammers -- please check the timetable]">
+<br>
+DH 3097D
+<h3>Lectures:</h3>
+IB 245, Wednesdays 15:10-17:00, starting January 6.
+Last lecture March 30.
+<br>
+No lectures or tutorials (or lecturer office hours) during reading week, February 15 through 19.
+
+<h3>Lecturer office hours (during the term):</h3>
+Wednesdays, 17:10-18:00,
+or by appointment.
+
+<h3>Lab tutorials (PRA section):</h3>
+There are five lab tutorial sections, all in DH 2020 but at different days and times.  You must sign up for a tutorial on ROSI.
+Tutorials start in the week of January 11.
+Most tutorials are graded.  Please see tutorial information on the course web page.
+<br>
+<h3>TUT section:</h3>
+The TUT 0101 section on Fridays at 17:00 is only to ensure your availability for the midterm on February 26.
+There are no CSC 209 classes there in any other week.
+
+
+<p>
+<hr>
+<p>
+
+<h3>Recommended textbooks:</h3>
+
+<p>
+About the C programming language:
+A lot of people like K.N. King, <cite>C Programming: A Modern Approach</cite>, W.W. Norton, 1996 or 2008.
+The canonical reference is Kernighan &amp; Ritchie, <cite>The C Programming Language</cite>, second edition,
+Prentice-Hall, 1988.
+
+<p>
+About unix system programming:
+K. Haviland, D. Gray, and B. Salama, <cite>Unix System Programming</cite>, second edition, Pearson Ed. / Addison-Wesley, 1998.
+
+<p>
+A book about C is probably more important than a book about unix.
+You may not necessarily want to buy the Haviland et al. book (or any book) as it does not cover the entire course.
+There is a <a href="textbooks.html">document about various textbooks</a> on the course web page.
+
+
+<p>
+<hr>
+<p>
+
+<h3>Course topics:</h3>
+The "software tools" model and unix philosophy,
+i/o redirection, a little shell programming,
+the unix filesystem,
+the C programming language (syntax, datatypes, storage model),
+unix processes,
+the operating system interface,
+interprocess communication and network communication,
+introduction to concurrency,
+and unix and internet security.
+
+
+<p>
+<hr>
+<p>
+
+<h2>Grading scheme:</h2>
+<p>
+<table border=1>
+<tr><td>Assignment 1:</td><td>8%</td><td>due Friday February 5 (midnight)</td></tr>
+<tr><td>Assignment 2:</td><td>10%</td><td>due Wednesday February 24</td></tr>
+<tr><td>Mid-term test:</td><td>14%</td><td>17:10-18:00, Friday February 26, IB 110</td></tr>
+<tr><td>Assignment 3:</td><td>10%</td><td>due Friday March 18</td></tr>
+<tr><td>Assignment 4:</td><td>8%</td><td>due Monday April 4</td></tr>
+<tr><td>Tutorials:</td><td>10%</td><td>Best 10 out of 11  --  <b>attendance required</b></td></tr>
+<tr><td>Final exam:</td><td>40%</td><td>as scheduled during the April exam period</td></tr>
+</table>
+<p>
+To pass the course you must receive at least 35%
+(out of a hundred that is) on the final exam.
+<p>
+Assignments are submitted on the computer itself;
+you don't hand in any paper.
+Submission instructions are included on the assignment handouts.
+
+<p>
+Late assignments will only be
+accepted under exceptional circumstances and with a written explanation
+sent separately by e-mail.
+To submit an assignment late,
+submit it in the usual way and <i>then</i> send the lecturer an
+e-mail message or bring him a note.
+
+<p>
+Any disagreements with the grade assigned to an assignment or the midterm should be submitted to
+the lecturer, preferably by e-mail, normally within about a week of its return.
+
+<p>
+<hr>
+<p>
+
+<h2>Discussion board</h2>
+There is a discussion board
+at
+<tt><a href="https://mcs.utm.utoronto.ca/~mybb/utmcs/forumdisplay.php?fid=193">https://mcs.utm.utoronto.ca/~mybb/utmcs/forumdisplay.php?fid=193</a></tt>
+which you are encouraged to use
+to communicate with other students in this course.
+However, it is not an official part of the course
+and we will not necessarily
+be reading it; see me or TAs in office hours or send e-mail.
+
+<p>
+<b>Do not post a test message.</b>  Wait until you have something to say, then post that.
+
+<a name=cheating>
+
+<p>
+<hr>
+<p>
+
+<h2>Serious academic offence warning!</h2>
+</a>
+Your work in this course which is submitted for course credit must be your own.
+Representing someone else's creative work as your own is an academic offence.
+There are a number of rules which you must follow to avoid prosecution.
+
+<p>
+Assignments and tutorial (lab) exercises in this course are individual,
+so submitting anything which comes from others is an academic offence unless
+specifically and precisely acknowledged.
+It is also an offence to assist others in committing an academic offence.
+
+<p>
+Therefore, <b>you may not</b>:
+<ul>
+<li> produce any part of your assignment or tutorial submission while meeting with others
+<li> look at someone else's assignment or tutorial work, completed or partial, before the deadline
+<li> show anyone (other than the instructor or a TA) your assignment or tutorial work, completed or partial, before the deadline
+(or any extension they have for special circumstances -- best to wait until after the instructor solutions are posted)
+<li> type assignment or tutorial code into a computer with others
+<li> bring your solution, completed or partial, to any group discussion about an assignment or tutorial
+<li> take away any written or electronic material from any group discussion about an assignment or tutorial
+</ul>
+
+I suggest limiting your collaboration with others to material not to be submitted for course credit,
+and asking more-specific assignment or tutorial questions of me or a TA.
+Students have been prosecuted and convicted for handing in work written for
+hire, written by personal tutors, copied from the web, or with just a bit too
+much text borrowed from a friend.
+It is not difficult for graders to detect excessive collaboration.
+
+<p>
+<hr>
+
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/courseinfo.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:56:30 GMT -->
+</html>

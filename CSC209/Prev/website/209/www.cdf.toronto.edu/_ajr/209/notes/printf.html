@@ -1,0 +1,213 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/notes/printf.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:14 GMT -->
+<head>
+
+<title>CSC 209: C: printf and scanf</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #cc7777;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .unhidden { display: block; }
+</style>
+
+<script type="text/javascript">
+    function show(s) {
+        document.getElementById(s).className = 'unhidden';
+    }
+    function reveal(n) {
+        document.getElementById(n + '_teaser').className = 'hidden';
+        document.getElementById(n + '_hr').className = 'unhidden';
+        document.getElementById(n + '_full').className = 'unhidden';
+	n1 = n + 1;
+        document.getElementById(n1 + '_hr').className = 'unhidden';
+    }
+</script>
+
+</head>
+
+<body>
+<div class=toc>
+
+<a href="../.html">Introduction</a>
+<br>
+<a href="../announce.html">Announcements</a>
+
+<p>
+
+<a href="../lect/index.html">Lectures</a>
+<br>
+<a href="../tut/index.html">Tutorials</a>
+<br>
+<a href="../asmt.html">Assignments</a>
+
+<p>
+<a href="javascript:show('tests')">Tests, exam</a>
+<div id=tests class=hidden>
+    <ul>
+    <li>
+    <a href="../mid/index.html">Mid-term test</a>
+    <li>
+    <a href="../exam/info.html">Final exam</a>
+    </ul>
+</div>
+
+<p>
+
+<a href="index.html">Course notes</a>
+<br>
+<a href="../probs/index.html">Extra problems</a>
+<br>
+
+<a href="https://mcs.utm.utoronto.ca/~mybb/utmcs/forumdisplay.php?fid=193">Discussion board</a>
+
+<p>
+<a href="../netgrade-results.html">Grades so far</a>
+<br>
+<a href="../oldannounce.html">Old announcements</a>
+
+</div>
+
+<h1>printf and scanf format codes</h1>
+
+Contents:
+<ul>
+<li> <a href="#keyletter">printf and scanf key letters</a>
+<li> <a href="#modifier">printf format modifiers</a>
+</ul>
+
+<hr noshade>
+
+<a name=keyletter>
+<h2>printf and scanf key letters</h2>
+
+The first argument to printf() or scanf() is a format string.
+In printf(), most things are output directly except for format codes beginning
+with a '%'.
+Key letters show data type AND formatting.
+
+<p>
+The most important key letters are d, g (usually used as "lg"), and s.
+
+<p>
+<table border=1>
+<tr><th align=left>code</th><th align=left>type</th><th>format</th></tr>
+<tr><td>d</td><td>int</td><td>decimal (base ten) number</td></tr>
+<tr><td>o</td><td>int</td><td>octal number (no leading '0' supplied in printf)</td></tr>
+<tr><td>x or X</td><td>int</td><td>hexadecimal number (no leading '0x' supplied in printf; accepted if present in scanf) (for printf, 'X' makes it use upper case for the digits ABCDEF)</td></tr>
+<tr><td>ld</td><td>long</td><td>decimal number ('l' can be applied to any of the above to change the type from 'int' to 'long')</td></tr>
+<tr><td>u</td><td>unsigned</td><td>decimal number</td></tr>
+<tr><td>lu</td><td>unsigned long</td><td>decimal number</td></tr>
+<tr><td>c</td><td>char [footnote]</td><td>single character</td></tr>
+<tr><td>s</td><td>char pointer</td><td>string</td></tr>
+<tr><td>f</td><td>float [footnote]</td><td>number with six digits of precision</td></tr>
+<tr><td>g</td><td>float [footnote]</td><td>number with up to six digits of precision</td></tr>
+<tr><td>e</td><td>float [footnote]</td><td>number with up to six digits of precision, scientific notation</td></tr>
+<tr><td>lf</td><td>double [footnote]</td><td>number with six digits of precision</td></tr>
+<tr><td>lg</td><td>double [footnote]</td><td>number with up to six digits of precision</td></tr>
+<tr><td>le</td><td>double [footnote]</td><td>number with up to six digits of precision, scientific notation</td></tr>
+</table>
+
+<p>
+Footnote: In printf(), the expression type promotions are expected -- in an
+expression, char and short are converted to int, and float is converted to
+double.
+Thus %c
+actually corresponds to a parameter of type int and %f and %g actually
+correspond to parameters of type double.  Thus in printf() there is no
+difference between %f and %lf, or between %g and %lg.
+However, in scanf() what is passed is a <i>pointer</i> to the variable so no
+type promotions occur or are expected.
+Thus %f and %lf are quite different in scanf, but the same in printf.
+
+<p>
+Personally,
+I used to use %lg routinely for doubles in both printf and scanf, but this is
+out of favour these days and indeed gcc will give you a warning message for
+using %lg in printf.
+The usual procedure these days is to use %g for double in printf and %lg for
+double in scanf.
+It doesn't matter which you use for printf because the printf library function
+treats them as synonymous,
+but it's crucial to get it right for scanf.
+
+<p>
+<hr noshade>
+
+<a name=modifier>
+<h2>printf format modifiers</h2>
+
+Modifiers appear between the '%' and the key letter.
+
+<ul>
+<li> a number is a field width
+<li> '.' and a number is a "precision"
+    <ul>
+        <li> Example: printf("%6.3f", 2.8) yields _2.800 (with a space before the '2')
+	<li> Note that that "6" includes the 3 decimal places and the 1 '.'
+	-- 6 characters total.  Thus 6-3-1 = 2 characters to the left
+	of the decimal point.
+    </ul>
+<li> 0 (the digit zero) means pad with zeroes to field width (usually used only with integers)
+<li> l (the letter) means "long", e.g. %ld to format a long int in decimal
+</ul>
+
+<h3>Example of '0':</h3>
+
+<pre>
+int dollars = 2;
+int cents = 3;   /* $2.03 */
+printf("  ?? what goes here ??    ", dollars, cents);
+</pre>
+
+<table border=1>
+<tr><th align=left>If format is</th><th align=left>then output is</th></tr>
+<tr><td>"$%d.%d"</td><td>$2.3</td></tr>
+<tr><td>"$%d.%2d"</td><td>$2.&nbsp;3 &nbsp;&nbsp; (one space between "." and "3")</td></tr>
+<tr><td>"$%d.%02d"</td><td>$2.03</td></tr>
+</table>
+
+<p>
+In "%02d", the 0 is <i>not</i> part of the field width.
+It is a modifier character.
+And when
+you have a field width, you must write it such that it does not start
+with a zero (and then you can prepend a zero as a modifier character if you
+want that).
+
+<p>
+<hr>
+
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/notes/printf.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:14 GMT -->
+</html>

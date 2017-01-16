@@ -1,0 +1,277 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/textbooks.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:56:31 GMT -->
+<head>
+
+<title>CSC 209 textbooks</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #cc7777;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .unhidden { display: block; }
+</style>
+
+<script type="text/javascript">
+    function show(s) {
+        document.getElementById(s).className = 'unhidden';
+    }
+    function reveal(n) {
+        document.getElementById(n + '_teaser').className = 'hidden';
+        document.getElementById(n + '_hr').className = 'unhidden';
+        document.getElementById(n + '_full').className = 'unhidden';
+	n1 = n + 1;
+        document.getElementById(n1 + '_hr').className = 'unhidden';
+    }
+</script>
+
+</head>
+
+<body>
+<div class=toc>
+
+<a href=".html">Introduction</a>
+<br>
+<a href="announce.html">Announcements</a>
+
+<p>
+
+<a href="lect/index.html">Lectures</a>
+<br>
+<a href="tut/index.html">Tutorials</a>
+<br>
+<a href="asmt.html">Assignments</a>
+
+<p>
+<a href="javascript:show('tests')">Tests, exam</a>
+<div id=tests class=hidden>
+    <ul>
+    <li>
+    <a href="mid/index.html">Mid-term test</a>
+    <li>
+    <a href="exam/info.html">Final exam</a>
+    </ul>
+</div>
+
+<p>
+
+<a href="notes/index.html">Course notes</a>
+<br>
+<a href="probs/index.html">Extra problems</a>
+<br>
+
+<a href="https://mcs.utm.utoronto.ca/~mybb/utmcs/forumdisplay.php?fid=193">Discussion board</a>
+
+<p>
+<a href="netgrade-results.html">Grades so far</a>
+<br>
+<a href="oldannounce.html">Old announcements</a>
+
+</div>
+
+<h1>Textbooks</h1>
+
+Here are some textbooks you may wish to use for reference during this course.
+You may or may not want to buy one or two of them.
+Most of the older ones are in the U of T library system.
+
+<dl>
+
+<dt>
+The official C textbook for the course:
+<dd>
+K.N. King, <cite>C Programming: A Modern Approach</cite>, W.W. Norton, 1996
+(first edition) or 2008 (second edition).
+<blockquote>
+Many people like this book.
+It seems to be at just the right level for a second-year introduction to the C
+programming language.
+I've spent a lot of time with the first edition of the book and have not
+noticed any technical errors,
+<!-- I have not noticed any technical errors in the book, -->
+which I think makes it unique for a book about C not written by a unix or
+C insider.
+</blockquote>
+
+<dt>
+The official unix textbook for the course:
+<dd>
+K. Haviland, D. Gray, and B. Salama,
+<cite>Unix System Programming</cite>,
+second edition, Pearson Ed. / Addison-Wesley, 1998.
+<blockquote>
+I think that this is my preferred book for the system-programming part of
+CSC 209.
+It's got most of what we're covering in that regard and it seems to be clear,
+and as far as I can recall I think I've only noticed one substantial
+error in it so far.
+<br>
+(It is listed
+as a "required" textbook for the course; however, I will not
+be citing page numbers from it in assignments or anything like that, and you
+will be able to write the test and exam without it, if you have otherwise
+learned the course material.)
+</blockquote>
+
+<dt>
+Another C book (the canonical C reference):
+<dd>
+Kernighan &amp; Ritchie,
+<cite>The C Programming Language</cite>, second edition, Prentice-Hall, 1988.
+<blockquote>
+This book is definitely not gentle or fluffy.
+But it still has an introductory or tutorial structure.
+It is targetted at people with a good understanding of computer programming
+in general, but no knowledge of C or unix.
+<p>
+(The second edition covers material added to the C programming language in
+the 1989 ANSI C standard (also published as ISO C 1990), but not material
+added to the C programming language in the more recent 1999 ISO C standard.
+This might not matter to you at all; at least I think it doesn't matter very
+much or very immediately.
+However,
+the first edition doesn't include the 1989 ANSI C revisions, some of which
+were substantial.  I don't think you'll want to use the first edition.)
+</blockquote>
+
+<dt>
+Classic tutorial introduction to unix and software tools
+(somewhat dated, but not too badly):
+<dd>
+Kernighan &amp; Pike, <cite>The UNIX Programming Environment</cite>, Prentice-Hall, 1984.
+<blockquote>
+
+</blockquote>
+
+<dt>
+Some general and very wise comments about computer programming:
+<dd>
+Kernighan &amp; Pike, <cite>The Practice of Programming</cite>, Addison-Wesley, 1999.
+<blockquote>
+This book focuses primarily on programming in C, but also has assorted
+examples from Java and other programming languages where those languages
+can illustrate particular points better.
+The book discusses software tools.
+It's not entirely 209-relevant but it's a <i>very</i> good addition to yer bookshelf.
+<p>
+Chapter 1 on "style" issues is quite relevant to this course.  It also
+includes some material on commenting you might find useful.
+<p>
+In some ways this book resembles an update of 
+Kernighan and Plaugher's
+<cite>The Elements of Programming Style</cite>.
+(which I think
+is an amazing book, but is unfortunately completely inaccessible to most modern
+programmers because it is so heavy on the details of some very old programming
+languages).
+</blockquote>
+
+<dt>
+A totally amazing, although also somewhat dated, book about unix and C:
+<dd>
+S.R. Bourne, <cite>The Unix System</cite>, Addison-Wesley, 1983.
+<blockquote>
+This book has chapters about shell programming, unix system programming, the C
+programming language, troff/nroff, and the data-processing unix tools
+(sort/join/comm/uniq/etc).
+Amazingly, he somehow manages to cover almost all you need to know as an
+introduction to each of these topics.
+It is not written as a textbook, 
+and you will find it rather intense (obviously, given the scope of its
+coverage).
+Yes, this is the "Bourne" as in "the Bourne shell".
+</blockquote>
+
+<dt>
+Classic "advanced" unix system programming book:
+<dd>
+Richard Stevens,
+<cite>Advanced Programming in the Unix Environment</cite>,
+Addison-Wesley, 1992.
+<blockquote>
+In-depth information on a variety of unix system programming topics.
+The most-cited reference for tricky TCP / socket programming matters.
+Well beyond the scope of this course, but I think it's still worth a mention
+in this textbook list.
+If in the future you're looking for a more in-depth book about various unix
+system programming topics, you should consider the Stevens book.
+</blockquote>
+
+<dt>
+Another common textbook for this course:
+<dd>
+Robbins and Robbins, <cite>Practical Unix Programming</cite>, Prentice-Hall.
+<blockquote>
+This book does have some redeeming features, but when we used this as a 209
+textbook we knew we were still looking.
+Contains more examples than Haviland et al (which is why I list it here);
+contains more errors than Haviland et al.
+</blockquote>
+
+<dt>
+A really neat book:
+<dd>
+Yale N. Patt and Sanjay J. Patel.
+<cite>Introduction to Computing Systems: From Bits and Gates to C and
+Beyond</cite>, second edition,
+McGraw-Hill, 2003 (or first edition, 2001).
+<blockquote>
+We're getting farther away from CSC 209 matters here, but
+this is a really neat book which attempts to teach a large swath of a basic
+first- and second-year
+curriculum, entirely from the bottom up.
+Thus it starts with CSC 258ish material, and then uses the computer which is
+developed in the first bit to show how the C programming language could be
+implemented, and teaches C, and some first-year programming concepts such as
+recursion.
+<p>
+This is not a very 209-relevant book, but actually it doesn't fit any
+course in our curriculum because it's based on a rather different curriculum structure
+(and the book's use at the authors' university involved a
+curriculum restructuring).
+You might find this book particularly helpful in understanding
+an OS-implementation lecture near the end dealing with interrupts, but that's
+just a tiny note in CSC 209.
+You also
+might find this book interesting in
+its discussion of how C relates to the low-level machine, to the extent that
+this isn't obvious after completing CSC 258 plus doing C in CSC 209.
+</blockquote>
+
+</dl>
+
+<p>
+<hr>
+
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/textbooks.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:56:31 GMT -->
+</html>

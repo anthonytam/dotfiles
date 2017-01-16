@@ -1,0 +1,993 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/notes/shell.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:56:36 GMT -->
+<head>
+
+<title>CSC 209: Shell programming</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #cc7777;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .unhidden { display: block; }
+</style>
+
+<script type="text/javascript">
+    function show(s) {
+        document.getElementById(s).className = 'unhidden';
+    }
+    function reveal(n) {
+        document.getElementById(n + '_teaser').className = 'hidden';
+        document.getElementById(n + '_hr').className = 'unhidden';
+        document.getElementById(n + '_full').className = 'unhidden';
+	n1 = n + 1;
+        document.getElementById(n1 + '_hr').className = 'unhidden';
+    }
+</script>
+
+</head>
+
+<body>
+<div class=toc>
+
+<a href="../.html">Introduction</a>
+<br>
+<a href="../announce.html">Announcements</a>
+
+<p>
+
+<a href="../lect/index.html">Lectures</a>
+<br>
+<a href="../tut/index.html">Tutorials</a>
+<br>
+<a href="../asmt.html">Assignments</a>
+
+<p>
+<a href="javascript:show('tests')">Tests, exam</a>
+<div id=tests class=hidden>
+    <ul>
+    <li>
+    <a href="../mid/index.html">Mid-term test</a>
+    <li>
+    <a href="../exam/info.html">Final exam</a>
+    </ul>
+</div>
+
+<p>
+
+<a href="index.html">Course notes</a>
+<br>
+<a href="../probs/index.html">Extra problems</a>
+<br>
+
+<a href="https://mcs.utm.utoronto.ca/~mybb/utmcs/forumdisplay.php?fid=193">Discussion board</a>
+
+<p>
+<a href="../netgrade-results.html">Grades so far</a>
+<br>
+<a href="../oldannounce.html">Old announcements</a>
+
+</div>
+
+<h1>Shell programming</h1>
+
+The "shell" is your command interpreter.
+The program which prints your '$' or '%' prompt,
+then inputs a command from you, then executes it.
+
+<p>
+It's not really a special process, although it seems special to us.
+It's a "userland" (non-kernel) program; thus, as is always the case for
+things not in the kernel, the user can substitute it.  There are a variety of
+"shells" available which you can use, and you can write your own.
+
+<p>
+basic loop: prompt, input and parse user command,
+<!-- fork, set up command, exec, wait, -->
+	cause the specified command to be executed,
+repeat.
+
+<p>
+shells can be very "user-friendly", e.g. aliases, local job numbers
+rather than pids, cute things, file expansion.
+
+<p>
+"path": List of directories to be consulted when looking up commands specified
+without path names.  E.g. you type "cat", it execs "/bin/cat".
+It finds it by looking through the path, which is a list of directories
+including /bin.
+<br>
+csh: <code>set path = ( /bin /usr/bin )</code>
+<br>
+sh: <code>PATH=/bin:/usr/bin</code>
+
+<p>
+The input language is in fact a complete programming language.
+You can write sophisticated programs in "shell script".
+
+<p>
+Shells also manage the i/o redirection.
+<ul>
+<li> <code>command >file</code>: redirect output to "file"
+<li> <code>command &lt;file</code>: redirect input from "file"
+<li> <code>command >>file</code>: redirect output, but open file for append
+rather than for overwrite
+<li> Bourne shell only (i.e. not csh):  "here-is" text which involves
+supplying the input right there in the shell script (not very useful for
+interactive sessions but very useful in shell scripts).  There is a token
+which you introduce in the command line and which signals end-of-file in the
+text.  We usually use the token EOF for this but it's up to you.
+<br>
+Example:
+<pre>
+wc -l &lt;&lt;EOF
+"It's impossible to foresee the consequences of being clever."
+                -- Christopher Strachey
+
+"If there are several ways of doing the same thing, choose one."
+                -- RFC 1958
+EOF
+</pre>
+outputs 5.
+</ul>
+
+<p>
+Also moving around file descriptors by number:
+<br>
+<code>1>&amp;2</code>
+&nbsp; &nbsp; is like the kernel call dup2(2,1).
+It redirects the file descriptor #1 to the file descriptor #2.
+<p>
+File descriptor numbers:
+<ul>
+<li> 0 is standard input (stdin)
+<li> 1 is standard output (stdout)
+<li> 2 is standard error (stderr)
+</ul>
+<p>
+You can omit 1 as the fd to be redirected, e.g. <code>>&amp;2</code>
+<br>
+Example:
+<pre>
+echo usage: foo file1 file2 >&2
+</pre>
+<p>
+This is actually a quite general syntax, not all uses of which refer to dup2().
+In general
+you can preface the '>' with a fd number (without a space between the number
+and the '>'!) to redirect that instead.
+And in general you can use an ampersand and a fd number instead of a file name
+as a redirection target.
+
+<p>
+The syntax for "sh" (bourne shell) and "csh" is quite different in places
+(e.g. almost all of the above).
+
+<p>
+csh was an attempt to make it look more like C -- if you already know C, wouldn't it be nice if you had less to learn?
+In practice, this didn't work out so well.  It's not nearly as solid a
+programming language as sh.  Almost all skilled unix hacks shun csh
+for programming.
+<a href="ftp://rtfm.mit.edu/pub/faqs/unix-faq/shell/csh-whynot">ftp://rtfm.mit.edu/pub/faqs/unix-faq/shell/csh-whynot</a>
+explains some of the problems with csh as a programming language.
+(Unfortunately that article doesn't
+differentiate the really significant problems from the slight annoyances.)
+
+<p>
+<i>Using</i> csh is a different matter, for interactive sessions, as your "login shell", the shell which gets run when you log in.
+Csh is more "user-friendly", with more user-friendly job control, aliases,
+etc.  But these same attributes are often what makes it a poorer programming
+language.  You don't <i>want</i> user-friendliness popping up when you're
+trying to execute a program which already says what it means.
+So many people use csh for their login shell but sh for all shell script
+programming.
+
+<p>
+Those people are mostly people who were around before the GNU project wrote
+their version of the Bourne shell, called "bash".
+"Bash" has all the user-friendly stuff, aliases, etc; but its input syntax is
+that of sh, not csh.
+So if you have bash available, you likely use it both as your login shell and
+for programming.
+But not necessarily; myriad preferences abound, of course.
+
+<p>
+In this course we are going to write our shell scripts in the Bourne
+shell programming language only.  But you can certainly still use csh
+for your login shell if you like (that's what I used to do myself, but
+nowadays I use bash for my login shell).
+
+
+<p>
+<hr noshade>
+<p>
+
+A programming language needs variables.
+In sh, you don't declare variables, you just start using them.
+
+<p>
+An assignment statement begins with the variable name, <i>no space</i>, an
+equals sign, <i>again no space</i>, and then the value to be assigned.
+
+<p>
+Example:
+<pre>
+	x=3
+</pre>
+
+<p>
+In general, there is an idea of a command-line substitution.
+For example,
+when you write something like "echo ~" in csh, that "~" is substituted with
+your home directory path name.  To access the values of variables, we use a
+command-line substitution which begins with a '$'.
+So to see the value of the variable "x", you could use the command "echo $x".
+
+<p>
+Example:
+<pre>
+	echo x has the value $x
+</pre>
+outputs:
+<pre>
+	x has the value 3
+</pre>
+and similarly you can use shell variable substitutions as file names, or
+anything on a command line.
+
+<p>
+There is a useful utility program called "expr" which evaluates various
+expressions.
+For example, "expr 1 + 2" will output "3".
+To make expr easier to write, all of these items have to be different tokens,
+i.e. different elements of argv (the string array parameter to main() in C or
+java).
+That is, for numeric expressions in expr (it
+can do a few other things too, including some string manipulation etc),
+the numbers are argv[1] and argv[3], and the operator is argv[2].
+
+<p>
+This combines with the assignment statement syntax to make a <i>very</i> picky
+set of syntax requirements.
+
+<p>
+"x = x + 1" in a normal high-level programming language can be written in sh
+as:
+<pre>
+x=`expr $x + 1`
+</pre>
+
+This uses the backquote mechanism which also does a command-line substitution:
+"`expr $x + 1`" causes the command "expr $x + 1" to be run, and the output of
+that captured, and that output, minus a trailing newline if any, to be
+substituted in to that point on the command line.
+
+<p>
+There are
+several special variable syntaxes; I mentioned two:
+<ul>
+<li>
+${var} to avoid maximal munch problems
+(e.g. if you wanted the value of the variable x and then "blah",
+you couldn't write
+$xblah because that would refer to a variable named "xblah"; but you can write
+${x}blah)
+
+<li>
+${var-defvalue} to supply a default value.  If $var has not been assigned,
+this expands to "defvalue" instead of to the null string.
+
+</ul>
+
+<p>
+Command-line arguments are
+also accessed using variable substitutions.  $0 is the command
+name, and $1 through $9 are the first nine command-line arguments; if you want
+further ones, you can use $* to refer to all of them at once, else you have
+to use the "shift" command (which we're not going to cover) or the special
+"for" syntax which is covered below for going through <i>all</i> arguments
+no matter how many there are.
+
+
+<p>
+<hr noshade>
+
+<p>
+Of course your sh program can use any unix command, including any useful
+little utilities you write in C or any other programming language.
+It's quite common for a complex package to
+include some C code and some shell scripts, and the shell scripts invoke
+the C programs sometimes, etc.
+
+<p>
+But we also need control constructs in sh if it's a complete programming
+language.
+
+<p>
+Boolean values in sh
+are based on command exit status.
+
+<p>
+command "foo" succeeds or fails.
+<pre>
+if foo
+then
+    bar
+else
+    echo sorry, foo failed >&2
+    exit 1
+fi
+</pre>
+
+Yes, the end-if token is spelled "fi".
+It's from a European tradition, reverse the keyword for the 'end' keyword...
+it kinda grows on you.
+
+<p>
+If this were a C program, that would be fprintf(stderr, "sorry, foo failed\n");
+Again, outputting to stderr is something we'd better be able to do in sh if we
+think of it as a complete programming language <i>in unix</i>, and we can
+indeed do this.
+The above redirects the output of the echo command to fd 2.
+
+<p>
+n.b. that the "then" goes on the next line.
+<br>
+Normal modern programming languages are free-format;
+sh comes close but of course we want the "return" key to separate commands
+interactively, so it also does in shell scripts.
+There is also a semi-colon command separator available, but it's not used as
+often as in C or java because usually a newline character separates commands.
+
+<p>
+There are also parentheses.
+The shell forks and runs the command all together.  Exactly like the operator-precedence-changing parentheses.... except it's with commands!
+<pre>
+(a;b;c) | sort
+</pre>
+
+<pre>
+(echo This is foo.c; cat foo.c; echo This is bar.c; cat bar.c) | lpr
+</pre>
+
+<p>
+Back to 'if'.  We need to be able to test a lot of things.  Think of 'if'
+statements you use in C or java -- if x&lt;3, etc.
+
+<p>
+A general testing command exists for just this purpose,
+called "test".  See "man test".
+
+<pre>
+test 2 -lt 3
+</pre>
+succeeds since 2&lt;3.
+
+<p>
+"test" has
+numeric relations, plus string operators and file tests.
+
+<p>
+'=' is string-compare.
+
+<p>
+'-eq' is numeric equality.
+The numeric relations are all indicated by two-letter abbreviations which at
+the time were familiar to everyone because they're used in Fortran.
+These days, people generally learn them because of "test".
+But they're reasonably easy to remember (and of course you can always look
+them up in "man test"): le and ge for "less than or equal to" and "greater
+than or equal to"; lt and gt for "less than" and "greater than"; and eq and ne
+for "equal" and "not equal".
+
+<p>
+There are also some boolean-oriented file query operations.
+
+<p>
+test -f blah
+<br>
+succeeds iff blah exists and is a regular file.
+<br>
+test -s blah
+<br>
+succeeds iff blah exists and is a regular file
+and is not zero-sized.
+
+<p>
+There are
+tests for directories, all sorts of things.
+
+<p>
+A small language for boolean operators.  Most notably '!' for not.
+
+<p>
+Combine statuses in sh: || and &&, just like in C or java.
+Is also "short-circuit" like in C or java.
+
+<pre>
+if test $x -eq 5 && test `cat phase` = 1
+then
+    ...
+</pre>
+
+<p>
+In C and java, we don't have an "elsif" keyword --
+since the "else body" of an 'if'
+statement can be a single statement, we just kinda fudge it and put the
+'if' statement there and we consider it one big cascaded 'if' statement,
+we don't increase indentation level.
+<p>
+That is,
+<pre>
+if (something)
+    f();
+else if (somethingelse)
+    g();
+else
+    h();
+</pre>
+
+is <i>really</i>, syntactically,
+<pre>
+if (something)
+    f();
+else
+    if (somethingelse)
+	g();
+    else
+	h();
+</pre>
+
+<p>
+But we don't think of it that way; we think of it as three equal forks, and
+while this is a bit of a cheat in terms of the actual C language syntax, it is
+good.
+
+<p>
+But many programming languages (not including C nor programming languages
+which are C-derived such as java) can't
+do that sort of thing because there is an "end if" keyword; in the above case,
+you'd need two end-if keywords in a row at the end.
+
+<p>
+So most such programming languages have a special 'else if' combined keyword.
+Including sh, as illustrated above.
+
+<p>
+<hr noshade>
+
+<p>
+But back to substitutions for a moment.  Complex quoting rules.
+
+<p>
+In C or java, a string needs double-quotes.
+
+<p>
+When we type something like
+<pre>
+    exec("ls", "dir1", "dir2")
+</pre>
+in C or java, that's pretty cumbersome.  We wouldn't like to have to quote strings
+in sh.
+
+<p>
+That is, you'd quickly get fed up if instead of typing
+<pre>
+    ls dir1 dir1
+</pre>
+, since those are all constant strings rather than variable references,
+you had to type
+<pre>
+    "ls" "dir1" "dir2"
+</pre>
+
+<p>
+In C or java, "ls" with the quotes is a string literal, and ls without the quotes is a
+reference to a declared object of some kind (or a keyword, but ls isn't a
+keyword in C or java).
+
+<p>
+There is a possible alternative, though, which is used in unix shells:
+The rule is that
+the shell interprets some things, not others.
+e.g. variables require an explicit '$' introducer.
+
+<p>
+The fact that this is, overall, an inferior language design is illustrated by
+the way that we
+then need to get into <i>suppressing</i> the special interpretation of
+interesting characters.
+
+<p>
+How do we use the echo command to output an actual '>'?  Suppose we want to do:
+<pre>
+    printf("To forward your mail to user@host, type:  echo user@host >.forward\n");
+</pre>
+(also known as
+<pre>
+    System.out.println("To forward your mail to user@host, type:  echo user@host >.forward");
+</pre>
+)
+
+<p>
+We can't just use
+<pre>
+    echo To forward your mail to user@host, type:  echo user@host >.forward
+</pre>
+as that will put the output of the echo command into .forward, rather than
+passing the ">.forward" token to echo to be echoed along with the rest.
+
+<p>
+So some sort of '>'-interpreting suppression is required, which we call
+<cite>quoting</cite> the '>'.
+<p>
+There are no fewer than <strong>three</strong> ways to quote this:
+<ul>
+<li> backslashes suppress the special interpretation of an
+immediately-following character.
+<pre>
+    echo To forward your mail to user@host, type: echo user@host \>.forward
+</pre>
+<li> single quotes suppress the interpretation of just about everything inside
+them, except for other single quotes (that is, there's no way to embed a
+single quote within single-quoted text)
+<pre>
+    echo 'To forward your mail to user@host, type: echo user@host >.forward'
+</pre>
+or
+<pre>
+    echo To forward your mail to user@host, type: echo user@host '>'.forward
+</pre>
+or any wackier intermediate; the following is still exactly equivalent in
+behaviour:
+<pre>
+    echo To forward your mail to user@host, type: ec'ho user@host >.f'orward
+</pre>
+(although the spaces within single quotes are prevented from separating argv
+members, which would matter for most commands other than echo)
+<li> double quotes suppress the interpretation of <i>most</i> things inside
+them.  The exceptions are backquotes, backslashes (so you <i>can</i> put a
+double quote inside double-quoted text), and dollar signs.
+This is arguably rather weird, but useful in the current case if instead of
+"user@host" we have a variable.
+<br>
+The following won't perform the desired effect:
+<pre>
+    echo To forward your mail to $address, type: echo $address >.forward
+</pre>
+because the output will go into .forward.
+<br>
+The following won't perform the desired effect:
+<pre>
+    echo 'To forward your mail to $address, type: echo $address >.forward'
+</pre>
+because the variable expansion won't happen and an actual dollar sign and
+"address" will be output (instead of "user@host").
+<p>
+Double quotes to the rescue!
+<pre>
+    echo "To forward your mail to $address, type: echo $address >.forward"
+</pre>
+</ul>
+
+<p>
+Even stickier is problems around "$*", which expands to all command-line
+arguments.  E.g.
+<br>
+You type:
+<pre>
+prog file1 file2
+</pre>
+The program "prog" does:
+<pre>
+cat $*
+</pre>
+That's tricky.  Won't work if the file names have a space in them, for
+example.  E.g. if you type:
+<pre>
+prog 'funny file name'
+</pre>
+So, put quotes around it:
+<pre>
+cat "$*"
+</pre>
+Now, this won't work with <code>prog file1 file2</code>, because it will
+attempt to open a file named "file1 file2".
+<p>
+Solution: Very special and weird syntax "$@".
+<br>
+It's the same as "$*", except for a special wacky rule
+that if it is within double quotes, it closes and opens the quotes between
+each parameter.
+<br>
+E.g. in the case of
+<pre>
+prog file1 file2
+</pre>
+, if the shell script "prog" does "$*" with the quotes, that will expand to
+"file1 file2" (unlikely to be desired), whereas if the shell script does "$@"
+with the quotes, that will expand to
+"file1" "file2".
+
+
+<p>
+<hr noshade align=left width="25%">
+<p>
+How does this work with the "here-is" input mechanism discussed at the
+beginning of this file?
+
+<p>
+There are still two choices: either suppress everything, or suppress
+everything <i>except</i> backquotes, backslashes, and dollar signs (like the
+double-quotes).
+
+<p>
+But the way you indicate which one you want is weird.
+By default, you get the double-quote-like behaviour: backquotes and
+backslashes and dollar signs are
+interpreted within the "here-is" text.
+
+<p>
+If you want the single-quote-like behaviour, in that only your end-of-input
+word is special within the here-is text, you quote <i>the end-of-input word in
+the original here-is-introducing line</i>.
+Usually we quote this with a backslash.
+It's a very odd notation -- one might say stupid -- but you just have to get
+used to it.
+
+<p>
+As with single-quotes versus double-quotes, I personally use the
+more-quoting-oriented format by default (e.g. single quotes), and only use the
+format which lets some things be interpreted (e.g. double quotes) if I really
+want the interpretation.  So instead of the here-is text example near the
+beginning of this file, I would in practice write:
+
+<p>
+<pre>
+wc -l &lt;&lt;\EOF
+"It's impossible to foresee the consequences of being clever."
+                -- Christopher Strachey
+
+"If there are several ways of doing the same thing, choose one."
+                -- RFC 1958
+EOF
+</pre>
+
+<p>
+That little backslash before the first "EOF" means that backquotes,
+backslashes, and dollar signs within the here-is text will <i>not</i> be interpreted.
+
+<p>
+If you have a variable 'x' with some interesting value, compare the output of
+
+<pre>
+cat &lt;&lt;\EOF
+hello
+$x
+world
+EOF
+</pre>
+
+and
+
+<pre>
+cat &lt;&lt;EOF
+hello
+$x
+world
+EOF
+</pre>
+
+<p>
+Remember that this "here-is" text is one of the things which is completely
+different between sh and csh (specifically, csh has nothing analogous to
+"here-is" text), so try this out in sh, not csh.
+
+
+<p>
+<hr noshade>
+
+Loop control constructs:
+
+<p>
+"while" - again, based on exit status.
+
+<p>
+example loop which counts 1 to 10:
+<pre>
+i=0
+while test $i -lt 10
+do
+    i=`expr $i + 1`
+    echo $i
+done
+</pre>
+
+<p>
+read: read var, read var1 var2
+<br>
+deemed to fail upon EOF, hence "while read" to go through a file
+<pre>
+while read line
+</pre>
+Example with multiple variables:
+<pre>
+    while read x y
+    do
+        echo x is $x and y is $y
+    done
+</pre>
+
+<p>
+"true" command in /bin is just exit 0; "false" is just exit 1.
+
+<p>
+for:
+<pre>
+for i in hello goodbye
+do
+    echo $i, world
+done
+</pre>
+
+<p>
+for i
+<br>
+&nbsp;&nbsp;&nbsp;-- loop through argv.
+
+<pre>
+for i
+do
+    echo and another argument is $i
+done
+</pre>
+
+<p>
+case:
+<pre>
+case "$1" in
+    hello)
+	echo Hello to you too
+	;;
+    goodbye)
+	echo See ya later
+	;;
+    *)
+	echo I don\'t understand
+	;;
+esac
+</pre>
+(and another example:)
+<pre>
+case "$1" in
+    start)
+	/usr/lib/start-servers
+	;;
+    stop)
+	/usr/lib/stop-servers
+	;;
+    *)
+	echo usage: foo start\|stop >&2
+	;;
+esac
+</pre>
+
+<p>
+<hr noshade>
+
+<p>
+'#' introduces a comment.  The comment runs to the end of the line, similar
+to java or C++'s "//".
+
+<p>
+<hr noshade>
+
+<p>
+"shell functions" are analogous to "helper functions" in your C or java file.
+Before the introduction of "shell functions", we had to put things into a
+separate file to be able to call them as shell scripts from multiple places,
+or to be able to parameterize them in an argv-like way, etc.
+<p>
+Shell functions look a bit like functions in C or java (which is fairly weird-looking
+given the different syntax between C and sh), except that they always look as
+though they have no parameters.  The parameters are in $1 and so on, as in
+normal shell scripts.
+
+<p>
+Example problem:
+<blockquote>
+	"How much is that doggie in the window?"  This question can be
+	separated into some substitutable parts: "how much" (query),
+	"is" (verb), "that" (a constant string), "doggie" (noun), "in
+	the window" (modifier).
+
+<p>
+	We have files by the names query, verb, noun, and modifier which
+	contain a list of appropriate phrases, one per line.
+
+<p>
+	Write a shell script to output a sequence of five random queries.
+</blockquote>
+
+<p>
+First of all, I wrote a tiny
+<a href="shellfiles/firstbyte.c">program called "firstbyte"</a> to read and
+output the decimal value of the first byte of a file.
+This is to be used on /dev/urandom, which is a supply of random bytes.
+You don't have to read that firstbyte.c file, certainly not right now.  Its purpose is to
+give us a single random byte (each time we run it), if applied to
+/dev/urandom; in general, it gives us the numeric value of the first byte of
+whatever file is supplied as stdin.
+
+<p>
+But as far as shell functions goes, the thing about this problem which makes
+them particularly useful is that we need to do the same sequence of commands
+for each of these four term categories:
+<ol>
+<li> choose a random number
+<li> take that number mod the number of lines in this file
+<li> choose that line number of the file
+</ol>
+Steps 2 and 3 are only <i>slightly</i> different for the different files.
+
+<p>
+Here's a complete solution to this problem:
+<pre>
+#!/bin/sh
+
+randselect() {
+    size=`wc -l <$1`
+    # these multiple assignment statements simplify the backquoting
+    rand=`firstbyte &lt;/dev/urandom`
+    rand=`expr $rand % $size`
+    rand=`expr $rand + 1`
+    sed -n ${rand}p $1
+}
+
+for i in 1 2 3 4 5
+do
+    echo `randselect query` `randselect verb` that `randselect noun` `randselect modifier`\?
+done
+</pre>
+
+
+<p>
+<hr noshade>
+
+<p>
+One final note about shell functions:  Don't think that you can use the
+"return" statement like you're using it in a normal programming language.
+"Return" in a shell function provides an exit status for the shell function.
+It can't be used to return a general value.  (In particular, it's an eight-bit
+value.)
+
+<p>
+<hr noshade>
+
+<p>
+Now, when we put it in a file, we want to be able to run it by saying the
+name of that file like any other unix command; we don't want to have to say
+"sh file".  This is a minor thing, but without some way of having the shell
+invoked implicitly, it wouldn't be suitable for all programming purposes.
+
+<p>
+In fact if we just turn on the 'executable' mode bit of the file by typing
+"chmod +x file",
+it will invoke sh on it when you run the program.  That's what the first
+line above controls.
+We'll see how this works when we get to how executing programs works altogether
+in unix.
+
+<p>
+<hr noshade>
+
+<p>
+":"  -- null statement
+
+<p>
+<hr noshade>
+<p>
+PATH assignment is another property of the well-behaved shell script...
+<br>
+If you don't have a PATH assignment near the top of your shell script, then
+you are executing commands based on your user's path search order.
+This can sometimes be bizarre.
+If you say "cat" and you are intending to use /bin/cat, you should not end up
+using a little command /u/ajr/bin/cat which actually is just a program which
+prints "meow", if some user of your program is silly enough to have such a
+thing.
+You should specify your own path choice at the beginning of the script.
+Normally it's something like:
+<pre>
+PATH=/bin:/usr/bin
+</pre>
+Some commands which are in /bin on some versions of unix/linux are in /usr/bin
+on others, so we list both of these directory names for greater portability.
+
+<p>
+Finally, the well-behaved shell script deals with temporary files properly.
+<p>
+It's much commoner to use temporary files in shell scripts than in C programs.
+
+<p>
+There is a directory named /tmp in all unix systems into which you can write
+files, and it's cleared occasionally.
+Temporary files should go there.
+<br>
+Since /tmp is the same directory for all people and programs, you must use a
+unique file name.
+We achieve this filename uniqueness by including "$$" in the file name; this
+special variable in sh is the shell's process ID number.
+We'll see what this is useful for a bit later when we manipulate unix
+processes in C; but the important point for its use in a temporary file is
+that all running programs (processes) have a unique integer identifier, so if
+everyone uses $$ in their file name then no two processes will collide.
+
+<p>
+The /tmp directory is cleared
+<i>occasionally</i>.  Your program should still delete its temporary files, at
+least upon normal termination.
+
+<p>
+Use the program name in the tmp file name so that if something's leaving tmp files behind, we can figure out what!
+<br>
+e.g. /tmp/websh$$
+<br>
+Remove it with 'rm' upon exit.
+<pre>
+trap "rm -f $tempfile" 0 1 2 15
+</pre>
+
+<p>
+<hr noshade>
+
+<p>
+$? is the exit status of the last command.
+<br>
+(However, this is usually not what you want to do if you are interested in
+commands' exit statuses -- usually you want to use the command directly in
+an 'if' (or 'while').)
+
+<p>
+$! is the process ID number of the last "background" process (started with
+&amp;).
+<small>(We haven't talked about this yet, but I wanted to document this
+special shell variable amongst the rest.  Ignore it until you maybe find
+yourself reading these notes at some future time after we've talked about
+processes and fork and exec.)</small>
+
+<p>
+<hr>
+
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/notes/shell.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:56:37 GMT -->
+</html>

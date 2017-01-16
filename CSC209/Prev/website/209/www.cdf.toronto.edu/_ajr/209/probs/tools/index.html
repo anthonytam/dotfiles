@@ -1,0 +1,199 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/probs/tools/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:20 GMT -->
+<head>
+
+<title>CSC 209: extra problems regarding software tools</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #cc7777;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .unhidden { display: block; }
+</style>
+
+<script type="text/javascript">
+    function show(s) {
+        document.getElementById(s).className = 'unhidden';
+    }
+    function reveal(n) {
+        document.getElementById(n + '_teaser').className = 'hidden';
+        document.getElementById(n + '_hr').className = 'unhidden';
+        document.getElementById(n + '_full').className = 'unhidden';
+	n1 = n + 1;
+        document.getElementById(n1 + '_hr').className = 'unhidden';
+    }
+</script>
+
+</head>
+
+<body>
+<div class=toc>
+
+<a href="../../.html">Introduction</a>
+<br>
+<a href="../../announce.html">Announcements</a>
+
+<p>
+
+<a href="../../lect/index.html">Lectures</a>
+<br>
+<a href="../../tut/index.html">Tutorials</a>
+<br>
+<a href="../../asmt.html">Assignments</a>
+
+<p>
+<a href="javascript:show('tests')">Tests, exam</a>
+<div id=tests class=hidden>
+    <ul>
+    <li>
+    <a href="../../mid/index.html">Mid-term test</a>
+    <li>
+    <a href="../../exam/info.html">Final exam</a>
+    </ul>
+</div>
+
+<p>
+
+<a href="../../notes/index.html">Course notes</a>
+<br>
+<a href="../index.html">Extra problems</a>
+<br>
+
+<a href="https://mcs.utm.utoronto.ca/~mybb/utmcs/forumdisplay.php?fid=193">Discussion board</a>
+
+<p>
+<a href="../../netgrade-results.html">Grades so far</a>
+<br>
+<a href="../../oldannounce.html">Old announcements</a>
+
+</div>
+
+<h1>CSC 209 extra problems regarding software tools</h1>
+
+1.
+Write a C program which acts as a standard unix tool (i.e. takes file name
+arguments or stdin if no args; outputs to stdout; etc) which turns all funny
+characters in its input to visible sequences as follows:
+<ul>
+<li> characters less than '&nbsp;' (space) are represented as '^' and the character
+they're the control character of, e.g. the byte 1 is represented as "^A".
+64 is the number to add;
+'A' is 1 + 64.
+<li> the character 127 is represented as "^?".
+<li> characters greater than or equal to 128 are represented as "M-" (for
+"meta") and then the character minus 128.  Note that one of the above two points
+might then apply.
+</ul>
+
+<p>
+<a href="vis.c">solution</a>
+
+<p>
+<hr noshade>
+<p>
+
+2.
+Write a C program to
+calculate byte frequencies of the input, like this:
+<pre>
+% echo helloooooo | bfreq
+012: 1
+e: 1
+h: 1
+l: 2
+o: 6
+% 
+</pre>
+Use isprint() to make the decision as to whether to use %c or 0%o before the
+colon.
+
+<p>
+<a href="bfreq.c">solution</a>
+
+<p>
+2b.
+Write a command-line which sorts the occurrences into frequency order using
+sort.  (Be sure that a frequency of 15 is sorted after a frequency of 7,
+despite occurring earlier in alphabetical order.)
+
+<p>
+<a href="2b.txt">solution</a>
+
+<p>
+<hr noshade>
+<p>
+
+3.
+Command-line arguments are file names.  Stat them and decrease their mtime by
+one hour using utimes().  Example session:
+<pre>
+% ls -l foo
+-rw-r--r--    1 ajr      instrs       1759 Apr 14 11:29 foo
+% back1 foo
+% ls -l foo
+-rw-r--r--    1 ajr      instrs       1759 Apr 14 10:29 foo
+% 
+</pre>
+
+<p>
+<a href="back1.c">solution</a>
+
+<p>
+<hr noshade>
+<p>
+
+4.
+Write simple versions of any of the following unix tools.  That is, implement a
+minimum of the command-line arguments or other special processing; mostly,
+just do the simple case, and you can impose arbitrary limits if necessary.
+<ul>
+<li> cat
+&nbsp; [<a href="../../notes/toolsfiles/cat1.c">solution</a>]
+<li> echo (include -n option; get all spacing and newline exactly right)
+&nbsp; [<a href="echo.c">solution without -n</a>]
+<li> ls (then add the -l option, although you will want to cheat on
+some fields)
+<li> cmp
+<li> cmp with a -r option for "recursive"
+<li> tr
+<li> fgrep (just grep for a fixed string)
+<li> sort (just sort whole lines in strict lexical order)
+<li> mkdir, including the -p option
+</ul>
+
+<p>
+<hr>
+
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/probs/tools/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:21 GMT -->
+</html>

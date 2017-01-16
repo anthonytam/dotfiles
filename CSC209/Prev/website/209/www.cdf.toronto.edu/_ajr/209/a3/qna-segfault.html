@@ -1,0 +1,169 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/a3/qna-segfault.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:27 GMT -->
+<head>
+
+<title>CSC 209 assignment three questions and answers</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #cc7777;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .unhidden { display: block; }
+</style>
+
+<script type="text/javascript">
+    function show(s) {
+        document.getElementById(s).className = 'unhidden';
+    }
+    function reveal(n) {
+        document.getElementById(n + '_teaser').className = 'hidden';
+        document.getElementById(n + '_hr').className = 'unhidden';
+        document.getElementById(n + '_full').className = 'unhidden';
+	n1 = n + 1;
+        document.getElementById(n1 + '_hr').className = 'unhidden';
+    }
+</script>
+
+</head>
+
+<body>
+<div class=toc>
+
+<a href="../.html">Introduction</a>
+<br>
+<a href="../announce.html">Announcements</a>
+
+<p>
+
+<a href="../lect/index.html">Lectures</a>
+<br>
+<a href="../tut/index.html">Tutorials</a>
+<br>
+<a href="../asmt.html">Assignments</a>
+
+<p>
+<a href="javascript:show('tests')">Tests, exam</a>
+<div id=tests class=hidden>
+    <ul>
+    <li>
+    <a href="../mid/index.html">Mid-term test</a>
+    <li>
+    <a href="../exam/info.html">Final exam</a>
+    </ul>
+</div>
+
+<p>
+
+<a href="../notes/index.html">Course notes</a>
+<br>
+<a href="../probs/index.html">Extra problems</a>
+<br>
+
+<a href="https://mcs.utm.utoronto.ca/~mybb/utmcs/forumdisplay.php?fid=193">Discussion board</a>
+
+<p>
+<a href="../netgrade-results.html">Grades so far</a>
+<br>
+<a href="../oldannounce.html">Old announcements</a>
+
+</div>
+
+Q: Various segfault problems ("Segmentation exception").
+
+<p>
+A:
+<ul>
+<li> When dereferencing a pointer value,
+or giving it to another component to dereference,
+make sure it points somewhere.  If
+you say "char *s;", then you can't say "strcpy(s, something)" immediately after.
+"s" is uninitialized and you can't assume it points to the zeroth byte of an
+array where you can store your data.  You have to assign it a value pointing
+to such a thing if you want to use it.  Better yet, often you can just
+declare an array in the first place, rather than a pointer variable.
+<!--
+<li> Be sure you are not exceeding array bounds, including in string
+manipulation.  If "s" is a string, then "char t[5000]; strcpy(t, s);" is an
+error, because you don't know that s is shorter than 5000 characters.
+Check lengths with strlen() to be sure strings will fit in the target array,
+and don't forget to leave room for the terminating zero byte.
+-->
+<li> Check for null pointers at most points in the parsed_line data structure.
+Most things can be NULL to mean that they don't apply, e.g. the input
+redirection file name char pointer is NULL if there is no input redirection.
+<li> Check error returns from system calls.  Even in initial development!
+<li> When you do observe (e.g. with an error return from a system call)
+that something shouldn't be done, make sure you
+don't do it!  I've seen a surprising amount of beginner C code in my life
+which checks for error returns from system calls correctly and prints a
+nice error message but then comes out of the 'if' and uses the invalid
+pointer value anyway, etc.
+Apparently this is an easy mistake to make (although it's not clear to me why).
+<li> You can localize the segfault using gdb.
+"gdb" is similar to other debuggers you may have used with other programming
+languages (e.g. in CSC 207).
+I've written <a href="../notes/gdb/index.html">a document about using gdb</a>.
+(Note that the Makefile for fsh already specifies the "-g"
+flag, so you don't have to do the recompiling step.)
+<li> Think methodically; form and reject hypotheses.
+Understand everything you write in your program.  The fact that your program
+does not work is not sufficient motivation to make a particular change.
+You have to understand the change you are making and have a good reason to do
+it.  Debugging involves understanding what was wrong with your program, not
+just making the bad behaviour go away.
+    <ul>
+    <li> This can be trickier when working on an existing program.
+         Sometimes you have to spend extra time simply understanding existing
+         code which you might not even have to modify.
+         Questions about the <i>existing</i> fsh code (as distributed) are
+         legitimate topics for the course bulletin board, so long as they don't
+         discuss your code or your solution to assignment problems, just the
+         understanding of the code which is distributed.
+    <li> If you think you've found a bug or anomaly in the distributed fsh,
+         you may well have done so.  Replicate the bad behaviour by testing
+         with the distributed fsh.  If it <i>doesn't</i> misbehave in the
+         original, then you've <i>introduced</i> the bug and you're
+         responsible for it.  If it <i>does</i> misbehave in the original, you
+         should probably still check with me if you want to omit something in
+         your assignment on this account, unless it's simply a case of missing
+         features (e.g. fsh does not do variables, backquotes, etc).
+    </ul>
+</ul>
+<p><hr>[<a href="qna.html">full Q&amp;A file</a>]
+
+<p>
+<hr>
+
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/a3/qna-segfault.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:27 GMT -->
+</html>
