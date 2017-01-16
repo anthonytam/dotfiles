@@ -31,8 +31,8 @@ autoload -Uz compinit
 compinit
 
 # Set emacs as default editor
-export EDITOR='emacs -nw'
-export VISUAL='emacs -nw'
+export EDITOR='emacs'
+export VISUAL='emacs'
 
 ## History
 HISTFILE=$HOME/.zhistory       # enable history saving on shell exit
@@ -116,7 +116,6 @@ bindkey -M viins '^u'    backward-kill-line
 ##
 # Misc
 alias :q='exit'
-alias less='less -R'
 alias grep='grep --color=always'
 # List directory contents
 alias lsa='ls -lah --color'
@@ -125,20 +124,15 @@ alias ll='ls -lh --color'
 alias la='ls -A --color'
 alias ls='ls --color'
 # Push and pop directories on directory stack
-alias md='mkdir -p'
-alias rd=rmdir
-alias d='dirs -v | head -10'
 alias -g ...='../..'
 alias -g ....='../../..'
 alias -g .....='../../../..'
 alias -g ......='../../../../..'
 # Emacs clients
-alias e='emacs -nw'
-alias et='emacsclient -t'
-alias ec='emacsclient -c'
+alias e='emacs'
 # Quartus BS
-if [ -d "/home/tamfire/altera/11.1/quartus" ] ; then
-     export PATH="/home/tamfire/altera/11.1/quartus/bin:$PATH"
+if [ -d "/opt/altera/11.1/quartus" ] ; then
+     export PATH="/opt/altera/11.1/quartus/bin:$PATH"
 fi
 
 ##
