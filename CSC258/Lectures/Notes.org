@@ -48,3 +48,59 @@
 *** KMap
     Min terms in 1 retangle can ve reduced into 1 term
     
+* Week 3
+** Devices
+*** Multiplexer
+**** Examples
+    - Surveillance video
+    - Routers
+    - Cable boxes
+    
+**** What is it
+     - Multiple inputs with a single output
+     - Flow control
+*** Adder Circuits
+**** What is it
+     - Binary Adders
+     - Iterative combinational circuits
+     - Many different types, we will learn 3
+**** How does it work (Half Adder)
+     - Input: 2 1 bit numbers
+     - Output: 1 2 bit number
+     - No chaining
+**** How does it work (Full Adder)
+     - Input: 3 1 bit numbers, can take a carry bit
+     - Output: 2 1 bit number
+     - Can be chained together to get more bits
+**** How does it work (Ripple-Carry Binary Adder)
+     - Full adder units chained together in order to perform operations on signal vectors
+**** The role of C_in
+     - Why not use a half adder as the lead?
+     - We can use the extra bit for subtraction!
+**** Lets play a game...
+     - Convert 2 numbers to binary
+     - Invert the smaller number
+     - Add the numbers
+     - Add 1
+     - Subtraction!
+*** Subtractors
+**** What is it
+     - Extension of adders
+***** Two Types of numbers
+      - Unsigned - spparate bit exists for the sign
+      - Signed - 2's complement
+**** 2's Complement
+     - Adding a 2's complement number to the original number will produce 0. Negation!
+**** Subtraction - Unsigned
+     - Get the 2's complement of B (-B)
+     - Add the 2's complement of B to A
+     - If there is a carry (high) the final result is positive
+     - If there is no carry (low) the final result is a negative number, get the 2's complement of it
+**** Overflow all the numbers, hack pokemon
+*** Decoder
+**** What is it?
+     - Given encoded information, decode to original information
+     - Translate the output of one circuit into the input of another
+*** Demultiplexer
+    - Well, it multiplxes in reverse.
+    - One input, multiples outputs

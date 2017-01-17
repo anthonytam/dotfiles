@@ -1,7 +1,7 @@
 * Week 1
 ** Data Model
    DBMS is based on some kind of data model
-***   EX
+*** EX
 **** Network & hierarchical data model
 **** Relational data model
      Think of data as having rows an colums
@@ -81,3 +81,16 @@
     There are no duplicate tuples
     Order does not matter
     
+* Week 2
+** Project and Duplicates
+   - Projecting onto fewer attibutes can removed what made 2 roles unique
+   - These duplicates are dropped
+** Joining Relations
+   - Cartesian product produces all combinations, most of which are not needed
+*** Natural Join
+    - Take the cartesian product
+    - Select to ensure quality on attributes that are in both relations (Primary and Foriegn Key)
+    - Project to remove duplicatest
+    - Commutative property holds
+    - Associatove property holds
+
