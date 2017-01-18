@@ -1,3 +1,4 @@
+
 * Week 1
 ** Data Model
    DBMS is based on some kind of data model
@@ -93,4 +94,14 @@
     - Project to remove duplicatest
     - Commutative property holds
     - Associatove property holds
-
+**** Special Cases
+     - With no matches, empty set is returned
+     - Exactly the same attributes, keeps the intersection
+     - No attribute in common, catesian product is returned
+***** Over matching
+      - Joins on attribute name
+      - Two attributes have the same name, but want to match on one
+***** Under matching
+      - Two attributes have different names, but need them to match
+*** Theta Join
+    - Cartesian product followed by a select

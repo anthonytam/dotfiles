@@ -1,7 +1,9 @@
-Anthony Tam, 1002583402
+#+author: Anthony Tam, 1002583402
+#+title: CSC258 Prelab Two
+#+LATEX_HEADER:\usepackage[margin=0.75in]{geometry}
+#+OPTIONS: toc:nil
 
-* Lab 2 Prelab
-** Truth Table
+* Truth Table of the Circuit
    | A | B | C |   | 0 | 1 | 2 | 3 | 4 | 5 | 6 |
    |---+---+---+---+---+---+---+---+---+---+---|
    | 0 | 0 | 0 |   | 1 | 0 | 0 | 1 | 0 | 0 | 1 |
@@ -13,4 +15,57 @@ Anthony Tam, 1002583402
    | 1 | 1 | 0 |   | 0 | 1 | 1 | 0 | 0 | 0 | 0 |
    | 1 | 1 | 1 |   | 1 | 0 | 0 | 1 | 0 | 0 | 0 |
 
-** KMaps
+* Karnaugh-Maps of Each Display
+*** Letter 0
+    |    | B'\cdot{}C' | B'\cdot{}C | B\cdot{}C | B\cdot{}C' |
+    |----+-------+------+-----+------|
+    | A' |     1 |    0 | 1   | 1    |
+    | A  |     0 |    1 | 1   | 0    | 
+*** Letter 1
+    |    | B'\cdot{}C' | B'\cdot{}C | B\cdot{}C | B\cdot{}C' |
+    |----+-------+------+-----+------|
+    | A' |     0 |    1 |   1 |    0 |
+    | A  |     0 |    1 |   0 |    1 |
+    |    |       |      |     |      |
+
+*** Letter 2
+    |    | B'\cdot{}C' | B'\cdot{}C | B\cdot{}C | B\cdot{}C' |
+    |----+-------+------+-----+------|
+    | A' | 0     | 1    | 1   | 0    |
+    | A  | 0     | 1    | 0   | 1    |
+*** Letter 3
+    |    | B'\cdot{}C' | B'\cdot{}C | B\cdot{}C | B\cdot{}C' |
+    |----+-------+------+-----+------|
+    | A' | 1     | 0    | 1   | 0    |
+    | A  | 1     | 0    | 1   | 0    |
+*** Letter 4
+    |    | B'\cdot{}C' | B'\cdot{}C | B\cdot{}C | B\cdot{}C' |
+    |----+-------+------+-----+------|
+    | A' | 0     | 0    | 1   | 1    |
+    | A  | 0     | 0    | 0   | 0    |
+*** Letter 5
+    |    | B'\cdot{}C' | B'\cdot{}C | B\cdot{}C | B\cdot{}C' |
+    |----+-------+------+-----+------|
+    | A' | 0     | 0    | 1   | 0    |
+    | A  | 0     | 0    | 0   | 0    |
+*** Letter 6
+    |    | B'\cdot{}C' | B'\cdot{}C | B\cdot{}C | B\cdot{}C' |
+    |----+-------+------+-----+------|
+    | A' | 1     | 0    | 1   | 0    |
+    | A  | 0     | 1    | 0   | 0    |
+
+* Optimized Logic of the Circuit
+*** Letter 0
+    - A'C' + AC + BC
+*** Letter 1
+    - B'C + A'C + ABC'
+*** Letter 2
+    - B'C + A'C + ABC'
+*** Letter 3
+    - B'C' + BC
+*** Letter 4
+    - A'B
+*** Letter 5
+    - A'BC
+*** Letter 6
+    - A'B'C' + AB'C + A'BC
