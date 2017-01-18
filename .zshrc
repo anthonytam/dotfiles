@@ -2,8 +2,6 @@
 ##
 ## S E T T I N G S
 ##
-# Vi mode
-bindkey -v
 
 # Enable colors
 autoload -U colors && colors
@@ -87,29 +85,8 @@ bindkey '^Z' fancy-ctrl-z
 bindkey '^P' up-history
 bindkey '^N' down-history
 
-# backspace and ^h working even after
-# returning from command mode
-bindkey '^?' backward-delete-char
-bindkey '^h' backward-delete-char
-
-# ctrl-w removed word backwards
-bindkey '^w' backward-kill-word
-backward-kill-dir () {
-    local WORDCHARS=${WORDCHARS/\/}
-    zle backward-kill-word
-}
-zle -N backward-kill-dir
-bindkey '^[^?' backward-kill-dir
-
 # ctrl-r starts searching history backward
 bindkey '^r' history-incremental-search-backward
-
-# VI MODE KEYBINDINGS (ins mode)
-bindkey -M viins '^a'    beginning-of-line
-bindkey -M viins '^e'    end-of-line
-bindkey -M viins '^k'    kill-line
-bindkey -M viins '^w'    backward-kill-word
-bindkey -M viins '^u'    backward-kill-line
 
 ##
 ## A L I A S E S
@@ -130,10 +107,6 @@ alias -g .....='../../../..'
 alias -g ......='../../../../..'
 # Emacs clients
 alias e='emacs'
-# Quartus BS
-if [ -d "/opt/altera/11.1/quartus" ] ; then
-     export PATH="/opt/altera/11.1/quartus/bin:$PATH"
-fi
 
 ##
 ## P R O M P T
@@ -160,5 +133,10 @@ zle -N zle-keymap-select
 
 # Delay of 0.1 seconds
 export KEYTIMEOUT=1
+
+##
+### P A T H
+##
+export PATH="$HOME/.bin:$PATH"
 
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 
