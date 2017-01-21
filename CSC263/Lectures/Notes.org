@@ -94,3 +94,24 @@
 **** Go bottom up, the bottom row is already a valid heap
 **** Move up a row, check all elements and bubble down the root element if needed, repeat
 **** Once at the root, need to bubble down until in a proper position
+* Week 3
+** What is a dictionary
+   - Dictionary has not priority on its elements
+   - Each item or node has a key
+     - Assume they are unique
+   - Search(S, k) return x in S such that the key is k
+   - Insert(S, x) insert x into S, if something has the same key, replace it
+   - Delete(S, x) delete x from S
+     - Takes a node, not a key
+     - Each operation focus' on a single task
+** TODO Worst Case Running Time
+   |              | Unsorted lsit | Sorted Array | BST  | Balanced BST |
+   |--------------+---------------+--------------+------+--------------|
+   | Search(S, k) | \theta(n)          | \theta(log n)     | \theta(n) | \theta(log n)     |
+   
+** BST!
+   - A tree where every node has 2 children
+   - Each node has a key
+   - Each key is greater or less then another (NOT EQUAL!)
+   - BST is not required to be nearly-complete structure
+   - A BST can be completly unbalanced
