@@ -1,4 +1,4 @@
-;;(set-face-attribute 'default nil :height 250)
+;;
 ;;
 ;; P A C K A G E   M A N A G E M E N T
 ;;
@@ -30,7 +30,7 @@
 (load custom-file 'noerror) ; Load custom file
 (setq org-pretty-entities t) ; Live LaTeX in org mode
 
-;;
+;; 
 ;; O R G   M O D E
 ;;
 
@@ -54,9 +54,7 @@
 ;;
 ;; P A C K A G E S
 ;;
-(use-package leuven-theme
-  :config
-  (load-theme 'leuven t))
+(use-package gruvbox-theme)
 
 ;; Saner defaults for emacs
 (use-package better-defaults)
@@ -76,6 +74,9 @@
   :config
   (which-key-mode))
 
+(use-package magit
+  :config
+  (global-set-key "\C-x\g" 'magit-status))
 ;;
 ;; E V I L   M O D E
 ;;
