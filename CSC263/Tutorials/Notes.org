@@ -15,3 +15,65 @@
      1. Avg case # of times assignment happens
      2. Best case
      3. Worst case
+* Week 4
+** Question 1
+*** Original Lecture Code
+    #+BEGIN_SRC python
+      TreeInsert(t, x):
+        # insert and return the new root
+        if t == NIL:
+          t <- x
+        elif x.key < t.key:
+          t.left <- TreeInsert(t.left, x)
+        elif x.key > t.key:
+          t.right <- TreeInsert(t.right, x)
+        else: # x.key == t.key
+          replace t with x # update x.left, x.right
+        return t
+    #+END_SRC
+*** Allow Duplicates
+    #+BEGIN_SRC python
+      TreeInsert(t, x):
+        # insert and return the new root
+        if t == NIL:
+          t <- x
+        elif x.key <= t.key:
+          t.left <- TreeInsert(t.left, x)
+        elif x.key > t.key:
+          t.right <- TreeInsert(t.right, x)
+        return t
+    #+END_SRC
+*** Worst Case Running Time
+    - Inserting n indential elements in this list would cause the elements to be inserted in a line down from eachother.
+    - The run time would be related to len(t) where len(t) is the current number of elements in the list. 
+      - This creates a series from 1 to len(t), we will call this n
+    - Runtime is in O(\frac{n(n+1)}{2}) = \theta(n^2)
+** Question 2
+*** Alternate equal value positions
+    #+BEGIN_SRC python
+      TreeInsert(t, x):
+        # insert and return the new root
+        if t == NIL:
+          t <- x
+        elif x.key < t.key:
+          t.left <- TreeInsert(t.left, x)
+        elif x.key > t.key:
+          t.right <- TreeInsert(t.right, x)
+        else: # x.key == t.key
+          if t.goLeft:
+            t.left <- TreeInsert(t.left, x)
+            t.goLeft = not t.goLeft
+          else:
+            t.right <= TreeInsert(t.right, x)
+            t.goLeft = not t.goRight
+        return t
+    #+END_SRC
+*** Differences
+    - This algorithm means if duplicate elements are inserted, they create a full binary tree instead of a line
+    - Instead of forcing duplicates to a single side, we can check the flag on the current node
+    - After doing the insertion, change the flag
+*** Runtime
+    - This would give a proper binary tree runtime when inserting a list of duplicate values
+    - for each insertaion, it is O(log n) time. Multiply this by n elements we get O(n log n)
+** Question 3
+*** 

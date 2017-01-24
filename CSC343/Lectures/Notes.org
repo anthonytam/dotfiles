@@ -104,3 +104,10 @@
       - Two attributes have different names, but need them to match
 *** Theta Join
     - Cartesian product followed by a select
+* Week 3
+** Set Operations
+   - Compare the entire tuple
+   - The 2 relations MUST have
+     - Same airty
+     - Same attribute names
+     - same attribute order

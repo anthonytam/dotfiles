@@ -1,0 +1,8 @@
+#+author: Anthony Tam, 1002583402
+#+title: CSC258 Prelab Three
+#+LATEX_HEADER:\usepackage[margin=0.75in]{geometry} \usepackage{graphicx}
+#+OPTIONS: toc:nil
+
+
+* Circuit Diagram of a 10-to-1 mux using 2-to-1 muxes
+\includegraphics{10to1mux.png}
