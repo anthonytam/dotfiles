@@ -77,23 +77,8 @@
 (use-package magit
   :config
   (global-set-key "\C-x\g" 'magit-status))
-;;
-;; E V I L   M O D E
-;;
-;; To enable evil mode select everything inbetween BEGIN and END and then run
-;; M-x uncomment-region. Then delete these two lines and the BEGIN and END lines
-;; BEGIN
-;;(use-package evil
-;;  :init
-;;  (setq evil-want-C-u-scroll)
-;;  (setq evil-want-C-i-jump)
-;;  :config
-;;  (evil-mode t)
-;;  (setq evil-split-window-below t)
-;;  (setq evil-vsplit-window-right t)
-;;  (setq-default evil-symbol-word-search t))
-;; END
 
+(use-package php-mode)
 ;;
 ;; G O D   M O D E
 ;;
