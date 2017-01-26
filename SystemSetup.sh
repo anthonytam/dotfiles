@@ -30,9 +30,19 @@ echo 1 | yaourt emacs-git --noconfirm
 echo 1 | yaourt gvim --noconfirm
 
 #
+# JDK8
+#
+echo 1 | yaourt jdk8-openjdk --noconfirm
+
+#xs
 # GOOGLE CHROME
 #
 echo 1 | yaourt google-chrome --noconfirm
+
+#
+# SPOTIFY
+#
+echo 33 | yaourt spotify --noconfirm
 
 #
 # DOT FILES
