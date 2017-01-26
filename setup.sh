@@ -99,7 +99,9 @@ read -p "Set up i3 config? (y/n) " yesorno
 case "$yesorno" in
     y)
         rm "$HOME/.i3status.conf"
-        ln -s "$DIR/i3/.i3status.conf" "$HOME/.i3status.conf";;
+	rm "$HOME/.config/i3/config"
+        ln -s "$DIR/i3/.i3status.conf" "$HOME/.i3status.conf"
+	ln -s "$DIR/i3/config" "$HOME/.config/i3/config";;
     *)
         echo "Skipping i3." ;;
 esac
