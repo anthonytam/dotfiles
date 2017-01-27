@@ -15,6 +15,7 @@ yaourt -Syu --noconfirm
 #
 # WINDOW MANAGER
 #
+echo 1 | yaourt docbook-xsl --noconfirm
 echo 1 | yaourt i3-gaps-git --noconfirm
 echo 1 | yaourt i3status --noconfirm
 echo 1 | yaourt dmenu --noconfirm
@@ -30,11 +31,12 @@ echo 1 | yaourt emacs-git --noconfirm
 echo 1 | yaourt gvim --noconfirm
 
 #
-# JDK8
+# JAVA JDK & IDE
 #
 echo 1 | yaourt jdk8-openjdk --noconfirm
+echo 1 | yaourt intellij-idea-ce --noconfirm
 
-#xs
+#
 # GOOGLE CHROME
 #
 echo 1 | yaourt google-chrome --noconfirm
