@@ -19,6 +19,16 @@ echo 1 | yaourt docbook-xsl --noconfirm
 echo 1 | yaourt i3-gaps-git --noconfirm
 echo 1 | yaourt i3status --noconfirm
 echo 1 | yaourt dmenu --noconfirm
+echo 1 | yaourt i3lock-fancy-git --noconfirm
+
+#
+# PINKY CONTROLS
+#
+cd ~
+git clone https://github.com/anthonytam/PinkyCtrls.git
+cd PinkyCtrls
+make
+sudo make install
 
 #
 # EMACS (From source)

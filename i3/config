@@ -1,5 +1,7 @@
 # Set to prefered keyboard layout
-exec --no-startup-id  "setxkbmap us"
+exec --no-startup-id "setxkbmap us"
+exec --no-startup-id "s2c"
+exec --no-startup-id "~/PinkyCtrls/s2cctl start"
 
 # Disable window borders
 for_window [class="^.*"] border pixel 0
@@ -17,6 +19,9 @@ font pango:monospace 8
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
+
+# Lock the screek
+bindsym $mod+Escape exec i3lock-fancy -gp -- scrot -z
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
