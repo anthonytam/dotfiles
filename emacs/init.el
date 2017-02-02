@@ -1,3 +1,4 @@
+;;
 ;;      __________.__         ___________             _________                _____.__        
 ;;      \______   \  | _______\_   _____/____  ___  __\_   ___ \  ____   _____/ ____\__| ____  
 ;;       |     ___/  | \___   /|    __) \__  \ \  \/  /    \  \/ /  _ \ /    \   __\|  |/ ___\ 
@@ -49,7 +50,7 @@
         (tags . " %i %-12:c")
         (search . " %i %-12:c")))
 
-(setq org-agenda-files '("~/Documents/TODO.org"))
+(setq org-agenda-files '("~/Dropbox/org/TODO.org"))
 (global-set-key "\C-ca" 'org-agenda)
 (define-key org-agenda-mode-map "j" 'org-agenda-next-item)
 (define-key org-agenda-mode-map "k" 'org-agenda-previous-item)
@@ -86,13 +87,19 @@
 
 (use-package web-mode)
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
 
 (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+
+(use-package flycheck
+  :config
+  (global-flycheck-mode))
+
+
 ;;
 ;; G O D   M O D E
 ;;

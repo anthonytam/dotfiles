@@ -63,7 +63,8 @@ case "$yesorno" in
         rm -r "$HOME/.emacs.d"
         mkdir -p "$HOME/.emacs.d"
         ln -s "$DIR/emacs/init.el" "$HOME/.emacs.d/init.el"
-        ln -s "$DIR/emacs/themes" "$HOME/.emacs.d/themes";;
+        ln -s "$DIR/emacs/themes" "$HOME/.emacs.d/themes"
+	ln -s "$DIR/emacs/README.org" "$HOME/.emacs.d/README.org";;
     *)
         echo "Skipping emacs." ;;
 esac

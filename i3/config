@@ -2,6 +2,7 @@
 exec --no-startup-id "setxkbmap us"
 exec --no-startup-id "s2c"
 exec --no-startup-id "~/PinkyCtrls/s2cctl start"
+exec --no-startup-id "dropbox"
 
 # Disable window borders
 for_window [class="^.*"] border pixel 0

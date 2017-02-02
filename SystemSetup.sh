@@ -34,6 +34,9 @@ sudo make install
 # EMACS (From source)
 #
 echo 1 | yaourt emacs-git --noconfirm
+echo 1 | yaourt aspell-en --noconfirm
+echo 1 | yaourt texlive-core --noconfirm
+echo 1 | yaourt texlive-latexextra --noconfirm
 
 #
 # VIM
@@ -41,11 +44,12 @@ echo 1 | yaourt emacs-git --noconfirm
 echo 1 | yaourt gvim --noconfirm
 
 #
-# JAVA JDK & IDE
+# JAVA JDK & IDE & ANDROID
 #
 echo 1 | yaourt jdk8-openjdk --noconfirm
 echo 1 | yaourt intellij-idea-ce --noconfirm
-
+echo 1 | yaourt android-sdk --noconfirm
+echo 1 | yaourt android-studio --noconfirm
 #
 # GOOGLE CHROME
 #
