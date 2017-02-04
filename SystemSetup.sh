@@ -37,6 +37,7 @@ echo 1 | yaourt emacs-git --noconfirm
 echo 1 | yaourt aspell-en --noconfirm
 echo 1 | yaourt texlive-core --noconfirm
 echo 1 | yaourt texlive-latexextra --noconfirm
+echo 1 | yaourt texlive-pictures --noconfirm
 
 #
 # VIM
@@ -59,6 +60,11 @@ echo 1 | yaourt google-chrome --noconfirm
 # SPOTIFY
 #
 echo 33 | yaourt spotify --noconfirm
+
+#
+# DROP BOX
+#
+echo 1 | yaourt dropbox --noconfirm
 
 #
 # DOT FILES
