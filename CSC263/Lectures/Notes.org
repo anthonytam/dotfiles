@@ -156,5 +156,46 @@
        - Decreases right subtree height by 1
      - Right
        - The exact opposite (Can undo a left rotation and vise versa)
-      
-     - 
+*** Recurrence (Question 1)
+    - Let's write a recurrence for the minimum number of nodes in an AVL tree of height h.
+    - Lets call the recurrence T
+      #+BEGIN_SRC python
+        T(0) = 1
+        T(1) = 2
+        if h > 1:
+        T(h) = 1 + T(h-1) + T(h-2)
+
+        #This gives
+        T(2) = 1 + T(1) + T(0) = 1+2+1 = 4
+      #+END_SRC
+    - This means 7 nodes is the min for a height 3 tree
+*** Inserting elements (Question 2)
+    - Insert 3
+    - Insert 2
+    - Insert 1 - BAD
+      - Needs a right rotation on 3 to hold the AVL invariant 
+    - Insert 4
+    - Insert 5 - BAD
+      - Needs a left rotation on 3
+    - Insert 6 - BAD
+      - Needs a left insert on 2
+*** Min inserts that require a double rotation (Question 3)
+    - 3.
+    - Why can't 1 be the answer?
+      - Inserting the first node can never cause a problem
+    - Why can't 2 be the answer?
+      - Insert 1
+      - Insert 2
+    - So 3 must be the answer. What sequence requires a double rotation?
+      - Insert 3
+      - Insert 1
+      - Insert 2
+** Augmenting Data Structures
+   - Changing a data structure for practical use
+     - an AVL is an augmented BST
+   - 
+* Week 5
+** Dictionary ADT
+   - Add
+   - Search 
+   - Delete
