@@ -1,0 +1,127 @@
+# do Lab2_run_msim_gate_verilog.do 
+# if {[file exists gate_work]} {
+# 	vdel -lib gate_work -all
+# }
+# vlib gate_work
+# vmap work gate_work
+# Copying /opt/altera/11.1sp2/modelsim_ase/linux/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# ** Warning: Copied /opt/altera/11.1sp2/modelsim_ase/linux/../modelsim.ini to modelsim.ini.
+#          Updated modelsim.ini.
+# 
+# vlog -vlog01compat -work work +incdir+. {Lab2.vo}
+# Model Technology ModelSim ALTERA vlog 10.0c Compiler 2011.09 Sep 21 2011
+# -- Compiling module Lab2
+# 
+# Top level modules:
+# 	Lab2
+# 
+#  
+vsim -do Lab2_run_msim_gate_verilog.do -l msim_transcript -i work.Lab2
+# vsim -do Lab2_run_msim_gate_verilog.do -l msim_transcript -i work.Lab2 
+# Loading work.Lab2
+# ** Error: (vsim-3033) Lab2.vo(111): Instantiation of 'cycloneii_io' failed. The design unit was not found.
+#         Region: /Lab2
+#         Searched libraries:
+#             /home/tamfire/Documents/Quartus Projects/Lab2/simulation/modelsim/gate_work
+# ** Error: (vsim-3033) Lab2.vo(147): Instantiation of 'cycloneii_io' failed. The design unit was not found.
+#         Region: /Lab2
+#         Searched libraries:
+#             /home/tamfire/Documents/Quartus Projects/Lab2/simulation/modelsim/gate_work
+# ** Error: (vsim-3033) Lab2.vo(183): Instantiation of 'cycloneii_io' failed. The design unit was not found.
+#         Region: /Lab2
+#         Searched libraries:
+#             /home/tamfire/Documents/Quartus Projects/Lab2/simulation/modelsim/gate_work
+# ** Error: (vsim-3033) Lab2.vo(211): Instantiation of 'cycloneii_lcell_comb' failed. The design unit was not found.
+#         Region: /Lab2
+#         Searched libraries:
+#             /home/tamfire/Documents/Quartus Projects/Lab2/simulation/modelsim/gate_work
+# ** Error: (vsim-3033) Lab2.vo(228): Instantiation of 'cycloneii_lcell_comb' failed. The design unit was not found.
+#         Region: /Lab2
+#         Searched libraries:
+#             /home/tamfire/Documents/Quartus Projects/Lab2/simulation/modelsim/gate_work
+# ** Error: (vsim-3033) Lab2.vo(245): Instantiation of 'cycloneii_lcell_comb' failed. The design unit was not found.
+#         Region: /Lab2
+#         Searched libraries:
+#             /home/tamfire/Documents/Quartus Projects/Lab2/simulation/modelsim/gate_work
+# ** Error: (vsim-3033) Lab2.vo(262): Instantiation of 'cycloneii_lcell_comb' failed. The design unit was not found.
+#         Region: /Lab2
+#         Searched libraries:
+#             /home/tamfire/Documents/Quartus Projects/Lab2/simulation/modelsim/gate_work
+# ** Error: (vsim-3033) Lab2.vo(279): Instantiation of 'cycloneii_lcell_comb' failed. The design unit was not found.
+#         Region: /Lab2
+#         Searched libraries:
+#             /home/tamfire/Documents/Quartus Projects/Lab2/simulation/modelsim/gate_work
+# ** Error: (vsim-3033) Lab2.vo(296): Instantiation of 'cycloneii_lcell_comb' failed. The design unit was not found.
+#         Region: /Lab2
+#         Searched libraries:
+#             /home/tamfire/Documents/Quartus Projects/Lab2/simulation/modelsim/gate_work
+# ** Error: (vsim-3033) Lab2.vo(321): Instantiation of 'cycloneii_io' failed. The design unit was not found.
+#         Region: /Lab2
+#         Searched libraries:
+#             /home/tamfire/Documents/Quartus Projects/Lab2/simulation/modelsim/gate_work
+# ** Error: (vsim-3033) Lab2.vo(357): Instantiation of 'cycloneii_io' failed. The design unit was not found.
+#         Region: /Lab2
+#         Searched libraries:
+#             /home/tamfire/Documents/Quartus Projects/Lab2/simulation/modelsim/gate_work
+# ** Error: (vsim-3033) Lab2.vo(393): Instantiation of 'cycloneii_io' failed. The design unit was not found.
+#         Region: /Lab2
+#         Searched libraries:
+#             /home/tamfire/Documents/Quartus Projects/Lab2/simulation/modelsim/gate_work
+# ** Error: (vsim-3033) Lab2.vo(429): Instantiation of 'cycloneii_io' failed. The design unit was not found.
+#         Region: /Lab2
+#         Searched libraries:
+#             /home/tamfire/Documents/Quartus Projects/Lab2/simulation/modelsim/gate_work
+# ** Error: (vsim-3033) Lab2.vo(465): Instantiation of 'cycloneii_io' failed. The design unit was not found.
+#         Region: /Lab2
+#         Searched libraries:
+#             /home/tamfire/Documents/Quartus Projects/Lab2/simulation/modelsim/gate_work
+# ** Error: (vsim-3033) Lab2.vo(501): Instantiation of 'cycloneii_io' failed. The design unit was not found.
+#         Region: /Lab2
+#         Searched libraries:
+#             /home/tamfire/Documents/Quartus Projects/Lab2/simulation/modelsim/gate_work
+# ** Error: (vsim-3033) Lab2.vo(537): Instantiation of 'cycloneii_io' failed. The design unit was not found.
+#         Region: /Lab2
+#         Searched libraries:
+#             /home/tamfire/Documents/Quartus Projects/Lab2/simulation/modelsim/gate_work
+# Error loading design
+vsim -L cycloneii_ver -do Lab2_run_msim_gate_verilog.do -l msim_transcript -i work.Lab2
+# vsim -L cycloneii_ver -do Lab2_run_msim_gate_verilog.do -l msim_transcript -i work.Lab2 
+# Loading work.Lab2
+# Loading cycloneii_ver.cycloneii_io
+# Loading cycloneii_ver.cycloneii_mux21
+# Loading cycloneii_ver.cycloneii_dffe
+# Loading cycloneii_ver.cycloneii_asynch_io
+# Loading cycloneii_ver.cycloneii_lcell_comb
+# Loading instances from Lab2_v.sdo
+# Loading cycloneii_ver.CYCLONEII_PRIM_DFFE
+# Loading timing data from Lab2_v.sdo
+# ** Note: (vsim-3587) SDF Backannotation Successfully Completed.
+#    Time: 0 ps  Iteration: 0  Instance: /Lab2 File: Lab2.vo
+# do Lab2_run_msim_gate_verilog.do 
+# if {[file exists gate_work]} {
+# 	vdel -lib gate_work -all
+# }
+# vlib gate_work
+# vmap work gate_work
+# Modifying modelsim.ini
+# 
+# vlog -vlog01compat -work work +incdir+. {Lab2.vo}
+# Model Technology ModelSim ALTERA vlog 10.0c Compiler 2011.09 Sep 21 2011
+# -- Compiling module Lab2
+# 
+# Top level modules:
+# 	Lab2
+# 
+add wave  \
+{sim:/Lab2/\0 } \
+{sim:/Lab2/\1 } \
+{sim:/Lab2/\2 } \
+{sim:/Lab2/\3 } \
+{sim:/Lab2/\4 } \
+{sim:/Lab2/\5 } \
+{sim:/Lab2/\6 }
+wave create -driver freeze -pattern constant -value 0 -starttime 0ps -endtime 1000ps sim:/Lab2/A
+wave modify -driver freeze -pattern constant -value 1 -starttime 500ps -endtime 1000ps Edit:/Lab2/A
+run -all
+quit
