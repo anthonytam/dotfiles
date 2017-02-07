@@ -101,6 +101,7 @@ case "$yesorno" in
     y)
         rm "$HOME/.i3status.conf"
 	rm "$HOME/.config/i3/config"
+	mkdir -p "$HOME/.config/i3"
         ln -s "$DIR/i3/.i3status.conf" "$HOME/.i3status.conf"
 	ln -s "$DIR/i3/config" "$HOME/.config/i3/config";;
     *)
