@@ -76,3 +76,9 @@ case "$yesorno" in
     *)
         echo "Skipping dotfiles.";;
 esac
+
+read -p "Reboot? (y/n) " yesorno
+case "$yesorno" in
+    y)
+        reboot;;
+esac
