@@ -1,0 +1,16 @@
+SET search_path TO World;
+-- 1.
+INSERT INTO country (code, name, continent, population) VALUES ('BOR', 'Borduria', 'Pangaea', 1000);
+INSERT INTO country (code, name, continent, population) VALUES ('CAG', 'Cagliostro', 'Pangaea', 250);
+INSERT INTO country (code, name, continent, population) VALUES ('MAR', 'Qumar', 'Pangaea', 3380);
+
+-- 2.
+INSERT INTO countrylanguage (countrycode, countrylanguage, isofficial, percentage) VALUES ('BOR', 'English', NULL, NULL);
+INSERT INTO countrylanguage (countrycode, countrylanguage, isofficial, percentage) VALUES ('BOR', 'Italian', NULL, NULL);
+INSERT INTO countrylanguage (countrycode, countrylanguage, isofficial, percentage) VALUES ('BOR', 'Klingon', NULL, NULL);
+
+-- 3.
+DELETE FROM country WHERE population < 300;
+
+-- 4.
+UPDATE country SET continent='Luna' WHERE name='Borduria';
