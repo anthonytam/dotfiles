@@ -82,6 +82,17 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
+#Volume Keys
+bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 2%+
+bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 2%-
+bindsym XF86AudioMute exec amixer set Master toggle
+
+#Brightness Keys
+#xbacklight doesn't work for lenovo G50
+#Use light instead
+bindsym XF86MonBrightnessUp exec light -A 10
+bindsym XF86MonBrightnessDown exec light -U 10
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -107,4 +118,4 @@ bar {
         status_command i3status
 }
 
-exec_always feh --bg-scale "/home/tamfire/Pictures/wallpaper/wallpaper.jpg" & vis
+exec_always feh --bg-scale "/home/tamfire/Pictures/wallpaper/wallpaper.jpg"
