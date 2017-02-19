@@ -46,6 +46,11 @@ echo 1 | yaourt texlive-pictures --noconfirm
 echo 1 | yaourt gvim --noconfirm
 
 #
+# ZSH
+#
+echo 2 | yaourt zsh
+
+#
 # JAVA JDK & IDE & ANDROID
 #
 echo 1 | yaourt jdk8-openjdk --noconfirm
