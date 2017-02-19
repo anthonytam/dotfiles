@@ -1,4 +1,3 @@
-
 ##
 ## S E T T I N G S
 ##
@@ -29,8 +28,8 @@ autoload -Uz compinit
 compinit
 
 # Set emacs as default editor
-export EDITOR='emacs'
-export VISUAL='emacs'
+export EDITOR='vim'
+export VISUAL='vim'
 
 ## History
 HISTFILE=$HOME/.zhistory       # enable history saving on shell exit
@@ -105,31 +104,40 @@ alias -g ...='../..'
 alias -g ....='../../..'
 alias -g .....='../../../..'
 alias -g ......='../../../../..'
-# Emacs clients
+# Emacs
 alias e='emacs'
+# Alias some stupid stuff
+alias tim='echo "Where the fuck is tim?"'
+alias gama='/bin/su'
+alias su='echo "Please gama before su"'
 
 ##
 ## P R O M P T
 ##
-# modify the prompt to contain git branch name if applicable
-git_prompt_info() {
-    current_branch=$(git current-branch 2> /dev/null)
-    if [[ -n $current_branch ]]; then
-        echo " %{$fg_bold[green]%}$current_branch%{$reset_color%}"
-    fi
+PROMPT_STATUS="\`$SMILE\`"
+_newline=$'\n'
+_lineup=$'\e[1A'
+_linedown=$'\e[1B'
+
+# * There are uncommitted changes.
+# ? There are files git doesn't know about.
+# ➚ There are commits that haven't been pushed yet.
+# ☰ There are stashed files.
+# ⌥ There are branches other than master.
+# ® There are remote repositories other than origin configured.
+source ~/.zsh/git-prompt.zsh 
+
+function preexec() {
+    echo
 }
+function precmd() {
+    echo
+    PSVAR=`git_prompt_precmd`
+}
+
+PROMPT="%F{red}%n%F{white}@%F{green}%m %F{blue}%~ ${_newline}%F{white}$ "
+RPROMPT='%{${_lineup}%}%F{red}%(?..%? )%F{yellow}%v%F{white}`jobs %% 2> /dev/null | cut -d " " -f6` [`date +%H:%M:%S`]%{${_linedown}%}'
 setopt promptsubst
-PS1='${"%{$fg_bold[green]%}%n@%m:"}%{$fg_bold[blue]%}%~%{$reset_color%}$(git_prompt_info) $ '
-
-precmd() { RPROMPT="" }
-function zle-line-init zle-keymap-select {
-    VIM_PROMPT="%{$fg_bold[yellow]%} [% N]% %{$reset_color%}"
-    RPROMPT='`jobs %% 2> /dev/null | cut -d " " -f6` [`date +%H:%M:%S`]${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/}$EPS1'
-    zle reset-prompt
-}
-
-zle -N zle-line-init
-zle -N zle-keymap-select
 
 # Delay of 0.1 seconds
 export KEYTIMEOUT=1

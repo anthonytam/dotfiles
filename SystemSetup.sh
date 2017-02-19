@@ -15,6 +15,7 @@ yaourt -Syu --noconfirm
 #
 # WINDOW MANAGER
 #
+echo 1 | yaourt feh --noconfirm
 echo 1 | yaourt docbook-xsl --noconfirm
 echo 1 | yaourt i3-gaps-git --noconfirm
 echo 1 | yaourt i3status --noconfirm

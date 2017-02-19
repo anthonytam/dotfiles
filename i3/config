@@ -1,5 +1,4 @@
 # Set to prefered keyboard layout
-exec --no-startup-id "setxkbmap us"
 exec --no-startup-id "s2c"
 exec --no-startup-id "~/PinkyCtrls/s2cctl start"
 exec --no-startup-id "dropbox"
@@ -108,4 +107,4 @@ bar {
         status_command i3status
 }
 
-#exec_always feh --bg-scale ""
+exec_always feh --bg-scale "/home/tamfire/Pictures/wallpaper/wallpaper.jpg" & vis

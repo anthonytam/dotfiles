@@ -1,0 +1,2 @@
+#!/bin/sh
+spotify --ap=127.0.0.1
