@@ -106,6 +106,8 @@ alias -g .....='../../../..'
 alias -g ......='../../../../..'
 # Emacs
 alias e='emacs'
+# Whats the tempreater weather man?
+alias wttr='~/.bin/weather'
 # Alias some stupid stuff
 alias tim='echo "Where the fuck is tim?"'
 alias gama='/bin/su'
