@@ -101,6 +101,12 @@ cd ..
 sudo -S pacman -S dropbox --noconfirm
 
 #
+# CLEAN UP
+#
+cd $HOME
+rm -rf /tmp/systemsetuptmp
+
+#
 # DOT FILES
 #
 read -p "Run dotfiles setup? (y/n) " yesorno
