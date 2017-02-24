@@ -8,7 +8,7 @@
 #
 
 printf "Enter your user password\n"
-read -p "Password: " USRPASS 
+read -rsp "Password: " USRPASS 
 
 #
 # FETCH AND UPDATE
