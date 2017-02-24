@@ -4,73 +4,101 @@
 # SYSTEM INSTALLER
 #
 # This script will perform a system setup of a clean install of antergos (Arch) linux.
-# Installes core packages for my use and setup's dot files
+# Installes core packages for my use and setup dot files
 #
+
+printf "Enter your user password\n"
+read -p "Password: " USRPASS 
 
 #
 # FETCH AND UPDATE
 #
 yaourt -Syu --noconfirm
 
+# Gotta deal with them temp files somehow...
+mkdir /tmp/systemsetuptmp
+cd /tmp/systemsetuptmp
+
 #
-# WINDOW MANAGER
+# WINDOW MANAGER (i3-gaps)
 #
-echo 1 | yaourt feh --noconfirm
-echo 1 | yaourt docbook-xsl --noconfirm
-echo 1 | yaourt i3-gaps-git --noconfirm
-echo 1 | yaourt i3status --noconfirm
-echo 1 | yaourt dmenu --noconfirm
-echo 1 | yaourt i3lock-fancy-git --noconfirm
+sudo -S pacman -S feh --noconfirm <<<$USRPASS
+sudo -S pacman -S docbook-xsl --noconfirm <<<$USRPASS
+yaourt -G i3-gaps-git
+yaourt -P i3-gaps-git --noconfirm
+sudo -S pacman -S i3status --noconfirm <<<$USRPASS
+sudo -S pacman -S dmenu --noconfirm <<<$USRPASS
+yaourt -G i3lock-fancy-git
+yaourt -P i3lock-fancy-git --noconfirm
 
 #
 # PINKY CONTROLS
 #
+OLDDIR = pwd
 cd ~
 git clone https://github.com/anthonytam/PinkyCtrls.git
 cd PinkyCtrls
 make
-sudo make install
+sudo -S make install
+cd $OLDDIR
 
 #
 # EMACS (From source)
 #
-echo 1 | yaourt emacs-git --noconfirm
-echo 1 | yaourt aspell-en --noconfirm
-echo 1 | yaourt texlive-core --noconfirm
-echo 1 | yaourt texlive-latexextra --noconfirm
-echo 1 | yaourt texlive-pictures --noconfirm
+yaourt -G emacs-git
+yaourt -P emacs-git --noconfirm
+sudo -S pacman -S aspell-en --noconfirm <<<$USRPASS
+sudo -S pacman -S texlive-core --noconfirm <<<$USRPASS
+sudo -S pacman -S texlive-latexextra --noconfirm <<<$USRPASS
+sudo -S pacman -S texlive-pictures --noconfirm <<<$USRPASS
 
 #
 # VIM
 #
-echo 1 | yaourt gvim --noconfirm
+sudo -S pacman -S gvim --noconfirm <<<$USRPASS
 
 #
 # ZSH
 #
-echo 2 | yaourt zsh
+sudo -S pacman -S zsh --noconfirm <<<$USRPASS
 
 #
 # JAVA JDK & IDE & ANDROID
 #
-echo 1 | yaourt jdk8-openjdk --noconfirm
-echo 1 | yaourt intellij-idea-ce --noconfirm
-echo 1 | yaourt android-sdk --noconfirm
-echo 1 | yaourt android-studio --noconfirm
+sudo -S pacman -S jdk8-openjdk --noconfirm <<<$USRPASS
+yaourt -G intellij-idea-ce
+cd intellij-idea-ce
+makepkg -i --noconfirm
+cd ..
+yaourt -G android-sdk
+cd android-sdk
+makepkg -i --noconfirm
+cd ..
+yaourt -G android-studio
+cd android-studio
+makepkg -i --noconfirm
+cd ..
+
 #
 # GOOGLE CHROME
 #
-echo 1 | yaourt google-chrome --noconfirm
+yaourt -G google-chrome
+cd google-chrome
+makepkg -i --noconfirm
+cd ..
 
 #
 # SPOTIFY
 #
-echo 33 | yaourt spotify --noconfirm
+yaourt -G spotify
+cd spotify
+makepkg -i --noconfirm
+cd ..
 
 #
 # DROP BOX
 #
-echo 1 | yaourt dropbox --noconfirm
+sudo -S pacman -S dropbox --noconfirm
 
 #
 # DOT FILES
@@ -78,7 +106,7 @@ echo 1 | yaourt dropbox --noconfirm
 read -p "Run dotfiles setup? (y/n) " yesorno
 case "$yesorno" in
     y)
-        bash setup.sh;;
+        bash link.sh;;
     *)
         echo "Skipping dotfiles.";;
 esac
