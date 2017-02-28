@@ -1,0 +1,36 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("/home/tamfire/Documents/Homework/CSC263/" . "Problem Sets/")
+ ("/home/tamfire/Documents/Homework/" . "CSC263/")
+ ("/home/tamfire/Documents/" . "Homework/")
+ ("/home/tamfire/" . "Documents/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "/home/tamfire/Documents/Homework/CSC263/Problem Sets/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ "PS3Q2.org"
+ "ps3michael.org"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("/home/tamfire/Documents/Homework/CSC263/Problem Sets/" (22708 55539 902361 984000) "ps3michael.org" "PS3Q2.org" "PS3Q2.pdf" "PS3Q2.tex" "PS2/" "ps1sol.pdf" "PS1.pdf" "ltxpng/" "PS1Q2.pdf" "PS1Q2.tex" "PS1Q2.org" "../" "./")
+
+ ("/home/tamfire/" (22708 54748 950424 326000) ".zhistory" ".python_history" ".viminfo" ".xsession-errors" ".xsession-errors.old" "test.html" ".wine/" ".lesshst" "2017-02-24-163936_1366x768_scrot.png" ".dropbox-dist/" ".zshrc" ".zsh/" ".i3status.conf" ".gitconfig" ".emacs.d/" ".bin/" ".bashrc" "dotfiles/" "olddot/" "2017-02-23-180818_2726x768_scrot.png" "ww.js" "2017-02-22-193159_2726x768_scrot.png" "2017-02-21-213020_1366x768_scrot.png" "random.dat" "Android/" ".cmake/" "log/" ".zcompdump" ".dmrc" ".fehbg" "jagex_cl_oldschool_LIVE.dat" ".mysql/" ".gnome2_private/" ".tex" ".shutter/" ".gnome2/" ".Xauthority" "PinkyCtrls/" ".XSM-Default" ".ICEauthority" ".dbus/" ".xinitrc" ".thunderbird/" "vmware/" ".vmware/" ".gksu.lock" "Dropbox/" ".dropbox/" ".Space2Ctrl.log" "jagexcache/" ".osbuddy/" ".wget-hsts" ".Skype/" ".mozilla/" ".bzr.log" ".w3m/" ".gimp-2.8/" ".subversion/" ".matlab/" ".vim/" ".ssh/" ".weechat/" ".modelsim" ".modelsim.bak" ".gradle/" "AndroidStudioProjects/" ".IdeaIC2016.3/" ".android/" ".java/" ".AndroidStudio2.2/" ".mplayer/" ".thumbnails/" ".hte/" ".gnupg/" ".altera.quartus/" "Monero/" ".bitmonero/" "Templates/" "Pictures/" "Downloads/" "Documents/" ".bak.emacs/" ".gnome/" ".pki/" ".bash_history" ".esd_auth" ".local/" ".cache/" ".xscreensaver" ".gtkrc-2.0" ".config/" ".bash_profile" ".bash_logout" "../" "./")
+
+ ("/home/tamfire/Documents/Homework/CSC263/" (22651 55918 981302 56000) "Problem Sets/" "Tutorials/" "Lectures/" "../" "./")
+
+ ("/home/tamfire/Documents/Homework/" (22677 31102 660990 494000) "deerhuntshit.txt" "CSC309/" "CLA204/" "CSC258/" "CSC343/" "CSC263/" "MAT102/" "CSC290/" "README.md" ".git/" "CSC209/" "CSC207/" "CSC236/" "../" "./")
+
+ ("/home/tamfire/Documents/" (22697 613 314272 959000) "OtherConfigs/" "Projects/" "MCSS/" "Homework/" "../" "./")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t

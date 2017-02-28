@@ -112,6 +112,8 @@ alias wttr='~/.bin/weather'
 alias tim='echo "Where the fuck is tim?"'
 alias gama='/bin/su'
 alias su='echo "Please gama before su"'
+# Just a git double check'er
+alias justincase="git grep -Ei '(cancer|fuck|shit|cunt|cuck|whore|bastard|bitch|damn|dick|skunk|shrimp|r\.i\.p|/rip/)' $(git rev-list --all) | cut -d ':' -f 3 | sort | uniq"
 
 ##
 ## P R O M P T

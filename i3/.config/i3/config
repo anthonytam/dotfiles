@@ -2,7 +2,7 @@
 exec --no-startup-id "s2c"
 exec --no-startup-id "~/PinkyCtrls/s2cctl start"
 exec --no-startup-id "dropbox"
-
+exec --no-startup-id "powertop --auto-tune"
 # Disable window borders
 for_window [class="^.*"] border pixel 0
 
