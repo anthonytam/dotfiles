@@ -1,2 +1,2 @@
 #!/bin/sh
-/opt/altera/11.1sp2/quartus/bin/quartus
+/opt/altera/sp11.1/quartus/bin/quartus
