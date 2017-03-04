@@ -1,0 +1,16 @@
+Lab6
+clear,input,user_entered
+clear~clkctrl,comb,compiler_generated
+clock,input,user_entered
+clock~clkctrl,comb,compiler_generated
+inst,reg,user_entered
+inst1,reg,user_entered
+inst2,reg,user_entered
+inst4,comb,user_entered
+inst5,comb,user_entered
+inst~0,comb,compiler_generated
+pin_name1,output,user_entered
+~ASDO~,input,compiler_generated
+~LVDS150p/nCEO~,output,compiler_generated
+~nCSO~,input,compiler_generated
+,hierarchy,user_entered

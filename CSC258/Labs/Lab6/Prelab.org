@@ -1,0 +1,67 @@
+#+author: Anthony Tam, 1002583402
+#+title: CSC258 Prelab Six
+#+LATEX_HEADER:\usepackage[margin=0.75in]{geometry} \usepackage{graphicx}
+#+OPTIONS: toc:nil
+
+
+* States of the circuit
+The circuit has the following states:
+- 000 (Initial)
+- 001 (1 Click - To arm)
+- 011 (2 Clicks - To arm)
+- 010 (3 Clicks - Armed)
+- 110 (1 Click - To disarm)
+- 100 (2 Clicks - To disarm)
+- 101 (3 Clicks - Disarmed)
+
+* State transition diagram
+\includegraphics[width=\textwidth]{ST-1.jpg}
+
+* Number of flip-flops
+3 flip-flops are required
+
+* Values of the flip-flops to avoid intermediate states
+- 000
+- 001
+- 011
+- 010
+- 110
+- 100
+- 101
+
+* State table
+| F_1 | F_2 | F_3 | W | F_1 | F_2 | F_3 |
+|----+----+----+---+----+----+----|
+|  0 |  0 |  0 | 0 |  0 |  0 |  0 |
+|  0 |  0 |  0 | 1 |  0 |  0 |  1 |
+|  0 |  0 |  1 | 0 |  0 |  0 |  1 |
+|  0 |  0 |  1 | 1 |  0 |  1 |  1 |
+|  0 |  1 |  1 | 0 |  0 |  1 |  1 |
+|  0 |  1 |  1 | 1 |  0 |  1 |  0 |
+|  0 |  1 |  0 | 0 |  0 |  1 |  0 |
+|  0 |  1 |  0 | 1 |  1 |  1 |  0 |
+|  1 |  1 |  0 | 0 |  1 |  1 |  0 |
+|  1 |  1 |  0 | 1 |  1 |  0 |  0 |
+|  1 |  0 |  0 | 0 |  1 |  0 |  0 |
+|  1 |  0 |  0 | 1 |  1 |  0 |  1 |
+|  1 |  0 |  1 | 0 |  1 |  0 |  1 |
+|  1 |  0 |  1 | 1 |  0 |  0 |  1 | 
+
+* Combinational Logic
+F_1: F_{1}\cdot{}$\overline{F_{3}}$ + F_{1}\cdot{}$\overline{W}$ + W\cdot{}F_{0}\cdot\overline{F_3}\\
+F_2: \overline{F_1}\cdot{}F_{3}\cdot{}W + \overline{F_1}\cdot{}F_{2} + F_{2}\cdot{}$\overline{W}$\\
+F_3: F_{3}\cdot\overline{W} + \overline{F_2}\cdot{}W
+
+* Flip-flop circuit diagram
+\includegraphics[width=\textwidth]{CD1-1.jpg}
+
+* State Values
+- State 010 is the armed state
+- State 101 is the disarmed state
+
+* Output logic statements
+Armed: \overline{F_1}\cdot{}F_{2}\cdot\overline{F_3}\\
+Disarmed: F_{1}\cdot{}\overline{F_2}\cdot{}F_3
+
+* Modified circuit diagram
+\includegraphics[width=\textwidth]{CD2-1.jpg}
