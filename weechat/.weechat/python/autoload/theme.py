@@ -1,0 +1,1 @@
+/home/tamfire/.weechat/python/theme.py

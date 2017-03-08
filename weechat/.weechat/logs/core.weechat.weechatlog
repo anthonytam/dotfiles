@@ -1,0 +1,1279 @@
+2016-11-22 19:39:20		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, perl, python, relay, script, tcl, trigger, xfer
+2016-11-22 19:39:34		[core]
+2016-11-22 19:39:34		  away     command  filter   key      plugin   reload   set      version
+2016-11-22 19:39:34		  bar      cursor   help     layout   print    repeat   unset    wait   
+2016-11-22 19:39:34		  buffer   debug    history  mouse    proxy    save     upgrade  window 
+2016-11-22 19:39:34		  color    eval     input    mute     quit     secure   uptime 
+2016-11-22 19:39:34		[perl]
+2016-11-22 19:39:34		  perl
+2016-11-22 19:39:34		[charset]
+2016-11-22 19:39:34		  charset
+2016-11-22 19:39:34		[logger]
+2016-11-22 19:39:34		  logger
+2016-11-22 19:39:34		[irc]
+2016-11-22 19:39:34		  admin       die         lusers      ping        saquit      userhost  
+2016-11-22 19:39:34		  allchan     disconnect  map         pong        server      users     
+2016-11-22 19:39:34		  allpv       halfop      me          query       service     version   
+2016-11-22 19:39:34		  allserv     ignore      mode        quiet       servlist    voice     
+2016-11-22 19:39:34		  ban         info        motd        quote       squery      wallchops 
+2016-11-22 19:39:34		  cap         invite      msg         reconnect   squit       wallops   
+2016-11-22 19:39:34		  connect     ison        names       rehash      stats       who       
+2016-11-22 19:39:34		  ctcp        join        nick        remove      summon      whois     
+2016-11-22 19:39:34		  cycle       kick        notice      restart     time        whowas    
+2016-11-22 19:39:34		  dcc         kickban     notify      sajoin      topic     
+2016-11-22 19:39:34		  dehalfop    kill        op          samode      trace     
+2016-11-22 19:39:34		  deop        links       oper        sanick      unban     
+2016-11-22 19:39:34		  devoice     list        part        sapart      unquiet   
+2016-11-22 19:39:34		[exec]
+2016-11-22 19:39:34		  exec
+2016-11-22 19:39:34		[guile]
+2016-11-22 19:39:34		  guile
+2016-11-22 19:39:34		[script]
+2016-11-22 19:39:34		  script
+2016-11-22 19:39:34		[fifo]
+2016-11-22 19:39:34		  fifo
+2016-11-22 19:39:34		[xfer]
+2016-11-22 19:39:34		  me  xfer
+2016-11-22 19:39:34		[alias]
+2016-11-22 19:39:34		  AAWAY    ANICK    CHAT     IG       LEAVE    N        SIGNOFF  V        WII    
+2016-11-22 19:39:34		  alias    BEEP     CL       J        M        Q        T        W        WW     
+2016-11-22 19:39:34		  AME      BYE      CLOSE    K        MSGBUF   REDRAW   UB       WC     
+2016-11-22 19:39:34		  AMSG     C        EXIT     KB       MUB      SAY      UMODE    WI     
+2016-11-22 19:39:34		[relay]
+2016-11-22 19:39:34		  relay
+2016-11-22 19:39:34		[aspell]
+2016-11-22 19:39:34		  aspell
+2016-11-22 19:39:34		[trigger]
+2016-11-22 19:39:34		  trigger
+2016-11-22 19:39:34		[tcl]
+2016-11-22 19:39:34		  tcl
+2016-11-22 19:39:34		[python]
+2016-11-22 19:39:34		  python
+2016-11-22 19:40:12	=!=	You can not write text in this buffer
+2016-11-22 19:40:13	=!=	You can not write text in this buffer
+2016-11-22 19:40:15		fifo: pipe closed
+2017-02-15 15:17:00		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-15 15:17:20	=!=	You can not write text in this buffer
+2017-02-15 15:17:22	=!=	You can not write text in this buffer
+2017-02-15 15:17:23		fifo: pipe closed
+2017-02-15 15:24:25	=!=	python: script "/home/wolfe/.weechat/python/autoload/vimode.py" not found
+2017-02-15 15:24:25		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-15 15:24:29		script: downloading list of scripts...
+2017-02-15 15:24:31		script: 331 scripts for WeeChat 1.7
+2017-02-15 15:24:32		python: script removed: /home/wolfe/.weechat/python/vimode.py
+2017-02-15 15:25:47		fifo: pipe closed
+2017-02-15 15:25:48	=!=	python: script "/home/wolfe/.weechat/python/autoload/vimode.py" not found
+2017-02-15 15:25:48		script: 331 scripts for WeeChat 1.7
+2017-02-15 15:25:48		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-15 15:25:54		fifo: pipe closed
+2017-02-15 15:26:05	=!=	python: script "/home/wolfe/.weechat/python/autoload/vimode.py" not found
+2017-02-15 15:26:05		script: 331 scripts for WeeChat 1.7
+2017-02-15 15:26:05		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-15 15:26:13		fifo: pipe closed
+2017-02-15 15:26:25	=!=	python: script "/home/wolfe/.weechat/python/autoload/vimode.py" not found
+2017-02-15 15:26:25		script: 331 scripts for WeeChat 1.7
+2017-02-15 15:26:25		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-15 15:26:26	=!=	Error: unknown command "/iset" (type /help for help)
+2017-02-15 15:26:38	=!=	Error: unknown command "/iset" (type /help for help)
+2017-02-15 15:26:40	=!=	You can not write text in this buffer
+2017-02-15 15:26:42		fifo: pipe closed
+2017-02-15 15:26:45	=!=	python: script "/home/wolfe/.weechat/python/autoload/vimode.py" not found
+2017-02-15 15:26:46		script: 331 scripts for WeeChat 1.7
+2017-02-15 15:26:46		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-15 15:26:56		script: script "vimode.py" is already installed and up-to-date
+2017-02-15 15:27:33		WeeChat 1.7 [compiled on Jan 18 2017 17:48:07]
+2017-02-15 15:29:33		fifo: pipe closed
+2017-02-15 15:30:54	=!=	python: script "/home/wolfe/.weechat/python/autoload/vimode.py" not found
+2017-02-15 15:30:54		script: 331 scripts for WeeChat 1.7
+2017-02-15 15:30:54		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-15 15:31:15	=!=	irc: unable to add temporary server "freenode" because the addition of temporary servers with command /connect is currently disabled
+2017-02-15 15:31:15	=!=	irc: if you want to add a standard server, use the command "/server add" (see /help server); if you really want to add a temporary server (NOT SAVED), turn on the option irc.look.temporary_servers
+2017-02-15 15:31:41	=!=	irc: unable to add temporary server "Freenode" because the addition of temporary servers with command /connect is currently disabled
+2017-02-15 15:31:41	=!=	irc: if you want to add a standard server, use the command "/server add" (see /help server); if you really want to add a temporary server (NOT SAVED), turn on the option irc.look.temporary_servers
+2017-02-15 15:31:53	=!=	irc: unable to add temporary server "freenode" because the addition of temporary servers with command /connect is currently disabled
+2017-02-15 15:31:53	=!=	irc: if you want to add a standard server, use the command "/server add" (see /help server); if you really want to add a temporary server (NOT SAVED), turn on the option irc.look.temporary_servers
+2017-02-15 15:32:24		[crypt] (sec.conf)
+2017-02-15 15:32:24		  sec.crypt.cipher = aes256
+2017-02-15 15:32:24		  sec.crypt.hash_algo = sha256
+2017-02-15 15:32:24		  sec.crypt.passphrase_file = ""
+2017-02-15 15:32:24		  sec.crypt.salt = on
+2017-02-15 15:32:24		[startup] (weechat.conf)
+2017-02-15 15:32:24		  weechat.startup.command_after_plugins = ""
+2017-02-15 15:32:24		  weechat.startup.command_before_plugins = ""
+2017-02-15 15:32:24		  weechat.startup.display_logo = on
+2017-02-15 15:32:24		  weechat.startup.display_version = on
+2017-02-15 15:32:24		  weechat.startup.sys_rlimit = ""
+2017-02-15 15:32:24		[look] (weechat.conf)
+2017-02-15 15:32:24		  weechat.look.align_end_of_lines = message
+2017-02-15 15:32:24		  weechat.look.align_multiline_words = on
+2017-02-15 15:32:24		  weechat.look.bar_more_down = "++"
+2017-02-15 15:32:24		  weechat.look.bar_more_left = "<<"
+2017-02-15 15:32:24		  weechat.look.bar_more_right = ">>"
+2017-02-15 15:32:24		  weechat.look.bar_more_up = "--"
+2017-02-15 15:32:24		  weechat.look.bare_display_exit_on_input = on
+2017-02-15 15:32:24		  weechat.look.bare_display_time_format = "%H:%M"
+2017-02-15 15:32:24		  weechat.look.buffer_auto_renumber = on
+2017-02-15 15:32:24		  weechat.look.buffer_notify_default = all
+2017-02-15 15:32:24		  weechat.look.buffer_position = end
+2017-02-15 15:32:24		  weechat.look.buffer_search_case_sensitive = off
+2017-02-15 15:32:24		  weechat.look.buffer_search_force_default = off
+2017-02-15 15:32:24		  weechat.look.buffer_search_regex = off
+2017-02-15 15:32:24		  weechat.look.buffer_search_where = prefix_message
+2017-02-15 15:32:24		  weechat.look.buffer_time_format = "%H:%M:%S"
+2017-02-15 15:32:24		  weechat.look.color_basic_force_bold = off
+2017-02-15 15:32:24		  weechat.look.color_inactive_buffer = on
+2017-02-15 15:32:24		  weechat.look.color_inactive_message = on
+2017-02-15 15:32:24		  weechat.look.color_inactive_prefix = on
+2017-02-15 15:32:24		  weechat.look.color_inactive_prefix_buffer = on
+2017-02-15 15:32:24		  weechat.look.color_inactive_time = off
+2017-02-15 15:32:24		  weechat.look.color_inactive_window = on
+2017-02-15 15:32:24		  weechat.look.color_nick_offline = off
+2017-02-15 15:32:24		  weechat.look.color_pairs_auto_reset = 5
+2017-02-15 15:32:24		  weechat.look.color_real_white = off
+2017-02-15 15:32:24		  weechat.look.command_chars = ""
+2017-02-15 15:32:24		  weechat.look.command_incomplete = off
+2017-02-15 15:32:24		  weechat.look.confirm_quit = off
+2017-02-15 15:32:24		  weechat.look.confirm_upgrade = off
+2017-02-15 15:32:24		  weechat.look.day_change = on
+2017-02-15 15:32:24		  weechat.look.day_change_message_1date = "-- %a, %d %b %Y --"
+2017-02-15 15:32:24		  weechat.look.day_change_message_2dates = "-- %%a, %%d %%b %%Y (%a, %d %b %Y) --"
+2017-02-15 15:32:24		  weechat.look.eat_newline_glitch = off
+2017-02-15 15:32:24		  weechat.look.emphasized_attributes = ""
+2017-02-15 15:32:24		  weechat.look.highlight = ""
+2017-02-15 15:32:24		  weechat.look.highlight_regex = ""
+2017-02-15 15:32:24		  weechat.look.highlight_tags = ""
+2017-02-15 15:32:24		  weechat.look.hotlist_add_conditions = "${away} || ${buffer.num_displayed} == 0"
+2017-02-15 15:32:24		  weechat.look.hotlist_buffer_separator = ", "
+2017-02-15 15:32:24		  weechat.look.hotlist_count_max = 2
+2017-02-15 15:32:24		  weechat.look.hotlist_count_min_msg = 2
+2017-02-15 15:32:24		  weechat.look.hotlist_names_count = 3
+2017-02-15 15:32:24		  weechat.look.hotlist_names_length = 0
+2017-02-15 15:32:24		  weechat.look.hotlist_names_level = 12
+2017-02-15 15:32:24		  weechat.look.hotlist_names_merged_buffers = off
+2017-02-15 15:32:24		  weechat.look.hotlist_prefix = "H: "
+2017-02-15 15:32:24		  weechat.look.hotlist_remove = merged
+2017-02-15 15:32:24		  weechat.look.hotlist_short_names = on
+2017-02-15 15:32:24		  weechat.look.hotlist_sort = group_time_asc
+2017-02-15 15:32:24		  weechat.look.hotlist_suffix = ""
+2017-02-15 15:32:24		  weechat.look.hotlist_unique_numbers = on
+2017-02-15 15:32:24		  weechat.look.input_cursor_scroll = 20
+2017-02-15 15:32:24		  weechat.look.input_share = none
+2017-02-15 15:32:24		  weechat.look.input_share_overwrite = off
+2017-02-15 15:32:24		  weechat.look.input_undo_max = 32
+2017-02-15 15:32:24		  weechat.look.item_away_message = on
+2017-02-15 15:32:24		  weechat.look.item_buffer_filter = "*"
+2017-02-15 15:32:24		  weechat.look.item_buffer_zoom = "!"
+2017-02-15 15:32:24		  weechat.look.item_mouse_status = "M"
+2017-02-15 15:32:24		  weechat.look.item_time_format = "%H:%M"
+2017-02-15 15:32:24		  weechat.look.jump_current_to_previous_buffer = on
+2017-02-15 15:32:24		  weechat.look.jump_previous_buffer_when_closing = on
+2017-02-15 15:32:24		  weechat.look.jump_smart_back_to_buffer = on
+2017-02-15 15:32:24		  weechat.look.key_bind_safe = on
+2017-02-15 15:32:24		  weechat.look.key_grab_delay = 800
+2017-02-15 15:32:24		  weechat.look.mouse = off
+2017-02-15 15:32:24		  weechat.look.mouse_timer_delay = 100
+2017-02-15 15:32:24		  weechat.look.nick_color_force = ""
+2017-02-15 15:32:24		  weechat.look.nick_color_hash = djb2
+2017-02-15 15:32:24		  weechat.look.nick_color_stop_chars = "_|["
+2017-02-15 15:32:24		  weechat.look.nick_prefix = ""
+2017-02-15 15:32:24		  weechat.look.nick_suffix = ""
+2017-02-15 15:32:24		  weechat.look.paste_auto_add_newline = on
+2017-02-15 15:32:24		  weechat.look.paste_bracketed = on
+2017-02-15 15:32:24		  weechat.look.paste_bracketed_timer_delay = 10
+2017-02-15 15:32:24		  weechat.look.paste_max_lines = 1
+2017-02-15 15:32:24		  weechat.look.prefix_action = " *"
+2017-02-15 15:32:24		  weechat.look.prefix_align = right
+2017-02-15 15:32:24		  weechat.look.prefix_align_max = 0
+2017-02-15 15:32:24		  weechat.look.prefix_align_min = 0
+2017-02-15 15:32:24		  weechat.look.prefix_align_more = "+"
+2017-02-15 15:32:24		  weechat.look.prefix_align_more_after = on
+2017-02-15 15:32:24		  weechat.look.prefix_buffer_align = right
+2017-02-15 15:32:24		  weechat.look.prefix_buffer_align_max = 0
+2017-02-15 15:32:24		  weechat.look.prefix_buffer_align_more = "+"
+2017-02-15 15:32:24		  weechat.look.prefix_buffer_align_more_after = on
+2017-02-15 15:32:24		  weechat.look.prefix_error = "=!="
+2017-02-15 15:32:24		  weechat.look.prefix_join = "-->"
+2017-02-15 15:32:24		  weechat.look.prefix_network = "--"
+2017-02-15 15:32:24		  weechat.look.prefix_quit = "<--"
+2017-02-15 15:32:24		  weechat.look.prefix_same_nick = ""
+2017-02-15 15:32:24		  weechat.look.prefix_suffix = "|"
+2017-02-15 15:32:24		  weechat.look.quote_nick_prefix = "<"
+2017-02-15 15:32:24		  weechat.look.quote_nick_suffix = ">"
+2017-02-15 15:32:24		  weechat.look.quote_time_format = "%H:%M:%S"
+2017-02-15 15:32:24		  weechat.look.read_marker = line
+2017-02-15 15:32:24		  weechat.look.read_marker_always_show = off
+2017-02-15 15:32:24		  weechat.look.read_marker_string = "- "
+2017-02-15 15:32:24		  weechat.look.save_config_on_exit = on
+2017-02-15 15:32:24		  weechat.look.save_layout_on_exit = none
+2017-02-15 15:32:24		  weechat.look.scroll_amount = 3
+2017-02-15 15:32:24		  weechat.look.scroll_bottom_after_switch = off
+2017-02-15 15:32:24		  weechat.look.scroll_page_percent = 100
+2017-02-15 15:32:24		  weechat.look.search_text_not_found_alert = on
+2017-02-15 15:32:24		  weechat.look.separator_horizontal = "-"
+2017-02-15 15:32:24		  weechat.look.separator_vertical = ""
+2017-02-15 15:32:24		  weechat.look.tab_width = 1
+2017-02-15 15:32:24		  weechat.look.time_format = "%a, %d %b %Y %T"
+2017-02-15 15:32:24		  weechat.look.window_auto_zoom = off
+2017-02-15 15:32:24		  weechat.look.window_separator_horizontal = on
+2017-02-15 15:32:24		  weechat.look.window_separator_vertical = on
+2017-02-15 15:32:24		  weechat.look.window_title = "WeeChat ${info:version}"
+2017-02-15 15:32:24		  weechat.look.word_chars_highlight = "!\u00A0,-,_,|,alnum"
+2017-02-15 15:32:24		  weechat.look.word_chars_input = "!\u00A0,-,_,|,alnum"
+2017-02-15 15:32:24		[color] (weechat.conf)
+2017-02-15 15:32:24		  weechat.color.bar_more = lightmagenta
+2017-02-15 15:32:24		  weechat.color.chat = default
+2017-02-15 15:32:24		  weechat.color.chat_bg = default
+2017-02-15 15:32:24		  weechat.color.chat_buffer = white
+2017-02-15 15:32:24		  weechat.color.chat_channel = white
+2017-02-15 15:32:24		  weechat.color.chat_day_change = cyan
+2017-02-15 15:32:24		  weechat.color.chat_delimiters = green
+2017-02-15 15:32:24		  weechat.color.chat_highlight = yellow
+2017-02-15 15:32:24		  weechat.color.chat_highlight_bg = magenta
+2017-02-15 15:32:24		  weechat.color.chat_host = cyan
+2017-02-15 15:32:24		  weechat.color.chat_inactive_buffer = default
+2017-02-15 15:32:24		  weechat.color.chat_inactive_window = default
+2017-02-15 15:32:24		  weechat.color.chat_nick = lightcyan
+2017-02-15 15:32:24		  weechat.color.chat_nick_colors = "cyan,magenta,green,brown,lightblue,default,lightcyan,lightmagenta,lightgreen,blue"
+2017-02-15 15:32:24		  weechat.color.chat_nick_offline = default
+2017-02-15 15:32:24		  weechat.color.chat_nick_offline_highlight = default
+2017-02-15 15:32:24		  weechat.color.chat_nick_offline_highlight_bg = blue
+2017-02-15 15:32:24		  weechat.color.chat_nick_other = cyan
+2017-02-15 15:32:24		  weechat.color.chat_nick_prefix = green
+2017-02-15 15:32:24		  weechat.color.chat_nick_self = white
+2017-02-15 15:32:24		  weechat.color.chat_nick_suffix = green
+2017-02-15 15:32:24		  weechat.color.chat_prefix_action = white
+2017-02-15 15:32:24		  weechat.color.chat_prefix_buffer = brown
+2017-02-15 15:32:24		  weechat.color.chat_prefix_buffer_inactive_buffer = default
+2017-02-15 15:32:24		  weechat.color.chat_prefix_error = yellow
+2017-02-15 15:32:24		  weechat.color.chat_prefix_join = lightgreen
+2017-02-15 15:32:24		  weechat.color.chat_prefix_more = lightmagenta
+2017-02-15 15:32:24		  weechat.color.chat_prefix_network = magenta
+2017-02-15 15:32:24		  weechat.color.chat_prefix_quit = lightred
+2017-02-15 15:32:24		  weechat.color.chat_prefix_suffix = green
+2017-02-15 15:32:24		  weechat.color.chat_read_marker = magenta
+2017-02-15 15:32:24		  weechat.color.chat_read_marker_bg = default
+2017-02-15 15:32:24		  weechat.color.chat_server = brown
+2017-02-15 15:32:24		  weechat.color.chat_tags = red
+2017-02-15 15:32:24		  weechat.color.chat_text_found = yellow
+2017-02-15 15:32:24		  weechat.color.chat_text_found_bg = lightmagenta
+2017-02-15 15:32:24		  weechat.color.chat_time = default
+2017-02-15 15:32:24		  weechat.color.chat_time_delimiters = brown
+2017-02-15 15:32:24		  weechat.color.chat_value = cyan
+2017-02-15 15:32:24		  weechat.color.chat_value_null = blue
+2017-02-15 15:32:24		  weechat.color.emphasized = yellow
+2017-02-15 15:32:24		  weechat.color.emphasized_bg = magenta
+2017-02-15 15:32:24		  weechat.color.input_actions = lightgreen
+2017-02-15 15:32:24		  weechat.color.input_text_not_found = red
+2017-02-15 15:32:24		  weechat.color.item_away = yellow
+2017-02-15 15:32:24		  weechat.color.nicklist_away = cyan
+2017-02-15 15:32:24		  weechat.color.nicklist_group = green
+2017-02-15 15:32:24		  weechat.color.separator = blue
+2017-02-15 15:32:24		  weechat.color.status_count_highlight = magenta
+2017-02-15 15:32:24		  weechat.color.status_count_msg = brown
+2017-02-15 15:32:24		  weechat.color.status_count_other = default
+2017-02-15 15:32:24		  weechat.color.status_count_private = green
+2017-02-15 15:32:24		  weechat.color.status_data_highlight = lightmagenta
+2017-02-15 15:32:24		  weechat.color.status_data_msg = yellow
+2017-02-15 15:32:24		  weechat.color.status_data_other = default
+2017-02-15 15:32:24		  weechat.color.status_data_private = lightgreen
+2017-02-15 15:32:24		  weechat.color.status_filter = green
+2017-02-15 15:32:24		  weechat.color.status_more = yellow
+2017-02-15 15:32:24		  weechat.color.status_mouse = green
+2017-02-15 15:32:24		  weechat.color.status_name = white
+2017-02-15 15:32:24		  weechat.color.status_name_ssl = lightgreen
+2017-02-15 15:32:24		  weechat.color.status_nicklist_count = default
+2017-02-15 15:32:24		  weechat.color.status_number = yellow
+2017-02-15 15:32:24		  weechat.color.status_time = default
+2017-02-15 15:32:24		[completion] (weechat.conf)
+2017-02-15 15:32:24		  weechat.completion.base_word_until_cursor = on
+2017-02-15 15:32:24		  weechat.completion.command_inline = on
+2017-02-15 15:32:24		  weechat.completion.default_template = "%(nicks)|%(irc_channels)"
+2017-02-15 15:32:24		  weechat.completion.nick_add_space = on
+2017-02-15 15:32:24		  weechat.completion.nick_completer = ":"
+2017-02-15 15:32:24		  weechat.completion.nick_first_only = off
+2017-02-15 15:32:24		  weechat.completion.nick_ignore_chars = "[]`_-^"
+2017-02-15 15:32:24		  weechat.completion.partial_completion_alert = on
+2017-02-15 15:32:24		  weechat.completion.partial_completion_command = off
+2017-02-15 15:32:24		  weechat.completion.partial_completion_command_arg = off
+2017-02-15 15:32:24		  weechat.completion.partial_completion_count = on
+2017-02-15 15:32:24		  weechat.completion.partial_completion_other = off
+2017-02-15 15:32:24		[history] (weechat.conf)
+2017-02-15 15:32:24		  weechat.history.display_default = 5
+2017-02-15 15:32:24		  weechat.history.max_buffer_lines_minutes = 0
+2017-02-15 15:32:24		  weechat.history.max_buffer_lines_number = 4096
+2017-02-15 15:32:24		  weechat.history.max_commands = 100
+2017-02-15 15:32:24		  weechat.history.max_visited_buffers = 50
+2017-02-15 15:32:24		[network] (weechat.conf)
+2017-02-15 15:32:24		  weechat.network.connection_timeout = 60
+2017-02-15 15:32:24		  weechat.network.gnutls_ca_file = "/etc/ssl/certs/ca-certificates.crt"
+2017-02-15 15:32:24		  weechat.network.gnutls_handshake_timeout = 30
+2017-02-15 15:32:24		  weechat.network.proxy_curl = ""
+2017-02-15 15:32:24		[plugin] (weechat.conf)
+2017-02-15 15:32:24		  weechat.plugin.autoload = "*"
+2017-02-15 15:32:24		  weechat.plugin.debug = off
+2017-02-15 15:32:24		  weechat.plugin.extension = ".so,.dll"
+2017-02-15 15:32:24		  weechat.plugin.path = "%h/plugins"
+2017-02-15 15:32:24		  weechat.plugin.save_config_on_unload = on
+2017-02-15 15:32:24		[bar] (weechat.conf)
+2017-02-15 15:32:24		  weechat.bar.input.color_bg = default
+2017-02-15 15:32:24		  weechat.bar.input.color_delim = cyan
+2017-02-15 15:32:24		  weechat.bar.input.color_fg = default
+2017-02-15 15:32:24		  weechat.bar.input.conditions = ""
+2017-02-15 15:32:24		  weechat.bar.input.filling_left_right = vertical
+2017-02-15 15:32:24		  weechat.bar.input.filling_top_bottom = horizontal
+2017-02-15 15:32:24		  weechat.bar.input.hidden = off
+2017-02-15 15:32:24		  weechat.bar.input.items = "[input_prompt]+(away),[input_search],[input_paste],input_text"
+2017-02-15 15:32:24		  weechat.bar.input.position = bottom
+2017-02-15 15:32:24		  weechat.bar.input.priority = 1000
+2017-02-15 15:32:24		  weechat.bar.input.separator = off
+2017-02-15 15:32:24		  weechat.bar.input.size = 1
+2017-02-15 15:32:24		  weechat.bar.input.size_max = 0
+2017-02-15 15:32:24		  weechat.bar.input.type = window
+2017-02-15 15:32:24		  weechat.bar.nicklist.color_bg = default
+2017-02-15 15:32:24		  weechat.bar.nicklist.color_delim = cyan
+2017-02-15 15:32:24		  weechat.bar.nicklist.color_fg = default
+2017-02-15 15:32:24		  weechat.bar.nicklist.conditions = "${nicklist}"
+2017-02-15 15:32:24		  weechat.bar.nicklist.filling_left_right = vertical
+2017-02-15 15:32:24		  weechat.bar.nicklist.filling_top_bottom = columns_vertical
+2017-02-15 15:32:24		  weechat.bar.nicklist.hidden = off
+2017-02-15 15:32:24		  weechat.bar.nicklist.items = "buffer_nicklist"
+2017-02-15 15:32:24		  weechat.bar.nicklist.position = right
+2017-02-15 15:32:24		  weechat.bar.nicklist.priority = 200
+2017-02-15 15:32:24		  weechat.bar.nicklist.separator = on
+2017-02-15 15:32:24		  weechat.bar.nicklist.size = 0
+2017-02-15 15:32:24		  weechat.bar.nicklist.size_max = 0
+2017-02-15 15:32:24		  weechat.bar.nicklist.type = window
+2017-02-15 15:32:24		  weechat.bar.status.color_bg = blue
+2017-02-15 15:32:24		  weechat.bar.status.color_delim = cyan
+2017-02-15 15:32:24		  weechat.bar.status.color_fg = default
+2017-02-15 15:32:24		  weechat.bar.status.conditions = ""
+2017-02-15 15:32:24		  weechat.bar.status.filling_left_right = vertical
+2017-02-15 15:32:24		  weechat.bar.status.filling_top_bottom = horizontal
+2017-02-15 15:32:24		  weechat.bar.status.hidden = off
+2017-02-15 15:32:24		  weechat.bar.status.items = "[time],[buffer_last_number],[buffer_plugin],buffer_number+:+buffer_name+(buffer_modes)+{buffer_nicklist_count}+buffer_zoom+buffer_filter,scroll,[lag],[hotlist],completion"
+2017-02-15 15:32:24		  weechat.bar.status.position = bottom
+2017-02-15 15:32:24		  weechat.bar.status.priority = 500
+2017-02-15 15:32:24		  weechat.bar.status.separator = off
+2017-02-15 15:32:24		  weechat.bar.status.size = 1
+2017-02-15 15:32:24		  weechat.bar.status.size_max = 0
+2017-02-15 15:32:24		  weechat.bar.status.type = window
+2017-02-15 15:32:24		  weechat.bar.title.color_bg = blue
+2017-02-15 15:32:24		  weechat.bar.title.color_delim = cyan
+2017-02-15 15:32:24		  weechat.bar.title.color_fg = default
+2017-02-15 15:32:24		  weechat.bar.title.conditions = ""
+2017-02-15 15:32:24		  weechat.bar.title.filling_left_right = vertical
+2017-02-15 15:32:24		  weechat.bar.title.filling_top_bottom = horizontal
+2017-02-15 15:32:24		  weechat.bar.title.hidden = off
+2017-02-15 15:32:24		  weechat.bar.title.items = "buffer_title"
+2017-02-15 15:32:24		  weechat.bar.title.position = top
+2017-02-15 15:32:24		  weechat.bar.title.priority = 500
+2017-02-15 15:32:24		  weechat.bar.title.separator = off
+2017-02-15 15:32:24		  weechat.bar.title.size = 1
+2017-02-15 15:32:24		  weechat.bar.title.size_max = 0
+2017-02-15 15:32:24		  weechat.bar.title.type = window
+2017-02-15 15:32:24		[var] (plugins.conf)
+2017-02-15 15:32:24		  plugins.var.fifo.fifo = "on"
+2017-02-15 15:32:24		  plugins.var.guile.check_license = "off"
+2017-02-15 15:32:24		  plugins.var.lua.check_license = "off"
+2017-02-15 15:32:24		  plugins.var.perl.check_license = "off"
+2017-02-15 15:32:24		  plugins.var.python.check_license = "off"
+2017-02-15 15:32:24		  plugins.var.tcl.check_license = "off"
+2017-02-15 15:32:24		[default] (charset.conf)
+2017-02-15 15:32:24		  charset.default.decode = "iso-8859-1"
+2017-02-15 15:32:24		  charset.default.encode = ""
+2017-02-15 15:32:24		[look] (logger.conf)
+2017-02-15 15:32:24		  logger.look.backlog = 20
+2017-02-15 15:32:24		[color] (logger.conf)
+2017-02-15 15:32:24		  logger.color.backlog_end = default
+2017-02-15 15:32:24		  logger.color.backlog_line = default
+2017-02-15 15:32:24		[file] (logger.conf)
+2017-02-15 15:32:24		  logger.file.auto_log = on
+2017-02-15 15:32:24		  logger.file.flush_delay = 120
+2017-02-15 15:32:24		  logger.file.info_lines = off
+2017-02-15 15:32:24		  logger.file.mask = "$plugin.$name.weechatlog"
+2017-02-15 15:32:24		  logger.file.name_lower_case = on
+2017-02-15 15:32:24		  logger.file.nick_prefix = ""
+2017-02-15 15:32:24		  logger.file.nick_suffix = ""
+2017-02-15 15:32:24		  logger.file.path = "%h/logs/"
+2017-02-15 15:32:24		  logger.file.replacement_char = "_"
+2017-02-15 15:32:24		  logger.file.time_format = "%Y-%m-%d %H:%M:%S"
+2017-02-15 15:32:24		[command] (exec.conf)
+2017-02-15 15:32:24		  exec.command.default_options = ""
+2017-02-15 15:32:24		  exec.command.purge_delay = 0
+2017-02-15 15:32:24		[color] (exec.conf)
+2017-02-15 15:32:24		  exec.color.flag_finished = lightred
+2017-02-15 15:32:24		  exec.color.flag_running = lightgreen
+2017-02-15 15:32:24		[look] (trigger.conf)
+2017-02-15 15:32:24		  trigger.look.enabled = on
+2017-02-15 15:32:24		  trigger.look.monitor_strip_colors = off
+2017-02-15 15:32:24		[color] (trigger.conf)
+2017-02-15 15:32:24		  trigger.color.flag_command = lightgreen
+2017-02-15 15:32:24		  trigger.color.flag_conditions = yellow
+2017-02-15 15:32:24		  trigger.color.flag_post_action = lightblue
+2017-02-15 15:32:24		  trigger.color.flag_regex = lightcyan
+2017-02-15 15:32:24		  trigger.color.flag_return_code = lightmagenta
+2017-02-15 15:32:24		  trigger.color.regex = white
+2017-02-15 15:32:24		  trigger.color.replace = cyan
+2017-02-15 15:32:24		  trigger.color.trigger = green
+2017-02-15 15:32:24		  trigger.color.trigger_disabled = red
+2017-02-15 15:32:24		[trigger] (trigger.conf)
+2017-02-15 15:32:24		  trigger.trigger.beep.arguments = ""
+2017-02-15 15:32:24		  trigger.trigger.beep.command = "/print -beep"
+2017-02-15 15:32:24		  trigger.trigger.beep.conditions = "${tg_displayed} && (${tg_highlight} || ${tg_msg_pv})"
+2017-02-15 15:32:24		  trigger.trigger.beep.enabled = on
+2017-02-15 15:32:24		  trigger.trigger.beep.hook = print
+2017-02-15 15:32:24		  trigger.trigger.beep.post_action = none
+2017-02-15 15:32:24		  trigger.trigger.beep.regex = ""
+2017-02-15 15:32:24		  trigger.trigger.beep.return_code = ok
+2017-02-15 15:32:24		  trigger.trigger.cmd_pass.arguments = "5000|input_text_display;5000|history_add;5000|irc_command_auth"
+2017-02-15 15:32:24		  trigger.trigger.cmd_pass.command = ""
+2017-02-15 15:32:24		  trigger.trigger.cmd_pass.conditions = ""
+2017-02-15 15:32:24		  trigger.trigger.cmd_pass.enabled = on
+2017-02-15 15:32:24		  trigger.trigger.cmd_pass.hook = modifier
+2017-02-15 15:32:24		  trigger.trigger.cmd_pass.post_action = none
+2017-02-15 15:32:24		  trigger.trigger.cmd_pass.regex = "==^((/(msg|m|quote) +nickserv +(id|identify|register|ghost +[^ ]+|release +[^ ]+|regain +[^ ]+|recover +[^ ]+) +)|/oper +[^ ]+ +|/quote +pass +|/set +[^ ]*password[^ ]* +|/secure +(passphrase|decrypt|set +[^ ]+) +)(.*)==${re:1}${hide:*,${re:+}}"
+2017-02-15 15:32:24		  trigger.trigger.cmd_pass.return_code = ok
+2017-02-15 15:32:24		  trigger.trigger.msg_auth.arguments = "5000|irc_message_auth"
+2017-02-15 15:32:24		  trigger.trigger.msg_auth.command = ""
+2017-02-15 15:32:24		  trigger.trigger.msg_auth.conditions = ""
+2017-02-15 15:32:24		  trigger.trigger.msg_auth.enabled = on
+2017-02-15 15:32:24		  trigger.trigger.msg_auth.hook = modifier
+2017-02-15 15:32:24		  trigger.trigger.msg_auth.post_action = none
+2017-02-15 15:32:24		  trigger.trigger.msg_auth.regex = "==^(.*(id|identify|register|ghost +[^ ]+|release +[^ ]+|regain +[^ ]+|recover +[^ ]+) +)(.*)==${re:1}${hide:*,${re:+}}"
+2017-02-15 15:32:24		  trigger.trigger.msg_auth.return_code = ok
+2017-02-15 15:32:24		  trigger.trigger.server_pass.arguments = "5000|input_text_display;5000|history_add"
+2017-02-15 15:32:24		  trigger.trigger.server_pass.command = ""
+2017-02-15 15:32:24		  trigger.trigger.server_pass.conditions = ""
+2017-02-15 15:32:24		  trigger.trigger.server_pass.enabled = on
+2017-02-15 15:32:24		  trigger.trigger.server_pass.hook = modifier
+2017-02-15 15:32:24		  trigger.trigger.server_pass.post_action = none
+2017-02-15 15:32:24		  trigger.trigger.server_pass.regex = "==^(/(server|connect) .*-(sasl_)?password=)([^ ]+)(.*)==${re:1}${hide:*,${re:4}}${re:5}"
+2017-02-15 15:32:24		  trigger.trigger.server_pass.return_code = ok
+2017-02-15 15:32:24		[color] (aspell.conf)
+2017-02-15 15:32:24		  aspell.color.misspelled = lightred
+2017-02-15 15:32:24		  aspell.color.suggestions = default
+2017-02-15 15:32:24		[check] (aspell.conf)
+2017-02-15 15:32:24		  aspell.check.commands = "ame,amsg,away,command,cycle,kick,kickban,me,msg,notice,part,query,quit,topic"
+2017-02-15 15:32:24		  aspell.check.default_dict = ""
+2017-02-15 15:32:24		  aspell.check.during_search = off
+2017-02-15 15:32:24		  aspell.check.enabled = on  (default: off)
+2017-02-15 15:32:24		  aspell.check.real_time = off
+2017-02-15 15:32:24		  aspell.check.suggestions = -1
+2017-02-15 15:32:24		  aspell.check.word_min_length = 2
+2017-02-15 15:32:24		[cmd] (alias.conf)
+2017-02-15 15:32:24		  alias.cmd.AAWAY = "allserv /away"
+2017-02-15 15:32:24		  alias.cmd.AME = "allchan /me"
+2017-02-15 15:32:24		  alias.cmd.AMSG = "allchan /msg *"
+2017-02-15 15:32:24		  alias.cmd.ANICK = "allserv /nick"
+2017-02-15 15:32:24		  alias.cmd.BEEP = "print -beep"
+2017-02-15 15:32:24		  alias.cmd.BYE = "quit"
+2017-02-15 15:32:24		  alias.cmd.C = "buffer clear"
+2017-02-15 15:32:24		  alias.cmd.CHAT = "dcc chat"
+2017-02-15 15:32:24		  alias.cmd.CL = "buffer clear"
+2017-02-15 15:32:24		  alias.cmd.CLOSE = "buffer close"
+2017-02-15 15:32:24		  alias.cmd.EXIT = "quit"
+2017-02-15 15:32:24		  alias.cmd.IG = "ignore"
+2017-02-15 15:32:24		  alias.cmd.J = "join"
+2017-02-15 15:32:24		  alias.cmd.K = "kick"
+2017-02-15 15:32:24		  alias.cmd.KB = "kickban"
+2017-02-15 15:32:24		  alias.cmd.LEAVE = "part"
+2017-02-15 15:32:24		  alias.cmd.M = "msg"
+2017-02-15 15:32:24		  alias.cmd.MSGBUF = "command -buffer $1 * /input send $2-"
+2017-02-15 15:32:24		  alias.cmd.MUB = "unban *"
+2017-02-15 15:32:24		  alias.cmd.N = "names"
+2017-02-15 15:32:24		  alias.cmd.Q = "query"
+2017-02-15 15:32:24		  alias.cmd.REDRAW = "window refresh"
+2017-02-15 15:32:24		  alias.cmd.SAY = "msg *"
+2017-02-15 15:32:24		  alias.cmd.SIGNOFF = "quit"
+2017-02-15 15:32:24		  alias.cmd.T = "topic"
+2017-02-15 15:32:24		  alias.cmd.UB = "unban"
+2017-02-15 15:32:24		  alias.cmd.UMODE = "mode $nick"
+2017-02-15 15:32:24		  alias.cmd.V = "command core version"
+2017-02-15 15:32:24		  alias.cmd.W = "who"
+2017-02-15 15:32:24		  alias.cmd.WC = "window merge"
+2017-02-15 15:32:24		  alias.cmd.WI = "whois"
+2017-02-15 15:32:24		  alias.cmd.WII = "whois $1 $1"
+2017-02-15 15:32:24		  alias.cmd.WW = "whowas"
+2017-02-15 15:32:24		[completion] (alias.conf)
+2017-02-15 15:32:24		  alias.completion.MSGBUF = "%(buffers_plugins_names)"
+2017-02-15 15:32:24		[file] (fifo.conf)
+2017-02-15 15:32:24		  fifo.file.enabled = on
+2017-02-15 15:32:24		  fifo.file.path = "%h/weechat_fifo"
+2017-02-15 15:32:24		[look] (xfer.conf)
+2017-02-15 15:32:24		  xfer.look.auto_open_buffer = on
+2017-02-15 15:32:24		  xfer.look.progress_bar_size = 20
+2017-02-15 15:32:24		  xfer.look.pv_tags = "notify_private"
+2017-02-15 15:32:24		[color] (xfer.conf)
+2017-02-15 15:32:24		  xfer.color.status_aborted = lightred
+2017-02-15 15:32:24		  xfer.color.status_active = lightblue
+2017-02-15 15:32:24		  xfer.color.status_connecting = yellow
+2017-02-15 15:32:24		  xfer.color.status_done = lightgreen
+2017-02-15 15:32:24		  xfer.color.status_failed = lightred
+2017-02-15 15:32:24		  xfer.color.status_waiting = lightcyan
+2017-02-15 15:32:24		  xfer.color.text = default
+2017-02-15 15:32:24		  xfer.color.text_bg = default
+2017-02-15 15:32:24		  xfer.color.text_selected = white
+2017-02-15 15:32:24		[network] (xfer.conf)
+2017-02-15 15:32:24		  xfer.network.blocksize = 65536
+2017-02-15 15:32:24		  xfer.network.fast_send = on
+2017-02-15 15:32:24		  xfer.network.own_ip = ""
+2017-02-15 15:32:24		  xfer.network.port_range = ""
+2017-02-15 15:32:24		  xfer.network.speed_limit = 0
+2017-02-15 15:32:24		  xfer.network.timeout = 300
+2017-02-15 15:32:24		[file] (xfer.conf)
+2017-02-15 15:32:24		  xfer.file.auto_accept_chats = off
+2017-02-15 15:32:24		  xfer.file.auto_accept_files = off
+2017-02-15 15:32:24		  xfer.file.auto_accept_nicks = ""
+2017-02-15 15:32:24		  xfer.file.auto_check_crc32 = off
+2017-02-15 15:32:24		  xfer.file.auto_rename = on
+2017-02-15 15:32:24		  xfer.file.auto_resume = on
+2017-02-15 15:32:24		  xfer.file.convert_spaces = on
+2017-02-15 15:32:24		  xfer.file.download_path = "%h/xfer"
+2017-02-15 15:32:24		  xfer.file.upload_path = "~"
+2017-02-15 15:32:24		  xfer.file.use_nick_in_filename = on
+2017-02-15 15:32:24		[look] (irc.conf)
+2017-02-15 15:32:24		  irc.look.buffer_open_before_autojoin = on
+2017-02-15 15:32:24		  irc.look.buffer_open_before_join = off
+2017-02-15 15:32:24		  irc.look.buffer_switch_autojoin = on
+2017-02-15 15:32:24		  irc.look.buffer_switch_join = on
+2017-02-15 15:32:24		  irc.look.color_nicks_in_names = off
+2017-02-15 15:32:24		  irc.look.color_nicks_in_nicklist = off
+2017-02-15 15:32:24		  irc.look.color_nicks_in_server_messages = on
+2017-02-15 15:32:24		  irc.look.color_pv_nick_like_channel = on
+2017-02-15 15:32:24		  irc.look.ctcp_time_format = "%a, %d %b %Y %T %z"
+2017-02-15 15:32:24		  irc.look.display_away = local
+2017-02-15 15:32:24		  irc.look.display_ctcp_blocked = on
+2017-02-15 15:32:24		  irc.look.display_ctcp_reply = on
+2017-02-15 15:32:24		  irc.look.display_ctcp_unknown = on
+2017-02-15 15:32:24		  irc.look.display_host_join = on
+2017-02-15 15:32:24		  irc.look.display_host_join_local = on
+2017-02-15 15:32:24		  irc.look.display_host_quit = on
+2017-02-15 15:32:24		  irc.look.display_join_message = "329,332,333,366"
+2017-02-15 15:32:24		  irc.look.display_old_topic = on
+2017-02-15 15:32:24		  irc.look.display_pv_away_once = on
+2017-02-15 15:32:24		  irc.look.display_pv_back = on
+2017-02-15 15:32:24		  irc.look.highlight_channel = "$nick"
+2017-02-15 15:32:24		  irc.look.highlight_pv = "$nick"
+2017-02-15 15:32:24		  irc.look.highlight_server = "$nick"
+2017-02-15 15:32:24		  irc.look.highlight_tags_restrict = "irc_privmsg,irc_notice"
+2017-02-15 15:32:24		  irc.look.item_channel_modes_hide_args = "k"
+2017-02-15 15:32:24		  irc.look.item_display_server = buffer_plugin
+2017-02-15 15:32:24		  irc.look.item_nick_modes = on
+2017-02-15 15:32:24		  irc.look.item_nick_prefix = on
+2017-02-15 15:32:24		  irc.look.join_auto_add_chantype = off
+2017-02-15 15:32:24		  irc.look.msgbuffer_fallback = current
+2017-02-15 15:32:24		  irc.look.new_channel_position = none
+2017-02-15 15:32:24		  irc.look.new_pv_position = none
+2017-02-15 15:32:24		  irc.look.nick_completion_smart = speakers
+2017-02-15 15:32:24		  irc.look.nick_mode = prefix
+2017-02-15 15:32:24		  irc.look.nick_mode_empty = off
+2017-02-15 15:32:24		  irc.look.nicks_hide_password = "nickserv"
+2017-02-15 15:32:24		  irc.look.notice_as_pv = auto
+2017-02-15 15:32:24		  irc.look.notice_welcome_redirect = on
+2017-02-15 15:32:24		  irc.look.notice_welcome_tags = ""
+2017-02-15 15:32:24		  irc.look.notify_tags_ison = "notify_message"
+2017-02-15 15:32:24		  irc.look.notify_tags_whois = "notify_message"
+2017-02-15 15:32:24		  irc.look.part_closes_buffer = off
+2017-02-15 15:32:24		  irc.look.pv_buffer = independent
+2017-02-15 15:32:24		  irc.look.pv_tags = "notify_private"
+2017-02-15 15:32:24		  irc.look.raw_messages = 256
+2017-02-15 15:32:24		  irc.look.server_buffer = merge_with_core
+2017-02-15 15:32:24		  irc.look.smart_filter = on
+2017-02-15 15:32:24		  irc.look.smart_filter_delay = 5
+2017-02-15 15:32:24		  irc.look.smart_filter_join = on
+2017-02-15 15:32:24		  irc.look.smart_filter_join_unmask = 30
+2017-02-15 15:32:24		  irc.look.smart_filter_mode = "+"
+2017-02-15 15:32:24		  irc.look.smart_filter_nick = on
+2017-02-15 15:32:24		  irc.look.smart_filter_quit = on
+2017-02-15 15:32:24		  irc.look.temporary_servers = off
+2017-02-15 15:32:24		  irc.look.topic_strip_colors = off
+2017-02-15 15:32:24		[color] (irc.conf)
+2017-02-15 15:32:24		  irc.color.input_nick = lightcyan
+2017-02-15 15:32:24		  irc.color.item_channel_modes = default
+2017-02-15 15:32:24		  irc.color.item_lag_counting = default
+2017-02-15 15:32:24		  irc.color.item_lag_finished = yellow
+2017-02-15 15:32:24		  irc.color.item_nick_modes = default
+2017-02-15 15:32:24		  irc.color.message_join = green
+2017-02-15 15:32:24		  irc.color.message_quit = red
+2017-02-15 15:32:24		  irc.color.mirc_remap = "1,-1:darkgray"
+2017-02-15 15:32:24		  irc.color.nick_prefixes = "y:lightred;q:lightred;a:lightcyan;o:lightgreen;h:lightmagenta;v:yellow;*:lightblue"
+2017-02-15 15:32:24		  irc.color.notice = green
+2017-02-15 15:32:24		  irc.color.reason_quit = default
+2017-02-15 15:32:24		  irc.color.topic_current = default
+2017-02-15 15:32:24		  irc.color.topic_new = white
+2017-02-15 15:32:24		  irc.color.topic_old = default
+2017-02-15 15:32:24		[network] (irc.conf)
+2017-02-15 15:32:24		  irc.network.autoreconnect_delay_growing = 2
+2017-02-15 15:32:24		  irc.network.autoreconnect_delay_max = 600
+2017-02-15 15:32:24		  irc.network.ban_mask_default = "*!$ident@$host"
+2017-02-15 15:32:24		  irc.network.channel_encode = off
+2017-02-15 15:32:24		  irc.network.colors_receive = on
+2017-02-15 15:32:24		  irc.network.colors_send = on
+2017-02-15 15:32:24		  irc.network.lag_check = 60
+2017-02-15 15:32:24		  irc.network.lag_max = 1800
+2017-02-15 15:32:24		  irc.network.lag_min_show = 500
+2017-02-15 15:32:24		  irc.network.lag_reconnect = 0  (default: 300)
+2017-02-15 15:32:24		  irc.network.lag_refresh_interval = 1
+2017-02-15 15:32:24		  irc.network.notify_check_ison = 1
+2017-02-15 15:32:24		  irc.network.notify_check_whois = 5
+2017-02-15 15:32:24		  irc.network.sasl_fail_unavailable = on
+2017-02-15 15:32:24		  irc.network.send_unknown_commands = off
+2017-02-15 15:32:24		  irc.network.whois_double_nick = off
+2017-02-15 15:32:24		[server_default] (irc.conf)
+2017-02-15 15:32:24		  irc.server_default.addresses = ""
+2017-02-15 15:32:24		  irc.server_default.anti_flood_prio_high = 2
+2017-02-15 15:32:24		  irc.server_default.anti_flood_prio_low = 2
+2017-02-15 15:32:24		  irc.server_default.autoconnect = off
+2017-02-15 15:32:24		  irc.server_default.autojoin = ""
+2017-02-15 15:32:24		  irc.server_default.autoreconnect = on
+2017-02-15 15:32:24		  irc.server_default.autoreconnect_delay = 10
+2017-02-15 15:32:24		  irc.server_default.autorejoin = off
+2017-02-15 15:32:24		  irc.server_default.autorejoin_delay = 30
+2017-02-15 15:32:24		  irc.server_default.away_check = 0
+2017-02-15 15:32:24		  irc.server_default.away_check_max_nicks = 25
+2017-02-15 15:32:24		  irc.server_default.capabilities = ""
+2017-02-15 15:32:24		  irc.server_default.command = ""
+2017-02-15 15:32:24		  irc.server_default.command_delay = 0
+2017-02-15 15:32:24		  irc.server_default.connection_timeout = 60
+2017-02-15 15:32:24		  irc.server_default.ipv6 = on
+2017-02-15 15:32:24		  irc.server_default.local_hostname = ""
+2017-02-15 15:32:24		  irc.server_default.msg_kick = ""
+2017-02-15 15:32:24		  irc.server_default.msg_part = "WeeChat ${info:version}"
+2017-02-15 15:32:24		  irc.server_default.msg_quit = "WeeChat ${info:version}"
+2017-02-15 15:32:24		  irc.server_default.nicks = "wolfe,wolfe1,wolfe2,wolfe3,wolfe4"  (default: "")
+2017-02-15 15:32:24		  irc.server_default.nicks_alternate = on
+2017-02-15 15:32:24		  irc.server_default.notify = ""
+2017-02-15 15:32:24		  irc.server_default.password = ""
+2017-02-15 15:32:24		  irc.server_default.proxy = ""
+2017-02-15 15:32:24		  irc.server_default.realname = ""
+2017-02-15 15:32:24		  irc.server_default.sasl_fail = continue
+2017-02-15 15:32:24		  irc.server_default.sasl_key = ""
+2017-02-15 15:32:24		  irc.server_default.sasl_mechanism = plain
+2017-02-15 15:32:24		  irc.server_default.sasl_password = ""
+2017-02-15 15:32:24		  irc.server_default.sasl_timeout = 15
+2017-02-15 15:32:24		  irc.server_default.sasl_username = ""
+2017-02-15 15:32:24		  irc.server_default.ssl = off
+2017-02-15 15:32:24		  irc.server_default.ssl_cert = ""
+2017-02-15 15:32:24		  irc.server_default.ssl_dhkey_size = 2048
+2017-02-15 15:32:24		  irc.server_default.ssl_fingerprint = ""
+2017-02-15 15:32:24		  irc.server_default.ssl_priorities = "NORMAL:-VERS-SSL3.0"
+2017-02-15 15:32:24		  irc.server_default.ssl_verify = on
+2017-02-15 15:32:24		  irc.server_default.usermode = ""
+2017-02-15 15:32:24		  irc.server_default.username = "wolfe"  (default: "")
+2017-02-15 15:32:24		[look] (relay.conf)
+2017-02-15 15:32:24		  relay.look.auto_open_buffer = on
+2017-02-15 15:32:24		  relay.look.raw_messages = 256
+2017-02-15 15:32:24		[color] (relay.conf)
+2017-02-15 15:32:24		  relay.color.client = cyan
+2017-02-15 15:32:24		  relay.color.status_active = lightblue
+2017-02-15 15:32:24		  relay.color.status_auth_failed = lightred
+2017-02-15 15:32:24		  relay.color.status_connecting = yellow
+2017-02-15 15:32:24		  relay.color.status_disconnected = lightred
+2017-02-15 15:32:24		  relay.color.status_waiting_auth = brown
+2017-02-15 15:32:24		  relay.color.text = default
+2017-02-15 15:32:24		  relay.color.text_bg = default
+2017-02-15 15:32:24		  relay.color.text_selected = white
+2017-02-15 15:32:24		[network] (relay.conf)
+2017-02-15 15:32:24		  relay.network.allow_empty_password = off
+2017-02-15 15:32:24		  relay.network.allowed_ips = ""
+2017-02-15 15:32:24		  relay.network.bind_address = ""
+2017-02-15 15:32:24		  relay.network.clients_purge_delay = 0
+2017-02-15 15:32:24		  relay.network.compression_level = 6
+2017-02-15 15:32:24		  relay.network.ipv6 = on
+2017-02-15 15:32:24		  relay.network.max_clients = 5
+2017-02-15 15:32:24		  relay.network.password = ""
+2017-02-15 15:32:24		  relay.network.ssl_cert_key = "%h/ssl/relay.pem"
+2017-02-15 15:32:24		  relay.network.ssl_priorities = "NORMAL:-VERS-SSL3.0"
+2017-02-15 15:32:24		  relay.network.websocket_allowed_origins = ""
+2017-02-15 15:32:24		[irc] (relay.conf)
+2017-02-15 15:32:24		  relay.irc.backlog_max_minutes = 1440
+2017-02-15 15:32:24		  relay.irc.backlog_max_number = 256
+2017-02-15 15:32:24		  relay.irc.backlog_since_last_disconnect = on
+2017-02-15 15:32:24		  relay.irc.backlog_since_last_message = off
+2017-02-15 15:32:24		  relay.irc.backlog_tags = "irc_privmsg"
+2017-02-15 15:32:24		  relay.irc.backlog_time_format = "[%H:%M] "
+2017-02-15 15:32:24		[look] (script.conf)
+2017-02-15 15:32:24		  script.look.columns = "%s %n %V %v %u | %d | %t"
+2017-02-15 15:32:24		  script.look.diff_color = on
+2017-02-15 15:32:24		  script.look.diff_command = "auto"
+2017-02-15 15:32:24		  script.look.display_source = on
+2017-02-15 15:32:24		  script.look.quiet_actions = on
+2017-02-15 15:32:24		  script.look.sort = "p,n"
+2017-02-15 15:32:24		  script.look.translate_description = on
+2017-02-15 15:32:24		  script.look.use_keys = on
+2017-02-15 15:32:24		[color] (script.conf)
+2017-02-15 15:32:24		  script.color.status_autoloaded = cyan
+2017-02-15 15:32:24		  script.color.status_held = white
+2017-02-15 15:32:24		  script.color.status_installed = lightcyan
+2017-02-15 15:32:24		  script.color.status_obsolete = lightmagenta
+2017-02-15 15:32:24		  script.color.status_popular = yellow
+2017-02-15 15:32:24		  script.color.status_running = lightgreen
+2017-02-15 15:32:24		  script.color.status_unknown = lightred
+2017-02-15 15:32:24		  script.color.text = default
+2017-02-15 15:32:24		  script.color.text_bg = default
+2017-02-15 15:32:24		  script.color.text_bg_selected = red
+2017-02-15 15:32:24		  script.color.text_date = default
+2017-02-15 15:32:24		  script.color.text_date_selected = white
+2017-02-15 15:32:24		  script.color.text_delimiters = default
+2017-02-15 15:32:24		  script.color.text_description = default
+2017-02-15 15:32:24		  script.color.text_description_selected = white
+2017-02-15 15:32:24		  script.color.text_extension = default
+2017-02-15 15:32:24		  script.color.text_extension_selected = white
+2017-02-15 15:32:24		  script.color.text_name = cyan
+2017-02-15 15:32:24		  script.color.text_name_selected = lightcyan
+2017-02-15 15:32:24		  script.color.text_selected = white
+2017-02-15 15:32:24		  script.color.text_tags = brown
+2017-02-15 15:32:24		  script.color.text_tags_selected = yellow
+2017-02-15 15:32:24		  script.color.text_version = magenta
+2017-02-15 15:32:24		  script.color.text_version_loaded = default
+2017-02-15 15:32:24		  script.color.text_version_loaded_selected = white
+2017-02-15 15:32:24		  script.color.text_version_selected = lightmagenta
+2017-02-15 15:32:24		[scripts] (script.conf)
+2017-02-15 15:32:24		  script.scripts.autoload = on
+2017-02-15 15:32:24		  script.scripts.cache_expire = 1440
+2017-02-15 15:32:24		  script.scripts.download_timeout = 30
+2017-02-15 15:32:24		  script.scripts.hold = ""
+2017-02-15 15:32:24		  script.scripts.path = "%h/script"
+2017-02-15 15:32:24		  script.scripts.url = "http://weechat.org/files/plugins.xml.gz"
+2017-02-15 15:32:24		  script.scripts.url_force_https = on
+2017-02-15 15:32:24		605 options
+2017-02-15 15:32:34		irc: server freenode added
+2017-02-15 15:34:39	=!=	Error: unknown command "/clear" (type /help for help)
+2017-02-15 15:34:48		fifo: pipe closed
+2017-02-15 15:34:49	=!=	python: script "/home/wolfe/.weechat/python/autoload/vimode.py" not found
+2017-02-15 15:34:49		script: 331 scripts for WeeChat 1.7
+2017-02-15 15:34:49		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-15 15:36:09	=!=	Error: unknown command "/cs" (type /help for help)
+2017-02-15 15:37:32		Option changed: irc.server.freenode.sasl_username = "Wolfe_"  (default if null: "")
+2017-02-15 15:42:54		fifo: pipe closed
+2017-02-15 15:42:55		[vimode.py] Problematic keybindings detected:
+2017-02-15 15:42:55		[vimode.py]     meta-jmeta-f -> /buffer -
+2017-02-15 15:42:55		[vimode.py]     meta-jmeta-l -> /buffer +
+2017-02-15 15:42:55		[vimode.py]     meta-jmeta-r -> /server raw
+2017-02-15 15:42:55		[vimode.py]     meta-jmeta-s -> /server jump
+2017-02-15 15:42:55		[vimode.py]     meta-wmeta-meta2-A -> /window up
+2017-02-15 15:42:55		[vimode.py]     meta-wmeta-meta2-B -> /window down
+2017-02-15 15:42:55		[vimode.py]     meta-wmeta-meta2-C -> /window right
+2017-02-15 15:42:55		[vimode.py]     meta-wmeta-meta2-D -> /window left
+2017-02-15 15:42:55		[vimode.py]     meta-wmeta2-1;3A -> /window up
+2017-02-15 15:42:55		[vimode.py]     meta-wmeta2-1;3B -> /window down
+2017-02-15 15:42:55		[vimode.py]     meta-wmeta2-1;3C -> /window right
+2017-02-15 15:42:55		[vimode.py]     meta-wmeta2-1;3D -> /window left
+2017-02-15 15:42:55		[vimode.py]     meta-wmeta-b -> /window balance
+2017-02-15 15:42:55		[vimode.py]     meta-wmeta-s -> /window swap
+2017-02-15 15:42:55		[vimode.py] These keybindings may conflict with vimode.
+2017-02-15 15:42:55		[vimode.py] You can remove problematic key bindings and add recommended ones by using /vimode bind_keys, or only list them with /vimode bind_keys --list
+2017-02-15 15:42:55		[vimode.py] For help, see: https://github.com/GermainZ/weechat-vimode/blob/master/FAQ#problematic-key-bindings.md
+2017-02-15 15:42:55		[vimode.py] To force disable warnings, you can set plugins.var.python.vimode.no_warn to 'on'
+2017-02-15 15:42:55		python scripts loaded: vimode
+2017-02-15 15:42:55		script: 331 scripts for WeeChat 1.7
+2017-02-15 15:42:55		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-15 15:43:11		Running commands:
+2017-02-15 15:43:11		Key "ctrl-W" unbound (context: "default")
+2017-02-15 15:43:11		New key binding (context "default"): ctrl-W => /input delete_previous_word
+2017-02-15 15:43:11		New key binding (context "default"): ctrl-^ => /input jump_last_buffer_displayed
+2017-02-15 15:43:11		New key binding (context "default"): ctrl-Wh => /window left
+2017-02-15 15:43:11		New key binding (context "default"): ctrl-Wj => /window down
+2017-02-15 15:43:11		New key binding (context "default"): ctrl-Wk => /window up
+2017-02-15 15:43:11		New key binding (context "default"): ctrl-Wl => /window right
+2017-02-15 15:43:11		New key binding (context "default"): ctrl-W= => /window balance
+2017-02-15 15:43:11		New key binding (context "default"): ctrl-Wx => /window swap
+2017-02-15 15:43:11		New key binding (context "default"): ctrl-Ws => /window splith
+2017-02-15 15:43:11		New key binding (context "default"): ctrl-Wv => /window splitv
+2017-02-15 15:43:11		New key binding (context "default"): ctrl-Wq => /window merge
+2017-02-15 15:43:11		Key "meta-jmeta-f" unbound (context: "default")
+2017-02-15 15:43:11		Key "meta-jmeta-l" unbound (context: "default")
+2017-02-15 15:43:11		Key "meta-jmeta-r" unbound (context: "default")
+2017-02-15 15:43:11		Key "meta-jmeta-s" unbound (context: "default")
+2017-02-15 15:43:11		Key "meta-wmeta-meta2-A" unbound (context: "default")
+2017-02-15 15:43:11		Key "meta-wmeta-meta2-B" unbound (context: "default")
+2017-02-15 15:43:11		Key "meta-wmeta-meta2-C" unbound (context: "default")
+2017-02-15 15:43:11		Key "meta-wmeta-meta2-D" unbound (context: "default")
+2017-02-15 15:43:11		Key "meta-wmeta2-1;3A" unbound (context: "default")
+2017-02-15 15:43:11		Key "meta-wmeta2-1;3B" unbound (context: "default")
+2017-02-15 15:43:11		Key "meta-wmeta2-1;3C" unbound (context: "default")
+2017-02-15 15:43:11		Key "meta-wmeta2-1;3D" unbound (context: "default")
+2017-02-15 15:43:11		Key "meta-wmeta-b" unbound (context: "default")
+2017-02-15 15:43:11		Key "meta-wmeta-s" unbound (context: "default")
+2017-02-15 15:43:11		Done.
+2017-02-15 15:43:15		python: scripts unloaded
+2017-02-15 15:43:15		fifo: pipe closed
+2017-02-15 15:43:16		python scripts loaded: vimode
+2017-02-15 15:43:16		script: 331 scripts for WeeChat 1.7
+2017-02-15 15:43:16		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-15 15:43:28	=!=	Error: unknown command "/iset" (type /help for help)
+2017-02-15 15:45:19		python: scripts unloaded
+2017-02-15 15:45:19		fifo: pipe closed
+2017-02-15 15:49:30		New key binding (context "mouse"): @chat(perl.iset):button1 => hsignal:iset_mouse
+2017-02-15 15:49:30		New key binding (context "mouse"): @chat(perl.iset):button2* => hsignal:iset_mouse
+2017-02-15 15:49:30		New key binding (context "mouse"): @chat(perl.iset):wheeldown => /repeat 5 /iset **down
+2017-02-15 15:49:30		New key binding (context "mouse"): @chat(perl.iset):wheelup => /repeat 5 /iset **up
+2017-02-15 15:49:30		perl scripts loaded: iset
+2017-02-15 15:49:30		python scripts loaded: vimode
+2017-02-15 15:49:30		script: 331 scripts for WeeChat 1.7
+2017-02-15 15:49:30		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-15 15:49:51		python: scripts unloaded
+2017-02-15 15:49:51		fifo: pipe closed
+2017-02-15 15:49:52		perl scripts loaded: iset
+2017-02-15 15:49:52		python scripts loaded: vimode
+2017-02-15 15:49:52		script: 331 scripts for WeeChat 1.7
+2017-02-15 15:49:52		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-15 15:50:30		script: script "iset.pl" is already installed and up-to-date
+2017-02-15 15:50:40	=!=	Error: WeeChat main buffer can't be closed
+2017-02-15 15:50:42	=!=	Error: unknown command "/qa" (type /help for help)
+2017-02-15 15:50:58		python: scripts unloaded
+2017-02-15 15:50:58		fifo: pipe closed
+2017-02-15 15:51:17		perl scripts loaded: iset
+2017-02-15 15:51:17		python scripts loaded: vimode
+2017-02-15 15:51:17		script: 331 scripts for WeeChat 1.7
+2017-02-15 15:51:17		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-15 15:51:57		Option changed: weechat.bar.input.items = "[mode_indicator]+[input_prompt]+(away),[input_search],[input_paste],input_text,[vi_buffer]"  (default: "[input_prompt]+(away),[input_search],[input_paste],input_text")
+2017-02-15 15:52:57	=!=	Error: unknown command "/qa" (type /help for help)
+2017-02-15 15:52:59		python: scripts unloaded
+2017-02-15 15:52:59		fifo: pipe closed
+2017-02-15 15:53:09		perl scripts loaded: iset
+2017-02-15 15:53:09		python scripts loaded: vimode
+2017-02-15 15:53:09		script: 331 scripts for WeeChat 1.7
+2017-02-15 15:53:09		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-15 15:57:46	=!=	You can not write text in this buffer
+2017-02-15 15:57:55		Option changed: weechat.look.prefix_suffix = ""  (default: "|")
+2017-02-15 15:58:10		Option changed: weechat.look.prefix_join = ""  (default: "-->")
+2017-02-15 15:59:06		python: scripts unloaded
+2017-02-15 15:59:06		fifo: pipe closed
+2017-02-15 16:00:04		perl scripts loaded: iset
+2017-02-15 16:00:04		python scripts loaded: vimode
+2017-02-15 16:00:04		script: 331 scripts for WeeChat 1.7
+2017-02-15 16:00:04		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-15 16:00:18	=!=	Error: unknown command "/weechat.look.prefix_join" (type /help for help)
+2017-02-15 16:00:34		Option changed: weechat.look.prefix_join = "-->"
+2017-02-15 16:01:00	=!=	Error: WeeChat main buffer can't be closed
+2017-02-15 16:01:03		python: scripts unloaded
+2017-02-15 16:01:03		fifo: pipe closed
+2017-02-15 16:01:28		perl scripts loaded: iset
+2017-02-15 16:01:28		python scripts loaded: vimode
+2017-02-15 16:01:28		script: 331 scripts for WeeChat 1.7
+2017-02-15 16:01:28		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-15 16:01:35		charset: terminal: UTF-8, internal: UTF-8
+2017-02-15 16:01:49	=!=	Error: WeeChat main buffer can't be closed
+2017-02-15 16:01:52		python: scripts unloaded
+2017-02-15 16:01:52		fifo: pipe closed
+2017-02-15 16:02:17		perl scripts loaded: iset
+2017-02-15 16:02:17		python scripts loaded: vimode
+2017-02-15 16:02:17		script: 331 scripts for WeeChat 1.7
+2017-02-15 16:02:17		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-15 16:02:27	=!=	Error: WeeChat main buffer can't be closed
+2017-02-15 16:02:33		python: scripts unloaded
+2017-02-15 16:02:33		fifo: pipe closed
+2017-02-15 16:02:55		perl scripts loaded: iset
+2017-02-15 16:02:55		script: 331 scripts for WeeChat 1.7
+2017-02-15 16:02:55		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-15 16:03:01		Option changed: weechat.look.prefix_suffix = "│"  (default: "|")
+2017-02-15 16:03:07		Option changed: weechat.look.read_marker_string = "─"  (default: "- ")
+2017-02-15 16:03:12		Option changed: weechat.look.prefix_join = "▬▬▶"  (default: "-->")
+2017-02-15 16:03:16		Option changed: weechat.look.prefix_quit = "◀▬▬"  (default: "<--")
+2017-02-15 16:03:22		Option changed: weechat.look.item_buffer_filter = "•"  (default: "*")
+2017-02-15 16:03:26		Option changed: weechat.look.bar_more_down = "▼"  (default: "++")
+2017-02-15 16:03:29		Option changed: weechat.look.bar_more_left = "◀"  (default: "<<")
+2017-02-15 16:03:33		fifo: pipe closed
+2017-02-15 16:03:41		perl scripts loaded: iset
+2017-02-15 16:03:41		script: 331 scripts for WeeChat 1.7
+2017-02-15 16:03:41		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-15 16:03:43		Option changed: weechat.look.bar_more_right = "▶"  (default: ">>")
+2017-02-15 16:03:48		Option changed: weechat.look.bar_more_left = "◀"  (default: "<<")
+2017-02-15 16:03:52		Option changed: weechat.look.bar_more_up = "▲"  (default: "--")
+2017-02-15 16:04:06	=!=	irc: command "join" must be executed on connected irc server
+2017-02-15 16:04:54		fifo: pipe closed
+2017-02-15 16:06:16		perl scripts loaded: iset
+2017-02-15 16:06:16		python scripts loaded: vimode
+2017-02-15 16:06:16		script: 331 scripts for WeeChat 1.7
+2017-02-15 16:06:16		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-15 16:07:44	=!=	Error: unknown command "/irc.server.default_nicks" (type /help for help)
+2017-02-15 16:07:57		python: scripts unloaded
+2017-02-15 16:07:57		fifo: pipe closed
+2017-02-15 16:07:58		perl scripts loaded: iset
+2017-02-15 16:07:58		python scripts loaded: vimode
+2017-02-15 16:07:58		script: 331 scripts for WeeChat 1.7
+2017-02-15 16:07:58		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-15 16:08:40	=!=	Error: option "irc.server.default_nicks" not found
+2017-02-15 16:09:27		Option changed: irc.server.freenode.username = "wolfe_"  (default if null: "wolfe")
+2017-02-15 16:09:35		python: scripts unloaded
+2017-02-15 16:09:35		fifo: pipe closed
+2017-02-15 16:09:39		perl scripts loaded: iset
+2017-02-15 16:09:40		python scripts loaded: vimode
+2017-02-15 16:09:40		script: 331 scripts for WeeChat 1.7
+2017-02-15 16:09:40		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-15 16:10:23	=!=	Error: unknown command "/colors" (type /help for help)
+2017-02-15 16:10:41		No command is running
+2017-02-15 16:11:01	=!=	Error: unknown command "/qa" (type /help for help)
+2017-02-15 16:11:04		python: scripts unloaded
+2017-02-15 16:11:04		fifo: pipe closed
+2017-02-15 16:11:04		perl scripts loaded: iset
+2017-02-15 16:11:05		python scripts loaded: vimode
+2017-02-15 16:11:05		script: 331 scripts for WeeChat 1.7
+2017-02-15 16:11:05		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-15 16:11:58		No command is running
+2017-02-15 16:12:00		python: scripts unloaded
+2017-02-15 16:12:00		fifo: pipe closed
+2017-02-15 16:14:22		perl scripts loaded: iset
+2017-02-15 16:14:22		Theme saved to "/home/wolfe/.weechat/themes/_backup.theme"
+2017-02-15 16:14:22		python scripts loaded: theme, vimode
+2017-02-15 16:14:23		script: 331 scripts for WeeChat 1.7
+2017-02-15 16:14:23		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-15 16:14:31		python: loading script "/home/wolfe/.weechat/python/autoload/theme.py"
+2017-02-15 16:14:31	=!=	python: unable to register script "theme" (another script already exists with this name)
+2017-02-15 16:14:31	=!=	python: function "register" not found (or failed) in file "/home/wolfe/.weechat/python/autoload/theme.py"
+2017-02-15 16:14:43		python: scripts unloaded
+2017-02-15 16:14:43		fifo: pipe closed
+2017-02-15 16:14:59		perl scripts loaded: iset
+2017-02-15 16:14:59		python scripts loaded: vimode
+2017-02-15 16:15:00		script: 331 scripts for WeeChat 1.7
+2017-02-15 16:15:00		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-15 16:15:12		python: scripts unloaded
+2017-02-15 16:15:12		fifo: pipe closed
+2017-02-15 16:15:29		perl scripts loaded: iset
+2017-02-15 16:15:30		python scripts loaded: vimode
+2017-02-15 16:15:30		script: 331 scripts for WeeChat 1.7
+2017-02-15 16:15:30		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-15 16:15:33	=!=	Error: unknown command "/theme" (type /help for help)
+2017-02-15 16:15:55	=!=	You can not write text in this buffer
+2017-02-15 16:15:57		No command is running
+2017-02-15 16:16:00		python: scripts unloaded
+2017-02-15 16:16:00		fifo: pipe closed
+2017-02-15 16:16:20		perl scripts loaded: iset
+2017-02-15 16:16:20		python scripts loaded: theme, vimode
+2017-02-15 16:16:20		script: 331 scripts for WeeChat 1.7
+2017-02-15 16:16:20		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-15 16:18:09		python: scripts unloaded
+2017-02-15 16:18:09		fifo: pipe closed
+2017-02-15 16:18:27		perl scripts loaded: iset
+2017-02-15 16:18:28		python scripts loaded: theme, vimode
+2017-02-15 16:18:28		script: 331 scripts for WeeChat 1.7
+2017-02-15 16:18:28		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-15 16:18:39		script: script "theme.py" not found
+2017-02-15 16:18:44		python: scripts unloaded
+2017-02-15 16:18:44		fifo: pipe closed
+2017-02-15 16:26:42		perl scripts loaded: iset
+2017-02-15 16:26:43		python scripts loaded: theme, vimode
+2017-02-15 16:26:43		script: 331 scripts for WeeChat 1.7
+2017-02-15 16:26:43		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-15 16:27:44		python: scripts unloaded
+2017-02-15 16:27:44		fifo: pipe closed
+2017-02-15 16:28:00		perl scripts loaded: iset
+2017-02-15 16:28:00		python scripts loaded: theme, vimode
+2017-02-15 16:28:00		script: 331 scripts for WeeChat 1.7
+2017-02-15 16:28:00		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-15 16:29:50		python: scripts unloaded
+2017-02-15 16:29:50		fifo: pipe closed
+2017-02-15 16:30:08		perl scripts loaded: iset
+2017-02-15 16:30:09		python scripts loaded: theme, vimode
+2017-02-15 16:30:09		script: 331 scripts for WeeChat 1.7
+2017-02-15 16:30:09		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-15 16:30:25		theme: action "install" not developed
+2017-02-15 16:30:57		Theme saved to "/home/wolfe/.weechat/themes/_undo.theme"
+2017-02-15 16:30:57		Warning: option not found: "irc.color.item_away" (running an old WeeChat?)
+2017-02-15 16:30:57		Warning: option not found: "weechat.color.nicklist_offline" (running an old WeeChat?)
+2017-02-15 16:30:57		Theme "/home/wolfe/.weechat/themes/fbesser.theme" installed (114 options set, 2 error(s))
+2017-02-15 16:31:11		python: scripts unloaded
+2017-02-15 16:31:11		fifo: pipe closed
+2017-02-15 16:31:12		perl scripts loaded: iset
+2017-02-15 16:31:13		python scripts loaded: theme, vimode
+2017-02-15 16:31:13		script: 331 scripts for WeeChat 1.7
+2017-02-15 16:31:13		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-15 16:34:39		Option changed: irc.server.freenode.nicks = "wolfe_"  (default if null: "wolfe,wolfe1,wolfe2,wolfe3,wolfe4")
+2017-02-15 16:35:14		Option changed: irc.server.freenode.username = "wolfe_"  (default if null: "wolfe")
+2017-02-15 16:35:18		No command is running
+2017-02-15 16:35:19		python: scripts unloaded
+2017-02-15 16:35:19		fifo: pipe closed
+2017-02-15 16:35:21		perl scripts loaded: iset
+2017-02-15 16:35:21		python scripts loaded: theme, vimode
+2017-02-15 16:35:21		script: 331 scripts for WeeChat 1.7
+2017-02-15 16:35:21		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-15 16:38:51	=!=	Error: unknown command "/cs" (type /help for help)
+2017-02-15 19:50:44		python: scripts unloaded
+2017-02-15 19:50:44		fifo: pipe closed
+2017-02-17 16:26:59		perl scripts loaded: iset
+2017-02-17 16:26:59		python scripts loaded: theme, vimode
+2017-02-17 16:26:59		script: downloading list of scripts...
+2017-02-17 16:26:59		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-17 16:27:01		script: 331 scripts for WeeChat 1.7
+2017-02-17 16:29:58		Option changed: irc.server.freenode.sasl_password = "harrypotter"  (default if null: "")
+2017-02-17 16:30:01		python: scripts unloaded
+2017-02-17 16:30:01		fifo: pipe closed
+2017-02-17 16:30:02		perl scripts loaded: iset
+2017-02-17 16:30:02		python scripts loaded: theme, vimode
+2017-02-17 16:30:02		script: 331 scripts for WeeChat 1.7
+2017-02-17 16:30:02		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-17 16:35:00		python: scripts unloaded
+2017-02-17 16:35:00		fifo: pipe closed
+2017-02-17 16:35:02		New key binding (context "mouse"): @bar(buffers):ctrl-wheeldown => hsignal:buffers_mouse
+2017-02-17 16:35:02		New key binding (context "mouse"): @bar(buffers):ctrl-wheelup => hsignal:buffers_mouse
+2017-02-17 16:35:02		New key binding (context "mouse"): @item(buffers):button2* => hsignal:buffers_mouse
+2017-02-17 16:35:02		New key binding (context "mouse"): @item(buffers):button1* => hsignal:buffers_mouse
+2017-02-17 16:35:02		perl scripts loaded: buffers, iset
+2017-02-17 16:35:02		python scripts loaded: theme, vimode
+2017-02-17 16:35:02		script: 331 scripts for WeeChat 1.7
+2017-02-17 16:35:02		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-17 16:35:40		Buffers list:
+2017-02-17 16:35:40		  [1] core.weechat (notify: all)
+2017-02-17 16:45:02		theme: action "install" not developed
+2017-02-17 16:45:08		No theme loaded
+2017-02-17 16:45:17		No theme loaded
+2017-02-17 16:45:54		Theme saved to "/home/wolfe/.weechat/themes/_undo.theme"
+2017-02-17 16:45:54		Theme "/home/wolfe/.weechat/themes/_backup.theme" installed (123 options set)
+2017-02-17 16:46:03		python: scripts unloaded
+2017-02-17 16:46:03		fifo: pipe closed
+2017-02-17 16:46:04		perl scripts loaded: buffers, iset
+2017-02-17 16:46:04		python scripts loaded: theme, vimode
+2017-02-17 16:46:04		script: 331 scripts for WeeChat 1.7
+2017-02-17 16:46:04		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-17 16:46:24		Theme "/home/wolfe/.weechat/themes/_backup.theme" installed (123 options set)
+2017-02-17 16:46:30		No theme loaded
+2017-02-17 16:47:20		Theme saved to "/home/wolfe/.weechat/themes/_undo.theme"
+2017-02-17 16:47:20		Error loading theme "/home/wolfe/.weechat/themes/s.theme"
+2017-02-17 16:47:38		Theme saved to "/home/wolfe/.weechat/themes/_undo.theme"
+2017-02-17 16:47:38		Warning: option not found: "irc.color.item_away" (running an old WeeChat?)
+2017-02-17 16:47:38		Warning: option not found: "weechat.color.nicklist_offline" (running an old WeeChat?)
+2017-02-17 16:47:38		Theme "/home/wolfe/.weechat/themes/fbesser.theme" installed (114 options set, 2 error(s))
+2017-02-17 16:47:46	=!=	irc: command "join" must be executed on irc buffer (server or channel)
+2017-02-17 16:47:50	=!=	irc: command "join" must be executed on irc buffer (server or channel)
+2017-02-17 16:49:39		Option changed: weechat.bar.buffers.position = top  (default: left)
+2017-02-17 16:50:08		Option changed: buffers.look.hide_merged_buffers = server  (default: none)
+2017-02-17 16:52:46		List of bar items:
+2017-02-17 16:52:46		  input_paste (plugin: -)
+2017-02-17 16:52:46		  input_prompt (plugin: -)
+2017-02-17 16:52:46		  input_search (plugin: -)
+2017-02-17 16:52:46		  input_text (plugin: -)
+2017-02-17 16:52:46		  time (plugin: -)
+2017-02-17 16:52:46		  buffer_count (plugin: -)
+2017-02-17 16:52:46		  buffer_last_number (plugin: -)
+2017-02-17 16:52:46		  buffer_plugin (plugin: -)
+2017-02-17 16:52:46		  buffer_number (plugin: -)
+2017-02-17 16:52:46		  buffer_name (plugin: -)
+2017-02-17 16:52:46		  buffer_short_name (plugin: -)
+2017-02-17 16:52:46		  buffer_modes (plugin: -)
+2017-02-17 16:52:46		  buffer_filter (plugin: -)
+2017-02-17 16:52:46		  buffer_zoom (plugin: -)
+2017-02-17 16:52:46		  buffer_nicklist_count (plugin: -)
+2017-02-17 16:52:46		  scroll (plugin: -)
+2017-02-17 16:52:46		  hotlist (plugin: -)
+2017-02-17 16:52:46		  completion (plugin: -)
+2017-02-17 16:52:46		  buffer_title (plugin: -)
+2017-02-17 16:52:46		  buffer_nicklist (plugin: -)
+2017-02-17 16:52:46		  window_number (plugin: -)
+2017-02-17 16:52:46		  mouse_status (plugin: -)
+2017-02-17 16:52:46		  away (plugin: -)
+2017-02-17 16:52:46		  aspell_dict (plugin: aspell)
+2017-02-17 16:52:46		  aspell_suggest (plugin: aspell)
+2017-02-17 16:52:46		  buffer_plugin (plugin: irc)
+2017-02-17 16:52:46		  buffer_name (plugin: irc)
+2017-02-17 16:52:46		  buffer_short_name (plugin: irc)
+2017-02-17 16:52:46		  buffer_modes (plugin: irc)
+2017-02-17 16:52:46		  irc_channel (plugin: irc)
+2017-02-17 16:52:46		  lag (plugin: irc)
+2017-02-17 16:52:46		  input_prompt (plugin: irc)
+2017-02-17 16:52:46		  irc_nick_modes (plugin: irc)
+2017-02-17 16:52:46		  buffers (plugin: perl)
+2017-02-17 16:52:46		  isetbar_help (plugin: perl)
+2017-02-17 16:52:46		  mode_indicator (plugin: python)
+2017-02-17 16:52:46		  cmd_text (plugin: python)
+2017-02-17 16:52:46		  vi_buffer (plugin: python)
+2017-02-17 16:52:46		  line_numbers (plugin: python)
+2017-02-17 16:52:50		List of bar items:
+2017-02-17 16:52:50		  input_paste (plugin: -)
+2017-02-17 16:52:50		  input_prompt (plugin: -)
+2017-02-17 16:52:50		  input_search (plugin: -)
+2017-02-17 16:52:50		  input_text (plugin: -)
+2017-02-17 16:52:50		  time (plugin: -)
+2017-02-17 16:52:50		  buffer_count (plugin: -)
+2017-02-17 16:52:50		  buffer_last_number (plugin: -)
+2017-02-17 16:52:50		  buffer_plugin (plugin: -)
+2017-02-17 16:52:50		  buffer_number (plugin: -)
+2017-02-17 16:52:50		  buffer_name (plugin: -)
+2017-02-17 16:52:50		  buffer_short_name (plugin: -)
+2017-02-17 16:52:50		  buffer_modes (plugin: -)
+2017-02-17 16:52:50		  buffer_filter (plugin: -)
+2017-02-17 16:52:50		  buffer_zoom (plugin: -)
+2017-02-17 16:52:50		  buffer_nicklist_count (plugin: -)
+2017-02-17 16:52:50		  scroll (plugin: -)
+2017-02-17 16:52:50		  hotlist (plugin: -)
+2017-02-17 16:52:50		  completion (plugin: -)
+2017-02-17 16:52:50		  buffer_title (plugin: -)
+2017-02-17 16:52:50		  buffer_nicklist (plugin: -)
+2017-02-17 16:52:50		  window_number (plugin: -)
+2017-02-17 16:52:50		  mouse_status (plugin: -)
+2017-02-17 16:52:50		  away (plugin: -)
+2017-02-17 16:52:50		  aspell_dict (plugin: aspell)
+2017-02-17 16:52:50		  aspell_suggest (plugin: aspell)
+2017-02-17 16:52:50		  buffer_plugin (plugin: irc)
+2017-02-17 16:52:50		  buffer_name (plugin: irc)
+2017-02-17 16:52:50		  buffer_short_name (plugin: irc)
+2017-02-17 16:52:50		  buffer_modes (plugin: irc)
+2017-02-17 16:52:50		  irc_channel (plugin: irc)
+2017-02-17 16:52:50		  lag (plugin: irc)
+2017-02-17 16:52:50		  input_prompt (plugin: irc)
+2017-02-17 16:52:50		  irc_nick_modes (plugin: irc)
+2017-02-17 16:52:50		  buffers (plugin: perl)
+2017-02-17 16:52:50		  isetbar_help (plugin: perl)
+2017-02-17 16:52:50		  mode_indicator (plugin: python)
+2017-02-17 16:52:50		  cmd_text (plugin: python)
+2017-02-17 16:52:50		  vi_buffer (plugin: python)
+2017-02-17 16:52:50		  line_numbers (plugin: python)
+2017-02-17 16:53:50		Buffers list:
+2017-02-17 16:53:50		  [1] core.weechat (notify: all)
+2017-02-17 16:53:50		  [1] irc.server.freenode (notify: all)
+2017-02-17 16:53:50		  [2] irc.freenode.#emacs (notify: all)
+2017-02-17 16:55:33	=!=	You can not write text in this buffer
+2017-02-17 16:55:35	=!=	Error: unknown command "/qa" (type /help for help)
+2017-02-17 16:55:38		python: scripts unloaded
+2017-02-17 16:55:38		fifo: pipe closed
+2017-02-17 17:09:08		perl scripts loaded: buffers, iset
+2017-02-17 17:09:08		python scripts loaded: theme, vimode
+2017-02-17 17:09:08		script: 331 scripts for WeeChat 1.7
+2017-02-17 17:09:08		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-17 17:09:16	=!=	irc: command "join" must be executed on irc buffer (server or channel)
+2017-02-17 17:09:25	=!=	irc: command "join" must be executed on connected irc server
+2017-02-17 17:09:28	=!=	irc: command "join" must be executed on connected irc server
+2017-02-17 17:09:39	=!=	irc: command "join" must be executed on connected irc server
+2017-02-17 17:09:49	=!=	irc: command "join" must be executed on connected irc server
+2017-02-17 21:37:16		python: scripts unloaded
+2017-02-17 21:37:16		fifo: pipe closed
+2017-02-17 23:25:49		perl scripts loaded: buffers, iset
+2017-02-17 23:25:49		python scripts loaded: theme, vimode
+2017-02-17 23:25:49		script: 331 scripts for WeeChat 1.7
+2017-02-17 23:25:49		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-17 23:25:57	=!=	irc: command "join" must be executed on connected irc server
+2017-02-17 23:26:12		python: scripts unloaded
+2017-02-17 23:26:12		fifo: pipe closed
+2017-02-18 12:39:27		perl scripts loaded: buffers, iset
+2017-02-18 12:39:27		python scripts loaded: theme, vimode
+2017-02-18 12:39:27		script: 331 scripts for WeeChat 1.7
+2017-02-18 12:39:27		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-18 12:40:42		Option changed: irc.server_default.nicks = "interior"  (default: "")
+2017-02-18 12:41:20		Option changed: irc.server.freenode.nicks = "interior"  (default if null: "interior")
+2017-02-18 12:41:47		Option changed: irc.server_default.username = "interior"  (default: "")
+2017-02-18 12:45:15	=!=	Error: WeeChat main buffer can't be closed
+2017-02-18 12:45:16		python: scripts unloaded
+2017-02-18 12:45:16		fifo: pipe closed
+2017-02-18 12:47:05		perl scripts loaded: buffers, iset
+2017-02-18 12:47:05		python scripts loaded: theme, vimode
+2017-02-18 12:47:05		script: 331 scripts for WeeChat 1.7
+2017-02-18 12:47:05		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-18 12:48:38	=!=	Too few arguments for command "/query" (help on command: /help query)
+2017-02-18 17:31:57		python: scripts unloaded
+2017-02-18 17:31:57		fifo: pipe closed
+2017-02-18 19:58:24		perl scripts loaded: buffers, iset
+2017-02-18 19:58:24		python scripts loaded: theme, vimode
+2017-02-18 19:58:24		script: downloading list of scripts...
+2017-02-18 19:58:24		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-18 19:58:25		script: 331 scripts for WeeChat 1.7
+2017-02-18 23:29:57		python: scripts unloaded
+2017-02-18 23:29:57		fifo: pipe closed
+2017-02-19 19:14:21		perl scripts loaded: buffers, iset
+2017-02-19 19:14:21		python scripts loaded: theme, vimode
+2017-02-19 19:14:21		script: 331 scripts for WeeChat 1.7
+2017-02-19 19:14:21		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-19 19:18:03		Option changed: irc.look.smart_filter = on
+2017-02-19 19:18:05	=!=	Error: unknown command "/Bn" (type /help for help)
+2017-02-19 19:37:48	=!=	Error: unknown command "/Bn" (type /help for help)
+2017-02-19 19:37:58		python: scripts unloaded
+2017-02-19 19:37:58		fifo: pipe closed
+2017-02-19 20:29:19		perl scripts loaded: buffers, iset
+2017-02-19 20:29:19		python scripts loaded: theme, vimode
+2017-02-19 20:29:19		script: downloading list of scripts...
+2017-02-19 20:29:19		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-19 20:29:20		script: 331 scripts for WeeChat 1.7
+2017-02-19 21:02:52		Option changed: irc.look.smart_filter = on
+2017-02-19 21:04:58	=!=	Too few arguments for command "/msg" (help on command: /help msg)
+2017-02-19 21:44:34		python: scripts unloaded
+2017-02-19 21:44:34		fifo: pipe closed
+2017-02-19 22:57:42		perl scripts loaded: buffers, iset
+2017-02-19 22:57:42		python scripts loaded: theme, vimode
+2017-02-19 22:57:42		script: 331 scripts for WeeChat 1.7
+2017-02-19 22:57:42		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-20 02:08:01		python: scripts unloaded
+2017-02-20 02:08:01		fifo: pipe closed
+2017-02-21 12:54:19		perl scripts loaded: buffers, iset
+2017-02-21 12:54:19		python scripts loaded: theme, vimode
+2017-02-21 12:54:19		script: downloading list of scripts...
+2017-02-21 12:54:19		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-21 12:54:21		script: 331 scripts for WeeChat 1.7
+2017-02-21 13:20:55		python: scripts unloaded
+2017-02-21 13:20:55		fifo: pipe closed
+2017-02-21 17:26:21		perl scripts loaded: buffers, iset
+2017-02-21 17:26:21		python scripts loaded: theme, vimode
+2017-02-21 17:26:21		script: 331 scripts for WeeChat 1.7
+2017-02-21 17:26:21		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-21 18:59:04		perl scripts loaded: buffers, iset
+2017-02-21 18:59:04		python scripts loaded: theme, vimode
+2017-02-21 18:59:04		script: 331 scripts for WeeChat 1.7
+2017-02-21 18:59:04		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-21 18:59:13	=!=	irc: command "join" must be executed on connected irc server
+2017-02-21 19:28:16		perl scripts loaded: buffers, iset
+2017-02-21 19:28:16		python scripts loaded: theme, vimode
+2017-02-21 19:28:16		script: 331 scripts for WeeChat 1.7
+2017-02-21 19:28:16		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-21 20:14:49		Option changed: irc.look.smart_filter = on
+2017-02-22 00:45:25		python: scripts unloaded
+2017-02-22 00:45:25		fifo: pipe closed
+2017-02-24 15:20:05		perl scripts loaded: buffers, iset
+2017-02-24 15:20:05		python scripts loaded: theme, vimode
+2017-02-24 15:20:05		script: downloading list of scripts...
+2017-02-24 15:20:05		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2017-02-24 15:20:07		script: 331 scripts for WeeChat 1.7
+2017-02-24 18:42:02		No command is running
+2017-02-24 18:42:08		python: scripts unloaded
+2017-02-24 18:42:08		fifo: pipe closed
+2017-02-28 16:59:30		script: 331 scripts for WeeChat 1.8-dev
+2017-02-28 16:59:30		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2017-02-28 16:59:41	=!=	You can not write text in this buffer
+2017-03-03 21:56:29		script: downloading list of scripts...
+2017-03-03 21:56:29		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2017-03-03 21:56:33		script: 331 scripts for WeeChat 1.8-dev
+2017-03-03 22:08:20		perl scripts loaded: buffers, iset
+2017-03-03 22:08:20		python scripts loaded: theme
+2017-03-03 22:08:20		script: 331 scripts for WeeChat 1.8-dev
+2017-03-03 22:08:20		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2017-03-03 23:49:10		python: scripts unloaded
+2017-03-03 23:49:10		perl: scripts unloaded
+2017-03-04 11:44:09		perl scripts loaded: buffers, iset
+2017-03-04 11:44:09		python scripts loaded: theme
+2017-03-04 11:44:09		script: 331 scripts for WeeChat 1.8-dev
+2017-03-04 11:44:09		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2017-03-04 16:10:13		python: scripts unloaded
+2017-03-04 16:10:13		perl: scripts unloaded
+2017-03-04 17:09:26		perl scripts loaded: buffers, iset
+2017-03-04 17:09:26		python scripts loaded: theme
+2017-03-04 17:09:26		script: 331 scripts for WeeChat 1.8-dev
+2017-03-04 17:09:26		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2017-03-04 22:38:18		python: scripts unloaded
+2017-03-04 22:38:18		perl: scripts unloaded
+2017-03-04 23:02:46		perl scripts loaded: buffers, iset
+2017-03-04 23:02:46		python scripts loaded: theme
+2017-03-04 23:02:46		script: downloading list of scripts...
+2017-03-04 23:02:46		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2017-03-04 23:02:51		script: 331 scripts for WeeChat 1.8-dev
+2017-03-04 23:02:57	=!=	irc: command "join" must be executed on connected irc server
+2017-03-05 01:25:05		python: scripts unloaded
+2017-03-05 01:25:05		perl: scripts unloaded
+2017-03-05 12:33:19		perl scripts loaded: buffers, iset
+2017-03-05 12:33:19		python scripts loaded: theme
+2017-03-05 12:33:20		script: 331 scripts for WeeChat 1.8-dev
+2017-03-05 12:33:20		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2017-03-05 12:33:24	=!=	irc: command "join" must be executed on irc buffer (server or channel)
+2017-03-05 14:56:53		python: scripts unloaded
+2017-03-05 14:56:53		perl: scripts unloaded
+2017-03-05 15:55:00		perl scripts loaded: buffers, iset
+2017-03-05 15:55:00		python scripts loaded: theme
+2017-03-05 15:55:00		script: 331 scripts for WeeChat 1.8-dev
+2017-03-05 15:55:00		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2017-03-05 15:55:09	=!=	irc: unable to add temporary server "undernet" because the addition of temporary servers with command /connect is currently disabled
+2017-03-05 15:55:09	=!=	irc: if you want to add a standard server, use the command "/server add" (see /help server); if you really want to add a temporary server (NOT SAVED), turn on the option irc.look.temporary_servers
+2017-03-06 03:02:42		python: scripts unloaded
+2017-03-06 03:02:42		perl: scripts unloaded
+2017-03-07 23:03:03		perl scripts loaded: buffers, iset
+2017-03-07 23:03:04		python scripts loaded: theme
+2017-03-07 23:03:04		script: downloading list of scripts...
+2017-03-07 23:03:04		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2017-03-07 23:03:05		script: 331 scripts for WeeChat 1.8-dev
+2017-03-07 23:03:08	=!=	irc: unable to add temporary server "undernet" because the addition of temporary servers with command /connect is currently disabled
+2017-03-07 23:03:08	=!=	irc: if you want to add a standard server, use the command "/server add" (see /help server); if you really want to add a temporary server (NOT SAVED), turn on the option irc.look.temporary_servers
