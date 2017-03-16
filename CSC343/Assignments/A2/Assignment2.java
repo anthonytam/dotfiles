@@ -1,3 +1,4 @@
+import javax.print.attribute.standard.PrinterState;
 import java.sql.*;
 
 // Remember that part of your mark is for doing as much in SQL (not Java) 
@@ -34,8 +35,15 @@ public class Assignment2 {
      * @return true if connecting is successful, false otherwise
      */
     public boolean connectDB(String URL, String username, String password) {
-        // Replace this return statement with an implementation of this method!
-        return false;
+        try {
+            connection = DriverManager.getConnection(URL, username, password);
+            String queryString = "SET search_path TO markus";
+            PreparedStatement pStatement = connection.prepareStatement(queryString);
+            int result = pStatement.executeUpdate();
+	    return true;
+        } catch (SQLException e) {
+            return false;
+        }
     }
 
     /**
@@ -44,8 +52,12 @@ public class Assignment2 {
      * @return true if the closing was successful, false otherwise
      */
     public boolean disconnectDB() {
-        // Replace this return statement with an implementation of this method!
-        return false;
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -62,8 +74,44 @@ public class Assignment2 {
      * @return true if the operation was successful, false otherwise
      */
     public boolean assignGrader(int groupID, String grader) {
-        // Replace this return statement with an implementation of this method!
-        return false;
+        try {
+            String queryString = "SELECT * FROM AssignmentGroup WHERE group_id = ?";
+            PreparedStatement pStatement = connection.prepareStatement(queryString);
+            pStatement.setInt(1, groupID);
+	    ResultSet rs = pStatement.executeQuery();
+            if (!rs.next()) {
+		System.out.println("here?");
+                return false;
+	    }
+
+            queryString = "SELECT * FROM Grader WHERE group_id = ?";
+            pStatement = connection.prepareStatement(queryString);
+	    pStatement.setInt(1, groupID);
+            rs = pStatement.executeQuery();
+            if (rs.next()) {
+		System.out.println("here??");
+                return false;
+	    }
+
+            queryString = "SELECT username FROM MarkusUser WHERE (type = 'TA' OR type = 'instructor') AND username = ?";
+            pStatement = connection.prepareStatement(queryString);
+            pStatement.setString(1, grader);
+	    rs = pStatement.executeQuery();
+            if (!rs.next()) {
+		System.out.println("here???");
+                return false;
+            }
+
+            queryString = "INSERT INTO Grader VALUES (?, ?)";
+            pStatement = connection.prepareStatement(queryString);
+            pStatement.setInt(1, groupID);
+            pStatement.setString(2, grader);
+            int result = pStatement.executeUpdate();
+            return result > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+	    return false;
+        }
     }
 
     /**
@@ -87,8 +135,60 @@ public class Assignment2 {
      * @return true if the operation was successful, false otherwise
      */
     public boolean recordMember(int assignmentID, int groupID, String newMember) {
-        // Replace this return statement with an implementation of this method!
-        return false;
+        try {
+            String queryString = "SELECT * FROM Membership WHERE group_id = ? AND username = ?";
+            PreparedStatement pStatement = connection.prepareStatement(queryString);
+            pStatement.setInt(1, groupID);
+            pStatement.setString(2, newMember);
+            ResultSet rs = pStatement.executeQuery();
+            if (rs.next())
+                return true;
+
+            queryString = "SELECT * FROM Assignment WHERE assignment_id = ?";
+            pStatement = connection.prepareStatement(queryString);
+            pStatement.setInt(1, assignmentID);
+	    rs = pStatement.executeQuery();
+            if (!rs.next())
+                return false;
+
+            queryString = "SELECT * FROM AssignmentGroup WHERE group_id = ?";
+            pStatement = connection.prepareStatement(queryString);
+            pStatement.setInt(1, groupID);
+	    rs = pStatement.executeQuery();
+            if (!rs.next())
+                return false;
+
+            queryString = "SELECT * FROM MarkusUser WHERE username = ? AND type = 'student'";
+            pStatement = connection.prepareStatement(queryString);
+            pStatement.setString(1, newMember);
+	    rs = pStatement.executeQuery();
+            if (!rs.next())
+                return false;
+
+            queryString = "SELECT group_max FROM Assignment WHERE assignment_id = ?";
+            pStatement = connection.prepareStatement(queryString);
+            pStatement.setInt(1, assignmentID);
+	    rs = pStatement.executeQuery();
+            rs.next();
+            int maxMembers = rs.getInt("group_max");
+
+            queryString = "SELECT COUNT(DISTINCT username) AS numMembers FROM Membership WHERE group_id = ?";
+            pStatement = connection.prepareStatement(queryString);
+            pStatement.setInt(1, groupID);
+	    rs = pStatement.executeQuery();
+            rs.next();
+            if (rs.getInt("numMembers") == maxMembers)
+                return false;
+
+            queryString = "INSERT INTO Membership VALUES (?, ?)";
+            pStatement = connection.prepareStatement(queryString);
+            pStatement.setString(1, newMember);
+            pStatement.setInt(2, groupID);
+            int result = pStatement.executeUpdate();
+            return result > 0;
+        } catch (SQLException e) {
+            return false;
+        }
     }
 
     /**
@@ -139,7 +239,13 @@ public class Assignment2 {
     }
 
     public static void main(String[] args) {
-        // You can put testing code in here. It will not affect our autotester.
-        System.out.println("Boo!");
+	try {
+		Assignment2 A2 = new Assignment2();
+    		A2.connectDB("jdbc:postgresql://localhost:5432/csc343h-tamanth2", "tamanth2", "");
+		boolean result = A2.assignGrader(1, "t1");
+        	System.out.println(result ? "Yes" : "no");
+    	} catch (SQLException e) {
+		e.printStackTrace();
+	}
     }
 }
