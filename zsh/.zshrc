@@ -147,6 +147,14 @@ setopt promptsubst
 export KEYTIMEOUT=1
 
 ##
+## G E N T O O
+##
+export NUMCPUS=$(nproc)
+export NUMCPUSPLUSONE=$(( NUMCPUS + 1 ))
+export MAKEOPTS="-j${NUMCPUSPLUSONE} -l${NUMCPUS}"
+export EMERGE_DEFAULT_OPTS="--jobs=${NUMCPUSPLUSONE} --load-average=${NUMCPUS}"
+
+##
 ### P A T H
 ##
 export PATH="$HOME/.bin:$PATH"
