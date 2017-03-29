@@ -1,9 +1,0 @@
-|Lab6
-clear => inst2.ACLR
-clear => inst1.ACLR
-clear => inst.ACLR
-clock => inst2.CLK
-clock => inst1.CLK
-clock => inst.CLK
-
-
