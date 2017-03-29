@@ -40,7 +40,6 @@
 ;; 
 ;; O R G   M O D E
 ;;
-
 (require 'org-agenda)
 
 (setq org-agenda-prefix-format
@@ -61,10 +60,44 @@
 ;;
 ;; P A C K A G E S
 ;;
-(use-package gruvbox-theme)
-
+(use-package sublime-themes
+    :config
+    (load-theme 'spolsky t))
+(load-file "~/.emacs.d/lisp/init-powerline.el")
 ;; Saner defaults for emacs
 (use-package better-defaults)
+
+(use-package company
+  :init
+  (global-company-mode)
+  :config
+  (setq company-idle-delay 0) ; Delay to complete
+  (setq company-minimum-prefix-length 1)
+  (setq company-selection-wrap-around t) ; Loops around suggestions
+
+  (if (display-graphic-p)
+      (define-key company-active-map [tab] 'company-select-next)
+    (define-key company-active-map (kbd "C-i") 'company-select-next))
+
+  ;; C / C++
+  (setq company-clang-insert-arguments nil)
+  (add-hook 'c++-mode-hook 'irony-mode)
+  (add-hook 'c-mode-hook 'irony-mode)
+
+  (use-package company-irony
+    :config
+    (eval-after-load 'company
+      '(add-to-list 'company-backends 'company-irony)))
+
+(require 'color)
+
+(let ((bg (face-attribute 'default :background)))
+  (custom-set-faces
+   `(company-tooltip ((t (:inherit default :background ,(color-lighten-name bg 2)))))
+   `(company-scrollbar-bg ((t (:background ,(color-lighten-name bg 10)))))
+   `(company-scrollbar-fg ((t (:background ,(color-lighten-name bg 5)))))
+   `(company-tooltip-selection ((t (:inherit font-lock-function-name-face))))
+   `(company-tooltip-common ((t (:inherit font-lock-constant-face)))))))
 
 ;; Better M-x
 (use-package smex

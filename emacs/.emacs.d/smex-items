@@ -1,20 +1,24 @@
 
 ;; ----- smex-history -----
 (
- web-mode
+ irony-install-server
+ recover-this-file
+ make-directory
  ispell
+ kill-buffer
+ web-mode
  webjump
- tramp-cleanup-this-connection
- sql-postgres
- cd
- 5x5
 )
 
 ;; ----- smex-data -----
 (
- (ispell . 7)
+ (ispell . 11)
  (sql-postgres . 1)
  (tramp-cleanup-this-connection . 1)
  (webjump . 1)
  (web-mode . 17)
+ (kill-buffer . 6)
+ (recover-this-file . 2)
+ (make-directory . 1)
+ (irony-install-server . 2)
 )
