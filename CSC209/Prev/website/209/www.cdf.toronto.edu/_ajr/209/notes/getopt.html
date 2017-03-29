@@ -1,0 +1,342 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/notes/getopt.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:44 GMT -->
+<head>
+
+<title>CSC 209: getopt notes</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #cc7777;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .unhidden { display: block; }
+</style>
+
+<script type="text/javascript">
+    function show(s) {
+        document.getElementById(s).className = 'unhidden';
+    }
+    function reveal(n) {
+        document.getElementById(n + '_teaser').className = 'hidden';
+        document.getElementById(n + '_hr').className = 'unhidden';
+        document.getElementById(n + '_full').className = 'unhidden';
+	n1 = n + 1;
+        document.getElementById(n1 + '_hr').className = 'unhidden';
+    }
+</script>
+
+</head>
+
+<body>
+<div class=toc>
+
+<a href="../.html">Introduction</a>
+<br>
+<a href="../announce.html">Announcements</a>
+
+<p>
+
+<a href="../lect/index.html">Lectures</a>
+<br>
+<a href="../tut/index.html">Tutorials</a>
+<br>
+<a href="../asmt.html">Assignments</a>
+
+<p>
+<a href="javascript:show('tests')">Tests, exam</a>
+<div id=tests class=hidden>
+    <ul>
+    <li>
+    <a href="../mid/index.html">Mid-term test</a>
+    <li>
+    <a href="../exam/info.html">Final exam</a>
+    </ul>
+</div>
+
+<p>
+
+<a href="index.html">Course notes</a>
+<br>
+<a href="../probs/index.html">Extra problems</a>
+<br>
+
+<a href="https://mcs.utm.utoronto.ca/~mybb/utmcs/forumdisplay.php?fid=193">Discussion board</a>
+
+<p>
+<a href="../netgrade-results.html">Grades so far</a>
+<br>
+<a href="../oldannounce.html">Old announcements</a>
+
+</div>
+
+<h1>getopt</h1>
+
+<h2> Purpose </h2>
+
+Unix command options are fairly straightforward, but they really are a "little
+language" and parsing them is not entirely trivial.  Furthermore, over the
+years a fair number of variants have been added, and backward-compatibility
+constraints have accumulated.
+
+<p>
+One source of complexity is the way that you can combine options, yet only the
+last option of a combined group can have an argument.
+For example, you can write "sort -rn", which is the same as "sort -r -n";
+but you can't combine a "-k5" and "-r" option in that order to make "-k5r"
+because 5 is the argument to "-k" (and with "-k5r", the argument to -k would
+be "5r").  You can, however, write "sort -rk5".
+
+<p>
+Another source of complexity is the variation which unix programs have
+exhibited over the years in how they process arguments.
+Most of all, in writing a C program it's easier to insist that the argument
+(e.g. "5" in "-k5") must be part of the same element of argv; but in writing a
+shell script it's easier to insist that it be a separate element of argv.
+In the absence of a clear standard for command-line options, this differing
+bias caused there to be some programs which accepted it either way, some
+programs which required the separation, and some programs which prohibited the
+separation.
+
+<p>
+The solution, surfacing I think some time in the mid-1980s, was to create a
+library routine which does all of the option parsing, accepts all of the
+standard variants plus some of the other more obscure variants, and presents a
+straightforward interface for the C programmer such that they no longer have
+to care whether the option is in the same argv member as another option, or
+whether its argument is separated or together with the option -- the library
+routine takes care of all of this.
+
+
+<h2> Unix command-line options </h2>
+
+A unix command consists of the command name in argv[0];
+zero or more options with associated arguments as applicable in subsequent
+members of argv;
+and then zero or more non-option words in the rest of argv
+(usually file names, but this category also includes (for example) the pattern
+in grep).
+
+<p>
+Normally an option is distinguished from a non-option word by whether its
+zeroth character is a minus sign.
+Non-option words beginning with a minus sign cause difficulty only if they are
+not preceded by a non-option word which does not begin with a minus sign.
+In this case, or to allow reliable processing of unknown strings intended to
+be non-option words but where the lack of minus sign is not guaranteed, the
+special argv member "--" terminates the options.
+
+<p>
+Whether an option takes an argument typically affects the parsing of the
+command line.
+For example, if "-q" takes an argument, then "-qa" is option "-q" with argument
+"a";
+whereas if it does not take an argument, then "-qa" is the same as "-q -a".
+Worse, if "-q" takes an argument, then in the command "cmd -q foo -a", foo
+is the argument to -q and -a is another option; whereas if -q does not take
+an argument, then in "cmd -q foo -a" both foo and -a are non-option arguments.
+
+<p>
+(The GNU option parsing library complicates this further by recognizing options
+even when preceded by non-option words, so "--" is more frequently necessary.)
+
+
+<h2> Interface </h2>
+
+With a sufficiently-modern C compiler, in unix/linux one calls getopt() after
+"#include &lt;unistd.h&gt;".
+Older C compilers may require including &lt;getopt.h&gt; instead.
+
+<p>
+<a href="getopt.c">An example</a> may be clearer than the following
+description.
+
+<p>
+getopt() takes three parameters.  The first two are argc and argv,
+respectively.  The third is a string listing option key letters, plus colons to
+indicate that the previous letter takes an argument.
+For example, the string "c:x" indicates that the option key letters are 'c'
+and 'x', and that 'c' takes an argument, and 'x' does not.
+Whereas "cx:" would indicate that 'x' takes an argument and 'c' does not.
+
+<p>
+getopt() is meant to be called in a loop.
+Each time it is called, it returns a new option as appears on the
+command-line, in sequence from left to right, until it returns -1 as a signal
+that the options (as opposed to the non-option words) have been exhausted.
+The name EOF from stdio.h is usually used in the calling program instead of -1
+(EOF is guaranteed to
+be -1 in stdio.h).
+
+<p>
+The getopt package exports not only the getopt() function, but
+also the variables optind and optarg.  (Most implementations export more state
+information than this, but you can rely on getopt(), optind, and optarg.)
+
+<p>
+When getopt() returns an option letter which takes an argument (which you
+identified by following the option letter with a colon in the third parameter
+to getopt()),
+optarg is a pointer to the argument string.
+It is a variable of type pointer-to-char.
+
+<p>
+Examples with a program which takes a '-t' option with an argument which is
+the field separator:
+
+<dl>
+<dt> Command line:  <code>a.out -t, file1 file2</code>
+    <dd> When getopt() returns 't', optarg will point to the comma,
+	    i.e. it will be &amp;argv[1][2]
+<dt> Command line:  <code>a.out -t , file1 file2</code>
+    <dd> When getopt() returns 't', optarg will point to the comma,
+	    i.e. it will be argv[2] (also known as &amp;argv[2][0])
+<dt> Command line:  <code>a.out -axt, file1 file2</code>
+    <dd> When getopt() returns 't', optarg will point to the comma,
+	    i.e. it will be &amp;argv[1][4]
+	    <br> (assuming that there are also non-argument-taking options 'a' and
+	    'x')
+</dl>
+
+
+<p>
+At all points, optind (a variable of type int) indicates where getopt() is
+in its parsing of the argv array.
+Like a non-getopt()-using program, the getopt library function is basically
+doing a "for (i = 1; i &lt; argc; i++)".
+However, it keeps returning to the caller so it can't use a local variable
+to keep track of where it is in argv, so it uses the global variable optind.
+
+<p>
+optind is rarely interesting to you (the caller of getopt()) inside your
+getopt() loop.  However, after getopt() returns -1 (EOF), you need to process
+the non-option strings in argv.
+
+<p>
+To do this subsequent processing, you will start at argv[optind].
+That is, you normally have a loop after getopt() is done which looks something
+like this:
+
+<p>
+<pre>
+	for (; optind &lt; argc; optind++)
+	    ... something with argv[optind] ...
+</pre>
+
+<p>
+and optind can also be used to do usage checking in the case that a program
+requires a certain number of non-option words on the command line;
+and if optind==argc there are no filename arguments (in which case most
+programs will read stdin).
+
+
+<h2> Example </h2>
+
+All this is clearer with an example.
+
+<p>
+<a href="getopt.c">getopt.c</a>
+
+
+<h2> Using getopt in shell scripts </h2>
+
+In shell scripts, string operations are inconvenient, hence the traditional
+practice of insisting that the user put the option letter and its argument in
+separate members of argv.
+Also, taking apart multiple combined option letters (e.g. "-ab" where this is
+equivalent to "-a -b") is annoying.
+
+<p>
+But rather than putting the burden on the user of our shell script, we use a
+command-line tool also called "getopt" which accepts any standard arrangement
+of options, and then canonicalizes the command-line into the easier-to-parse
+format.  The first argument is the key letter string with colons, just as the
+third parameter to the getopt() library routine; subsequent arguments are the
+command-line as supplied by the user.
+
+<p>
+For example,
+<pre>
+	getopt c:x -xc38 file1 file2
+</pre>
+will output
+<pre>
+	-x -c 38 -- file1 file2
+</pre>
+In addition to recognizing "--" in the normal way in the command-line, the
+getopt command-line tool <i>always</i> includes it in its output,
+so that you can use it to find the end of the options.
+
+<p>
+argv (i.e. $1, $2, etc) can be reassigned en masse in sh with the 'set'
+command.
+This is the commonest way to use the getopt command-line tool.
+We can't quite write
+<pre>
+	set `getopt c:x $*`
+</pre>
+because the getopt output, beginning with a '-' as it always will, will be
+interpreted as command-line options by the 'set' command.  We therefore again
+use the "--" feature of getopt() as called by <i>set</i>, to write:
+<pre>
+	set -- `getopt c:x $*`
+</pre>
+In the above case, this results in $1 being -x, $2 being -c, $3 being 38, $4
+being --, and so on.
+
+<p>
+Parsing the result is most easily done with a loop using the sh "shift"
+command.  <a href="getoptcmd.html">Full example</a>
+
+<p>
+You might be inclined instead to write
+<pre>
+	set -- `getopt c:x "$@"`
+</pre>
+but this doesn't help because any spaces in argv will be reparsed by the shell
+in doing the backquotes substitution anyway.
+To make this defect clearer, normally we write simply "$*" (without quotes).
+
+<p>
+One final note: Since getopt's exit status is very important, the above is
+only suitable if "set -e" is in effect.
+Usually we tend instead
+to store getopt's output in a temporary variable, test the exit status, then
+do "set -- $var".
+With "set -e" we are saved this burden, but lose the ability to output a
+suitable usage message.
+
+<p>
+<hr>
+
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/notes/getopt.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:44 GMT -->
+</html>

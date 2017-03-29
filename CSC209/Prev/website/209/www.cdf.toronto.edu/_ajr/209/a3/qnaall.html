@@ -1,0 +1,565 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/a3/qnaall.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:48 GMT -->
+<head>
+
+<title>CSC 209 assignment three questions and answers</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #cc7777;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .unhidden { display: block; }
+</style>
+
+<script type="text/javascript">
+    function show(s) {
+        document.getElementById(s).className = 'unhidden';
+    }
+    function reveal(n) {
+        document.getElementById(n + '_teaser').className = 'hidden';
+        document.getElementById(n + '_hr').className = 'unhidden';
+        document.getElementById(n + '_full').className = 'unhidden';
+	n1 = n + 1;
+        document.getElementById(n1 + '_hr').className = 'unhidden';
+    }
+</script>
+
+</head>
+
+<body>
+<div class=toc>
+
+<a href="../.html">Introduction</a>
+<br>
+<a href="../announce.html">Announcements</a>
+
+<p>
+
+<a href="../lect/index.html">Lectures</a>
+<br>
+<a href="../tut/index.html">Tutorials</a>
+<br>
+<a href="../asmt.html">Assignments</a>
+
+<p>
+<a href="javascript:show('tests')">Tests, exam</a>
+<div id=tests class=hidden>
+    <ul>
+    <li>
+    <a href="../mid/index.html">Mid-term test</a>
+    <li>
+    <a href="../exam/info.html">Final exam</a>
+    </ul>
+</div>
+
+<p>
+
+<a href="../notes/index.html">Course notes</a>
+<br>
+<a href="../probs/index.html">Extra problems</a>
+<br>
+
+<a href="https://mcs.utm.utoronto.ca/~mybb/utmcs/forumdisplay.php?fid=193">Discussion board</a>
+
+<p>
+<a href="../netgrade-results.html">Grades so far</a>
+<br>
+<a href="../oldannounce.html">Old announcements</a>
+
+</div>
+
+<h1>Assignment three questions and answers</h1>
+
+Here are some questions and answers about assignment three, and other notes.
+Suggestions for additions to this list are welcome (e.g. via e-mail).
+
+
+<p><hr><p>
+The general notes at <a href="../a2/qna-kiss.html">the beginning of the assignment two Q&amp;A page</a>
+apply to assignment three, and probably to programming in general.
+<br>
+In addition to the universal Keep It Simple,
+I'd like to repeat one point here:
+<blockquote>
+In general, don't check whether operations will succeed;
+just try to do them and get an appropriate error result if applicable.
+For example, if you're about to fopen() a file, don't do a stat() and try to
+determine whether the file exists and/or is readable.  Just do the fopen() and
+check for error.  This results in a simpler program, and also one which
+functions more correctly in the invariable case that you have omitted checking
+something so you think it's going to succeed but it doesn't.
+And there can always be unexpected i/o errors, etc.
+</blockquote>
+
+
+<p><hr><p>
+Q: How do I... [execute a command, i/o redirection, etc]
+
+<dl>
+<dt> execute a command?
+<dd> <a href="../notes/procfiles/spawn.c">fork, exec, wait</a>
+<dt> do I/O redirection?
+<dd> <a href="../notes/procfiles/spawnredir.c">close and open in the child
+process</a>
+<dt> set up a pipeline?
+<dd> <a href="../notes/procfiles/pipe-example.c">call pipe(), then fork again
+and do appropriate i/o redirection in each subprocess</a>
+<dt> set up a pipeline between more than two processes?
+<dd> treat a|b|c as (a|b)|c, etc
+<dt> change the directory of the shell process in C?
+<dd> call chdir() (see the man page, do check for error, call perror() upon
+error)
+<!--
+<br>
+Q: When I do "man chdir", I get something weird which I'm not sure what it is,
+but it's not the man page for the chdir system call.
+<br>
+A: You are getting the chdir command in csh/tcsh.  Note the volume number.
+Type "man 2 chdir".
+-->
+</dl>
+
+
+<p><hr><p>
+Q: What is "Makefile"?
+
+<p>
+A: The compilation of multi-file C programs is most easily managed by a
+program called "make", which makes (builds) files from other files according
+to rules you supply.
+You supply these rules in a file named "Makefile" or "makefile".
+
+<p>
+This was reviewed in part of <a href="../tut/04/index.html">the tutorial on
+February 1/2</a>, and
+is discussed in section 15.4 of the King book (pages 366-368) with
+an example.
+For this assignment you can just use the supplied Makefile; you don't have
+to modify it.
+
+<p>
+Given the Makefile I've provided, you can recompile .c files as necessary by
+simply typing "make".
+
+<p>
+N.B. that in the King book, his sample Makefile omits the "-Wall" flag --
+this flag is important, and is included in the fsh Makefile.
+
+<p>
+Also note that the "command" lines in a Makefile need to begin with a
+tab character; an equivalent number of spaces does <i>not</i> suffice.
+The "make" program decides that a line is a command, as
+opposed to a target and dependency list, based on this tab.
+Yes, this is a dubious file format, but it's how make is.  In fairness,
+distinctions between spaces and tabs weren't blurred by editor software as
+badly in the 1970s as they are today.
+
+
+<p><hr><p>
+Q: When I compile my program I get the following warning message:
+[...]
+<br>
+Is this ok?
+
+<p>
+A: No.  Your program should compile with gcc&nbsp;-Wall with no warning or error
+messages.
+Almost all of the warning or error messages which gcc&nbsp;-Wall can output
+represent potentially-serious problems, and you need to fix them.
+I am willing to decode error messages by e-mail (although not generally to fix
+your bugs, obviously).
+
+
+<p><hr><p>
+Remember that you only submit fsh.c and builtin.c.  Your submitted files must
+compile and work with the <i>originals</i> of all other files.
+So you want to avoid editing the other files in your working directory, and
+you should test at some late stage by copying the original fsh code into a new
+directory and then copying your fsh.c and execute.c there and typing "make".
+
+
+<p><hr><p>
+Q: May I create a fsh.h to declare some functions and/or variables?
+
+<p>
+A: No.  Just declare them at the top of your fsh.c file, and don't create a
+fsh.h, and similarly don't modify builtin.h.
+The purpose of .h files is to coordinate declarations <i>across
+multiple files</i>.  Those declarations are already present in the supplied
+.h files.
+Your submitted fsh.c and builtin.c will be compiled with the original
+versions of all other files.
+
+<p>
+Also, your fsh.c and builtin.c must not interact with each other in any way
+other than the mandated calling of builtin_exit and builtin_cd, with the
+specified interface.
+
+
+<p><hr><p>
+Q: Do we have to check for errors from fork(), wait(), etc?
+
+<p>
+A: Yes.  You must check the return values of <i>all</i> system calls, except
+for the extremely rare case (which does not occur in fsh)
+that there is nothing which you could do about the error.
+In almost all cases you can at a minimum print an error message and exit, or
+stop doing something which no longer makes sense given the
+failure of the first part.
+
+<p>
+Unfortunately there is a difficulty in testing many such error checks
+(i.e. arranging a test of your code which is testing the error status).
+It's hard to arrange to make a fork() fail, for example, unless there is
+a per-user process limit you can arrange to bump into.  And making malloc()
+run out of memory is quite difficult.
+
+<p>
+So in
+some cases you need to think of some error checks as theoretical exercises,
+just as if we were writing the program with pen and paper and never actually
+running it.
+
+<p>
+But, in real life, some day one of your programs will run into an obscure
+error condition, and it <i>will</i> make a difference whether or not it
+performs appropriately under the circumstances.  So make it good even though
+you can't test it.  Testing is not the ultimate check of computer program
+behaviour anyway; it catches some kinds of errors, but misses others.
+
+<p>
+(We don't put an 'if' around the execve() call, but this is different -- we
+still do the error-handling, we just don't have to handle the success case
+because if an exec-family call succeeds, this program is overwritten with the
+new program so we won't be here.)
+
+<!--
+<p>
+Q: What about close()?  What could we do in response to a close() error
+anyway?
+
+<p>
+A: Yes, including close(), in the cases where you've written data to it (as
+opposed to the cases where you are renumbering file descriptors for i/o
+redirection, or similar).  If nothing else, you could display an error
+message,
+so that the user can judge whether to trust your program's results.  However,
+for the purposes of this assignment we won't require you to check close() for
+errors.
+-->
+
+
+<p><hr><p>
+Q: What's the best way to write "true" and "false" as constants in C?
+
+<p>
+A: There are many silly ideas about this topic out there.
+You should avoid complex constructions for simple ideas.
+
+<p>
+I recommend using "0" for false and "1" for true, rather than #defines or
+anything weirder.  People who know C know how booleans work in C, but they
+don't know whatever additional constructions you create.
+
+<p>
+C99 introduces keywords (well, semi-keywords) "true" and "false", but
+most people still don't use them because we already have
+0 and 1 and they're perfectly fine.
+
+
+<p><hr><p>
+Don't use casts.
+
+<p>
+In Java, casts are fairly safe because if the cast produces meaningless
+results you will generally get a runtime exception.
+
+<p>
+In C, casts are very unsafe.
+Basically, they turn off error messages.
+Error messages are good.
+Don't turn them off.
+
+<p>
+Only use a cast in C if you have a very good understanding of the situation.
+I don't believe that anything in fsh calls for a cast.
+
+
+<p><hr><p>
+Q: If I just press return, I get a crash / weird error 
+message / something bad.
+
+<p>
+A: Check (e.g. with the supplied fsh.c skeleton) what you get in the struct
+parsed_line when you just press return, and make sure your execute() handles
+it properly.  (Specifically, what you get is a non-null pointer to
+struct parsed_line, but all of its contents are null.)
+
+
+<p><hr><p>
+Don't use fatal() from error.c in your solution.
+Print appropriate error
+messages and loop around for the next prompt.
+
+<p>
+Q: So what are this, and the other similar functions in error.c, for?
+<br>
+A: Primarily parse.c.  (Although you can use efilenamecons() in your
+execute() if you want.)
+
+
+<p><hr><p>
+Q: Various segfault problems ("Segmentation exception").
+
+<p>
+A:
+<ul>
+<li> When dereferencing a pointer value,
+or giving it to another component to dereference,
+make sure it points somewhere.  If
+you say "char *s;", then you can't say "strcpy(s, something)" immediately after.
+"s" is uninitialized and you can't assume it points to the zeroth byte of an
+array where you can store your data.  You have to assign it a value pointing
+to such a thing if you want to use it.  Better yet, often you can just
+declare an array in the first place, rather than a pointer variable.
+<!--
+<li> Be sure you are not exceeding array bounds, including in string
+manipulation.  If "s" is a string, then "char t[5000]; strcpy(t, s);" is an
+error, because you don't know that s is shorter than 5000 characters.
+Check lengths with strlen() to be sure strings will fit in the target array,
+and don't forget to leave room for the terminating zero byte.
+-->
+<li> Check for null pointers at most points in the parsed_line data structure.
+Most things can be NULL to mean that they don't apply, e.g. the input
+redirection file name char pointer is NULL if there is no input redirection.
+<li> Check error returns from system calls.  Even in initial development!
+<li> When you do observe (e.g. with an error return from a system call)
+that something shouldn't be done, make sure you
+don't do it!  I've seen a surprising amount of beginner C code in my life
+which checks for error returns from system calls correctly and prints a
+nice error message but then comes out of the 'if' and uses the invalid
+pointer value anyway, etc.
+Apparently this is an easy mistake to make (although it's not clear to me why).
+<li> You can localize the segfault using gdb.
+"gdb" is similar to other debuggers you may have used with other programming
+languages (e.g. in CSC 207).
+I've written <a href="../notes/gdb/index.html">a document about using gdb</a>.
+(Note that the Makefile for fsh already specifies the "-g"
+flag, so you don't have to do the recompiling step.)
+<li> Think methodically; form and reject hypotheses.
+Understand everything you write in your program.  The fact that your program
+does not work is not sufficient motivation to make a particular change.
+You have to understand the change you are making and have a good reason to do
+it.  Debugging involves understanding what was wrong with your program, not
+just making the bad behaviour go away.
+    <ul>
+    <li> This can be trickier when working on an existing program.
+         Sometimes you have to spend extra time simply understanding existing
+         code which you might not even have to modify.
+         Questions about the <i>existing</i> fsh code (as distributed) are
+         legitimate topics for the course bulletin board, so long as they don't
+         discuss your code or your solution to assignment problems, just the
+         understanding of the code which is distributed.
+    <li> If you think you've found a bug or anomaly in the distributed fsh,
+         you may well have done so.  Replicate the bad behaviour by testing
+         with the distributed fsh.  If it <i>doesn't</i> misbehave in the
+         original, then you've <i>introduced</i> the bug and you're
+         responsible for it.  If it <i>does</i> misbehave in the original, you
+         should probably still check with me if you want to omit something in
+         your assignment on this account, unless it's simply a case of missing
+         features (e.g. fsh does not do variables, backquotes, etc).
+    </ul>
+</ul>
+
+
+<p><hr><p>
+A common problem which shows up in programming with fork() is
+that if you're
+not careful, the child process can end up executing code meant for the parent.
+In execute(), even in the case of error, the child process should exit.
+Your child process code <strong>must not</strong> return from execute(),
+because then it will return to the loop in main(), and you'll get two prompts,
+and it will get worse from there.
+
+<p>
+Note the comment in
+<a href="../notes/procfiles/pipe-example.c">pipe-example.c</a>
+that docommand() "does not return, under any circumstances".  This includes
+any error circumstances as well as normal circumstances.
+
+
+<p><hr><p>
+Q: In step 4, do we have to check whether the file is executable
+by owner like in assignment two's "mywhich"?
+
+<p>
+A: No, but you can do so if you like.  
+
+<p>
+Q: And are you saying that unlike in assignment two where you were supposed to
+put a period after "Command not found", for fsh you must NOT put a period
+there?
+
+<p>
+A: This is not very important, and won't be addressed in grading.
+Traditionally there is a period at the end of this error in 'which', and
+traditionally there is no period at the end of this error in 'sh'.
+The variance is stupid, and in general it's unusual to have a period at the
+end of the error message.
+
+
+<p><hr><p>
+Q: The assignment (in step 4) says: The parameter to perror() should be
+the first parameter to execve() (<i>including</i> the
+prepended directory name).
+<br>
+Why include the prepended directory name?
+
+<p>
+A: If not, the error message is misleading.  For example, suppose you put a
+program named "glop" in /usr/bin and it's all ready to go, and you type "glop"
+to the shell and it says "glop: Permission denied".  You could spend quite a
+while looking at /usr/bin/glop to figure out why you don't have permission
+before you discover that actually there is a /bin/glop, earlier in the search
+path, which is giving the problem.  In general, error messages need to
+identify the file which caused the error.
+
+
+<p><hr><p>
+Step 6 says "if p-&gt;pl-&gt;pl is non-null" -- You still also have to check
+p-&gt;pl
+(unless you are in a place in your code which would only be reached if
+p-&gt;pl is non-null).
+
+
+<p><hr><p>
+Q: How do you detect "argc" in writing a built-in function in fsh?
+
+<p>
+A: The argv parameter to a built-in function in fsh is terminated with a NULL
+pointer member, somewhat similar to how strings work in C (but with pointers
+instead of characters),
+and <i>unlike</i> the parameters to main() in C with a separate argc.
+This is because it's really being generated especially for passing to
+execve(), which expects argv to be in this format (see the man page).
+
+<p>
+But there are some advantages to working with argv in this format instead of
+having a separate int specifying its length.
+Anyway, it's the format you have to work with.
+<small>
+(As a matter of fact, in unix, the parameters to main() have both formats --
+there is an extra null pointer at the end of the argv array!  This is not true
+in C generally, only in unix and linux.  So we rarely make use of this because it would
+be a gratuitous unportability.)
+</small>
+
+<p>
+Taking builtin_exit() as an example, note how it
+checks its arg count.  First, if argv[1]
+is non-null and so is argv[2], then we have at least two arguments, so it
+gives a usage message.  Note that if argv[1] is a null pointer,
+that's (potentially) the end of the array, so even referencing argv[2]
+is an error, so we have to check in the order given and using the
+"short-circuit" behaviour of the "&amp;&amp;" operator.
+
+<p>
+Secondly, if argv[1] is a null pointer, then we have zero command-line
+arguments, so that's the plain "exit" command (use laststatus as the exit
+status), whereas if argv[1] is non-null
+but argv[2] is null (as tested previously), we have one command-line argument
+so that's the "exit&nbsp;&nbsp;###" format of the command (where '###' is a number).
+
+
+<p><hr><p>
+Q: How do I unset my HOME environment variable to test
+that aspect of my builtin_cd()?
+
+<p>
+A: This differs between shells.  In csh, type "unsetenv HOME".  Then you can
+run fsh and type "cd" (return).  I suggest doing this in a new
+shell (e.g. a new terminal window) which you can then exit, because a lot of
+things will behave strangely without a HOME environment variable.
+
+
+<p><hr><p>
+Q: When calling builtin_exit(), can we ignore its return value?
+
+<p>
+A: No.
+
+<p>
+Q: So we should say "laststatus = builtin_exit(...)"?
+
+<p>
+A: Yes.
+
+<p>
+Q: But how can it have a return value if it exits?
+
+<p>
+A: If there is a usage error, it doesn't exit, and its return value needs
+to be stored in laststatus.  For example, "<tt>exit $x || echo $x is not a
+valid exit status</tt>" makes sense.
+
+<p>
+Q: You can use variables in fsh??
+
+<p>
+A: No.  But maybe some day someone would implement them, and you wouldn't
+want them to have to fix a bug in your builtin_exit() handling to be able to
+implement variables.  This kind of cutting corners only leads to grief.
+Write it properly.
+
+
+<p><hr><p>
+Q: What is showprompt for?  When do we change it?
+
+<p>
+A: It controls whether a '$' prompt is printed in the main loop.
+You don't have to change it for this assignment; it will always be 1, so fsh
+will always prompt.
+
+<p>
+But note how commands of the form "./fsh &lt;file" (where file is a shell script)
+are messy because they output a lot of extra dollar signs.  The prompt should
+only be shown when stdin is a terminal.  Perhaps a future CSC 209 assignment
+will be to add this feature, which would be implemented in main().
+But not today.
+
+<p>
+<hr>
+
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/a3/qnaall.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:48 GMT -->
+</html>

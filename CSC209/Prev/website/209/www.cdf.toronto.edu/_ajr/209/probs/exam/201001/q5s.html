@@ -1,0 +1,21 @@
+PATH=/bin:/usr/bin
+
+low=0
+high=101
+
+while test $low -lt `expr $high - 1`
+do
+    guess=`expr $low + $high`
+    guess=`expr $guess / 2`
+    echo "Is your number >=$guess or <$guess?  Enter 'g' or 'l'."
+    read input
+    case "$input" in
+	l)
+	    high=$guess
+	    ;;
+	g)
+	    low=$guess
+	    ;;
+    esac
+done
+echo Your number must be $low.

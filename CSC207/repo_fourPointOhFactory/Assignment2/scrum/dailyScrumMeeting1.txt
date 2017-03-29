@@ -1,0 +1,83 @@
+# Fill in, commit and push each day.
+# Group Member: Maxim Chipeev
+Nov 2, 2016
+	Yesterday :
+	Today     : No group exists.
+	Obstacles : N/A
+	
+Nov 3, 2016
+	Yesterday :
+	Today     : No group exists.
+	Obstacles : N/A
+
+Nov 4, 2016
+	Yesterday :
+	Today     : Became part of group, committed contact information.
+	Obstacles : None yet.
+
+Nov 5, 2016
+	Yesterday :
+	Today     : Waiting on group.
+	Obstacles : Other members encountered issues with git push/pull.
+
+Nov 6, 2016
+	Yesterday :
+	Today     : Waiting on group.
+	Obstacles : SSH turned out to be the culprit, it was resolved.
+	
+Nov 7, 2016
+	Yesterday : Obstacles were resolved.
+	Today     : Project planning underway.
+	Obstacles :
+	
+Nov 8, 2016
+	Yesterday : Figured out a plan for how to approach the Shape refactor.
+	Today     : Decided on a framework that determines Shape behaviour from
+				code within the Shape classes rather than anywhere else.
+				It is dominated by the Drawable interface which is implemented
+				by the PaintShape and branches out into filled Shapes and
+				simple lines. Also created the ShapeFactory for more convenient
+				and readable (self-documenting) shape creation.
+	Obstacles : Previous system was fairly strongly based around a very poor model,
+				it took a while to figure out a suitable replacement.
+
+Nov 9, 2016
+	Yesterday : Binge-coded an OO-based system for defining new Shapes.
+	Today     : ShapeFactory and ShapeFactory / CompositePaintShapes tested to make
+				sure they are functional (as well as rest of the shapes).
+	Obstacles : Only time mostly, schedule was tight but this was solved via
+				hard work and help of reliable team-mates.
+Nov 12, 2016
+	Yesterday :
+	Today     : When the cursor is moved to a quadrant other than 4, shapes would glide
+				across the screen and follow the cursor rather than expanding and filling
+				area. This behaviour was resolved. In addition, the centre of a circle
+				is now 'glued' to the origin of the click. Squares now respond properly
+				to differences in X-delta and Y-delta from the origin to cursor.
+	Obstacles : Some team-members misinterpreted the purpose of the update method in
+				PaintShapes. This miscommunication was resolved.
+Nov 14, 2016
+	Yesterday :
+	Today     : PaintShapes that were being in the process of drawn were always displayed
+				behind all other shapes (I have resolved this). In addition, I focused on
+				simplifying code where I could and introducing missing functionality where
+				possible.
+	Obstacles : None encountered today.
+
+Nov 15, 2016
+	Yesterday : Began work on the event-model and fleshed out the basic structure.
+	Today     : The event-model is the greatest focus today, which means concluding documentation
+				and implementing the framework across the entire project. The goal for today
+				is to ensure that adding new functionality to the project is simple and that
+				the model is sufficiently scalable for our purposes.
+	Obstacles : None encountered today.
+
+Nov 16, 2016
+	Yesterday : Finished the event-model.
+	Today     : Resolved issues with dotted-line, redo/undo, eraser now matches background tone
+				even after a background color change. Fixed issue with triangle positioning.
+				Drew a new image for every shape, the images are applied to the respective
+				buttons. Documentation and resolving bugs has been a priority this day.
+				Adjustments made to the hotkeys, as well as finishing touches complete
+				for this sprint.
+	Obstacles : None encountered today.

@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/tut/09/04.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:27 GMT -->
+<head>
+
+<title> CSC 209 tutorial exercises, week of 14 March 2016 </title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 10px;
+        padding-top: 15px;
+        padding-bottom: 0px;
+        background-color: #dd9088;
+        border-style: solid;
+        border-color: green;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .revealed { display: block; }
+</style>
+
+<script type="text/javascript">
+function reveal(s) {
+    document.getElementById(s+'_a').className = 'hidden';
+    document.getElementById(s+'_b').className = 'revealed';
+}
+</script>
+
+</head>
+
+<body>
+
+<div class=toc>
+
+1. <a href=".html">Tutorial 9 intro</a>
+<br>
+2. <a href="02.html">Traversing</a>
+<br>
+3. <a href="03.html">Searching</a>
+<br>
+4. <a href="04.html">Inserting</a>
+<br>
+5. <a href="05.html">Better insert</a>
+<br>
+6. <a href="06.html">Deleting</a>
+
+<p>
+[<a href="../index.html">All tutorials</a>]
+<br>
+[<a href="../../index.html">Course home page</a>]
+
+</div>
+<h1> Inserting into a linked list in C </h1>
+
+Now please abandon your solution so far, or my 2s.c or 3s.c, and continue
+instead with /student/csc209/tut/09/4.c, which removes the awkward
+"filllist()" function and instead wants an "insert()" function.
+
+<p>
+If you run the 4.c program as is, it will output that the list is empty
+because nothing has really been inserted because insert() is empty.
+
+<p>
+Your task is to write insert() now.  The insert() function will insert in
+order, maintaining the property that the linked list is sorted at all times,
+as is relied on in search().
+So you have to traverse the linked list until you 
+find either the end of the list or an item with a
+greater key, and insert a new item at that point, calling
+malloc(sizeof(struct item)) to get space for the new list item.
+(Don't worry about the case where there is already a node with that key --
+you will just add a second node with that key -- let's not make this a special
+case.)
+
+<p>
+If malloc returns null indicating out of memory, we will make this a fatal
+error for simplicity.
+(I.e. print an error message and exit(1).)
+
+<p>
+Debugging suggestion: add printall() calls after each insert(), and maybe
+other printf statements.
+(Or <a href="../../notes/gdb/index.html">use gdb</a>.)
+
+<p>
+Please work on this in a file named "4.c".
+To get the full marks for the tutorial you need to submit this file, but
+unlike the other submitted files, this one need not be working for full
+credit, although like the other submitted files, it does need to compile with
+"gcc -Wall" with
+no errors or warning messages.
+As always, submit with
+<pre>
+	/student/csc209/submit tut9 4.c
+</pre>
+
+<p>
+<hr align=left width="25%">
+
+<p>
+<div id="note_a" class=revealed>
+After you've spent sufficient time on this and submitted your file,
+<a href="javascript:reveal('note');">click here for further discussion</a>.
+</div>
+<div id="note_b" class=hidden>
+You might have had some trouble with getting that program working in all
+cases, assuming you are using the technique I think you would be using.
+The main problem with the conventional way of writing linked lists is that
+there are special cases around the beginning of the list, both for traversing
+and for inserting.
+C easily eliminates the special cases around traversing, but the way you
+probably wrote your code (and the way I wrote the solution) preserves the
+special casing around inserting.
+<br>
+And deletion is even grottier.
+
+<p>
+In C, unlike in some programming languages, this can all be made uniform with
+an extra level of indirection.  Actually, the non-head insertion will be
+easier too.
+
+<p>
+You can see my traditional-style solution to the above in /student/csc209/tut/09/4s.c;
+then please proceed to a discussion of
+<a href="05.html">a better way to do linked-list insertions in C</a>.
+</div>
+
+<p>
+<hr>
+
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/tut/09/04.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:27 GMT -->
+</html>

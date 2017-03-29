@@ -1,0 +1,198 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/probs/mid/201109/q1.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:39 GMT -->
+<head>
+
+<title>CSC 209: midterm solutions, October 2011</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #cc7777;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .unhidden { display: block; }
+</style>
+
+<script type="text/javascript">
+    function show(s) {
+        document.getElementById(s).className = 'unhidden';
+    }
+    function reveal(n) {
+        document.getElementById(n + '_teaser').className = 'hidden';
+        document.getElementById(n + '_hr').className = 'unhidden';
+        document.getElementById(n + '_full').className = 'unhidden';
+	n1 = n + 1;
+        document.getElementById(n1 + '_hr').className = 'unhidden';
+    }
+</script>
+
+</head>
+
+<body>
+<div class=toc>
+
+<a href="../../../.html">Introduction</a>
+<br>
+<a href="../../../announce.html">Announcements</a>
+
+<p>
+
+<a href="../../../lect/index.html">Lectures</a>
+<br>
+<a href="../../../tut/index.html">Tutorials</a>
+<br>
+<a href="../../../asmt.html">Assignments</a>
+
+<p>
+<a href="javascript:show('tests')">Tests, exam</a>
+<div id=tests class=hidden>
+    <ul>
+    <li>
+    <a href="../../../mid/index.html">Mid-term test</a>
+    <li>
+    <a href="../../../exam/info.html">Final exam</a>
+    </ul>
+</div>
+
+<p>
+
+<a href="../../../notes/index.html">Course notes</a>
+<br>
+<a href="../../index.html">Extra problems</a>
+<br>
+
+<a href="https://mcs.utm.utoronto.ca/~mybb/utmcs/forumdisplay.php?fid=193">Discussion board</a>
+
+<p>
+<a href="../../../netgrade-results.html">Grades so far</a>
+<br>
+<a href="../../../oldannounce.html">Old announcements</a>
+
+</div>
+
+<b>1.</b> [8 marks]
+<br>
+Each subpart of this question builds upon the previous.  If you can't get part
+of the question, you can write things like "part 'a' answer goes here".
+
+<p>
+a) Write a regular expression which matches "any positive integer".
+
+<h4>Solution:</h4>
+
+<tt>0*[1-9][0-9]*</tt>
+
+<p>
+We will accept <tt>[1-9][0-9]*</tt> for the mark.  In fact, we will also
+accept <tt>[0-9][0-9]*</tt> for the mark, although that will also match
+"0", which is not a positive integer.  I <i>would</i> have written the
+problem as "any non-negative integer" except that I thought that that
+terminology might confuse and that wasn't the point for this test.
+
+<p>
+But "<tt>[1-9][0-9]*</tt>" doesn't include things like "003", which,
+while oddly-written, is certainly a positive integer.  So I believe that
+the correct answer is <tt>0*[1-9][0-9]*</tt>.
+
+<p>
+<hr noshade align=left width="25%">
+
+<p>
+b) "grep -v" outputs lines which do <i>not</i> match the given pattern.
+Remembering "<tt>^</tt>" for beginning of line and
+"<tt>$</tt>" for end of line, write shell commands
+to check whether the file "abc" contains just one integer per line (and
+nothing else).
+Output "yes" (only integer lines) or "no" (at least one inappropriate
+line).
+
+<h4>Solution:</h4>
+<pre>
+if grep -v '^0*[1-9][0-9]*$' abc &gt;/dev/null
+then
+    echo no
+else
+    echo yes
+fi
+</pre>
+
+<p>
+<hr noshade align=left width="25%">
+
+<p>
+c) Write a complete shell script which takes exactly one file name as
+command-line argument and outputs the sum of all of the numbers in that file,
+if the file contains only integers and one per line; or outputs a suitable
+error message if the file contains anything else.
+You also have to check the argument count and output an appropriate usage
+message, and otherwise behave like a proper complete shell script.
+(You can, however, assume that the addition never overflows what <i>expr</i>
+can do.)
+
+<h4>Solution:</h4>
+<pre>
+PATH=/bin:/usr/bin
+if test $# -ne 1
+then
+    echo usage: $0 file &gt;&amp;2
+    exit 1
+fi
+if grep -v '^0*[1-9][0-9]*$' "$1" &gt;/dev/null
+then
+    echo "$1": file does not contain solely integers, one per line &gt;&amp;2
+    exit 1
+fi
+sum=0
+while read i
+do
+    sum='expr $sum + $i'
+done &lt;"$1"
+echo $sum
+</pre>
+
+... or instead of "while read i ...", you could do:
+<pre>
+for i in `cat "$1"`
+...
+</pre>
+This 'for' version would be problematic if the lines contained white space,
+but we know at this point that they don't.
+
+<p>
+<hr noshade>
+[<a href=".html">sample midterm from Fall 2011</a>]
+
+<p>
+<hr>
+
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/probs/mid/201109/q1.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:39 GMT -->
+</html>

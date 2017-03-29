@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/tut/09/03.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:27 GMT -->
+<head>
+
+<title> CSC 209 tutorial exercises, week of 14 March 2016 </title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 10px;
+        padding-top: 15px;
+        padding-bottom: 0px;
+        background-color: #dd9088;
+        border-style: solid;
+        border-color: green;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .revealed { display: block; }
+</style>
+
+<script type="text/javascript">
+function reveal(s) {
+    document.getElementById(s+'_a').className = 'hidden';
+    document.getElementById(s+'_b').className = 'revealed';
+}
+</script>
+
+</head>
+
+<body>
+
+<div class=toc>
+
+1. <a href=".html">Tutorial 9 intro</a>
+<br>
+2. <a href="02.html">Traversing</a>
+<br>
+3. <a href="03.html">Searching</a>
+<br>
+4. <a href="04.html">Inserting</a>
+<br>
+5. <a href="05.html">Better insert</a>
+<br>
+6. <a href="06.html">Deleting</a>
+
+<p>
+[<a href="../index.html">All tutorials</a>]
+<br>
+[<a href="../../index.html">Course home page</a>]
+
+</div>
+<h1> Searching a linked list in C </h1>
+
+Now, write code to search the linked list.  Start with the file
+/student/csc209/tut/09/3.c, which contains appropriate calls to search();
+your task is to write the search() function itself.
+
+<p>
+This will be a linear search over the linked list, and looks somewhat similar
+to printall() in how it goes through the list with
+"p = p->next".
+
+<p>
+Since the list is in sorted order by the key, stop searching once either the
+key is found, or the end of the list is reached, OR the key value in the list
+item is greater than the search key.  This early termination does not affect
+the big-O running time of your search algorithm, but it arguably decreases the
+running time by about half on average.
+It also simplifies your code a bit.
+
+<p>
+Please work on this in a file named "3.c", and submit this file in the usual
+way, specifically
+<pre>
+	/student/csc209/submit tut9 3.c
+</pre>
+(Again, it needs to compile with no errors or warnings for full credit.)
+
+<p>
+Again,
+please work on it yourself
+before looking at my solution in
+/student/csc209/tut/09/3s.c, but please do examine my
+solution before proceeding even if yours is working.  The loop control I use
+there is terse but is a style worth getting used to, because it is a less
+error-prone style than more verbosely-written loops.
+
+<p>
+Next, we will write code to <a href="04.html">insert into the linked list</a>.
+
+<p>
+<hr>
+
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/tut/09/03.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:27 GMT -->
+</html>

@@ -1,0 +1,75 @@
+# Fill in, commit and push each day.
+# Group Member: Swetha Maramganty
+Nov 2, 2016
+	Yesterday :
+	Today     :
+	Obstacles :
+	
+Nov 3, 2016
+	Yesterday :
+	Today     :
+	Obstacles :
+
+Nov 4, 2016
+	Yesterday :
+	Today     :
+	Obstacles :
+
+Nov 5, 2016
+	Yesterday :
+	Today     : Experienced problems with git and eclipse, would not let me clone my repo. Attempted to fix the problem. 
+	Obstacles :
+
+Nov 6, 2016
+	Yesterday :
+	Today     : Trying to fix problems with git and eclipse. 
+	Obstacles : Unable to commit and push, it's saying "401 Unauthorized Error" 
+	
+Nov 7, 2016
+	Yesterday : Attempted to fix the errors with git and eclipse. 
+	Today     : Started working on the rectangle object class. Also started working on the triangle class. 
+				Completed the priorities and estimated time for the user story. 
+	Obstacles : Still experienced committing issues with git and eclipse. But started using terminal
+				for pulling and pushing. 
+	
+Nov 8, 2016
+	Yesterday : Worked on rectangle class and triangle
+	Today     : Completed rectangle and triangle class. Started working on polyline class. Attempted to understand factory 
+				and understand the architecture design for this assignment.
+	Obstacles : Had difficulties understanding Factory and how to use it for this assignment. 
+	
+Nov 9, 2016
+	Yesterday : Completed UserStory14Polyline and UserStory16Triangle
+	Today     : However those UserStories for Polyline and triangle were modified significantly to fit the 
+				design of the assignment. 
+				Also worked on UserStory8 which was simply adding the Square object in ShapeChooserPanel
+	Obstacles : Had difficulty fixing the drawing of shapes. The shapes are able to draw when the mouse was being dragged
+				from bottom right to top left but not the other way around (top left to bottom right). 
+
+Nov 13, 2016
+	Yesterday :
+	Today     : Created the DottedLine feature. Organized how to implement this feature. Completed most of it by adding to Shape
+				ChooserPanel, and created a new builder for DottedLine. 
+	Obstacles : Obstacle with position of line, it will draw the first Dottedline whenever I draw another line in a different position.
+
+	
+Nov 14, 2016
+	Yesterday : worked on Dotted line 
+	Today     : Fixed the bug with the position of the dotted line as well as changed the location where the stroke was being created
+				Completed UserStoryDotted and merged with master. 
+				Completed the documentation for the dotted Line class and other methods that I added for that UserStory.
+	Obstacles : The first dotted line is a "line" instead of the dotted line. The other dotted lines after the first one is created is fine.
+	
+Nov 15, 2016
+	Yesterday : Completed dotted line
+	Today     : attempted to fix dotted Line but failed to do so. Started working on Triangle, completed most of it. 
+				Started working on the bug for the triangle class
+	Obstacles:  Got two conflicts with the Triangle User Story. The first obstacle was that I wasn't able to draw a second triangle 
+				with the same first click. Whenever I would draw another triangle, the previous one would disappear.
+				The second conflict was that the fill color for triangle does not work. 
+
+Nov 16, 2016
+	Yesterday: Worked on Triangle and Dotted line
+	Today    : Completed triangle and dotted. Started working on Polyline as as extra feature for the assignment. 
+				However was not able to complete it. 
+	Obstacles: Attempted to fix the bug with fill color in triangle. 

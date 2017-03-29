@@ -1,0 +1,15 @@
+PATH=/bin:/usr/bin
+
+if test $# -ne 1
+then
+    echo usage: $0 number >&2
+    exit 1
+fi
+
+x=$1
+echo $x
+while test $x -le 1000000
+do
+    x=`expr $x \* $x`
+    echo $x
+done

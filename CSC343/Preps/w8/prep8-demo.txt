@@ -1,0 +1,44 @@
+tamanth2@wolf ~/prep8                                                 [20:14:50]
+$ vim books.xml 
+                                                                                 
+tamanth2@wolf ~/prep8                                                 [20:39:31]
+$ xmllint --valid books.xml
+
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE BOOKS [
+<!ELEMENT BOOKS (BOOK)+>
+<!ELEMENT BOOK (AUTHORS+ , RATING* , REVIEW*)>
+<!ATTLIST BOOK TITLE CDATA #REQUIRED>
+<!ATTLIST BOOK YEAR CDATA #REQUIRED>
+<!ELEMENT AUTHORS (AUTHOR)+>
+<!ELEMENT AUTHOR (#PCDATA)>
+<!ELEMENT RATING EMPTY>
+<!ATTLIST RATING LEVEL (0 | 1 | 2 | 3 | 4 | 5) #REQUIRED>
+<!ELEMENT REVIEW (#PCDATA)>
+]>
+<BOOKS>
+        <BOOK TITLE="To Kill a Mocking Bird" YEAR="1960">
+                <AUTHORS>
+                        <AUTHOR>Harper Lee</AUTHOR>
+                </AUTHORS>
+                <RATING LEVEL="5"/>
+                <RATING LEVEL="4"/>
+                <REVIEW>
+                        Great book!
+                </REVIEW>
+        </BOOK>
+        <BOOK TITLE="Hamlet" YEAR="1599">
+                <AUTHORS>
+                        <AUTHOR>William Shakespeare</AUTHOR>
+                </AUTHORS>
+                <RATING LEVEL="4"/>
+                <RATING LEVEL="3"/>
+        </BOOK>
+        <BOOK TITLE="Atonement" YEAR="2001">
+                <AUTHORS>
+                        <AUTHOR>Ian McEwan</AUTHOR>
+                </AUTHORS>
+                <RATING LEVEL="3"/>
+                <RATING LEVEL="5"/>
+        </BOOK>
+</BOOKS>

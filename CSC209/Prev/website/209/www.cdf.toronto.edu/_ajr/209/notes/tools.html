@@ -1,0 +1,600 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/notes/tools.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:56:35 GMT -->
+<head>
+
+<title>CSC 209: Software tools</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #cc7777;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .unhidden { display: block; }
+</style>
+
+<script type="text/javascript">
+    function show(s) {
+        document.getElementById(s).className = 'unhidden';
+    }
+    function reveal(n) {
+        document.getElementById(n + '_teaser').className = 'hidden';
+        document.getElementById(n + '_hr').className = 'unhidden';
+        document.getElementById(n + '_full').className = 'unhidden';
+	n1 = n + 1;
+        document.getElementById(n1 + '_hr').className = 'unhidden';
+    }
+</script>
+
+</head>
+
+<body>
+<div class=toc>
+
+<a href="../.html">Introduction</a>
+<br>
+<a href="../announce.html">Announcements</a>
+
+<p>
+
+<a href="../lect/index.html">Lectures</a>
+<br>
+<a href="../tut/index.html">Tutorials</a>
+<br>
+<a href="../asmt.html">Assignments</a>
+
+<p>
+<a href="javascript:show('tests')">Tests, exam</a>
+<div id=tests class=hidden>
+    <ul>
+    <li>
+    <a href="../mid/index.html">Mid-term test</a>
+    <li>
+    <a href="../exam/info.html">Final exam</a>
+    </ul>
+</div>
+
+<p>
+
+<a href="index.html">Course notes</a>
+<br>
+<a href="../probs/index.html">Extra problems</a>
+<br>
+
+<a href="https://mcs.utm.utoronto.ca/~mybb/utmcs/forumdisplay.php?fid=193">Discussion board</a>
+
+<p>
+<a href="../netgrade-results.html">Grades so far</a>
+<br>
+<a href="../oldannounce.html">Old announcements</a>
+
+</div>
+
+<h1>Software tools</h1>
+
+Discussed non-software tools and how easily you can combine them, how
+multi-purpose they are.
+You can hit just about anything with a hammer.
+
+<p> In contrast, software is often presented as monolithic large programs
+which indeed do have many features, but if the implementers didn't happen to
+think of the feature you wanted, it's not easily added.
+    <ul>
+    <li> You may have a great text editor and a great spreadsheet program and
+    great programs to do all sorts of particular applications, but what you
+    lack is an easy way to combine them, analogous to using the hammer in
+    conjunction with another tool.
+    <li> Any tool or device is very limited if it can't be used in ways
+    the creator didn't imagine.  We would like software components to
+    be as fundamental and general as a hammer.
+    </ul>
+
+<p> The "software tools" idea is about writing small, simple programs, which
+do one thing well; and having powerful and general ways to combine them.
+    <ul>
+    <li> In unix, we can connect programs using a "pipe", which is a kernel
+    data structure which is a buffer but has the special property that it can
+    be used for i/o redirection.
+    <li> "command >file" runs "command" but with its standard output
+    redirected into the file "file", as you know.
+    <li> "cmd1 | cmd2" runs both commands, with the standard output of cmd1
+    connected <i>into</i> the pipe,
+    and the standard input of cmd2 connected so as to come <i>out of</i> the
+    pipe.
+    <li> Given how many unix tools are designed as "filters", willing to read
+    from their standard input and write to their standard output,
+    you can make quite a lot of interesting combinations.
+    <li> "cmd1 | cmd2" is itself a command which can be piped into another
+    command, and so on.  You can have a long pipeline, like a factory assembly
+    line, in which each command performs some successive transformation on the
+    data.
+    <li> Examples:
+	<ul>
+	<li> given a <a href="toolsfiles/faculty.html">text file called "faculty"
+	containing names of department faculty members, not in order,
+	one per line</a>,
+	    <ul>
+	    <li> "sort faculty" yields a sorted file on stdout.
+	    <li> "sort -k2 faculty" sorts by last name instead of first name
+	    <li> "sort -f faculty" is a case-insensitive sort
+	    <li> you can combine these options by saying "sort -f -k2"
+	    </ul>
+	and
+	    <ul>
+	    <li> "sed" is a "stream editor" -- it performs transformations on
+	    the data as it goes by, like a filter, without modifying the file
+	    on disk
+	    <li> the input language to sed is complex and we're not going to
+	    go into it in this course, but I'd like to use it for this example
+	    <li> the sed command I'll be using is "s", for "substitute" -- it
+	    does a search and replace, but using the unix "regular expression"
+	    syntax.  Regular expressions are based on the theory of finite
+	    automata and are a powerful way to describe sets of strings, such
+	    as "all strings containing the letter e" or "all strings
+	    containing a letter, five spaces, and then either a digit or the
+	    symbol '?'", etc.
+	    <li> The 's' command letter is followed by a slash (actually you
+	    can use any character as delimiter, but slash is usual... unless
+	    the search string has slashes in it), then the search string, then
+	    a slash, then the replacement string, then another slash, then any
+	    option key letters (we didn't use any of those in the examples in
+	    lecture).
+	    <li> Altogether we get a command like "sed 's/oo/ooo/'" to
+	    transform double-os into triple-os.
+	    <li> A more serious transformation can be described by the complex
+	    substitution "sed 's/\(.*\) \(.*\)/\2, \1/'".
+	    The backslashed-parentheses indicate grouping.  Dot (".") matches
+	    any character.  Asterisk means zero-or-more of the preceding.
+	    So altogether the search string means zero or more of any
+	    character (i.e. anything at all), then a space, then zero or more
+	    of any character.  But the parenthesized groups can be referred to
+	    in the replacement string.  The replacement string means "the
+	    second thing we matched in the search, a comma, a space, then the
+	    first thing we matched in the search".  Altogether this transforms
+	    the line "Alan Rosenthal" into the line "Rosenthal, Alan".
+	    <li> Example:  sed 's/\(.*\) \(.*\)/\2, \1/' faculty
+	    </ul>
+	<li> So we have two useful tools so far: sort and sed.
+	<li> We can combine them with a pipe, to transform the faculty list
+	into a list which has last name first <i>and</i> is sorted.
+	<li> Example:  sort -f -k2 faculty | sed 's/\(.*\) \(.*\)/\2, \1/'
+	<li> The sort options are affected by which order we do these
+	transformations in; if we've already done the "sed", then we want to
+	sort by the first field (the last name in the sed-transformed file)
+	as opposed to the second field (the last name in the original file).
+	<li> Note that all of these "filters" have optional file name
+	arguments: If you supply a list of file names, it reads from those.
+	If you don't supply any file names, it reads its standard input.
+	</ul>
+    </ul>
+
+<p> Cute quotation: "Unix <i>is</i> user-friendly; it's just choosy about who its friends are."
+<p> Summary: "Do one thing well."
+
+<p>
+Tools which do just one thing can be combined in arbitrary ways.
+
+<p>
+<hr noshade>
+<p>
+One thing a bit odd in unix is that program output doesn't contain headers.
+
+<p>
+Consider the "who" command.  Example output:
+<pre>
+ajr      console  Jan  8 06:28
+ajr      ttyp1    Jan  8 09:25
+ajr      ttyp2    Jan  8 09:26
+</pre>
+(The "who" output is more exciting on a system with multiple users, especially
+if no one's on the console and creating multiple terminal windows;
+try it on cslinux or seawolf (as appropriate to the campus you're taking this
+course on...).)
+
+<p>
+We can see how many entries there are by using the "word count" program "wc",
+with the option "-l" which means "only display the line count":
+<pre>
+% who | wc -l
+       3
+% 
+</pre>
+On many non-unix systems we would expect output with a header, identifying the
+columns, like this:
+<pre>
+User     Terminal  Login time
+------------------------------
+ajr      console  Jan  8 06:28
+ajr      ttyp1    Jan  8 09:25
+ajr      ttyp2    Jan  8 09:26
+</pre>
+But this would cause problems for the software tools model.
+In the "who | wc -l" case,
+the line count above would be off by two;
+in fact we would get funny results from many tools.
+For example, a "grep" (display only lines matching a search expression)
+to see who is logged in and has a "-" in their logname would also display the
+header separation line, or if a user were named "ogi", then "who | grep ogi"
+would also display the header line.
+
+
+<p>
+<hr noshade>
+
+<h3>Software tools</h3>
+
+<ul>
+<li> do one thing well
+<li> are small
+<li> interface cleanly
+</ul>
+
+<a name=principles>
+<h3>Software tools principles, after Doug McIlroy (with
+some text from Ian Darwin):</h3>
+</a>
+
+<ol>
+<li> Write small programs that <strong><i>do one thing well</i></strong>.
+    <ul><li> To do a new job, build afresh rather than complicate old
+    programs by adding new "features".
+    <li> Don't put everything into the OS.
+    </ul>
+<li> Expect the output of every program to become the input to another, as yet
+unknown, program.
+    <ul>
+    <li> Don't clutter output with extraneous information.  Say what you're asked to -- no more, no less.
+    </ul>
+<li> Make programs' input formats easy to generate or type.
+    <ul>
+    <li> Avoid stringently columnar or binary input formats.
+    <li> Don't insist on interactive input.  Wherever possible, programs should be able to process data from their standard input to their standard output.
+    <li> Supply good defaults.
+    </ul>
+If every file has the same format, users only need one set of tools.  If the format is simple, the tools are easy to write.
+<br> If everything in the system is a file, users can go further with one set of tools.
+<li> Use programs to write programs.
+    <ul>
+    <li> Use high-level languages.
+    <li> Use regular expressions for all pattern matching.
+    </ul>
+</ol>
+
+Don't force people to use the system in one way.
+
+
+<p>
+<hr noshade>
+
+<h3>Filters</h3>
+
+"filter"
+
+<p>e.g. grep: print lines which match a pattern.
+    <ul>
+    <li> grep Z faculty
+    <li> who | grep ajr
+    </ul>
+
+Some ways data goes INTO a command:
+<ul>
+<li> standard input
+<li> command-line arguments -- often file names, opened and processed like
+standard input; allows multiple files; if a "filter" won't do that, then
+cat file1 file2 file3 | filter
+<li> environment variables (setenv).  More later maybe.
+<small>(After we've done processes
+and execve(), you can have a look at man 7 environ.)</small>
+</ul>
+
+command-line: "globbing" done by the shell.
+<ul>
+    <li> '*' matches any number of any character.
+	<ul>
+	<li> *.c
+	<li> *x*y
+	</ul>
+    <li> '?' matches any one character.
+	<ul>
+	<li> a?.pdf
+	</ul>
+    <li> [list of chars]
+	<ul>
+	<li> a[1234].pdf
+	</ul>
+    <li> [range]
+	<ul>
+	<li> a[1-4].pdf
+	<li> use [a-z] to match any lower-case letter
+	<li> combine them: [a-xz] matches any lower-case letter except 'y'
+	</ul>
+</ul>
+Special treatment of '.' at the beginning of a file name: must be matched
+explicitly.
+
+
+<p>
+<hr noshade>
+
+<p>
+Here are some filters.  All of these, and everything else, has man pages.  Get
+used to reading man pages, especially to find obscure options.
+
+<p>
+I frequently read man pages.  The on-line help in unix is very comprehensive.
+There's a lot to know and you don't have to remember it all.
+
+<h4>grep</h4>
+Find lines which match a regular expression.
+Examples:
+<pre>
+    who | grep ajr
+    grep /~ajr/209/ /var/httpd/log/access_log
+    lpq | grep ajr | cut -f1 | xargs lprm
+</pre>
+
+<h4>tr</h4>
+Character-level substitution, e.g. change all 'x's to 'y's.
+<br>
+Does character ranges, and backslash-three-octal-digits (you'll need to quote
+that backslash so that it's not interpreted by the shell but rather passed
+straight through to <cite>tr</cite>).
+<br>
+Examples:
+<pre>
+    tr '\015' '\012' &lt;file.mac &gt;file.unix
+    tr A-Z a-z
+    tr a-zA-Z n-za-mN-ZA-M
+</pre>
+
+<h4>head, tail</h4>
+The first or last <i>n</i> lines of a file (n=10 by default).
+Examples:
+<pre>
+    last | head
+    tail /var/log/messages
+    tail -40 /var/log/messages
+</pre>
+
+<h4>sort</h4>
+Examples given:
+<pre>
+    sort
+    sort -k2
+    sort -n
+    sort -n -k3
+</pre>
+    lots of other options such as case-insensitive, reverse
+
+<h4>uniq</h4>
+Collapse adjacent identical lines.
+<br>
+Used in the following example which gives you a word-frequency count in a
+document, also introducing other features of <cite>tr</cite>:
+<pre>
+    tr -cs a-zA-Z0-9 '\012' &lt;file | tr A-Z a-z | sort | uniq -c
+</pre>
+
+<h4>sed</h4>
+"Stream editor": do edit commands on a file as it goes by in the pipeline.
+Examples:
+<pre>
+    sed s/Fred/Wilma/
+    sed s/Fred/Wilma/g
+    sed s/Fred[a-z]*/Wilma/g
+    sed 5d
+    sed 10q
+    sed /pattern/d
+</pre>
+regular expressions: <code>.</code>, <code>[</code>, <code>*</code>
+<br>
+If you enclose some of the search string in backslashed parentheses,
+\1 in the replacement means the first such match.  If you have multiple
+pairs of backslashed parentheses, you can also use \2, etc.
+<br>
+Whether some of the search string is enclosed in backslashed parentheses or
+not, '&amp;' in the replacement string represents the <i>entire</i> search
+string.
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp;
+Example in class: &nbsp; <code> sed 's/[A-Z]/ capital-&amp; /g' faculty </code>
+
+
+<p>
+<hr noshade>
+<p>
+
+Here are some other fundamental unix tools:
+
+<h4>echo</h4>   provide output, e.g.
+<pre>
+    echo Please enter repeat count:
+    echo -n 'Please enter repeat count: '
+</pre>
+&rarr; note how it takes any number of arguments, and outputs them separated by spaces.
+
+<p>
+Use "tr" to convert x's to y's in xylophone:
+<ul>
+    <li> can't say tr x y xylophone (even if it took files)
+    <li> so:  echo xylophone | tr x y
+</ul>
+
+<h4>cat</h4>
+various options depending on unix version, such as -n to
+number the lines, -s to eliminate multiple blank lines.
+Note that a
+plain "cat" is just a buffer, used as a data-wise no-op
+<br> (cat actually <i>is</i> a filter, could be in the section above)
+
+<h4>ls</h4>
+ls dir or ls file
+<br> ls -d to avoid descending into a directory
+<br> use xargs to make it read stdin in any interesting way
+<br> -a, -l, -i, -q, -t, -r
+<br> how options combine:  ls -lart
+<br> ls strangely (and unsimply) acts differently by default based on whether
+its output is a "tty" or not, but there are options -C to force columnar
+output and -1 to force one file per line (mnemonic: "one column")
+
+<h4>cp</h4>  either 2 args or multi args plus directory;  -p, -r
+<h4>mv</h4>  similar options, always -p
+<h4>rm</h4>  also options -r, -f
+
+<h4>cmp</h4>
+compare files in a byte-oriented way (especially useful for non-text files).
+<br>
+also cmp -l
+
+<h4>diff</h4>
+compare files in a text-file-oriented way, cleverly finding matching bits so
+as to show only the differences.
+<br>
+also diff -b, also -c
+
+<h4>comm</h4>
+show lines in common between two files
+<br> Example:
+<br> students enrolled in CSC 209 before and after the drop date (fictional)
+<br>
+% comm -1 <a href="toolsfiles/students.html">students</a> <a href="toolsfiles/newstudentlist.html">newstudentlist</a>
+<br>
+% comm -12 students newstudentlist
+<br>
+% comm -13 students newstudentlist
+<br>
+% comm -23 students newstudentlist
+
+<h4>join</h4>
+join <a href="toolsfiles/newstudentlist.html">newstudentlist</a> <a href="toolsfiles/grades.html">grades</a>
+
+<h4>idea of "-" file name</h4>
+
+<p>
+&rarr;
+Summary: small programs that do one thing well.
+
+
+<p>
+<hr noshade>
+
+<h3>Find</h3>
+
+<pre>
+find /u/ajr/web/270/example -name mergen.c -print
+find /u/ajr/web/270/notes -mtime -30 -exec ls -ld '{}' ';'
+find /u/ajr/web/270/notes -type f -mtime -30 -exec ls -ld '{}' ';'
+</pre>
+
+<a name=minussign>
+<p>
+<hr noshade>
+</a>
+
+<h3>Further understanding of command-line arguments through attempting to cat
+a file called "-a"</h3>
+<pre>
+% cat -a
+cat: illegal option -- a
+usage: cat [-benstuv] [-] [file ...]
+% 
+</pre>
+Note that the "-" detection is lexical; file names have more complex
+semantics.
+<p>
+So use another path name which refers to the same file, but does not have the
+property that the zeroth character of the string is '-'.
+<p>
+Example 1: cat ./-a
+<br>
+Example 2: cat /u/ajr/-a
+
+<p>
+Another method:
+There is a feature of getopt(), the library function used to parse the
+command-line options, to say "that's all the options", after which you can
+safely say "-a" to refer to a file named "-a".
+
+<p>
+<pre>
+cat -- -a
+</pre>
+
+
+<h3>Trivial shell scripts via "sh file":</h3>
+"sh" (the shell) will take a file name as
+argument just like all those filters above, and will process the contents of
+the file just like typing it in.  (However, you can't have multiple file name
+arguments.)
+<p>
+Example shell script which compiles <a href="toolsfiles/gcd.c">gcd.c</a>
+and tests it with several arguments:
+<pre>
+gcc -Wall gcd.c
+./a.out 3 4
+./a.out 12 0
+./a.out 0 12
+./a.out 12 18
+./a.out 18 12
+</pre>
+
+<p>
+If this is in a file "testgcd", execute the list of commands by saying
+"sh testgcd".
+
+
+<h3>I/O redirection:</h3>
+
+<ul>
+<li> ./a.out >file
+<li> sh testgcd >file
+    <ul>
+    <li> i/o redirection is "inherited" when the sh process runs the other
+    processes
+    </ul>
+<li> echo hello >hi
+<li> echo foo; echo bar; echo baz >fbb
+    <ul>
+    <li> Only "echo baz" is redirected.
+    <li> It's an operator precedence issue (precedence of ";" versus ">").
+    <li> The shell implements parentheses to change the precedence!
+    </ul>
+<li> (echo foo; echo bar; echo baz) >fbb
+<li> All of this also applies to pipes and pipelines, e.g. you can have a
+parenthesized command sequence as one element in a pipeline.
+</ul>
+
+<p>
+<hr>
+
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/notes/tools.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:56:36 GMT -->
+</html>

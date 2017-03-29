@@ -1,0 +1,436 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/probs/exam/201001/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:52 GMT -->
+<head>
+
+<title>CSC 209: exam, April 2010</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #cc7777;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .unhidden { display: block; }
+</style>
+
+<script type="text/javascript">
+    function show(s) {
+        document.getElementById(s).className = 'unhidden';
+    }
+    function reveal(n) {
+        document.getElementById(n + '_teaser').className = 'hidden';
+        document.getElementById(n + '_hr').className = 'unhidden';
+        document.getElementById(n + '_full').className = 'unhidden';
+	n1 = n + 1;
+        document.getElementById(n1 + '_hr').className = 'unhidden';
+    }
+</script>
+
+</head>
+
+<body>
+<div class=toc>
+
+<a href="../../../.html">Introduction</a>
+<br>
+<a href="../../../announce.html">Announcements</a>
+
+<p>
+
+<a href="../../../lect/index.html">Lectures</a>
+<br>
+<a href="../../../tut/index.html">Tutorials</a>
+<br>
+<a href="../../../asmt.html">Assignments</a>
+
+<p>
+<a href="javascript:show('tests')">Tests, exam</a>
+<div id=tests class=hidden>
+    <ul>
+    <li>
+    <a href="../../../mid/index.html">Mid-term test</a>
+    <li>
+    <a href="../../../exam/info.html">Final exam</a>
+    </ul>
+</div>
+
+<p>
+
+<a href="../../../notes/index.html">Course notes</a>
+<br>
+<a href="../../index.html">Extra problems</a>
+<br>
+
+<a href="https://mcs.utm.utoronto.ca/~mybb/utmcs/forumdisplay.php?fid=193">Discussion board</a>
+
+<p>
+<a href="../../../netgrade-results.html">Grades so far</a>
+<br>
+<a href="../../../oldannounce.html">Old announcements</a>
+
+</div>
+
+University of Toronto Mississauga
+<br>
+April 2010 Final Examination
+<br>
+CSC 209H5S
+<br>
+Software Tools and Systems Programming
+<br>
+Instructor: Alan Rosenthal
+<br>
+Duration: 3 hours
+<br>
+Aids allowed: Any books and papers.
+<br>
+No electronic aids allowed: No calculators, cell phones, computers, ...
+
+<p>
+Make sure you have all 11 pages (including this page).
+<br>
+(Don't panic about the page count -- there's lots of extra space for answers.)
+
+<p>
+Answer <i>all</i> questions.  Answer questions in the space provided.
+Answers not in the correct space will not be graded unless a note in the
+correct space says "see page ..." and the answer on that page is clearly
+labelled with the question number.
+
+<p>
+In general, in the C programming questions you can omit the #includes, and you
+can omit comments unless you need to explain something unclear about the
+functioning of your code.
+
+
+<p><hr noshade><p>
+
+<b>1.</b> [8 marks]
+<br>
+In <i>csh</i> (<b>not</b> the shell we used for programming in this course),
+i/o redirection of stdin and stdout using '&lt;' and '&gt;' works the same as in <i>sh</i>, but
+redirection of stderr is different.
+To redirect stdout <i>and</i> stderr to a file, you use the two-character
+sequence '&gt;&amp;'.  Example:
+<pre>
+	lynx -dump $url &gt;&amp; /dev/null
+</pre>
+
+<p>
+a) There is no explicit syntax for redirecting stdout and stderr to different
+places, but you can accomplish this by redirecting stdout, then parenthesizing
+that command, then redirecting the parenthesized command's stderr with '&gt;&amp;'.
+Use this technique to write a <i>csh</i> command to redirect the stdout from
+the command "foo" to the file "one",
+and the stderr to the file "two".
+
+<p>
+b) Give an example i/o redirection in <i>sh</i> which cannot be expressed in
+<i>csh</i> with the above tools.
+
+<p>
+c) Nevertheless you can always run <i>sh</i> itself from your <i>csh</i> script.
+Write a command, to be executed in <i>csh</i>, which uses <i>sh</i> to accomplish
+the redirection you listed above for part (b).
+
+<p>
+[<a href="q1s.html">Sample solutions</a>]
+
+
+<p><hr noshade><p>
+
+<b>2.</b> [5 marks]
+<br>
+What is the difference between
+<pre>
+	cat $x
+</pre>
+and
+<pre>
+	cat '$x'
+</pre>
+and
+<pre>
+	cat "$x"
+</pre>
+?
+
+<p>
+[<a href="q2s.html">Solution</a>]
+
+
+<p><hr noshade><p>
+
+<b>3.</b> [7 marks]
+<br>
+Consider the following portion of a unix filesystem hierarchy:
+<br>
+<img src="q3.gif">
+
+<p>
+The '.' and '..' entries are not indicated, of course; otherwise, all of the
+files below "a2" are shown.
+a2.pdf, splitexpr.c, wfold.c, and wfold.1 are plain files;
+a2, handout, starter, soln, and splitexpr are directories.
+
+<p>
+a)  Indicate the link count for each of these files:
+
+<p>
+handout:
+
+<p>
+starter:
+
+<p>
+soln:
+
+<p>
+wfold.c:
+
+<p>
+b) Suppose the user is cd'd to the handout directory
+and types:
+<pre>
+	ln a2.pdf example.pdf
+</pre>
+Which file(s) will change their link count, and what will the link count(s)
+be now?
+
+<p>
+c) Suppose the user is cd'd to the soln directory
+and types:
+<pre>
+	mkdir new
+</pre>
+Which file(s) will change their link count, and what will the link count(s)
+be now?
+
+<p>
+[<a href="q3s.html">Solutions</a>]
+
+
+<p><hr noshade><p>
+
+<b>4.</b> [10 marks]
+<br>
+Recall Euclid's greatest common divisor algorithm:
+<pre>
+	while (y &gt; 0) {
+	    int t = x;
+	    x = y;
+	    y = t % y;
+	}
+</pre>
+
+<p>
+Write a shell script to perform this algorithm.
+The two input values will appear on the command line.
+You can assume that they are integers (if present -- you still have to check
+the argument count).
+Note that the "expr" command has a '%' operator.
+
+<p>
+Sample interaction, where '$' is the shell prompt:
+<pre>
+	$ sh gcd 12 15
+	3
+	$ sh gcd 12 15 26
+	usage: gcd x y
+	$ 
+</pre>
+
+<p>
+[<a href="q4s.html">Sample solution</a>]
+
+
+<p><hr noshade><p>
+
+<b>5.</b> [10 marks]
+<br>
+Write a shell script in the <i>sh</i> programming language to play a guessing
+game as follows, where the user's number is between 0 and 100 inclusive.
+Your shell script does a binary search by keeping track of a "low" and a "high" value
+such that the user's number, <i>x</i>, is always such that
+<i>low</i>&lt;=<i>x</i>&lt;<i>high</i>.
+On each iteration, the guess is (<i>low</i>+<i>high</i>)/2, and this new number
+will be assigned either to <i>low</i> or <i>high</i> in accordance with the
+user's response.
+
+<pre>
+	$ sh guess
+	Is your number &gt;=50 or &lt;50?  Enter 'g' or 'l'.
+	l
+	Is your number &gt;=25 or &lt;25?  Enter 'g' or 'l'.
+	g
+	Is your number &gt;=37 or &lt;37?  Enter 'g' or 'l'.
+	l
+	Is your number &gt;=31 or &lt;31?  Enter 'g' or 'l'.
+	g
+	Is your number &gt;=34 or &lt;34?  Enter 'g' or 'l'.
+	l
+	Is your number &gt;=32 or &lt;32?  Enter 'g' or 'l'.
+	g
+	Is your number &gt;=33 or &lt;33?  Enter 'g' or 'l'.
+	g
+	Your number must be 33.
+	$ 
+</pre>
+
+<p>
+(You don't have to worry about invalid user input.)
+<br>
+(Once <i>low</i>==<i>high</i>-1, you exit the loop and conclude that
+the user's number must be <i>low</i>.)
+
+<p>
+[<a href="q5s.html">Sample solution</a>]
+
+
+<p><hr noshade><p>
+
+<b>6.</b> [10 marks]
+<br>
+Write a C program which is like an extremely-limited version of "test".
+It expects to be run with two command-line arguments (otherwise it emits a
+usage message in the usual way).
+Both command-line arguments should be integers.  Your program will exit with
+exit status 0, 1, or 2 in accordance with whether the first argument is less
+than, equal to, or greater than the second.  You can assume that the strings
+are valid integers (if they exist -- i.e. you still have to test the argument
+count).
+
+<p>
+[<a href="q6s.c">Sample solution</a>]
+
+
+<p><hr noshade><p>
+
+<b>7.</b> [20 marks]
+<br>
+Write a C program which listens on port number 1234 and receives a series of
+connections.  It will handle only one connection at a time.  Once a user
+connects, it will run a "chat" between the user connecting over the
+network (e.g. with "telnet") and the user running the program (and with
+access to its stdin and stdout).  When the remote user disconnects, your
+program will wait for the next user, until it is killed.
+
+<p>
+You do not need to worry about the network newline convention.
+You can omit the #includes, and you can cite course web pages rather than
+copying out bits of code if you can do so unambiguously.
+
+<p>
+[<a href="q7s.c">Sample solution</a>]
+
+
+<p><hr noshade><p>
+
+<b>8</b>. [30 marks]
+<br>
+Write a program in C which interactively builds up a list of i/o redirections
+in accordance with the user's instructions, then executes a command with those
+i/o redirections in place, then loops around and repeats.  Sample interaction:
+
+<pre>
+	Which file descriptor do you want to redirect?  -1 to end the list.
+	<b>1</b>
+	Where do you want to redirect file descriptor 1 to/from?
+	<b>blahblah</b>
+	Is blahblah to be opened for read or write?  ('r' or 'w')
+	<b>w</b>
+	Which file descriptor do you want to redirect?  -1 to end the list.
+	<b>0</b>
+	Where do you want to redirect file descriptor 0 to/from?
+	<b>/dev/null</b>
+	Is /dev/null to be opened for read or write?  ('r' or 'w')
+	<b>r</b>
+	Which file descriptor do you want to redirect?  -1 to end the list.
+	<b>-1</b>
+	What program do you want to execute?
+	<b>ls something</b>
+	Executing:
+	something: No such file or directory
+	exit status 1
+	Which file descriptor do you want to redirect?  -1 to end the list.
+	<b>38</b>
+	Where do you want to redirect file descriptor 38 to/from?
+	^D
+</pre>
+
+<p>
+The user typed the lines in bold.  At the end, the user pressed ^D signalling
+end-of-file, and in response the program exited.  This can happen at any time.
+<p>
+I recommend using fgets() to read the user input (in all cases).
+You can use atoi() to convert the string into an integer.
+You can use strsave() from assignment three if you like.
+You can assume that all user inputs are correct.
+<p>
+Your program will ignore argv (and need not declare argc or argv in main's
+parameter list).
+<p>
+Since the user can type any number of redirections, you will use a linked list
+to store them all.  Then after the fork(), the child will implement them all
+in a loop, and the parent will free all of the malloc'd memory before looping
+around to solicit the next command setup.
+<p>
+To open a file for read, the second argument of open() should be O_RDONLY.
+To open a file for write, the second argument of open() should be
+O_WRONLY|O_CREAT|O_TRUNC.
+<p>
+You can execute the user's command by passing it to "sh -c" as system()
+does.
+
+<p>
+This is basically three exam questions.  Grading will be divided roughly as
+follows:
+<br>
+<b>8a</b> [10 marks] user interaction
+<br>
+<b>8b</b> [10 marks] build the linked list of redirections; free it afterwards
+<br>
+<b>8c</b> [10 marks] fork/exec/wait and i/o redirections
+
+<p>
+[<a href="q8s.c">Sample solution</a>]
+
+
+<p><hr noshade><p>
+
+End of exam.  Total marks: 100.  Total pages: 11.
+
+<p>
+<hr>
+
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/probs/exam/201001/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:52 GMT -->
+</html>

@@ -1,0 +1,58 @@
+HTTrack3.48-21 launched on Thu, 12 Jan 2017 19:55:41 at http://http://www.cdf.toronto.edu/~ajr/209/ +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/*
+(webhttrack -q -%i -W http://http://www.cdf.toronto.edu/~ajr/209/ -O "/home/tamfire/websites/209" -n -%P -N0 -s2 -p7 -D -a -K0 -c4 -%k -A25000 -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -%s -%u )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+19:59:26	Error: 	"Error when decompressing" (-1) at link http://www.cdf.toronto.edu/~ajr/209/tut/01 (from http://www.cdf.toronto.edu/~ajr/209/tut/01/)
+19:59:26	Error: 	"Error when decompressing" (-1) at link http://www.cdf.toronto.edu/~ajr/209/tut/02 (from http://www.cdf.toronto.edu/~ajr/209/tut/01/)
+19:59:26	Error: 	"Error when decompressing" (-1) at link http://www.cdf.toronto.edu/~ajr/209/tut/03 (from http://www.cdf.toronto.edu/~ajr/209/tut/01/)
+19:59:26	Error: 	"Error when decompressing" (-1) at link http://www.cdf.toronto.edu/~ajr/209/tut/04 (from http://www.cdf.toronto.edu/~ajr/209/tut/01/)
+19:59:26	Error: 	"Error when decompressing" (-1) at link http://www.cdf.toronto.edu/~ajr/209/tut/05 (from http://www.cdf.toronto.edu/~ajr/209/tut/01/)
+19:59:26	Error: 	"Error when decompressing" (-1) at link http://www.cdf.toronto.edu/~ajr/209/tut/06 (from http://www.cdf.toronto.edu/~ajr/209/tut/01/)
+19:59:26	Error: 	"Error when decompressing" (-1) at link http://www.cdf.toronto.edu/~ajr/209/tut/07 (from http://www.cdf.toronto.edu/~ajr/209/tut/01/)
+19:59:26	Error: 	"Error when decompressing" (-1) at link http://www.cdf.toronto.edu/~ajr/209/tut/08 (from http://www.cdf.toronto.edu/~ajr/209/tut/01/)
+19:59:26	Error: 	"Error when decompressing" (-1) at link http://www.cdf.toronto.edu/~ajr/209/tut/09 (from http://www.cdf.toronto.edu/~ajr/209/tut/01/)
+19:59:26	Error: 	"Error when decompressing" (-1) at link http://www.cdf.toronto.edu/~ajr/209/tut/10 (from http://www.cdf.toronto.edu/~ajr/209/tut/01/)
+19:59:26	Error: 	"Error when decompressing" (-1) at link http://www.cdf.toronto.edu/~ajr/209/tut/11 (from http://www.cdf.toronto.edu/~ajr/209/tut/01/)
+19:59:26	Error: 	"Error when decompressing" (-1) at link http://www.cdf.toronto.edu/~ajr/209/tut/12 (from http://www.cdf.toronto.edu/~ajr/209/tut/01/)
+19:59:27	Error: 	"Not Found" (404) at link http://www.cdf.toronto.edu/~ajr/209/a2/qna-kiss.html (from http://www.cdf.toronto.edu/~ajr/209/a3/qna.html)
+19:59:32	Error: 	"Not Found" (404) at link http://www.cdf.toronto.edu/~ajr/209/auth/netgrade-results.cgi?course=209&asmt=seating (from http://www.cdf.toronto.edu/~ajr/209/exam/netgrade-exam.html)
+19:59:40	Warning: 	HTML file (3747 bytes) retransferred due to lack of cache: http://www.cdf.toronto.edu/~ajr/209/endofficehour.html
+19:59:40	Warning: 	HTML file (5046 bytes) retransferred due to lack of cache: http://www.cdf.toronto.edu/~ajr/209/prereq.html
+19:59:41	Warning: 	HTML file (20243 bytes) retransferred due to lack of cache: http://www.cdf.toronto.edu/~ajr/209/a1/qna.html
+19:59:41	Warning: 	HTML file (39171 bytes) retransferred due to lack of cache: http://www.cdf.toronto.edu/~ajr/209/a2/qnanewfmt.html
+19:59:41	Warning: 	HTML file (24301 bytes) retransferred due to lack of cache: http://www.cdf.toronto.edu/~ajr/209/a3/qna.html
+19:59:42	Warning: 	HTML file (27698 bytes) retransferred due to lack of cache: http://www.cdf.toronto.edu/~ajr/209/a4/qna.html
+19:59:43	Warning: 	HTML file (6922 bytes) retransferred due to lack of cache: http://www.cdf.toronto.edu/~ajr/209/mid/soln.html
+19:59:44	Warning: 	File seems complete (same size), but there was a cache read error (4294967295): www.utm.utoronto.ca/math-cs-stats/sites/files/math-cs-stats/public/users/yeyvette/PrereqCoreqForm-20129.pdf
+19:59:44	Warning: 	HTML file (11397 bytes) retransferred due to lack of cache: http://www.cdf.toronto.edu/~ajr/209/notes/getopt.html
+19:59:45	Error: 	"Not Found" (404) at link www.utm.utoronto.ca/accessability/sites/files/accessability/public/shared/pdfs/AccessAbility Note-taker Poster.pdf (from http://www.cdf.toronto.edu/~ajr/209/oldannounce.html)
+19:59:45	Warning: 	HTML file (3882 bytes) retransferred due to lack of cache: http://www.cdf.toronto.edu/~ajr/209/notes/tiny/format.html
+19:59:45	Warning: 	HTML file (500 bytes) retransferred due to lack of cache: http://www.cdf.toronto.edu/~ajr/209/notes/toolsfiles/faculty
+19:59:45	Warning: 	HTML file (6926 bytes) retransferred due to lack of cache: http://www.cdf.toronto.edu/~ajr/209/notes/sockets/newline.html
+19:59:45	Warning: 	HTML file (2456 bytes) retransferred due to lack of cache: http://www.cdf.toronto.edu/~ajr/209/notes/sockets/?C=N;O=D
+19:59:46	Warning: 	HTML file (1816 bytes) retransferred due to lack of cache: http://www.cdf.toronto.edu/~ajr/209/notes/pthreads/?C=N;O=D
+19:59:46	Warning: 	HTML file (210 bytes) retransferred due to lack of cache: http://www.cdf.toronto.edu/~ajr/209/tut/01
+19:59:46	Warning: 	Moved Permanently for http://www.cdf.toronto.edu/~ajr/209/tut/01
+19:59:46	Warning: 	File has moved from http://www.cdf.toronto.edu/~ajr/209/tut/01 to http://www.cdf.toronto.edu/~ajr/209/tut/01/
+19:59:46	Warning: 	HTML file (6113 bytes) retransferred due to lack of cache: http://www.cdf.toronto.edu/~ajr/209/manpage-ajr.html
+19:59:47	Warning: 	HTML file (1555 bytes) retransferred due to lack of cache: http://www.cdf.toronto.edu/~ajr/209/tut/12/q9s.html
+19:59:47	Warning: 	HTML file (2859 bytes) retransferred due to lack of cache: http://www.cdf.toronto.edu/~ajr/209/tut/12/q11s.html
+19:59:47	Warning: 	HTML file (19845 bytes) retransferred due to lack of cache: http://www.cdf.toronto.edu/~ajr/209/a3/qnaall.html
+19:59:48	Warning: 	HTML file (22647 bytes) retransferred due to lack of cache: http://www.cdf.toronto.edu/~ajr/209/a4/qnaall.html
+19:59:48	Warning: 	HTML file (2527 bytes) retransferred due to lack of cache: http://www.cdf.toronto.edu/~ajr/209/netgrade-mid.html
+19:59:48	Warning: 	HTML file (607 bytes) retransferred due to lack of cache: http://www.cdf.toronto.edu/~ajr/209/notes/getoptcmd
+19:59:49	Warning: 	HTML file (2016 bytes) retransferred due to lack of cache: http://www.cdf.toronto.edu/~ajr/209/notes/signals/
+19:59:51	Warning: 	HTML file (2981 bytes) retransferred due to lack of cache: http://www.cdf.toronto.edu/~ajr/209/probs/fsys/qa1s.html
+19:59:51	Warning: 	HTML file (3250 bytes) retransferred due to lack of cache: http://www.cdf.toronto.edu/~ajr/209/probs/proc/autologout-hint.html
+19:59:52	Warning: 	HTML file (11165 bytes) retransferred due to lack of cache: http://www.cdf.toronto.edu/~ajr/209/probs/exam/201001/
+19:59:52	Warning: 	HTML file (3195 bytes) retransferred due to lack of cache: http://www.cdf.toronto.edu/~ajr/209/probs/exam/201209/q9s.html
+19:59:53	Warning: 	HTML file (3556 bytes) retransferred due to lack of cache: http://www.cdf.toronto.edu/~ajr/209/probs/exam/201001/q3s.html
+19:59:53	Warning: 	HTML file (4386 bytes) retransferred due to lack of cache: http://www.cdf.toronto.edu/~ajr/209/probs/exam/200901/q1s.html
+19:59:54	Warning: 	HTML file (4948 bytes) retransferred due to lack of cache: http://www.cdf.toronto.edu/~ajr/209/probs/mid/201101/.
+
+HTTrack Website Copier/3.48-21 mirror complete in 4 minutes 13 seconds : 405 links scanned, 419 files written (6196146 bytes overall) [5374282 bytes received at 21242 bytes/sec], 1418541 bytes transferred using HTTP compression in 350 files, ratio 38%, 9.7 requests per connection
+(15 errors, 32 warnings, 0 messages)

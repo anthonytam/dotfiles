@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/notes/tiny/format.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:45 GMT -->
+<head>
+
+<title>CSC 209: Formatting your file</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #cc7777;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .unhidden { display: block; }
+</style>
+
+<script type="text/javascript">
+    function show(s) {
+        document.getElementById(s).className = 'unhidden';
+    }
+    function reveal(n) {
+        document.getElementById(n + '_teaser').className = 'hidden';
+        document.getElementById(n + '_hr').className = 'unhidden';
+        document.getElementById(n + '_full').className = 'unhidden';
+	n1 = n + 1;
+        document.getElementById(n1 + '_hr').className = 'unhidden';
+    }
+</script>
+
+</head>
+
+<body>
+<div class=toc>
+
+<a href="../../.html">Introduction</a>
+<br>
+<a href="../../announce.html">Announcements</a>
+
+<p>
+
+<a href="../../lect/index.html">Lectures</a>
+<br>
+<a href="../../tut/index.html">Tutorials</a>
+<br>
+<a href="../../asmt.html">Assignments</a>
+
+<p>
+<a href="javascript:show('tests')">Tests, exam</a>
+<div id=tests class=hidden>
+    <ul>
+    <li>
+    <a href="../../mid/index.html">Mid-term test</a>
+    <li>
+    <a href="../../exam/info.html">Final exam</a>
+    </ul>
+</div>
+
+<p>
+
+<a href="../index.html">Course notes</a>
+<br>
+<a href="../../probs/index.html">Extra problems</a>
+<br>
+
+<a href="https://mcs.utm.utoronto.ca/~mybb/utmcs/forumdisplay.php?fid=193">Discussion board</a>
+
+<p>
+<a href="../../netgrade-results.html">Grades so far</a>
+<br>
+<a href="../../oldannounce.html">Old announcements</a>
+
+</div>
+
+Please keep in mind that you are formatting your program to
+look good on all displays, not just your own.  For example, if you have lines
+wider than 80 characters, you might be tempted simply to resize your window
+so that it's wider than 80 characters.  But you can't resize the windows of
+all of the people reading your code.
+Keep in mind that your readers' windows might be as
+little as 80 characters wide.  (Sometimes long strings exceed 80 characters
+anyway and this is ok, so long as you realize it <i>will</i> wrap around
+on some people's computers.)
+
+<p>
+Similarly, a tab character represents spacing to the next multiple of 8
+spaces.
+Your editor might have a command (or menu item) which says to change what the
+"tab stops" are.  You should not use this command.  Because again, you are
+affecting only your own viewing experience, not everyone else's.  If you use
+a different editor, if you use the same editor from a different account or
+on a different computer, if you display the file with "cat" or print it with
+"lpr", it will be presented with 8-character tab stops.
+
+<p>
+If your editor has an option to use a different number of spaces when you
+press the tab <i>key</i>, this is not a problem, so long as when your editor
+writes out the file, it uses tabs to represent 8-character tab stops only.
+(E.g. some such editors don't write out tab characters on output at all;
+the tab key is just used as a handy data entry method in the editor, and all
+output to the file uses appropriate numbers of spaces.)
+
+<p>
+<hr>
+
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/notes/tiny/format.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:45 GMT -->
+</html>

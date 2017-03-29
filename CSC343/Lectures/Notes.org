@@ -1,0 +1,113 @@
+* Week 1
+** Data Model
+   DBMS is based on some kind of data model
+*** EX
+**** Network & hierarchical data model
+**** Relational data model
+     Think of data as having rows an colums
+     Took 10 years to first implement
+**** Semistructured data model
+     JSON
+     XML
+**** Unstructured data model
+     Keys and values can be anything
+*** More about relational model
+    Think of data as being in tables (Rows and Cols)
+    Based on the concept of relations in math
+
+*** Pros
+    We can specifiy a logical structure
+    High performance under high loads
+    Durability of data
+** What happens in a DBMS
+*** Architecture
+    Parse Querries
+    Implementing fundamental operations
+    Optimize queries
+    Maintain indicies on data
+    Accessing files that store the data and indicies
+    Buffer management
+    Disk spae management
+** The relational model
+*** Relations in math
+    Suppose D_1, D_2, ..., D_n are domains
+
+    The cartesian product is the set of all tuples <d_1, d_2, ..., d_n>
+    IE. Every possible combination of values from each domain
+
+    A mathematical relation is a subset of the cartesian product
+*** Terms
+**** Schema
+     Definition of the structure of a relation
+     Notation: Teams(_Name_, HomeField, Coach)
+**** Instance
+     Particular data in the relation
+     Instances can always change
+**** Conventional Database
+     Store current version of the data
+**** Temporal Database
+     Can recorde database history
+**** Relation
+     Table
+**** Attribute
+     Column
+**** Tuple
+     Row
+**** Aritary
+     Number of attribues
+**** Cardinality
+     Number of tuples
+**** Super Key
+     A set of attribues whos combined values are unique
+     Defined with a underlined attribute
+     Defines a kind of integrity constraint
+***** Ex
+      Course(dept, number, name, breadth)
+      <"csc", "343", "Intro to DB", True>
+     We know we can only have one tuple with the same dept and number
+     This means {dept, number} is a super key
+     This is a constraint on what can go in the relation
+     Every relation must have a super key. If there is nothing is notes, all attributes are the super key
+**** Primary Key
+     This is a concept specific to SQL
+**** Foreign Keys
+     A reffereing attribute
+     This gives us a way to refer to a single tuple in that relation
+     We declare foreign ket constraints this way: R_{1}[X]\sub R_{2}[Y]
+     X and Y are lists of attribues, of same arity
+     Y must be a key in R_2 
+
+*** Relations are sets
+    There are no duplicate tuples
+    Order does not matter
+    
+* Week 2
+** Project and Duplicates
+   - Projecting onto fewer attibutes can removed what made 2 roles unique
+   - These duplicates are dropped
+** Joining Relations
+   - Cartesian product produces all combinations, most of which are not needed
+*** Natural Join
+    - Take the cartesian product
+    - Select to ensure quality on attributes that are in both relations (Primary and Foriegn Key)
+    - Project to remove duplicatest
+    - Commutative property holds
+    - Associatove property holds
+**** Special Cases
+     - With no matches, empty set is returned
+     - Exactly the same attributes, keeps the intersection
+     - No attribute in common, catesian product is returned
+***** Over matching
+      - Joins on attribute name
+      - Two attributes have the same name, but want to match on one
+***** Under matching
+      - Two attributes have different names, but need them to match
+*** Theta Join
+    - Cartesian product followed by a select
+* Week 3
+** Set Operations
+   - Compare the entire tuple
+   - The 2 relations MUST have
+     - Same airty
+     - Same attribute names
+     - same attribute order

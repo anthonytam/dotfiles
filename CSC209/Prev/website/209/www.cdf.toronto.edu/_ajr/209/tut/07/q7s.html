@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/tut/07/q7s.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:27 GMT -->
+<head>
+
+<title>CSC 209 tutorial exercises, week of 29 February 2016</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #cc7777;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .unhidden { display: block; }
+</style>
+
+<script type="text/javascript">
+    function show(s) {
+        document.getElementById(s).className = 'unhidden';
+    }
+    function reveal(s) {
+        document.getElementById(s+'_a').className = 'hidden';
+        document.getElementById(s+'_b').className = 'revealed';
+    }
+</script>
+
+</head>
+
+<body>
+
+<div class=toc>
+<a href="../01.html">Tutorial 01</a>
+<br>
+<a href="../02.html">Tutorial 02</a>
+<br>
+<a href="../03.html">Tutorial 03</a>
+<br>
+<a href="../04.html">Tutorial 04</a>
+<br>
+<a href="../05.html">Tutorial 05</a>
+<br>
+<a href="../06.html">Tutorial 06</a>
+<br>
+<a href="../07.html">Tutorial 07</a>
+<br>
+<a href="../08.html">Tutorial 08</a>
+<br>
+<a href="../09.html">Tutorial 09</a>
+<br>
+<a href="../10.html">Tutorial 10</a>
+<br>
+<a href="../11.html">Tutorial 11</a>
+<br>
+<a href="../12.html">Tutorial 12</a>
+<br>
+<p>
+[<a href="../../index.html">Course home page</a>]
+</div>
+
+<h1>CSC 209 tutorial 07 solutions, week of 29 February 2016</h1>
+
+<h3> Question 7: </h3>
+
+Problem:
+<br>
+"./a.out num1 num2" outputs the sum of the two numbers.
+
+<p>
+Code:
+<pre>
+int main(int argc, char **argv)
+{
+    if (argv[2] == NULL) {
+        printf("two integers required on the command line");
+        return(55);
+    }
+    printf("%d", atoi(argv[1]) + atoi(argv[2]));
+}
+</pre>
+
+<p>
+Solution:
+<pre>
+int main(int argc, char **argv)
+{
+    if (argc != 3) {
+	fprintf(stderr, "usage: %s num1 num2\n", argv[0]);
+        return(1);
+    }
+    printf("%d\n", atoi(argv[1]) + atoi(argv[2]));
+    return(0);
+}
+</pre>
+
+<p>
+Problems fixed above:
+<ul>
+<li> The original check for argument count is bogus. <!--, similar to the
+<a href="../04/q6s.html">similar shell script problem from tutorial four</a>.-->
+<li> That error message is actually a complaint about the usage, so it should
+be formulated as a standard usage error.  Also, it was missing a newline.
+<li> Errors go to stderr, not stdout.
+<li> Missing newline in successful printf().
+<li> Missing return statement means that main() returns a somewhat random
+value.  At the end of main() we have a successful execution, so the return
+value, and hence the process exit status, should be zero.
+</ul>
+
+<p><hr>
+[press 'back' in your web browser to return to the problems]
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/tut/07/q7s.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:27 GMT -->
+</html>

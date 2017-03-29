@@ -1,0 +1,10 @@
+"cat $x" reparses the contents of the variable 'x', so for example if its
+value contains spaces, they will be passed as separate arguments to 'cat'.
+
+"cat '$x'" will pass the actual string "$x" to cat, so it will attempt to cat
+a file by this name.
+
+"cat "$x"" will do what you probably actually want: it will not reparse the
+contents of the variable 'x', so even if the contents of that variable
+contains various funny characters (most notably spaces), you will still cat
+the file whose name is the contents of the variable 'x'.

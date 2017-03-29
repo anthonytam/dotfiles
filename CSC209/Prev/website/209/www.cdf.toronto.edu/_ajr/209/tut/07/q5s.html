@@ -1,0 +1,145 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/tut/07/q5s.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:27 GMT -->
+<head>
+
+<title>CSC 209 tutorial exercises, week of 29 February 2016</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #cc7777;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .unhidden { display: block; }
+</style>
+
+<script type="text/javascript">
+    function show(s) {
+        document.getElementById(s).className = 'unhidden';
+    }
+    function reveal(s) {
+        document.getElementById(s+'_a').className = 'hidden';
+        document.getElementById(s+'_b').className = 'revealed';
+    }
+</script>
+
+</head>
+
+<body>
+
+<div class=toc>
+<a href="../01.html">Tutorial 01</a>
+<br>
+<a href="../02.html">Tutorial 02</a>
+<br>
+<a href="../03.html">Tutorial 03</a>
+<br>
+<a href="../04.html">Tutorial 04</a>
+<br>
+<a href="../05.html">Tutorial 05</a>
+<br>
+<a href="../06.html">Tutorial 06</a>
+<br>
+<a href="../07.html">Tutorial 07</a>
+<br>
+<a href="../08.html">Tutorial 08</a>
+<br>
+<a href="../09.html">Tutorial 09</a>
+<br>
+<a href="../10.html">Tutorial 10</a>
+<br>
+<a href="../11.html">Tutorial 11</a>
+<br>
+<a href="../12.html">Tutorial 12</a>
+<br>
+<p>
+[<a href="../../index.html">Course home page</a>]
+</div>
+
+<h1>CSC 209 tutorial 07 solutions, week of 29 February 2016</h1>
+
+<h3> Question 5: </h3>
+
+Problem:
+<br>
+A function which returns true/false to indicate whether the argument exists
+and is a plain file (much like "test -f"):
+
+<p>
+Code:
+<pre>
+int fexists(char *file)
+{
+    struct stat *p;
+    p = malloc(sizeof(struct stat));
+    return(stat(file, p) == 0 &amp;&amp; (p->st_mode &amp; S_IFMT) == S_IFREG);
+}
+</pre>
+
+<p>
+Solution:
+<pre>
+int fexists(char *file)
+{
+    struct stat statbuf;
+    return(stat(file, &amp;statbuf) == 0 &amp;&amp; (statbuf.st_mode &amp; S_IFMT) == S_IFREG);
+}
+</pre>
+
+<p>
+The second argument to stat() is a pointer, and that leads some beginning C
+programmers to feel that they need to declare a pointer variable.
+Some people do worse than the original code above in that they pass 'p' to stat()
+uninitialized, thus supplying an effectively random pointer value.
+
+<p>
+But stat() expects a pointer to an area where it can store all the stat data.
+The easiest way to create such an area is not malloc(), but a simple variable
+declaration.
+
+<p>
+This evades a bug in the original code, in that malloc() can return NULL if
+more memory isn't available; the original didn't check for that, so if
+malloc() returned NULL it would segfault in stat().
+
+<p>
+It fixes a subtler error in the original too: the original is a "memory
+leak" because each time you call it it does an additional malloc().  If this
+is in a long-running program (e.g. something like a web server) then it will
+eventually run out of memory.  Malloc() is slow, and introduces a bookkeeping
+obligation (you have to make sure you free the memory eventually).
+Variable declarations are much quicker to execute and easier to write.
+
+<p><hr>
+[press 'back' in your web browser to return to the problems]
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/tut/07/q5s.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:27 GMT -->
+</html>

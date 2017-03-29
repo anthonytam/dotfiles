@@ -1,0 +1,55 @@
+% Created 2017-02-27 Mon 20:56
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\tolerance=1000
+\author{Anthony Tam}
+\date{\today}
+\title{PS3Q2}
+\hypersetup{
+  pdfkeywords={},
+  pdfsubject={},
+  pdfcreator={Emacs 26.0.50.1 (Org mode 8.2.10)}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\section{Question Two}
+\label{sec-1}
+\subsection{Part a}
+\label{sec-1-1}
+\begin{itemize}
+\item The sequence with the largest possible total cost is $n - 1$ insert
+statements followed by a single cut statement. This will cause the
+worst possible cost to be $2(n - 1)$ or $2n - 2$.
+\item This means the upper bound of the cost will be:\\\\
+$= \frac{2n - 2}{n}$\\
+$= 2 - \frac{2}{n}$
+\end{itemize}
+\subsection{Part b}
+\label{sec-1-2}
+\begin{itemize}
+\item Each inserted element should be charged \$2.75 This will leave enough
+money for an insert to occur at \$0 and collect enough money to allow
+for a cut operation. When an element is inserted, it has a carry over
+of \$1.75. If n elements are inserted, there is a carry over of \$n$\cdot$1.75.
+This added cost allows for n elements to be inserted, and cut can be 
+called until k is equal to 0 without running out of money. When calling
+cut untill k = 0, there will either be a remainder of 0$\le$X$\le$1.75
+\end{itemize}
+% Emacs 26.0.50.1 (Org mode 8.2.10)
+\end{document}

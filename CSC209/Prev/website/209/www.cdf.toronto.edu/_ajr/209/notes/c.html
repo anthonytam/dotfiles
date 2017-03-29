@@ -1,0 +1,309 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/notes/c.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:13 GMT -->
+<head>
+
+<title>CSC 209: The C programming language</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #cc7777;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .unhidden { display: block; }
+</style>
+
+<script type="text/javascript">
+    function show(s) {
+        document.getElementById(s).className = 'unhidden';
+    }
+    function reveal(n) {
+        document.getElementById(n + '_teaser').className = 'hidden';
+        document.getElementById(n + '_hr').className = 'unhidden';
+        document.getElementById(n + '_full').className = 'unhidden';
+	n1 = n + 1;
+        document.getElementById(n1 + '_hr').className = 'unhidden';
+    }
+</script>
+
+</head>
+
+<body>
+<div class=toc>
+
+<a href="../.html">Introduction</a>
+<br>
+<a href="../announce.html">Announcements</a>
+
+<p>
+
+<a href="../lect/index.html">Lectures</a>
+<br>
+<a href="../tut/index.html">Tutorials</a>
+<br>
+<a href="../asmt.html">Assignments</a>
+
+<p>
+<a href="javascript:show('tests')">Tests, exam</a>
+<div id=tests class=hidden>
+    <ul>
+    <li>
+    <a href="../mid/index.html">Mid-term test</a>
+    <li>
+    <a href="../exam/info.html">Final exam</a>
+    </ul>
+</div>
+
+<p>
+
+<a href="index.html">Course notes</a>
+<br>
+<a href="../probs/index.html">Extra problems</a>
+<br>
+
+<a href="https://mcs.utm.utoronto.ca/~mybb/utmcs/forumdisplay.php?fid=193">Discussion board</a>
+
+<p>
+<a href="../netgrade-results.html">Grades so far</a>
+<br>
+<a href="../oldannounce.html">Old announcements</a>
+
+</div>
+
+<h1>The C programming language</h1>
+
+These lectures are an introduction to the C programming language for those who
+know Java.
+
+<p>
+If you already know some C, you will still probably find about half of the
+following to be new information, I think.
+
+<p>
+Let us begin by examining the following example program
+(which you can find in a separate file on the web at
+<a href="cintrofiles/gcd-full.c">https://cs.utm.utoronto.ca/~ajr/209/notes/cintrofiles/gcd-full.c</a>
+)
+<pre>
+#include &lt;stdio.h>
+
+int main()
+{
+    int i;
+    extern int gcd(int x, int y);
+
+    for (i = 0; i &lt; 20; i++)
+        printf("gcd of 12 and %d is %d\n", i, gcd(12, i));
+    return(0);
+}
+
+
+int gcd(int x, int y)
+{
+    int t;
+
+    while (y) {
+        t = x;
+        x = y;
+        y = t % y;
+    }
+    return(x);
+}
+</pre>
+
+<p>
+Notes on this file:
+<ul>
+
+<li> much is like Java.  Java departed from C only for good reasons.  Yet
+didn't hesitate to depart from C when there <i>was</i> a good reason.
+<li> #include is a hacky way to synchronize declarations between multiple
+modules, but it's all that C has.  In java, the compiler automatically finds
+those other .java or .class files; in C, you have to share the declarations
+manually, as we'll see shortly regarding the declaration of the gcd function.
+The "stdio" package includes basic file i/o, which thus includes output to
+stdout, etc.  The printf() function used above is in the stdio package.
+
+<li> main() returns int, not void.  This is the process exit status.
+You might see some books declaring main() to be of type void.  They are wrong.
+That's what you do in java, but in C, main() returns type int, and this is
+required.
+<li> The main() function header strangely omits the "args" argument.
+In fact there are two possible legal type definitions for main() in C
+(although for nothing else).  This has a strange historical origin...
+All that will be discussed <a href="argv.html">later</a>; for now we'll use
+the simpler format for main().
+
+<li> The extern declaration.  This complements the <i>definition</i> of gcd()
+below.  It gives the compiler the information needed to access that function
+it doesn't know about yet.  Similarly the file stdio.h contains a bunch of
+'extern' declarations and other similar things, which get copied into your
+program at that point.
+    <ul>
+    <li> declaration -- tells the compiler how to access the item
+    <li> definition -- creates the item (and in C, is also a declaration, but not vice versa)
+    </ul>
+<li> Some people omit 'extern'.  This is allowed for functions.
+
+<li> The 'for' loop is as you know from java.  The loop body above is just one
+statement, so it doesn't need braces around it.  Those work the same as in
+Java:
+	<ul>
+	<li> function body must be delimited by braces
+	<li> braces enclose a "block", and the bodies of most control
+	constructs (e.g. 'for', 'if') are "statement or block".
+	<li> braces introduce a scope level.
+	</ul>
+
+<li> In the 1989 version of C (original ANSI standard), you can't mix
+declarations and non-declaration statements.  You can't do "for (int i ..."
+like you can in java, or C++.
+	<ul>
+	<li> declarations must appear at the beginning of a block.  A block
+	begins with zero or more declarations, then zero or more
+	non-declaration statements.
+	</ul>
+
+<li> An uninitialized local variable has no default value, and to use its
+value before assigning one is an error.  Furthermore, the error is not
+diagnosed!
+	<ul>
+	<li> In general, <b><i>no run-time checking</i></b>!
+	</ul>
+
+<li> booleans:
+	<ul>
+	<li> C uses 'int' as the boolean type.
+	<li> Boolean operators generate 1 for true or 0 for false.
+	<li> Any non-zero value counts as "true" in a condition.
+	</ul>
+
+<li> no polymorphism.  The printf format string tells it what the types of the
+successive arguments are.
+
+<li> (obviously) No objects.  The term "object-oriented" was invented in the
+1980s and the C programming language was designed in 1972.  C++ is, basically,
+C with objects.
+
+</ul>
+
+<hr noshade>
+
+<p>
+We would typically compile the above file with:
+<pre>
+gcc -Wall -o gcd gcd.c
+</pre>
+
+<p>
+"-Wall" means to turn on "all" warning messages.
+Warning messages are messages which typically do indicate problems with your
+program, but for various reasons have been deemed by the ANSI standards
+committee not to be in the category of errors which should prevent the
+production of a machine-language program.
+
+<p>
+But in practice, you should almost always take these "warning" messages
+just as seriously as "error" messages.  Both indicate something wrong with
+your program.
+
+<p>
+Your assignments in this course should compile with "-Wall" with no
+diagnostics of any kind.  That is, after the 'gcc' command you should
+immediately get another shell prompt.
+
+
+<p>
+<hr noshade>
+
+<p>
+You might feel that the "gcd" subroutine above is more useful than the main()
+function which just plays with it a bit.
+Normally we would put these into separate files so that you could compile a
+different (and presumably larger) program which includes the gcd() function above,
+but does not include the main() function above.
+
+<p>
+You are used to dividing programs into multiple files in java.  In java, every
+public class has to be in a separate .java file.  There are no such rules in
+C, but we try to collect related functions and variables into a file, to
+present a module or "package" which has some sort of unified function.  Also,
+it is possible to make functions and variables private to an individual .c
+file.
+
+<p>
+So let's put the gcd function above into a separate file, which we'll call
+gcd.c, and the main() above into a file which we will call "testgcd.c".
+
+<p>
+Only testgcd.c needs to #include &lt;stdio.h>, because gcd() does not use
+anything from that library.
+
+<p>
+We'd also typically move that "<code>extern int gcd(int x, int y);</code>"
+into a separate file called gcd.h.
+Then testgcd.c (and anything else which uses gcd()) can #include "gcd.h", thus
+picking up the declaration.  So you #include "gcd.h" and compile with (link
+with) gcd.c; thus gcd.h and gcd.c comprise a package, just how we're using
+stdio functions from the standard C library.
+
+<p>
+Here are example
+<a href="cintrofiles/testgcd.c">testgcd.c</a>,
+<a href="cintrofiles/gcd.h">gcd.h</a>,
+and
+<a href="cintrofiles/gcd.c">gcd.c</a>
+files divided up in this way.
+Note that gcd.c <i>also</i> #includes gcd.h.
+This has an extremely useful error-checking function.
+It makes the C compiler verify that the argument count and types in gcd.h's
+declaration of gcd()
+match the argument count and types in gcd.c's definition of gcd().
+You should try changing one of them (e.g. add a third parameter) to see what
+happens.
+
+<p>
+Using double-quotes instead of angle-brakcets around "gcd.h" means that the C
+compiler should look for this file in the same directory as the .c file being
+compiled, whereas angle-brackets mean that it should look in /usr/include.
+
+<p>
+We would typically compile these files with:
+<pre>
+gcc -Wall -o testgcd testgcd.c gcd.c
+</pre>
+
+<p>
+<hr>
+
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/notes/c.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:14 GMT -->
+</html>

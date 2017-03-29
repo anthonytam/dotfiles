@@ -1,0 +1,231 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/notes/argv.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:14 GMT -->
+<head>
+
+<title>CSC 209: argc and argv in C</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #cc7777;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .unhidden { display: block; }
+</style>
+
+<script type="text/javascript">
+    function show(s) {
+        document.getElementById(s).className = 'unhidden';
+    }
+    function reveal(n) {
+        document.getElementById(n + '_teaser').className = 'hidden';
+        document.getElementById(n + '_hr').className = 'unhidden';
+        document.getElementById(n + '_full').className = 'unhidden';
+	n1 = n + 1;
+        document.getElementById(n1 + '_hr').className = 'unhidden';
+    }
+</script>
+
+</head>
+
+<body>
+<div class=toc>
+
+<a href="../.html">Introduction</a>
+<br>
+<a href="../announce.html">Announcements</a>
+
+<p>
+
+<a href="../lect/index.html">Lectures</a>
+<br>
+<a href="../tut/index.html">Tutorials</a>
+<br>
+<a href="../asmt.html">Assignments</a>
+
+<p>
+<a href="javascript:show('tests')">Tests, exam</a>
+<div id=tests class=hidden>
+    <ul>
+    <li>
+    <a href="../mid/index.html">Mid-term test</a>
+    <li>
+    <a href="../exam/info.html">Final exam</a>
+    </ul>
+</div>
+
+<p>
+
+<a href="index.html">Course notes</a>
+<br>
+<a href="../probs/index.html">Extra problems</a>
+<br>
+
+<a href="https://mcs.utm.utoronto.ca/~mybb/utmcs/forumdisplay.php?fid=193">Discussion board</a>
+
+<p>
+<a href="../netgrade-results.html">Grades so far</a>
+<br>
+<a href="../oldannounce.html">Old announcements</a>
+
+</div>
+
+<h1>argv</h1>
+
+<p>
+C uses a mechanism which you will find reminiscent of java's
+command-line-argument mechanism
+(the "String []args" argument to main()).  There is an
+alternate allowable definition of main() in C and C++, whose declaration
+looks like this:
+
+<pre>
+        int main(int argc, char **argv)
+</pre>
+
+<p>
+"argc" stands for "argument count".  It is the number of elements in "argv",
+"argument vector".
+(While "vector" and "array" mean different things in java's datatype library,
+in general they are synonyms.)
+
+<p>
+While "argc" and "argv" are theoretically arbitrary parameter names,
+the use of the names "argc" and "argv"
+is <i>so</i> standard that you should <i>never</i> use any other name.
+
+<p>
+Since a string can be passed around as a value of type pointer-to-char, argv
+will be an array of pointers-to-char.  And when argv is passed to main()
+by the operating system, it will decay into a pointer to its zeroth element,
+so the data will be of type pointer-to-pointer-to-char.
+
+<p>
+The array is one element larger than you might think.  The program name itself
+is argv[0], so the first command-line argument is argv[1], and so on, and argc
+reflects the total number of items in the argv array <i>including</i> this argv[0].
+Often we ignore argv[0] altogether.
+
+<p>
+<strong>Example 1:</strong>
+Write a program which first checks that argc is at least 2, then prints
+the value of argv[1] (using %s).  A session with this program might look
+like this, where '%' is your shell prompt:
+
+<pre>
+	% ./a.out hello, world
+	hello,
+	% 
+</pre>
+
+Since "world" is argv[2], it didn't print that part.  The shell (command
+interpreter) divides up the arguments based on spaces.
+
+<p>
+Solution:
+
+<pre>
+#include &lt;stdio.h>
+
+int main(int argc, char **argv)
+{
+    if (argc >= 2)
+	printf("%s\n", argv[1]);
+    return(0);
+}
+</pre>
+
+We check that argc >= 2 before accessing argv[1], because it is illegal to
+exceed the bounds of an array in C, and it is <strong>undiagnosed</strong>...
+be careful!
+
+<p>
+<strong>Example 2:</strong>
+Write a program which prints all of the argv values in a loop.  This is
+like the 'echo' command in unix.
+
+<p>
+Sample session (our program is not going to be quite as tidy as 'echo', as
+shown here):
+
+<pre>
+	% echo hello, world, how are you
+	hello, world, how are you
+	% ./a.out hello, world, how are you
+	hello,
+	world,
+	how
+	are
+	you
+	% 
+</pre>
+
+<p>
+Answer:
+
+<pre>
+#include &lt;stdio.h>
+
+int main(int argc, char **argv)
+{
+    int i;
+    for (i = 1; i < argc; i++)
+	printf("%s\n", argv[i]);
+    return(0);
+}
+</pre>
+
+<p>
+Note the ignoring of argv[0], which would be "./a.out".
+
+
+<p>
+<strong>Example 3:</strong>
+Finally, here is a more traditionally-written unix "echo" command (although
+not implementing the "-n" option processing):
+
+<pre>
+#include &lt;stdio.h>
+
+int main(int argc, char **argv)
+{
+    for (argc--, argv++; argc > 0; argc--, argv++)
+	printf("%s%c", *argv, (argc == 1) ? '\n' : ' ');
+    return(0);
+}
+</pre>
+
+<p>
+<hr>
+
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/notes/argv.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:14 GMT -->
+</html>

@@ -1,0 +1,201 @@
+* Week 1
+** ADT vs Data Structure
+   Example of an ADT: Stack, Queue, Dictionary
+   Example of a Data Structure: Linked List, Array
+   Data Structures will implement a/multiple ADT(s)
+** Showing best case runtime
+   How to show that the best case is 1 step
+   You find a smaily of lists, one of each size, where the algorithm takes only one step
+  
+   IE. Finding 42 in a list
+   Size [1] = 42
+   Size [2] = 42, 11
+   Size [3] = 42, 11, 11
+   Size [n] = 42, n-1 occurences of 11
+
+   Another solution:
+   Size [n] = n occurances of 42
+
+   Little no purpose in studying best-case analysis
+** Showing average case runtime
+   Worst or best case does not usually describe what is happening
+   
+   Let t_n be a random variable between 1 and n-1
+   E[t_n] = \sigma t \cdot Pr(t_n = t)
+   
+   We now need the probability where t_n = t. This also means we need ot know the distribution of the function
+   
+*** Going to the example in the above point:
+    Suppose every list had only 42. Then we know runtime will always be 1. (NOT REASONABLE)
+    So, let suppose we have 100 elements, and each element is chose uniformly at random from 1 to 100.
+    Pr(t_n = 1) = 0.01
+    Pr(t_n = 2) = 0.99 * 0.01
+    Pr(t_n = 3) = 0.99^2 * 0.01
+    Pr(t_n = n) = 0.99^(n-1) * 0.01
+    Pr(t_n = n+1) = 0.99^n * 0.01 (Occurs when no key is 42)
+    
+    Once we calculate this out, we find: 100 - 99 * 0.99^n
+    This creates an average runtime of \theta (1)
+** Arguing notitaion
+   To argue that an algorithm’s worst-case running time is O(n^2), we show that *For every* inputs of size at least n_0, we have T(n) is *No larger* than cn^2.
+   To argue that an algorithm’s worst-case running time is \omega(n^2), we show that *There exists* inputs of size at least n_0, we have T(n) is *No smaller* than cn^2.
+   To argue that an algorithm’s best-case running time is O(n^2), we show that *There exists* inputs of size at least n_0, we have T(n) is *No larger* than cn^2.
+   To argue that an algorithm’s best-case running time is \omega(n^2), we show that *For every* inputs of size at least n_0, we have T(n) is *No smaller* than cn^2.
+
+* Week 2
+** Heaps!
+   | Mode           | Unsorted  LL | Sorted LL | Heap     |
+   |----------------+--------------+-----------+----------|
+   | Insert         | \theta(1)         | \theta(n)      | \theta(log n) |
+   | Max            | \theta(n)         | \theta(1)      | \theta(1)     |
+   | ExtractMax     | \theta(n)         | \theta(1)      | \theta(log n) |
+   | ChangePriority | \theta(1)         | \theta(n)      | \theta(log n) |
+
+*** Binary Max-Heap
+**** There are other kinds of heaps
+**** Nearly complete binary tree that has the max-heap propery
+     Every node has a priority greater then or equal to its childen
+**** Filled in left to right
+**** Storing a heap as a list is a form of serialization
+**** Left child \rightarrow index\cdot{}2, Right child \rightarrow index\cdot{}2+1, Parent \rightarrow Floor(index/2)
+*** Get Max Element
+**** Return the root element
+*** Adding to a Heap
+**** Add the item to the end of the heap
+**** Heap property may be broken between the new element and the parent.
+***** We can swap the new element and the parent
+***** Check this process again, a "bubble" up the value until it is either the root or less then its parent
+*** Remove Mex Element
+**** The only element it can be replaced with is the rightmost element
+**** Start a "bubble down"
+     Check both children, swap with the larger of the 2, repeat
+*** Change Priority
+**** Similar to insert
+**** Find the changed element
+**** Change the priority
+**** Start "bubble up" to find its proper location
+*** Decrease Priority 
+**** Similar to remove max
+**** Find the changed element
+**** Change the priority
+**** Start "bubble down" to find its proper location
+
+** BST vs Heap
+*** Searching a BST is possible, not easily in a Heap
+**** Easy to find the Max in a heap, no other value has a sort
+
+** Heap Sort
+*** Just faceroll
+
+** Heapify a List
+*** Could keep calling insert on all elements ( O(n log n) )
+*** But Dan is crazy apparently
+*** You can build the heap in O(n)
+**** Go bottom up, the bottom row is already a valid heap
+**** Move up a row, check all elements and bubble down the root element if needed, repeat
+**** Once at the root, need to bubble down until in a proper position
+* Week 3
+** What is a dictionary
+   - Dictionary has not priority on its elements
+   - Each item or node has a key
+     - Assume they are unique
+   - Search(S, k) return x in S such that the key is k
+   - Insert(S, x) insert x into S, if something has the same key, replace it
+   - Delete(S, x) delete x from S
+     - Takes a node, not a key
+     - Each operation focus' on a single task
+** TODO Worst Case Running Time
+   |              | Unsorted lsit | Sorted Array | BST  | Balanced BST |
+   |--------------+---------------+--------------+------+--------------|
+   | Search(S, k) | \theta(n)          | \theta(log n)     | \theta(n) | \theta(log n)     |
+   
+** BST!
+   - A tree where every node has 2 children
+   - Each node has a key
+   - Each key is greater or less then another (NOT EQUAL!)
+   - BST is not required to be nearly-complete structure
+   - A BST can be completly unbalanced
+* Week 4
+** AVL Trees
+   - Created in 1962, first self balencing BST to be invented
+*** Balance factor
+    - The heiht of its right subtree minus the height of its left subtree
+    - The AVL tree is balanced if its balance factor is -1, 0, or 1
+      - -1: Left heacy
+      - 0: Balanced
+      - 1: Right heavy
+    - A binary tree is ALV-balanced if all its nodes are AVL nodes
+    - An AVL tree is a BST that is AVL-balanced
+    - Course notes has a proof that the height of an AVL treee is \theta(log n)
+    - We will now implpements all our BST operations in \theta(log n) time
+      - AVL Search
+      - AVL Insert
+      - AVL Delete
+*** Invariant
+    - Gives us
+      - A tree with small height (proportional to log n)
+    - Requires from us
+      - That we maintain it when we modify the tree
+*** AVL Search
+    - An AVL tree is just a BST
+    - So to search, use the same BST search algorithm
+    - Since we are not modifying the tree, the invariant can't be broken
+*** AVL Insert
+    - Start with a standard BST insert
+      - The balance factors may still be fine
+    - We may need to use a rotation
+**** Rotations
+     - We use rotations to fix an unbalanced tree
+     - Change the height of a node's left and right subtrees and maintain the BST property
+     - Two kinds of rotations
+       - Right rotation
+       - Left rotation
+     - You need to maintain the same inorder traversal of the tree
+     - Left
+       - Increases left subtree height by 1
+       - Decreases right subtree height by 1
+     - Right
+       - The exact opposite (Can undo a left rotation and vise versa)
+*** Recurrence (Question 1)
+    - Let's write a recurrence for the minimum number of nodes in an AVL tree of height h.
+    - Lets call the recurrence T
+      #+BEGIN_SRC python
+        T(0) = 1
+        T(1) = 2
+        if h > 1:
+        T(h) = 1 + T(h-1) + T(h-2)
+
+        #This gives
+        T(2) = 1 + T(1) + T(0) = 1+2+1 = 4
+      #+END_SRC
+    - This means 7 nodes is the min for a height 3 tree
+*** Inserting elements (Question 2)
+    - Insert 3
+    - Insert 2
+    - Insert 1 - BAD
+      - Needs a right rotation on 3 to hold the AVL invariant 
+    - Insert 4
+    - Insert 5 - BAD
+      - Needs a left rotation on 3
+    - Insert 6 - BAD
+      - Needs a left insert on 2
+*** Min inserts that require a double rotation (Question 3)
+    - 3.
+    - Why can't 1 be the answer?
+      - Inserting the first node can never cause a problem
+    - Why can't 2 be the answer?
+      - Insert 1
+      - Insert 2
+    - So 3 must be the answer. What sequence requires a double rotation?
+      - Insert 3
+      - Insert 1
+      - Insert 2
+** Augmenting Data Structures
+   - Changing a data structure for practical use
+     - an AVL is an augmented BST
+   - 
+* Week 5
+** Dictionary ADT
+   - Add
+   - Search 
+   - Delete

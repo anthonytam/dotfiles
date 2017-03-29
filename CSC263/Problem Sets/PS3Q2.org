@@ -1,0 +1,18 @@
+* Question Two
+** Part a
+   - The sequence with the largest possible total cost is $n - 1$ insert
+     statements followed by a single cut statement. This will cause the
+     worst possible cost to be $2(n - 1)$ or $2n - 2$.
+   - This means the upper bound of the cost will be:\\\\
+     #+Begin_Latex
+     $= \frac{2n - 2}{n}$\\
+     $= 2 - \frac{2}{n}$
+     #+End_Latex
+** Part b
+   - Each inserted element should be charged $2.75 This will leave enough
+     money for an insert to occur at $0 and collect enough money to allow
+     for a cut operation. When an element is inserted, it has a carry over
+     of $1.75. If n elements are inserted, there is a carry over of $n\cdot{}1.75.
+     This added cost allows for n elements to be inserted, and cut can be 
+     called until k is equal to 0 without running out of money. When calling
+     cut untill k = 0, there will either be a remainder of 0\le{}X\le{}1.75

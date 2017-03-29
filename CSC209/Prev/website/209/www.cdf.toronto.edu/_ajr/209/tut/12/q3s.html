@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/tut/12/q3s.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:27 GMT -->
+<head>
+
+<title>CSC 209 sample exam question solution</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #cc7777;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .unhidden { display: block; }
+</style>
+
+</head>
+
+<body>
+
+Some discussion of answers to question 3 follow.
+There are many possible and trivial answers for programs which obey the rule;
+here are some answers to the harder part of the question, programs which
+violate the rule and whether or not this is justified.
+
+<p>
+a) "Write small programs that do one thing well."
+
+<p>
+You could argue that programs like editors or compilers violate this
+principle; they're certainly not small and simple.
+But I can't imagine a compiler which is made out of
+small tool-like programs; and editors like that are very annoying.
+Mostly, a compiler <i>does</i> do one focused thing, and a modern compiler
+typically does it well.
+
+<p>
+[rewritten January 2015 because the previous answer was very dated:]
+<br>
+A good example of a program which violates this principle is a typical modern
+web browser.
+Not content to retrieve and format web pages, a typical modern web browser
+contains multiple embedded programming languages, and all sorts of fancy
+stuff.
+The result is that web browsers are known for being some of the buggiest
+software we use, and this bugginess is particularly important because they are
+on a security boundary (you visit untrusted web pages and they mustn't be able
+to execute arbitrary code on your computer), so we have constant urgent
+security updates.
+
+
+<p>
+b) "Expect the output of every program to become the input to another,
+as yet unknown, program."
+(For example,
+don't clutter output with extraneous information such as headers.)
+
+<p>
+I was expecting most students to use "ps" as an example of a program which
+outputs headers.
+<p>
+The "ls -l" output could have been made easier to parse.
+<p>
+"ls -l" and "ls -R" have extra header-like information which would make for a
+good answer here.
+
+<p>
+Most obvious "violates" examples here are about including headers.
+A good example which is not about headers is "diff".
+The output of diff is harder to parse than it has to be.
+
+<p>
+c) "Make programs' input formats easy to generate or type."
+(Example: Avoid stringently columnar or binary input formats.
+Another example: Supply good defaults: It should be common to say simply
+"command" with no command-line arguments.)
+
+<p>
+An excellent "violates" example of this is "make"'s Makefile file format.
+Yucky stuff with tabs which is pointlessly tricky.
+
+<p>
+<hr>
+[press 'back' in your web browser to return to where you were in the exam]
+
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/tut/12/q3s.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:27 GMT -->
+</html>

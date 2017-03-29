@@ -1,0 +1,14 @@
+Lab6
+clear,input,user_entered
+clock,input,user_entered
+inst,reg,user_entered
+inst1,reg,user_entered
+inst2,reg,user_entered
+inst3,comb,user_entered
+inst4,comb,user_entered
+inst5,comb,user_entered
+inst6,comb,user_entered
+inst7,comb,user_entered
+inst8,comb,user_entered
+pin_name1,output,user_entered
+,hierarchy,user_entered

@@ -1,0 +1,256 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/tut/05/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:02 GMT -->
+<head>
+
+<title>CSC 209 tutorial exercises, week of 8 February 2016</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #cc7777;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .unhidden { display: block; }
+</style>
+
+<script type="text/javascript">
+    function show(s) {
+        document.getElementById(s).className = 'unhidden';
+    }
+    function reveal(s) {
+        document.getElementById(s+'_a').className = 'hidden';
+        document.getElementById(s+'_b').className = 'revealed';
+    }
+</script>
+
+</head>
+
+<body>
+
+<div class=toc>
+<a href="../01.html">Tutorial 01</a>
+<br>
+<a href="../02.html">Tutorial 02</a>
+<br>
+<a href="../03.html">Tutorial 03</a>
+<br>
+<a href="../04.html">Tutorial 04</a>
+<br>
+<a href="../05.html">Tutorial 05</a>
+<br>
+<a href="../06.html">Tutorial 06</a>
+<br>
+<a href="../07.html">Tutorial 07</a>
+<br>
+<a href="../08.html">Tutorial 08</a>
+<br>
+<a href="../09.html">Tutorial 09</a>
+<br>
+<a href="../10.html">Tutorial 10</a>
+<br>
+<a href="../11.html">Tutorial 11</a>
+<br>
+<a href="../12.html">Tutorial 12</a>
+<br>
+<p>
+[<a href="../../index.html">Course home page</a>]
+</div>
+
+<h1>CSC 209 tutorial 05 exercises, week of 8 February 2016</h1>
+
+Please begin by running "/student/csc209/present".
+This records your attendance and is required for you to get the marks for the
+lab.
+
+
+<p>
+<hr>
+
+<h3> 1. Demonstrations of selected system calls  </h3>
+
+Please look at the sample programs in /student/csc209/tut/05.
+
+<p>
+They are all compiled there in that directory for you, but you
+can also copy the .c files to your own directory to modify them to test
+variations.
+
+<p>
+First, examine the program /student/csc209/tut/05/stat.c
+<br>
+The stat() and/or lstat() system calls will be needed for assignment two.
+
+<p>
+stat.c illustrates calling stat() on an argument file name and
+extracting various information about the file.
+The data returned from stat() is basically an "ls -l".
+
+<p>
+This data is returned in a "struct" because there are too many values for it
+to be feasible to do it any other way.  A "struct" is basically a dataless
+class -- it is an aggregate data type containing arbitrary other data types.
+Some of the contents of this struct are output by the example stat.c.
+The semantics of the "." in C are not the same as in Java or Python, but to some extent
+you can ignore the distinction for now, and we'll talk about structs fully in
+<a href="../../notes/struct.html">a subsequent lecture</a>.
+
+<p>
+Note that if you run stat (or my stat.c) on a symlink, you get information
+about the pointed-to file (try it! -- e.g. create a file named "foo" and then
+create a symlink to it with "<tt>ln&nbsp;&minus;s&nbsp;foo&nbsp;bar</tt>").
+This is the difference between stat() and lstat().  Examine
+and run lstat.c.  (And try "diff stat.c lstat.c"!)
+<br>
+<small>
+(Note: If you just type "stat" as the command name, intending to run a file
+"stat" out of the current directory, you may instead get /usr/bin/stat, depending on
+how your PATH is set up.  I suggest getting into the habit of typing "./file"
+to run a program in the current directory, and omitting dot from your PATH.)
+</small>
+
+<p>
+Normally we want to "follow" symlinks in the way that stat() does.  But for
+some purposes we need to see the actual symlink.  For example, to write
+"ls -l".  For another example, your assignment two directory-traversing code
+(part 3 of assignment two)
+will need to use lstat() rather than stat() to traverse a directory tree
+properly, so that symlinks don't send it off in strange directions (possibly
+even infinite loops).
+
+<p>
+Three of the data values in the "struct stat" are time values.
+A time value in unix/linux is just a single integer which is the number of
+seconds since 00:00 1 Jan 1970 UTC, so it's particularly easy to work with,
+although difficult to convert into a string suitable for output to the user,
+but we have library routines for the latter.
+For some examples of manipulating time values you can see
+/student/csc209/tut/05/time.c , although you don't need that
+<!--
+for assignment
+two (all you need to do in assignment two is to compare the time values for
+order or equality).
+-->
+for assignment two nor this tutorial
+(all you need to do in this tutorial is to compare the time values for
+order).
+
+<p>
+In case you're not completely clear on strcmp() (which <i>is</i>
+used in assignment two, although it's not a system call),
+you can look at
+/student/csc209/tut/05/strcmp.c, which is just a command-line front end to strcmp().
+Run this program with various strings in argv[1] and argv[2].
+
+<p>
+Finally, for directory traversal you will need to read a directory.
+The program
+/student/csc209/tut/05/readdir.c illustrates using opendir(), readdir(), and
+closedir().
+The struct returned by readdir() contains all of the information in one entry
+in the directory -- which is merely an inode number and a name.
+
+<p>
+In stat() and lstat(), we passed in a pointer to a struct which the library
+routine filled up; whereas in this case, we get a pointer back from readdir().
+Thus unlike in stat.c, here we're usually dealing with a variable which is a
+pointer to a struct, rather than the struct itself.
+
+<p>
+So we <i>could</i> write things like "(*p).d_name", first dereferencing the
+pointer-to-struct, then accessing a member of the struct.
+This notation is cumbersome, though, and the parentheses <i>are</i> necessary
+because of the operator precedence rules.
+So there's a special notation in C which looks like a right-pointing arrow and
+is formed from the two characters '-' and '&gt;".
+"a-&gt;b" is simply defined as "(*a).b".
+Thus instead of the cumbersome "(*p).d_name", we can write "p-&gt;d_name".
+(It makes more of a difference in typing than in reading it!  It also makes
+more of a difference when there are multiple levels of pointers to structs.
+And we'll see all of this more in future lectures.)
+
+
+<p>
+<hr>
+
+<h3> 2. To submit </h3>
+
+Write a C program which insists on having two arguments (i.e. argc==3).
+Both arguments are expected to be file path names.
+Call stat() on each of them and output the file path name which is newer
+(i.e. for which the st_mtime struct member is numerically greater).
+Note that there is no other output other than this file path name (and a
+newline character).
+
+<p>
+You want to take care in copying any portions of the supplied stat.c.
+In general, it's asking for trouble to copy code you don't want or
+understand; write your own program and make sure you know what's in there.
+
+<p>
+Call your program tut5.c and submit it with
+<pre>
+        /student/csc209/submit tut5 tut5.c
+</pre>
+, by the end of the day;
+and no matter when you submit it, don't forget to run /student/csc209/present
+during the tutorial time, on the console of a tutorial lab workstation.
+
+<p>
+(Other 'submit' commands are described at the end of the notes for
+<a href="../01/index.html">tutorial one</a>.)
+
+<p>
+Your program must compile on the UTM linux
+machines with "gcc -Wall" with no errors or warning messages.
+
+<p>
+<hr width="25%" align=left>
+<p>
+Q: Do we need to check argc and output a usage message?
+
+<p>
+A: Yes!  Always!  And the usage message must be in the standard format (see
+the SYNOPSIS line from the man page exercise in <a href="../03/index.html">tutorial
+three</a>), and to stderr, and you must exit with exit status 1 in case of
+error or 0 in the normal case.
+
+<p>
+Note: Since we hadn't talked about output to other files yet, outputting the
+usage message to stdout was accepted for tutorial four... but that won't be
+accepted for this or future tutorials, nor for assignments.  Output usage
+messages to stderr as we always do for error messages.
+
+<p>
+<hr>
+
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/tut/05/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:59:02 GMT -->
+</html>

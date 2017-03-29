@@ -1,0 +1,210 @@
+<!doctype html>
+<html>
+
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/remotelogin.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:56:32 GMT -->
+<head>
+
+<title>Remote login to UTM linux</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    body {
+        color: black;
+        background-color: #ffdddd;
+    }
+    hr {
+        border-style: solid;
+    }
+    div.toc {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #cc7777;
+        color: white;
+        link: white;
+        visited: white;
+        line-height: 150%;
+    }
+    div.toc a:link {
+        color: white;
+    }
+    div.toc a:visited {
+        color: white;
+    }
+
+    .hidden { display: none; }
+    .unhidden { display: block; }
+</style>
+
+<script type="text/javascript">
+    function show(s) {
+        document.getElementById(s).className = 'unhidden';
+    }
+    function reveal(n) {
+        document.getElementById(n + '_teaser').className = 'hidden';
+        document.getElementById(n + '_hr').className = 'unhidden';
+        document.getElementById(n + '_full').className = 'unhidden';
+	n1 = n + 1;
+        document.getElementById(n1 + '_hr').className = 'unhidden';
+    }
+</script>
+
+</head>
+
+<body>
+<div class=toc>
+
+<a href=".html">Introduction</a>
+<br>
+<a href="announce.html">Announcements</a>
+
+<p>
+
+<a href="lect/index.html">Lectures</a>
+<br>
+<a href="tut/index.html">Tutorials</a>
+<br>
+<a href="asmt.html">Assignments</a>
+
+<p>
+<a href="javascript:show('tests')">Tests, exam</a>
+<div id=tests class=hidden>
+    <ul>
+    <li>
+    <a href="mid/index.html">Mid-term test</a>
+    <li>
+    <a href="exam/info.html">Final exam</a>
+    </ul>
+</div>
+
+<p>
+
+<a href="notes/index.html">Course notes</a>
+<br>
+<a href="probs/index.html">Extra problems</a>
+<br>
+
+<a href="https://mcs.utm.utoronto.ca/~mybb/utmcs/forumdisplay.php?fid=193">Discussion board</a>
+
+<p>
+<a href="netgrade-results.html">Grades so far</a>
+<br>
+<a href="oldannounce.html">Old announcements</a>
+
+</div>
+
+<h1>Remote login to UTM linux</h1>
+
+You can log in to your UTM linux account and work from elsewhere at UTM,
+and if you have internet access at home, you can log in to your UTM linux
+account and work from home.
+
+<p>
+(Note, however, that attendance is taken in the tutorials -- you need to
+attend the tutorial (physically) to receive credit for the tutorial exercise.)
+
+<p>
+There is a remote login protocol called "ssh" which is supported by the
+UTM linux computers.
+That is, the UTM linux computers
+run the "server"; what you need for home is the "client" software, which is
+the other side of a "server-client" connection over the internet.
+(Similarly, your web browser is a "client" and it connects to a "web server"
+over the internet.)
+
+<p>
+The computer to log in to is "cslinux.utm.utoronto.ca".
+
+<p>
+Possible client software (all freely distributable) is:
+<ul>
+<li> For unix/linux,
+<a href="http://www.openssh.com/portable.html">OpenSSH</a>.
+Probably included with your modern OS
+distribution; try typing "ssh&nbsp;user@cslinux.utm.utoronto.ca"
+at a shell prompt.
+<li> For Mac OS X, also openssh.  Use a terminal window (in Utilities under
+Applications).
+<li> For MS-Windows,
+<a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/">PuTTY</a>.
+</ul>
+
+<p>
+You should try to run applications such as web browsers on the machine
+you are physically at; e.g. start firefox <i>before</i> doing a network
+login to a(nother) linux host (or make sure that when you start it later,
+you are running it on the local machine, not on the remote machine).
+
+<p>
+I strongly recommend doing your work on the UTM linux computers.
+Using ssh, you can do this from home.
+
+<p>
+On the other hand, you may be able to work on your programs using a C compiler
+at home.
+Some of the issues here are:
+<ul>
+<li> If your own computer ceases functioning for any reason, this won't be
+accepted as a legitimate excuse for lateness.
+The UTM linux machines are provided for you to do your course work on and they are
+properly maintained, by professional sysadmins.
+<li> I will likely not be able to help you with any technical problems with
+your own equipment (although my students are welcome to ask me for help
+and I'll see if I have any relevant advice).
+<li> To test and submit your programs, they have to be in your directory on
+the UTM linux
+computers.  So you will have to transfer them, and some people introduce
+problems with their files when they do this.  In particular, you will likely
+have to make sure that they are transferred in "text mode" so as to avoid
+interesting control characters cropping up at the ends of the lines.
+Other problems people experience relate to non-standard character codes used
+by macintoshes and especially ms-windows, notably for the directional quotes and
+em-dash.
+<li> Your programs have to compile and run on the UTM linux computers.
+If you are using a C compiler at home, well, C compilers vary substantially in
+quality and in the extent to which they correctly implement the C programming
+language.  Furthermore, a lot of C compilers these days allow "C++isms" of
+various kinds, especially if those compilers are just restricted versions of
+C++ compilers from the same vendor, and you must write your
+assignments for this course in C, not C++.
+So it will be essential to make sure your programs function correctly on the
+UTM linux
+computers, after you transfer them from home.
+<li> Some of the programs in CSC 209 will be unix-specific, and won't work on
+a non-unix (and non-linux) system which you may have at home.
+(This is not a problem if you are running linux or unix at home.)
+</ul>
+
+<p>
+So all of the above is to say that I recommend simply logging in to UTM linux and
+always working on UTM linux even if you are not physically in DH 2020 or 2026.
+
+<p>
+But if you don't do that, you might need to copy files between your home
+computer and UTM linux.
+To copy files to and from UTM, I recommend:
+<ul>
+<li> for unix/linux, openssh (or any other version of ssh) has "scp" and "sftp".
+I use scp, and also often "rsync -e ssh".
+<li> For Mac OS X, a nice GUI-clicky sftp client is
+<a href="http://rsug.itd.umich.edu/software/fugu/">"Fugu"</a>
+(and of course you can still use scp and sftp).
+<li> for MS-Windows, PuTTY comes with
+<a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">"pscp"
+from the same site</a>.
+For a graphical-user-interface scp client, try
+<a href="http://winscp.net/eng/download.php">"WinSCP"</a>.
+(In either case, check the newlines on the resulting file!)
+</ul>
+
+<p>
+<hr>
+
+</body>
+
+<!-- Mirrored from www.cdf.toronto.edu/~ajr/209/remotelogin.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Jan 2017 00:56:32 GMT -->
+</html>
