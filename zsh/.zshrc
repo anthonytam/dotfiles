@@ -106,6 +106,8 @@ alias -g .....='../../../..'
 alias -g ......='../../../../..'
 # Emacs
 alias e='emacs'
+# Make gentoo arch again!
+alias poweroff='systemctl poweroff'
 # Whats the tempreater weather man?
 alias wttr='~/.bin/weather'
 # Alias some stupid stuff

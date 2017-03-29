@@ -1,1 +1,0 @@
-/home/tamfire/.weechat/perl/iset.pl

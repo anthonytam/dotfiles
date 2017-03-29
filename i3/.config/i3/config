@@ -21,10 +21,13 @@ font pango:monospace 8
 floating_modifier $mod
 
 # Lock the screek
-bindsym $mod+Escape exec i3lock-fancy -gp -- scrot -z
+bindsym $mod+Escape exec i3lock
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
+
+# start emacs
+bindsym XF86Launch1 exec emacs
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -124,4 +127,4 @@ bar {
 }
 
 exec_always compton
-exec_always feh --bg-scale "/home/tamfire/Pictures/wallpaper/wallpaper.jpg"
+exec_always feh --bg-scale "/home/tamfire/Pictures/wallpaper/wallpaper.png"

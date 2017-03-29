@@ -1,2 +1,2 @@
 #!/bin/sh
-/opt/monero-wallet-gui/monero-wallet-gui
+/opt/monero/monero-wallet-gui
