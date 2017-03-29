@@ -16,13 +16,13 @@
  ("/home/tamfire/Documents/Homework/CSC263/" . "Problem Sets/")
  ("/home/tamfire/Documents/Homework/" . "CSC209/")
  ("/home/tamfire/Documents/" . "Homework/")
- ("/home/tamfire/" . ".emacs.d/")
+ ("/home/tamfire/" . "Documents/")
 )
 
 ;; ----- ido-work-directory-list -----
 (
- "/home/tamfire/.emacs.d/"
  "/home/tamfire/Documents/Homework/CSC209/repo_tamanth2/a4/"
+ "/home/tamfire/.emacs.d/"
  "/home/tamfire/.emacs.d/lisp/"
  "/home/tamfire/dotfiles/emacs/.emacs.d/"
  "/home/tamfire/dotfiles/emacs/.emacs.d/lisp/"
@@ -47,8 +47,8 @@
 
 ;; ----- ido-work-file-list -----
 (
- "init.el"
  "ftree.c"
+ "init.el"
  "init-powerline.el"
  "ftree.h"
  "rcopy_server.c"
@@ -61,9 +61,9 @@
 
 ;; ----- ido-dir-file-cache -----
 (
- ("/home/tamfire/.emacs.d/" (22747 10775 780001 916000) "ido.last" "custom.el" "lisp/" "backups/" "auto-save-list/" "elpa/" "tramp" "themes/" "smex-items" "init.el" "README.org" ".gitignore" "../" "./")
+ ("/home/tamfire/" (22747 47924 40042 557000) ".zhistory" ".viminfo" ".lesshst" "2017-03-28-123801_1366x768_scrot.png" ".serverauth.4661" ".Xauthority" ".fehbg" ".Skype/" ".mozilla/" ".thunderbird/" ".gnome2_private/" ".gnome2/" "Desktop/" "2017-03-23-141026_1366x768_scrot.png" ".java/" ".gtk-bookmarks" ".bak.emacs/" ".gnupg/" "Pictures/" ".fonts" ".bitmonero/" "Downloads/" "Documents/" ".gnome/" ".cache/" ".pki/" ".local/" ".dmenu_cache" ".w3m/" ".zcompdump" ".zshrc" ".zsh/" ".weechat/" ".tmux.conf" ".i3status.conf" ".gitconfig" ".emacs.d/" ".bin/" "dotfiles/" ".config/" ".xinitrc" ".dbus/" ".bash_history" ".bash_logout" ".bash_profile" ".bashrc" ".ssh/" "../" "./")
 
- ("/home/tamfire/" (22747 11674 970003 186000) ".zhistory" ".viminfo" ".lesshst" "2017-03-28-123801_1366x768_scrot.png" ".serverauth.4661" ".Xauthority" ".fehbg" ".Skype/" ".mozilla/" ".thunderbird/" ".gnome2_private/" ".gnome2/" "Desktop/" "2017-03-23-141026_1366x768_scrot.png" ".java/" ".gtk-bookmarks" ".bak.emacs/" ".gnupg/" "Pictures/" ".fonts" ".bitmonero/" "Downloads/" "Documents/" ".gnome/" ".cache/" ".pki/" ".local/" ".dmenu_cache" ".w3m/" ".zcompdump" ".zshrc" ".zsh/" ".weechat/" ".tmux.conf" ".i3status.conf" ".gitconfig" ".emacs.d/" ".bin/" "dotfiles/" ".config/" ".xinitrc" ".dbus/" ".bash_history" ".bash_logout" ".bash_profile" ".bashrc" ".ssh/" "../" "./")
+ ("/home/tamfire/.emacs.d/" (22747 10775 780001 916000) "ido.last" "custom.el" "lisp/" "backups/" "auto-save-list/" "elpa/" "tramp" "themes/" "smex-items" "init.el" "README.org" ".gitignore" "../" "./")
 
  ("/home/tamfire/Documents/Homework/CSC209/repo_tamanth2/a4/" (22747 10846 330002 16000) "rcopy_server.c" "ftree.c" "Makefile" "server" "client" "hash.h" "ftree.h" "hash_functions.c" "rcopy_client.c" "../" "./")
 

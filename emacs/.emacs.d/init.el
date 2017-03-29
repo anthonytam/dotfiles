@@ -31,6 +31,7 @@
 (setq initial-scratch-message "") ; No scratch text
 (fset 'yes-or-no-p 'y-or-n-p) ; y/n instead of yes/no
 (column-number-mode t) ; show column number in mode line
+(global-linum-mode 1)
 (delete-selection-mode 1) ; Replace selection on insert
 (setq vc-follow-symlinks t) ; Always follow symlinks
 (setq custom-file "~/.emacs.d/custom.el") ; Set custom file
