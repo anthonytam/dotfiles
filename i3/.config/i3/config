@@ -6,11 +6,6 @@ exec --no-startup-id "powertop --auto-tune"
 # Disable window borders
 for_window [class="^.*"] border pixel 0
 
-# Adds gaps
-#gaps inner 12
-#gaps outer 0
-#smart_gaps on
-
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -62,44 +57,40 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # switch to workspace
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+bindsym $mod+ampersand workspace 1
+bindsym $mod+bracketleft workspace 2
+bindsym $mod+braceleft workspace 3
+bindsym $mod+braceright workspace 4
+bindsym $mod+parenleft workspace 5
+bindsym $mod+equal workspace 6
+bindsym $mod+asterisk workspace 7
+bindsym $mod+parenright workspace 8
+bindsym $mod+plus workspace 9
+bindsym $mod+bracketright workspace 10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
+bindsym $mod+Shift+ampersand move container to workspace 1
+bindsym $mod+Shift+bracketleft move container to workspace 2
+bindsym $mod+Shift+braceleft move container to workspace 3
+bindsym $mod+Shift+braceright move container to workspace 4
+bindsym $mod+Shift+parenleft move container to workspace 5
+bindsym $mod+Shift+equal move container to workspace 6
+bindsym $mod+Shift+asterisk move container to workspace 7
+bindsym $mod+Shift+parenright move container to workspace 8
+bindsym $mod+Shift+plus move container to workspace 9
+bindsym $mod+Shift+bracketright move container to workspace 10
 
 #Volume Keys
 bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 2%+
 bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 2%-
 bindsym XF86AudioMute exec amixer set Master toggle
 
-#Brightness Keys
-#xbacklight doesn't work for lenovo G50, use light instead
-bindsym XF86MonBrightnessUp exec light -A 10
-bindsym XF86MonBrightnessDown exec light -U 10
-
 #Spotify Controls
 #lenovo G50 has no audio controls, so I have this bound to other keys on the top row
-bindsym $mod+Prior exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
-bindsym $mod+End exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
-bindsym $mod+Home exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
+bindsym XF86AudioPlay exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
+bindsym XF86AudioStop exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop"
+bindsym XF86AudioNext exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
+bindsym XF86AudioPrev exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
