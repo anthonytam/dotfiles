@@ -118,4 +118,4 @@ bar {
 }
 
 exec_always compton
-exec_always feh --bg-scale "/home/tamfire/Pictures/wallpaper/wallpaper.png"
+exec_always feh --bg-scale "/home/tamfire/Pictures/wallpaper/wallpaper.jpg"
