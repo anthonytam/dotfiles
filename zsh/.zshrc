@@ -106,9 +106,6 @@ alias -g .....='../../../..'
 alias -g ......='../../../../..'
 # Emacs
 alias e='emacs'
-# Make gentoo arch again!
-alias poweroff='systemctl poweroff'
-alias reboot='systemctl reboot'
 # Whats the tempreater weather man?
 alias wttr='~/.bin/weather'
 # Alias some stupid stuff
@@ -150,16 +147,12 @@ setopt promptsubst
 export KEYTIMEOUT=1
 
 ##
-## G E N T O O
-##
-export NUMCPUS=$(nproc)
-export NUMCPUSPLUSONE=$(( NUMCPUS + 1 ))
-export MAKEOPTS="-j${NUMCPUSPLUSONE} -l${NUMCPUS}"
-export EMERGE_DEFAULT_OPTS="--jobs=${NUMCPUSPLUSONE} --load-average=${NUMCPUS}"
-
-##
 ### P A T H
 ##
 export PATH="$HOME/.bin:$PATH"
 
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+## VirtualEnv
+export WORKON_HOME=$HOME/.virtualenvs
+source /usr/bin/virtualenvwrapper.sh
