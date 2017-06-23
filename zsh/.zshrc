@@ -114,6 +114,8 @@ alias gama='/bin/su'
 alias su='echo "Please gama before su"'
 # Just a git double check'er
 alias justincase="git grep -Ei '(cancer|fuck|shit|cunt|cuck|whore|bastard|bitch|damn|dick|skunk|shrimp|r\.i\.p|/rip/)' $(git rev-list --all) | cut -d ':' -f 3 | sort | uniq"
+#This routine is getting old...
+alias morning="xrandr --output HDMI2 --auto; xrandr --output HDMI2 --left-of LVDS1"
 
 ##
 ## P R O M P T

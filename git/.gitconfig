@@ -3,5 +3,3 @@
 	name = Anthony Tam
 [push]
 	default = simple
-[core]
-	sshCommand = ssh -i ~/.ssh/git
