@@ -32,7 +32,6 @@
 (setq initial-scratch-message "") ; No scratch text
 (fset 'yes-or-no-p 'y-or-n-p) ; y/n instead of yes/no
 (column-number-mode t) ; show column number in mode line
-(global-linum-mode 1)
 (delete-selection-mode 1) ; Replace selection on insert
 (setq vc-follow-symlinks t) ; Always follow symlinks
 (setq custom-file "~/.emacs.d/custom.el") ; Set custom file
@@ -65,11 +64,24 @@
 (use-package sublime-themes
   :config
   (load-theme 'spolsky t))
+;; Terminal theme
 (when (not (display-graphic-p))
   (load-theme 'wombat t))
 (load-file "~/.emacs.d/lisp/init-powerline.el")
+
+;; Efficient line numbers
+(use-package nlinum
+  :config
+  (add-hook 'prog-mode-hook 'nlinum-mode))
+
 ;; Saner defaults for emacs
-(use-package better-defaults)
+(use-package better-defaults
+  :config
+  (use-package ido-complete-space-or-hyphen)
+  (use-package ido-vertical-mode
+    :config
+    (ido-vertical-mode 1)
+    (setq ido-vertical-define-keys 'C-n-and-C-p-only)))
 
 (use-package company
   :init
@@ -113,9 +125,7 @@
 ;; Better M-x
 (use-package smex
   :demand
-  :bind ("M-x" . smex)
-  :config
-  (use-package ido-complete-space-or-hyphen))
+  :bind ("M-x" . smex))
 
 ;; Better looking org headers
 (use-package org-bullets
