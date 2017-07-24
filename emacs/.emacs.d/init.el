@@ -1,11 +1,12 @@
 ;;
-;;      __________.__         ___________             _________                _____.__        
-;;      \______   \  | _______\_   _____/____  ___  __\_   ___ \  ____   _____/ ____\__| ____  
-;;       |     ___/  | \___   /|    __) \__  \ \  \/  /    \  \/ /  _ \ /    \   __\|  |/ ___\ 
+;;      __________.__         ___________             _________                _____.__
+;;      \______   \  | _______\_   _____/____  ___  __\_   ___ \  ____   _____/ ____\__| ____
+;;       |     ___/  | \___   /|    __) \__  \ \  \/  /    \  \/ /  _ \ /    \   __\|  |/ ___\
 ;;       |    |   |  |__/    / |     \   / __ \_>    <\     \___(  <_> )   |  \  |  |  / /_/  >
-;;       |____|   |____/_____ \\___  /  (____  /__/\_ \\______  /\____/|___|  /__|  |__\___  / 
-;;                           \/    \/        \/      \/       \/            \/        /_____/  
+;;       |____|   |____/_____ \\___  /  (____  /__/\_ \\______  /\____/|___|  /__|  |__\___  /
+;;                           \/    \/        \/      \/       \/            \/        /_____/
 ;;
+
 ;;
 ;; P A C K A G E   M A N A G E M E N T
 ;;
@@ -38,7 +39,7 @@
 (load custom-file 'noerror) ; Load custom file
 (setq org-pretty-entities t) ; Live LaTeX in org mode
 
-;; 
+;;
 ;; O R G   M O D E
 ;;
 (require 'org-agenda)
@@ -62,8 +63,8 @@
 ;; P A C K A G E S
 ;;
 (use-package sublime-themes
-    :config
-    (load-theme 'spolsky t))
+  :config
+  (load-theme 'spolsky t))
 (when (not (display-graphic-p))
   (load-theme 'wombat t))
 (load-file "~/.emacs.d/lisp/init-powerline.el")
@@ -97,22 +98,24 @@
     (defun my/python-mode-hook ()
       (add-to-list 'company-backends 'company-jedi))
 
-    (add-hook 'python-mode-hook 'my/python-mode-hook)))
+    (add-hook 'python-mode-hook 'my/python-mode-hook))
 
-(require 'color)
+  (require 'color)
 
-(let ((bg (face-attribute 'default :background)))
-  (custom-set-faces
-   `(company-tooltip ((t (:inherit default :background ,(color-lighten-name bg 2)))))
-   `(company-scrollbar-bg ((t (:background ,(color-lighten-name bg 10)))))
-   `(company-scrollbar-fg ((t (:background ,(color-lighten-name bg 5)))))
-   `(company-tooltip-selection ((t (:inherit font-lock-function-name-face))))
-   `(company-tooltip-common ((t (:inherit font-lock-constant-face)))))))
+  (let ((bg (face-attribute 'default :background)))
+    (custom-set-faces
+     `(company-tooltip ((t (:inherit default :background ,(color-lighten-name bg 2)))))
+     `(company-scrollbar-bg ((t (:background ,(color-lighten-name bg 10)))))
+     `(company-scrollbar-fg ((t (:background ,(color-lighten-name bg 5)))))
+     `(company-tooltip-selection ((t (:inherit font-lock-function-name-face))))
+     `(company-tooltip-common ((t (:inherit font-lock-constant-face)))))))
 
 ;; Better M-x
 (use-package smex
   :demand
-  :bind ("M-x" . smex))  
+  :bind ("M-x" . smex)
+  :config
+  (use-package ido-complete-space-or-hyphen))
 
 ;; Better looking org headers
 (use-package org-bullets
@@ -137,23 +140,15 @@
 (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
-; Small JS tweak
+;; Small JS tweak
 (setq web-mode-content-types-alist
       '(("jsx" . "\\.js[x]?\\'")))
 
 (use-package flycheck
   :config
+  (with-eval-after-load 'flycheck
+    (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
   (global-flycheck-mode))
-
-
-;;
-;; G O D   M O D E
-;;
-(use-package god-mode
-  :config
-  (global-set-key (kbd "<escape>") 'god-mode-all)
-  (setq god-exempt-major-modes nil)
-  (setq god-exempt-predicates nil))
 
 ;;
 ;; B A C K U P S
@@ -161,7 +156,7 @@
 (setq backup-by-copying t) ; Stop shinanigans with links
 (setq backup-directory-alist '((".*" . "~/.bak.emacs/backup/")))
 ;; Creates directory if it doesn't already exist
-(if (eq nil (file-exists-p "~/.bak.emacs/")) 
+(if (eq nil (file-exists-p "~/.bak.emacs/"))
     (make-directory "~/.bak.emacs/"))
 ;; Creates auto directory if it doesn't already exist
 (if (eq nil (file-exists-p "~/.bak.emacs/auto"))
