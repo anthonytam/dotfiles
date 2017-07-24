@@ -64,6 +64,8 @@
 (use-package sublime-themes
     :config
     (load-theme 'spolsky t))
+(when (not (display-graphic-p))
+  (load-theme 'wombat t))
 (load-file "~/.emacs.d/lisp/init-powerline.el")
 ;; Saner defaults for emacs
 (use-package better-defaults)
@@ -89,6 +91,13 @@
     :config
     (eval-after-load 'company
       '(add-to-list 'company-backends 'company-irony)))
+
+  (use-package company-jedi
+    :config
+    (defun my/python-mode-hook ()
+      (add-to-list 'company-backends 'company-jedi))
+
+    (add-hook 'python-mode-hook 'my/python-mode-hook)))
 
 (require 'color)
 

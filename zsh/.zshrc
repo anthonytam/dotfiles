@@ -112,6 +112,7 @@ alias wttr='~/.bin/weather'
 alias tim='echo "Where the fuck is tim?"'
 alias gama='/bin/su'
 alias su='echo "Please gama before su"'
+alias ytd="youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best'"  
 # Just a git double check'er
 alias justincase="git grep -Ei '(cancer|fuck|shit|cunt|cuck|whore|bastard|bitch|damn|dick|skunk|shrimp|r\.i\.p|/rip/)' $(git rev-list --all) | cut -d ':' -f 3 | sort | uniq"
 #This routine is getting old...
