@@ -60,6 +60,16 @@
     (setq org-agenda-use-time-grid nil)
     (setq org-src-fontify-natively t
           org-src-tab-acts-natively t)
+
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((dot . t)))
+
+    ;; Refresh images after executing a src block
+    (add-hook 'org-babel-after-execute-hook
+              '(lambda ()
+                 (when org-inline-image-overlays
+                   (org-redisplay-inline-images))))
   #+END_SRC
   
 ** Org Bullets
