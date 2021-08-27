@@ -95,28 +95,17 @@ alias :q='exit'
 alias grep='grep --color=always'
 # List directory contents
 alias lsa='ls -lah --color'
-alias l='ls --color'
 alias ll='ls -lh --color'
-alias la='ls -A --color'
 alias ls='ls --color'
 # Push and pop directories on directory stack
 alias -g ...='../..'
 alias -g ....='../../..'
 alias -g .....='../../../..'
 alias -g ......='../../../../..'
-# Emacs
-alias e='emacs'
 # Whats the tempreater weather man?
 alias wttr='~/.bin/weather'
-# Alias some stupid stuff
-alias tim='echo "Where the fuck is tim?"'
-alias gama='/bin/su'
-alias su='echo "Please gama before su"'
-alias ytd="youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best'"  
 # Just a git double check'er
 alias justincase="git grep -Ei '(cancer|fuck|shit|cunt|cuck|whore|bastard|bitch|damn|dick|skunk|shrimp|r\.i\.p|/rip/)' $(git rev-list --all) | cut -d ':' -f 3 | sort | uniq"
-#This routine is getting old...
-alias morning="xrandr --output HDMI2 --auto; xrandr --output HDMI2 --left-of LVDS1"
 
 ##
 ## P R O M P T
@@ -155,7 +144,3 @@ export KEYTIMEOUT=1
 export PATH="$HOME/.bin:$PATH"
 
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-## VirtualEnv
-export WORKON_HOME=$HOME/.virtualenvs
-source /usr/bin/virtualenvwrapper.sh

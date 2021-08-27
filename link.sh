@@ -12,15 +12,13 @@ then
 	done
 elif [[ $1 = "-h" ]] || [[ $1 = "--help" ]]
 then
-	printf "Tam's dotfile installer (V1)\n\n"
+	printf "Dotfile symlinker\n\n"
 	printf "USAGE:\n"
 	printf "\t${0} [FLAGS]\n\n"
 	printf "FLAGS:\n\n"
 	printf "\t-u, --uninstall\tRemoves all dotfile symlinks\n"
 	printf "\t-d, --force\tForces the install of all dotfiles (No prompts)\n"
 	printf "\t-h, --help\tDisplay this message\n\n"
-	printf "Report bugs/problems by creating an issue on github\n"
-	printf "https://github.com/anthonytam/DotFiles\n"
 else
 	# If the current shell is not set to zsh
 	if [[ "$(getent passwd $USER | cut -d: -f7)" = *"zsh"* ]]
