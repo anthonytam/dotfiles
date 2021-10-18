@@ -22,10 +22,11 @@ unsetopt nomatch
 fpath=(
     ~/.zsh/completion/
     ~/.zsh/prompt/
+    /usr/share/zsh/vendor-completions/
     $fpath)
 
 autoload -Uz compinit
-compinit
+compinit -i
 
 # Set emacs as default editor
 export EDITOR='vim'
@@ -106,6 +107,7 @@ alias -g ......='../../../../..'
 alias wttr='~/.bin/weather'
 # Just a git double check'er
 alias justincase="git grep -Ei '(cancer|fuck|shit|cunt|cuck|whore|bastard|bitch|damn|dick|skunk|shrimp|r\.i\.p|/rip/)' $(git rev-list --all) | cut -d ':' -f 3 | sort | uniq"
+alias k='kubectl'
 
 ##
 ## P R O M P T
