@@ -103,6 +103,8 @@ alias -g ...='../..'
 alias -g ....='../../..'
 alias -g .....='../../../..'
 alias -g ......='../../../../..'
+# Too lazy to fix root cause
+alias egrep='grep -E'
 # Whats the tempreater weather man?
 alias wttr='~/.bin/weather'
 # Just a git double check'er
@@ -145,4 +147,8 @@ export KEYTIMEOUT=1
 ##
 export PATH="$HOME/.bin:$PATH"
 
+# Host specific entries
+source ~/.zsh/host-specific/$HOST.sh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+eval `ssh-agent -s`
