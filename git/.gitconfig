@@ -1,9 +1,12 @@
 [user]
 	email = github@anthonytam.me
 	name = Anthony Tam
+	signingkey = 88AD7B4A2FB20B07
 [push]
 	default = simple
 [pull]
 	rebase = false
 [init]
 	defaultBranch = main
+[commit]
+	gpgsign = true
