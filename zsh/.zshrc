@@ -150,5 +150,3 @@ export PATH="$HOME/.bin:$PATH"
 # Host specific entries
 source ~/.zsh/host-specific/$HOST.sh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-eval `ssh-agent -s`
