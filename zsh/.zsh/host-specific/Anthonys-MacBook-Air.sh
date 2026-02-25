@@ -1,4 +1,4 @@
-eval `ssh-agent -s`
+export SSH_AUTH_SOCK="~/.bitwarden-ssh-agent.sock"
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
